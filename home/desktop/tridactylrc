@@ -1,0 +1,94 @@
+" -*- mode: vimrc -*-
+" fix search bar and command bar behaviour
+unbind --mode=ex <Space>
+bind --mode=ex <A-Space> ex.insert_space_or_completion
+" set hint chars to prioritize comfy keys
+unset hintchars
+set hintchars eainrstgbfuoyxlcmjwpdqvh;'kz
+" disable autofocus
+set allowautofocus false
+" allow autofocus in certain sites
+seturl https://play.rust-lang.org/ allowautofocus true
+seturl https://monkeytype.com/ allowautofocus true
+seturl https://hs.nixlap.top/ allowautofocus true
+" init searchurls
+setnull searchurls.pp
+setnull searchurls.searx
+set searchurls {"sx":"https://search.nixlap.top/search?q=","pp":"https://www.perplexity.ai/search?q="}
+setnull searchurls.googlelucky
+setnull searchurls.scholar
+setnull searchurls.googleuk
+setnull searchurls.bing
+setnull searchurls.duckduckgo
+setnull searchurls.yahoo
+setnull searchurls.twitter
+setnull searchurls.wikipedia
+setnull searchurls.youtube
+setnull searchurls.amazon
+setnull searchurls.amazonuk
+setnull searchurls.startpage
+setnull searchurls.github
+setnull searchurls.cnrtl
+setnull searchurls.osm
+setnull searchurls.mdn
+setnull searchurls.gentoo_wiki
+setnull searchurls.qwant
+bind <S-ArrowDown> tabnext
+bind <S-ArrowUp> tabprev
+bind <S-ArrowLeft> back
+bind <S-ArrowRight> forward
+" Comment toggler for Reddit, Hacker News and Lobste.rs
+bind ;c hint -Jc [class*="expand"],[class*="togg"],[class="comment_folder"]
+" GitHub pull request checkout command to clipboard (only works if you're a collaborator or above)
+bind yp composite js document.getElementById("clone-help-step-1").textContent.replace("git checkout -b", "git checkout -B").replace("git pull ", "git fetch ") + "git reset --hard " + document.getElementById("clone-help-step-1").textContent.split(" ")[3].replace("-","/") | yank
+" Git{Hub,Lab} git clone via SSH yank
+bind yg composite js "git clone " + document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git") | clipboard yank
+" As above but execute it and open terminal in folder
+bind ,g js let uri = document.location.href.replace(/https?:\/\//,"git@").replace("/",":").replace(/$/,".git"); tri.native.run("cd ~/projects; git clone " + uri + "; cd \"$(basename \"" + uri + "\" .git)\"; st")
+" make d take you to the left (I find it much less confusing)
+bind d composite tabprev; tabclose #
+bind D tabclose
+" Make gu take you back to subreddit from comments
+bindurl reddit.com gu urlparent 4
+" " Allow Ctrl-a to select all in the commandline
+unbind --mode=ex <C-a>
+"
+" Allow Ctrl-c to copy in the commandline
+unbind --mode=ex <C-c>
+set homepages ["https://homepage.nixlap.top/"]
+set newtab https://homepage.nixlap.top/
+" Handy multiwindow/multitasking binds
+bind gd tabdetach
+bind gD composite tabduplicate; tabdetach
+" ge from helix scroll to end of page
+bind ge scrollto 100
+" pin tab
+bind <C-p> pin
+" mute tab
+bind <C-m> mute toggle
+
+" " find
+" "bind / fillcmdline find
+" "bind n findnext 1
+" "bind N findnext -1
+" "bind ,<Space> nohlsearch
+" Sane hinting mode
+" " set hintfiltermode vimperator-reflow
+"
+" Defaults to 300ms but I'm a 'move fast and close the wrong tabs' kinda chap
+set hintdelay 100
+"
+" Make Tridactyl work on more sites at the expense of some security.
+fixamo_quiet
+"
+jsb browser.webRequest.onHeadersReceived.addListener(tri.request.clobberCSP,{urls:["<all_urls>"],types:["main_frame"]},["blocking","responseHeaders"])
+" Inject Google Translate
+" This (clearly) is remotely hosted code. Google will be sent the whole
+" contents of the page you are on if you run `:translate`
+" From https://github.com/jeremiahlee/page-translator
+command translate js let googleTranslateCallback = document.createElement('script'); googleTranslateCallback.innerHTML = "function googleTranslateElementInit(){ new google.translate.TranslateElement(); }"; document.body.insertBefore(googleTranslateCallback, document.body.firstChild); let googleTranslateScript = document.createElement('script'); googleTranslateScript.charset="UTF-8"; googleTranslateScript.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&tl=&sl=&hl="; document.body.insertBefore(googleTranslateScript, document.body.firstChild);
+
+colourscheme catppuccin
+
+" ALWAYS IGNORE ON MONKEYTYPE
+autocmd DocStart monkeytype.com mode ignore

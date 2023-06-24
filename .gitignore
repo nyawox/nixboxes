@@ -1,0 +1,7 @@
+.direnv
+result
+.deploy-gc
+.Trash-1000
+*~
+*.swp
+*.swo
