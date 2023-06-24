@@ -1,0 +1,6 @@
+.direnv
+result
+.deploy-gc
+*~
+*.swp
+*.swo

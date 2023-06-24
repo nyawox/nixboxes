@@ -1,0 +1,51 @@
+#+TITLE: nixboxes
+WORK IN PROGRESS
+[[file:./assets/screenshot1.png]]
+[[file:./assets/screenshot2.png]]
+* Quick Start
+
+*SSH keys in /etc/ssh will be copied over to new installation*
+
+bin/localinstall
+#+BEGIN_SRC bash
+Usage : localinstall -h <hostname> [options]
+
+Options:
+
+ -h, --host <hostname>
+set the config hostname to install from this flake
+
+ --secureboot
+generate secureboot keys
+
+ --initrdssh
+generate initrd ssh host keys
+#+END_SRC
+
+bin/remoteinstall
+#+begin_src bash
+Usage : remoteinstall -h <hostname> -p <port> -i <ip> [options]
+
+Options:
+
+
+-h, --host <hostname>
+set the config hostname to install from this flake
+
+-p, --port <ssh_port>
+set the ssh port to connect with
+
+-i, --ip <ssh_ip>
+set the destination ip to install
+
+--secureboot
+generate secureboot keys
+
+--initrdssh
+generate initrd ssh host keys
+#+end_src
+
+* Deploy
+~deploy -k~ deploys all hosts and keeps gc roots in ~.deploy-gc~
+
+Pass ~-s~ to skip flake checks
