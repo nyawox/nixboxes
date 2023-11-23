@@ -242,13 +242,11 @@
             prettier.enable = true;
             beautysh.enable = true;
             shellcheck.enable = true;
-            shfmt.enable = true;
             yamlfmt.enable = true;
           };
           settings.formatter = {
             beautysh.includes = ["remoteinstall" "localinstall"];
             shellcheck.includes = ["remoteinstall" "localinstall"];
-            shfmt.includes = ["remoteinstall" "localinstall"];
           };
           flakeFormatter = true;
           projectRootFile = "flake.nix";
@@ -282,12 +280,12 @@
             {
               name = "install-sops-key";
               help = "Install sops age key on .config/sops to decrypt secrets";
-              command = "sudo ssh-to-age -private-key -i /etc/ssh/id_ed25519_age -o /home/$USER/.config/sops/age/keys.txt";
+              command = "mkdir -p /home/$USER/.config/sops/age; sudo ssh-to-age -private-key -i /etc/ssh/id_ed25519_age -o /home/$USER/.config/sops/age/keys.txt";
               category = "misc";
             }
             {
               name = "update";
-              help = "Update all flakes and commit lock file";
+              help = "Update all flake inputs and commit lock file";
               command = "nix flake update --commit-lock-file";
             }
             {
