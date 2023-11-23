@@ -1,5 +1,8 @@
 #+TITLE: nixboxes
-WORK IN PROGRESS
+[[https://builtwithnix.org][file:https://builtwithnix.org/badge.svg]]
+[[https://actions-badge.atrox.dev/nyawox/nixboxes/goto?ref=main][file:https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fnyawox%2Fnixboxes%2Fbadge%3Fref%3Dmain&style=for-the-badge]]
+[[https://github.com/nyawox/nixboxes][file:https://img.shields.io/github/license/nyawox/nixboxes.svg?style=for-the-badge]]
+
 [[file:./assets/screenshot1.png]]
 [[file:./assets/screenshot2.png]]
 * Quick Start
