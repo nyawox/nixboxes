@@ -1,7 +1,10 @@
 #+TITLE: nixboxes
-[[https://builtwithnix.org][file:https://builtwithnix.org/badge.svg]]
-[[https://actions-badge.atrox.dev/nyawox/nixboxes/goto?ref=main][file:https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fnyawox%2Fnixboxes%2Fbadge%3Fref%3Dmain&style=for-the-badge]]
-[[https://github.com/nyawox/nixboxes][file:https://img.shields.io/github/license/nyawox/nixboxes.svg?style=for-the-badge]]
+#+begin_html
+<a href="https://builtwithnix.org"><img alt="built with nix" src="https://builtwithnix.org/badge.svg" /></a>
+<a href="https://github.com/NixOS/nixpkgs"><img alt="nixos-unstable" src="https://img.shields.io/badge/unstable-nixos?style=for-the-badge&logo=nixos&logoColor=cdd6f4&label=NixOS&labelColor=11111b&color=b4befe" /></a>
+<a href="https://actions-badge.atrox.dev/nyawox/nixboxes/goto?ref=main"><img alt="GitHub Actions" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fnyawox%2Fnixboxes%2Fbadge%3Fref%3Dmain&style=for-the-badge&labelColor=11111b" /></a>
+<a href="https://github.com/nyawox/nixboxes"><img alt="LICENSE" src="https://img.shields.io/github/license/nyawox/nixboxes.svg?style=for-the-badge&labelColor=11111b&color=94e2d5" /></a>
+#+end_html
 
 [[file:./assets/screenshot1.png]]
 [[file:./assets/screenshot2.png]]
