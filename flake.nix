@@ -215,7 +215,13 @@
           common = {...}: {imports = [./home/shell];};
           # home-manager config for desktop
           desktop = {...}: {
-            imports = [./home/desktop ./home/desktop/hyprland ./home/files.nix ./home/xdg.nix];
+            imports = [
+              ./home/desktop
+              ./home/desktop/hyprland
+              ./home/desktop/waybar
+              ./home/files.nix
+              ./home/xdg.nix
+            ];
           };
         };
       };

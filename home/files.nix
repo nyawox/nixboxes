@@ -14,7 +14,7 @@
   };
 in {
   home.file = {
-    ".wallpaper.png".source = pkgs.fetchurl {
+    ".wallpaper.jpg".source = pkgs.fetchurl {
       url = "https://www.pixelstalk.net/wp-content/uploads/images8/Desktop-Wallpaper-Free-Download.jpg";
       sha256 = "11k6n82l09gnvr885y71pngvwqw48n9vwwa7zx2hgh4r6wmb05gn";
     };
@@ -59,5 +59,11 @@ in {
       + "/mocha.cava";
     "sunshine/sunshine.conf".source = ./sunshine.conf;
     "sunshine/apps.json".text = builtins.toJSON apps;
+    "nwg-drawer/drawer.css".text = ''
+      window {
+          background-color: rgba (17, 17, 27, 0.98);
+          color: #cdd6f4
+      }
+    '';
   };
 }

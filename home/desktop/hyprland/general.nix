@@ -5,15 +5,11 @@
   ...
 }: {
   home.packages = with pkgs; [
-    wofi
     qt5.qtwayland
     qt6.qtwayland
     qt6ct
     wlr-randr
-    grim
-    slurp
     xdg-user-dirs
-    swww
   ];
   wayland.windowManager.hyprland = {
     enable = lib.mkDefault true;
@@ -29,7 +25,7 @@
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
         gaps_in = 5
-        gaps_out = 20
+        gaps_out = 16
         border_size = 4
 
         layout = dwindle

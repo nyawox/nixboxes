@@ -43,5 +43,5 @@ in {
       size = 32;
     };
   };
-  home.packages = with pkgs; [glib configure-gtk nwg-look];
+  home.packages = with pkgs; [glib configure-gtk];
 }

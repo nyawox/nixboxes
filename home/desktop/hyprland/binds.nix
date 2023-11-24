@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   wayland.windowManager.hyprland.extraConfig = ''
     $mainMod = SUPER
 
@@ -10,11 +10,12 @@
     bind = $mainMod, B, exec, firefox
     bind = $mainMod, N, exec, swaync-client -t -sw
     bind = $mainMod, V, togglefloating,
-    bind = $mainMod, R, exec, wofi -H 1200 -S drun -I
+    bind = $mainMod, R, exec, ${pkgs.wofi}/bin/wofi -H 1200 -S drun -I
+    bind = $mainMod, SPACE, exec, ${pkgs.nwg-drawer}/bin/nwg-drawer -term wezterm -fm nautilus -ovl
     bind = $mainMod, P, pseudo, # dwindle
     bind = $mainMod, X, togglesplit, # dwindle
     bind = $mainMod, O, exec, swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color f5c2e7 --text-color cdd6f4 --key-hl-color fab387 --line-color 00000000 --inside-color 1e1e2e88 --separator-color 00000000 --grace 2 --fade-in 0.2
-    bind = $mainMod, S, exec, slurp | grim -g - $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+    bind = $mainMod, S, exec, ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
 
     # Move focus with mainMod + arrow keys
     bind = $mainMod, h, movefocus, l
