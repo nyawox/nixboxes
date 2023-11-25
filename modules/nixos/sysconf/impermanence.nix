@@ -77,6 +77,9 @@ in {
           ".local/share/lutris"
           ".local/share/TelegramDesktop"
           ".local/share/PrismLauncher/instances"
+          ".local/share/PrismLauncher/logs"
+          ".local/share/PrismLauncher/translations"
+          ".local/share/PrismLauncher/meta"
           ".local/share/zoxide"
           ".wine"
           ".cache"
@@ -97,6 +100,8 @@ in {
         files = [
           ".config/pulse/cookie"
           ".local/share/PrismLauncher/prismlauncher.cfg"
+          ".local/share/PrismLauncher/accounts.json"
+          ".local/share/PrismLauncher/metacache"
           # ".mozilla/firefox/default/addons.json"
           # ".mozilla/firefox/default/addonStartup.json.lz4"
           # ".mozilla/firefox/default/extension-preferences.json"

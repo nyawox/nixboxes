@@ -76,6 +76,10 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-minecraft = {
+      url = "github:Infinidoge/nix-minecraft";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # hyprfocus = {
     #   url = "github:VortexCoyote/hyprfocus";
     #   inputs.hyprland.follows = "hyprland";
@@ -153,6 +157,7 @@
                 inputs.nur.overlay
                 inputs.emacs-overlay.overlay
                 inputs.berberman.overlays.default
+                inputs.nix-minecraft.overlay
                 (
                   final: prev: {
                     deploy-rs = {
@@ -206,6 +211,7 @@
               inputs.srvos.nixosModules.roles-prometheus
               inputs.nix-switch-boot.nixosModules.nix-switch-boot
               inputs.stylix.nixosModules.stylix
+              inputs.nix-minecraft.nixosModules.minecraft-servers
             ];
           };
         };
