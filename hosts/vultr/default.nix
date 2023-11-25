@@ -10,6 +10,7 @@ _: {
       caddy.enable = true;
       vaultwarden.reverseProxy = true;
       headscale.enable = true;
+      frp.enable = true;
       monitoring.grafana.enable = true;
       monitoring.prometheus.enable = true;
     };

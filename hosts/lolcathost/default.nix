@@ -17,6 +17,7 @@
       nfs-server.enable = true;
       sunshine.enable = true;
       xmrig.enable = true;
+      minecraft-server.enable = true;
     };
     desktop = {
       hyprland.enable = true;
@@ -68,8 +69,6 @@
     gamemode.enable = true;
     corectrl.enable = true;
   };
-
-  # List services that you want to enable:
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
