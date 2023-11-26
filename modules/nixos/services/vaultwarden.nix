@@ -43,13 +43,47 @@ in {
           reverse_proxy http://nixpro64.nyaa.nixhome.shop:3011
         '';
       };
-      borgbackup.jobs.vaultwarden = mkIf cfg.backup {
-        paths = "/var/lib/bitwarden_rs";
-        encryption.mode = "none";
-        repo = "/var/backup/bitwarden_rs";
-        compression = "auto,zstd";
-        startAt = "daily";
+      restic.backups.vaultwarden-local = mkIf cfg.backup {
+        initialize = true;
+        paths = ["/var/lib/bitwarden_rs"];
+        passwordFile = config.sops.secrets.restic-vaultwarden-pw.path;
+        repository = "/var/backup/bitwarden_rs";
+        timerConfig = {
+          # backup every 1d
+          OnUnitActiveSec = "1d";
+        };
+        # keep 7 daily, 5 weekly, and 10 annual backups
+        pruneOpts = [
+          "--keep-daily 7"
+          "--keep-weekly 5"
+          "--keep-yearly 10"
+        ];
       };
+      restic.backups.vaultwarden = mkIf cfg.backup {
+        initialize = true;
+        paths = ["/var/lib/bitwarden_rs"];
+        passwordFile = config.sops.secrets.restic-vaultwarden-pw.path;
+        environmentFile = config.sops.secrets.restic-vaultwarden-env.path;
+        repository = "b2:vaultwarden-nyan";
+        timerConfig = {
+          # backup every 1d
+          OnUnitActiveSec = "1d";
+        };
+        # keep 7 daily, 5 weekly, and 10 annual backups
+        pruneOpts = [
+          "--keep-daily 7"
+          "--keep-weekly 5"
+          "--keep-yearly 10"
+        ];
+      };
+    };
+    sops.secrets.restic-vaultwarden-pw = mkIf cfg.backup {
+      sopsFile = ../../../secrets/restic-vaultwarden.psk;
+      format = "binary";
+    };
+    sops.secrets.restic-vaultwarden-env = mkIf cfg.backup {
+      sopsFile = ../../../secrets/restic-vaultwarden.env;
+      format = "dotenv";
     };
     environment.persistence."/persist" = mkIf cfg.enable {
       directories = mkIf config.modules.sysconf.impermanence.enable [

@@ -76,5 +76,29 @@ in {
         };
       };
     };
+    services.restic.backups.minecraft-local = {
+      initialize = true;
+      paths = [
+        "/var/lib/minecraft/wanwan/world"
+        "/var/lib/minecraft/wanwan/world_nether"
+        "/var/lib/minecraft/wanwan/world_the_end"
+      ];
+      passwordFile = config.sops.secrets.restic-minecraft-pw.path;
+      repository = "/mnt/hdd/backups/minecraft";
+      timerConfig = {
+        # backup every 1d
+        OnUnitActiveSec = "1d";
+      };
+      # keep 7 daily, 5 weekly, and 10 annual backups
+      pruneOpts = [
+        "--keep-daily 7"
+        "--keep-weekly 5"
+        "--keep-yearly 10"
+      ];
+    };
+    sops.secrets.restic-minecraft-pw = {
+      sopsFile = ../../../secrets/restic-minecraft.psk;
+      format = "binary";
+    };
   };
 }

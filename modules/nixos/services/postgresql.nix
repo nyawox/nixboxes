@@ -16,26 +16,53 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    services.postgresql = {
-      enable = true;
-      # 15 have permission issues
-      package = pkgs.postgresql_14;
-      ensureDatabases = ["hass" "vaultwarden"];
-      ensureUsers = [
-        {
-          name = "hass";
-          ensurePermissions = {
-            "DATABASE hass" = "ALL PRIVILEGES";
-          };
-        }
-      ];
+    services = {
+      postgresql = {
+        enable = true;
+        # 15 have permission issues
+        package = pkgs.postgresql_14;
+        ensureDatabases = ["hass" "vaultwarden"];
+        ensureUsers = [
+          {
+            name = "hass";
+            ensurePermissions = {
+              "DATABASE hass" = "ALL PRIVILEGES";
+            };
+          }
+        ];
+      };
+      postgresqlBackup = {
+        enable = true;
+        backupAll = true;
+        compression = "zstd";
+        compressionLevel = 16;
+        location = "/var/backup/postgresql";
+      };
+      restic.backups.postgresql = {
+        initialize = true;
+        paths = ["/var/backup/postgresql"];
+        passwordFile = config.sops.secrets.restic-postgresql-pw.path;
+        environmentFile = config.sops.secrets.restic-postgresql-env.path;
+        repository = "b2:postgresql-nyan";
+        timerConfig = {
+          # backup every 1d
+          OnUnitActiveSec = "1d";
+        };
+        # keep 7 daily, 5 weekly, and 10 annual backups
+        pruneOpts = [
+          "--keep-daily 7"
+          "--keep-weekly 5"
+          "--keep-yearly 10"
+        ];
+      };
     };
-    services.postgresqlBackup = {
-      enable = true;
-      backupAll = true;
-      compression = "zstd";
-      compressionLevel = 16;
-      location = "/var/backup/postgresql";
+    sops.secrets.restic-postgresql-pw = {
+      sopsFile = ../../../secrets/restic-postgresql.psk;
+      format = "binary";
+    };
+    sops.secrets.restic-postgresql-env = {
+      sopsFile = ../../../secrets/restic-postgresql.env;
+      format = "dotenv";
     };
     environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
       "/var/lib/postgresql"

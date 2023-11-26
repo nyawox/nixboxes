@@ -47,7 +47,7 @@
       # required for direnv
       gnugrep
       # backup
-      borgbackup
+      restic
     ];
   };
   programs = {
