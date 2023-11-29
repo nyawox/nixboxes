@@ -1,7 +1,8 @@
 ;; Appearance
 (setq doom-theme 'catppuccin
-      doom-font (font-spec :family "Spleen" :size 16)
-      doom-variable-pitch-font (font-spec :family "BlexMono Nerd Font" :size 10.0))
+      ;; font size in point(pt)
+      doom-font (font-spec :family "Spleen" :size 12)
+      doom-variable-pitch-font (font-spec :family "BlexMono Nerd Font" :size 8))
 
 (load-theme 'catppuccin t t)
 (setq catppuccin-flavor 'mocha)

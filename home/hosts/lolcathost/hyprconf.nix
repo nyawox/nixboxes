@@ -2,11 +2,11 @@ _: {
   wayland.windowManager.hyprland.extraConfig = ''
 
     # See https://wiki.hyprland.org/Configuring/Monitors/
-    monitor=DP-1, modeline 172.48 1920 1928 1960 2000 1080 1106 1114 1120 +hsync -vsync,0x0,0.75
-    monitor=HDMI-A-1,1920x1080@60,2560x200,0.75
-    # monitor=DP-1, modeline 172.48 1920 1928 1960 2000 1080 1106 1114 1120 +hsync -vsync,0x0,1
-    # monitor=HDMI-A-1,1920x1080@60,1920,1
+    monitor=DP-1, modeline 172.48 1920 1928 1960 2000 1080 1106 1114 1120 +hsync -vsync,0x0,1
+    monitor=HDMI-A-1,1920x1080@60,1920x200,1
     workspace=HDMI-A-1,10
+    workspace=DP-1,1
+    workspace=HDMI-A-1,2
 
     # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
     input {

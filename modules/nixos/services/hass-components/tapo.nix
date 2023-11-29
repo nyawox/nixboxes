@@ -6,12 +6,12 @@
 }:
 buildHomeAssistantComponent rec {
   pname = "home-assistant-tapo-p100";
-  version = "v2.11.0";
+  version = "unstable-2013-11-26";
   src = fetchFromGitHub {
     owner = "petretiandrea";
     repo = "home-assistant-tapo-p100";
-    rev = version;
-    hash = "sha256-44tg0A8nDE2m0EflDnXobzN2CJXNKGoe+aTnbqFxD0s=";
+    rev = "a8aee7f704294d85078a30e3f0fb4e7328fae139";
+    hash = "sha256-pN2wWCAEk+PIp74eX8wAX2irrzWmEd8srq23/xpjgDI=";
   };
 
   propagatedBuildInputs = [

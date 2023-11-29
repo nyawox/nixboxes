@@ -33,7 +33,10 @@ in {
         lockPref("browser.download.start_downloads_in_tmp_dir", true);
 
         // Automatically enable extensions installed by home-manager
-        lockPref("extensions.autoDisableScopes",0)
+        lockPref("extensions.autoDisableScopes", 0)
+
+        // Fix big fonts in 1080p screen
+        lockPref("layout.css.devPixelsPerPx", "0.75")
       '';
       extraPolicies = {
         "OverrideFirstRunPage" = "";
@@ -79,6 +82,7 @@ in {
         stylus
         h264ify
         bitwarden
+        clearurls
       ];
 
       search = {
@@ -151,16 +155,13 @@ in {
     ".mozilla/firefox/default/chrome/includes/cascade-config.css".source =
       pkgs.fetchFromGitHub cascade-repo + "/chrome/includes/cascade-config.css";
     ".mozilla/firefox/default/chrome/includes/cascade-mocha.css".source =
-      pkgs.fetchFromGitHub cascade-repo
-      + "/integrations/catppuccin/catppuccin-mocha.css";
+      pkgs.fetchFromGitHub cascade-repo + "/integrations/catppuccin/cascade-mocha.css";
     ".mozilla/firefox/default/chrome/includes/cascade-layout.css".source =
       pkgs.fetchFromGitHub cascade-repo + "/chrome/includes/cascade-layout.css";
     ".mozilla/firefox/default/chrome/includes/cascade-responsive.css".source =
-      pkgs.fetchFromGitHub cascade-repo
-      + "/chrome/includes/cascade-responsive.css";
+      pkgs.fetchFromGitHub cascade-repo + "/chrome/includes/cascade-responsive.css";
     ".mozilla/firefox/default/chrome/includes/cascade-floating-panel.css".source =
-      pkgs.fetchFromGitHub cascade-repo
-      + "/chrome/includes/cascade-floating-panel.css";
+      pkgs.fetchFromGitHub cascade-repo + "/chrome/includes/cascade-floating-panel.css";
     ".mozilla/firefox/default/chrome/includes/cascade-nav-bar.css".source =
       pkgs.fetchFromGitHub cascade-repo + "/chrome/includes/cascade-nav-bar.css";
     ".mozilla/firefox/default/chrome/includes/cascade-tabs.css".source =

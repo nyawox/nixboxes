@@ -17,9 +17,9 @@
 
         directory.style = "bold lavender";
         character = {
-          success_symbol = "[[󰣐](green) ❯](mauve)";
-          error_symbol = "[❯](red)";
-          vimcmd_symbol = "[❮](green)";
+          success_symbol = "[󰘧](mauve)";
+          error_symbol = "[X](red)";
+          vimcmd_symbol = "[](green)";
         };
 
         git_status = {

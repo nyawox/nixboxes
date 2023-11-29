@@ -18,6 +18,7 @@ in {
   };
   config = mkIf cfg.enable {
     stylix = {
+      polarity = "dark";
       image = pkgs.fetchurl {
         url = "https://www.pixelstalk.net/wp-content/uploads/images8/Desktop-Wallpaper-Free-Download.jpg";
         sha256 = "11k6n82l09gnvr885y71pngvwqw48n9vwwa7zx2hgh4r6wmb05gn";
@@ -43,11 +44,17 @@ in {
           package = pkgs.apple-emoji;
           name = "Apple Color Emoji";
         };
+        sizes = {
+          applications = 9;
+          desktop = 9;
+          popups = 9;
+          terminal = 9;
+        };
       };
       cursor = {
         package = pkgs.catppuccin-cursors.mochaPink;
-        name = "Catppuccin-Mocha-Pink";
-        size = 32;
+        name = "Catppuccin-Mocha-Pink-Cursors";
+        size = 16;
       };
       opacity = {
         applications = 0.75;
@@ -55,8 +62,11 @@ in {
       };
     };
     home-manager.users."${username}".stylix = {
-      targets.waybar.enable = false;
-      targets.emacs.enable = false;
+      targets = {
+        waybar.enable = false;
+        emacs.enable = false;
+        alacritty.enable = false;
+      };
     };
   };
 }

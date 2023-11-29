@@ -69,21 +69,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland?ref=v0.31.0";
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # hyprfocus = {
-    #   url = "github:VortexCoyote/hyprfocus";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
+    hyprfocus = {
+      url = "github:VortexCoyote/hyprfocus";
+      inputs.hyprland.follows = "hyprland";
+    };
     srvos = {
       url = "github:numtide/srvos";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -96,6 +97,10 @@
       url = "git+ssh://git@codeberg.org/nyawox/secrets.git?ref=main";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
+    };
+    nixpkgs-f2k = {
+      url = "github:moni-dz/nixpkgs-f2k";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
     nur.url = "github:nix-community/nur";

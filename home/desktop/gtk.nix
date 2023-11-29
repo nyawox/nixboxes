@@ -14,8 +14,9 @@
       export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
       gnome_schema=org.gnome.desktop.interface
       gsettings set $gnome_schema icon-theme 'WhiteSur-dark'
-      gsettings set $gnome_schema cursor-theme 'Catppuccin-Mocha-Pink'
-      gsettings set $gnome_schema font-name 'IBM Plex Sans'
+      gsettings set $gnome_schema cursor-theme 'Catppuccin-Mocha-Pink-Cursors'
+      gsettings set $gnome_schema font-name 'IBM Plex Sans 9'
+      gsettings set $gnome_schema color-scheme prefer-dark
     '';
   };
 in {
@@ -38,9 +39,9 @@ in {
       };
     };
     cursorTheme = {
-      name = "Catppuccin-Mocha-Pink";
+      name = "Catppuccin-Mocha-Pink-Cursors";
       package = pkgs.catppuccin-cursors.mochaPink;
-      size = 32;
+      size = 16;
     };
   };
   home.packages = with pkgs; [glib configure-gtk];

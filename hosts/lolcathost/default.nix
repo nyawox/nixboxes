@@ -25,6 +25,7 @@
       swaylock.enable = true;
       polkit.enable = true;
     };
+    virtualisation.enable = true;
   };
 
   services = {
@@ -63,7 +64,9 @@
     ns-usbloader.enable = true;
     kdeconnect = {
       enable = true;
-      package = pkgs.valent;
+      # broken
+      # https://github.com/NixOS/nixpkgs/pull/269663
+      # package = pkgs.valent;
     };
 
     gamemode.enable = true;

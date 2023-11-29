@@ -31,12 +31,6 @@ in {
           group = "colord";
           mode = "u=rwx,g=rx,o=";
         }
-        {
-          directory = "/var/lib/libvirt";
-          user = "root";
-          group = "root";
-          mode = "756";
-        }
         "/etc/NetworkManager/system-connections"
         "/tmp"
       ];

@@ -148,11 +148,10 @@ in {
       "private/homepage-dashboard/settings.yaml".text = ''
         title: Homepage
         background:
-          image: https://preview.redd.it/stg51tp0kk481.png?width=2566&format=png&auto=webp&s=ead22ed3d642240e26e41a0ed557d7af4cf2b9cc
-          blur: sm
-          opacity: 50
-        theme: light
-        color: pink
+          image: https://raw.githubusercontent.com/Gingeh/wallpapers/main/minimalistic/hearts.png
+        cardBlur: xl
+        theme: dark
+        color: slate
         favicon: https://camo.githubusercontent.com/8c73ac68e6db84a5c58eef328946ba571a92829b3baaa155b7ca5b3521388cc9/68747470733a2f2f692e696d6775722e636f6d2f367146436c41312e706e67
         hideVersion: true
         headerStyle: underlined

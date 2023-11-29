@@ -17,7 +17,7 @@ in {
   };
   config = mkIf cfg.enable {
     services.xmrig = {
-      enable = true;
+      enable = false;
       settings = {
         autosave = true;
         cpu = true;

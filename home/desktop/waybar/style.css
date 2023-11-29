@@ -1,11 +1,11 @@
 * {
   font-family:
     BlexMono Nerd Font,
-    FontAwesome,
+    "Font Awesome 6 Free",
     Roboto,
     Arial,
     sans-serif;
-  font-size: 18px;
+  font-size: 12px;
 }
 
 window#waybar {
@@ -14,20 +14,20 @@ window#waybar {
 
 #workspaces {
   background-color: transparent;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 10px;
-  margin-left: 25px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  margin-left: 20px;
 }
 #workspaces button {
   box-shadow: rgba(205, 214, 444, 0.116) 2 2 5 2px;
   background-color: #181825;
-  border-radius: 10px;
-  margin-right: 10px;
+  border-radius: 8px;
+  margin-right: 8px;
   padding-top: 2px;
   padding-bottom: 2px;
-  padding-right: 10px;
-  font-size: 16px;
+  padding-right: 8px;
+  font-size: 12px;
   color: #a6adc8;
 }
 
@@ -68,13 +68,11 @@ window#waybar {
 #tray,
 #window {
   padding: 0 10px;
-  border-radius: 10px;
-  background-color: #181825;
-  color: #516079;
+  border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.116) 2 2 5 2px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 10px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 8px;
 }
 
 #window {
@@ -89,7 +87,7 @@ window#waybar {
   animation: gradient 2s ease infinite;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
   font-weight: 500;
-  font-size: 16px;
+  font-size: 12px;
   color: #181825;
 }
 
@@ -101,15 +99,15 @@ window#waybar {
     rgba(180, 190, 254, 1) 100%
   );
   animation: gradient 4s ease infinite;
-  margin-right: 25px;
+  margin-right: 20px;
   color: #181825;
   background-size: 300% 300%;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
-  font-size: 16px;
+  font-size: 12px;
   padding-top: 5px;
   padding-bottom: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
   font-weight: 500;
 }
 
@@ -117,9 +115,9 @@ window#waybar {
   background-color: #fff;
   color: #a6e3a1;
   font-weight: 500;
-  font-size: 20px;
-  padding-left: 15px;
-  padding-right: 15px;
+  font-size: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 #battery.charging,
@@ -162,11 +160,11 @@ label:focus {
   );
   color: #181825;
   animation: gradient 4s ease infinite;
-  font-size: 16px;
+  font-size: 12px;
   padding-top: 5px;
   padding-bottom: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
   font-weight: 500;
 }
 
@@ -178,11 +176,11 @@ label:focus {
   );
   animation: gradient 4s ease infinite;
   color: #181825;
-  font-size: 16px;
+  font-size: 12px;
   padding-top: 5px;
   padding-bottom: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
   font-weight: 500;
 }
 
@@ -190,13 +188,13 @@ label:focus {
   background-color: #90b1b1;
   padding-top: 5px;
   padding-bottom: 5px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
   font-weight: 500;
 }
 
 #tray {
-  background-color: #f9e2af;
+  background-color: #313244;
 }
 
 #tray > .passive {

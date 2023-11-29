@@ -12,13 +12,13 @@
 }:
 buildPythonPackage rec {
   pname = "plugp100";
-  version = "v3.13.1";
+  version = "v3.14.0";
 
   src = fetchFromGitHub {
     owner = "petretiandrea";
     repo = "plugp100";
     rev = version;
-    hash = "sha256-83umSwYhhoZ5l1ShF+2HHTDGLicj2UVjCWHl9/MtUdU=";
+    hash = "sha256-W8bDqdKW9dAa6PtR/LSZZlxtELkPNJkT3szh36kU6ss=";
   };
 
   propagatedBuildInputs = [certifi jsons requests aiohttp semantic-version cryptography scapy];

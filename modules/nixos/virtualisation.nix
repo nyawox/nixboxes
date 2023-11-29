@@ -231,5 +231,25 @@ in {
 
     boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
     virtualisation.spiceUSBRedirection.enable = true;
+    environment.persistence."/persist".directories = lib.mkIf config.modules.sysconf.impermanence.enable [
+      {
+        directory = "/var/lib/waydroid";
+        user = "root";
+        group = "root";
+        mode = "756";
+      }
+      {
+        directory = "/var/lib/lxc";
+        user = "root";
+        group = "root";
+        mode = "756";
+      }
+      {
+        directory = "/var/lib/libvirt";
+        user = "root";
+        group = "root";
+        mode = "756";
+      }
+    ];
   };
 }

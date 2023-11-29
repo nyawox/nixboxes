@@ -9,7 +9,7 @@
     windowrulev2 = opacity 0.85 0.85,class:^(firefox)$
     windowrulev2 = opacity 0.8 0.75,class:^(Alacritty)$
     windowrulev2 = opacity 0.8 0.75,class:^(org.wezfurlong.wezterm)$
-    windowrulev2 = opacity 0.8 0.75,class:^(emacs)$
+    windowrulev2 = opacity 0.8 0.70,class:^(emacs)$
     windowrulev2 = opacity 0.8 0.75,class:^(org.gnome.Nautilus)$
     windowrulev2 = opacity 0.8 0.75,class:^(lutris)$
     windowrulev2 = opacity 0.8 0.75,class:^(pavucontrol)$

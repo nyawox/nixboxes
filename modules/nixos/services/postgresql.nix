@@ -19,15 +19,16 @@ in {
     services = {
       postgresql = {
         enable = true;
-        # 15 have permission issues
-        package = pkgs.postgresql_14;
+        package = pkgs.postgresql_15;
         ensureDatabases = ["hass" "vaultwarden"];
         ensureUsers = [
           {
             name = "hass";
-            ensurePermissions = {
-              "DATABASE hass" = "ALL PRIVILEGES";
-            };
+            ensureDBOwnership = true;
+          }
+          {
+            name = "vaultwarden";
+            ensureDBOwnership = true;
           }
         ];
       };
