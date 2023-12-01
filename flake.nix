@@ -213,7 +213,7 @@
             imports = [
               ./hosts/generic.nix
               ./modules/nixos/deploy.nix
-              ./modules/nixos/virtualisation.nix
+              ./modules/nixos/virtualisation
               ./modules/nixos/sysconf
               ./modules/nixos/services
               ./modules/nixos/services/monitoring

@@ -6,6 +6,7 @@
 }:
 with lib; let
   cfg = config.modules.services.transmission;
+  # port 9091
 in {
   options = {
     modules.services.transmission = {

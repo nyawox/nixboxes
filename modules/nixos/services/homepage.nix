@@ -145,6 +145,9 @@ in {
             - Vaultwarden:
                 href: https://vault.nixhome.shop/
                 icon: https://raw.githubusercontent.com/dani-garcia/vaultwarden/main/resources/vaultwarden-icon.svg
+            - Linkding:
+                href: https://linkding.nixhome.shop/
+                icon: https://linkding.nixhome.shop/static/logo.png
       '';
       "private/homepage-dashboard/widgets.yaml".text = ''
         - logo:

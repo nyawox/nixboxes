@@ -29,25 +29,47 @@ in {
       enable = true;
       globalConfig = ''
       '';
-      virtualHosts."homepage.nixhome.shop" = {
-        useACMEHost = "nixhome.shop";
-        extraConfig = lib.strings.concatStrings [
-          expire-header
-          encode
-          ''
-            reverse_proxy http://tomoyo.nyaa.nixhome.shop:8082
-          ''
-        ];
-      };
-      virtualHosts."search.nixhome.shop" = {
-        useACMEHost = "nixhome.shop";
-        extraConfig = lib.strings.concatStrings [
-          expire-header
-          encode
-          ''
-            reverse_proxy http://tomoyo.nyaa.nixhome.shop:8420
-          ''
-        ];
+      virtualHosts = {
+        "homepage.nixhome.shop" = {
+          useACMEHost = "nixhome.shop";
+          extraConfig = lib.strings.concatStrings [
+            expire-header
+            encode
+            ''
+              reverse_proxy http://tomoyo.nyaa.nixhome.shop:8082
+            ''
+          ];
+        };
+        "search.nixhome.shop" = {
+          useACMEHost = "nixhome.shop";
+          extraConfig = lib.strings.concatStrings [
+            expire-header
+            encode
+            ''
+              reverse_proxy http://tomoyo.nyaa.nixhome.shop:8420
+            ''
+          ];
+        };
+        "vault.nixhome.shop" = {
+          useACMEHost = "nixhome.shop";
+          extraConfig = lib.strings.concatStrings [
+            expire-header
+            encode
+            ''
+              reverse_proxy http://nixpro64.nyaa.nixhome.shop:3011
+            ''
+          ];
+        };
+        "linkding.nixhome.shop" = {
+          useACMEHost = "nixhome.shop";
+          extraConfig = lib.strings.concatStrings [
+            expire-header
+            encode
+            ''
+              reverse_proxy http://tomoyo.nyaa.nixhome.shop:9919
+            ''
+          ];
+        };
       };
     };
   };

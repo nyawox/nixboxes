@@ -8,7 +8,6 @@ _: {
       tailscale.enable = true;
       acme.enable = true;
       caddy.enable = true;
-      vaultwarden.reverseProxy = true;
       headscale.enable = true;
       frp.enable = true;
       monitoring.grafana.enable = true;

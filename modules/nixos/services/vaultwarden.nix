@@ -5,15 +5,10 @@
 }:
 with lib; let
   cfg = config.modules.services.vaultwarden;
-  domain = "vault.nixhome.shop";
 in {
   options = {
     modules.services.vaultwarden = {
       enable = mkOption {
-        type = types.bool;
-        default = false;
-      };
-      reverseProxy = mkOption {
         type = types.bool;
         default = false;
       };
@@ -36,12 +31,6 @@ in {
           enableDbWal = "false";
           websocketEnabled = true;
         };
-      };
-      caddy.virtualHosts.${domain} = mkIf cfg.reverseProxy {
-        useACMEHost = "nixhome.shop";
-        extraConfig = ''
-          reverse_proxy http://nixpro64.nyaa.nixhome.shop:3011
-        '';
       };
       restic.backups.vaultwarden-local = mkIf cfg.backup {
         initialize = true;
