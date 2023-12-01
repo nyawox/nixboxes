@@ -35,6 +35,23 @@ in {
         ---
         # For configuration options and examples, please see:
         # https://gethomepage.dev/en/configs/bookmarks
+        - Search Engine:
+            - Search:
+                - abbr: S
+                  href: https://search.nixhome.shop
+                  icon: https://search.nixhome.shop/static/themes/simple/img/searxng.png
+            - NixOS Search:
+                - abbr: NS
+                  href: https://search.nixos.org/packages
+                  icon: https://nixos.org/logo/nix-wiki.png
+            - Google:
+                - abbr: G
+                  href: https://www.google.com
+                  icon: https://upload.wikimedia.org/wikipedia/commons/2/2d/Google-favicon-2015.png
+            - Yandex Image:
+                - abbr: YI
+                  href: https://yandex.ru/images/
+                  icon: https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Yandex_icon.svg/480px-Yandex_icon.svg.png
         - Developer:
             - Github:
                 - abbr: GH
@@ -44,10 +61,6 @@ in {
                 - abbr: NW
                   href: https://nixos.wiki/
                   icon: https://nixos.wiki/images/thumb/2/20/Home-nixos-logo.png/207px-Home-nixos-logo.png
-            - NixOS Search:
-                - abbr: NS
-                  href: https://search.nixos.org/packages
-                  icon: https://nixos.org/logo/nix-wiki.png
             - Nixpkgs Pull Request Tracker:
                 - abbr: NPR
                   href: https://nixpk.gs/pr-tracker.html
@@ -92,6 +105,14 @@ in {
                 - abbr: TW
                   href: https://www.twitch.tv/
                   icon: https://cdn-icons-png.flaticon.com/512/5968/5968819.png
+            - Netflix:
+                - abbr: NT
+                  href: https://www.netflix.com/
+                  icon: https://dwglogo.com/wp-content/uploads/2019/02/netflix_emblem_transparent-1024x854.png
+            - Prime Video:
+                - abbr: PV
+                  href: https://www.amazon.co.jp/gp/video/getstarted
+                  icon: https://www.svgrepo.com/show/494362/amazon.svg
       '';
       "private/homepage-dashboard/services.yaml".text = ''
         ---
@@ -136,7 +157,8 @@ in {
               dateStyle: short
               hourCycle: h23
         - search:
-            provider: google
+            provider: custom
+            url: https://search.nixhome.shop/search?q=
             focus: false
             target: _blank
         - openmeteo:

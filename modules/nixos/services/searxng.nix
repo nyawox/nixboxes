@@ -1,0 +1,170 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.modules.services.searxng;
+in {
+  options = {
+    modules.services.searxng = {
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+      };
+    };
+  };
+  config = mkIf cfg.enable {
+    services.searx = {
+      enable = true;
+      package = pkgs.searxng.overrideAttrs (oldAttrs: let
+        logo = pkgs.fetchurl {
+          url = "https://illust8.com/wp-content/uploads/2019/10/cute_purple_cat_5021.png";
+          sha256 = "1hdwk9qw72z0jdjf6igx2rwwzc2x3nw804yy2bd3cr3y67rinjg4";
+        };
+        favicon = pkgs.fetchurl {
+          url = "https://cdn-icons-png.flaticon.com/512/3468/3468377.png";
+          sha256 = "16nxg7dkj1j3sypgi5q1a17vxkgiiyhcvnmwzgpiwfjvv6skxji5";
+        };
+        favicon-svg = pkgs.fetchurl {
+          url = "https://www.svgrepo.com/show/231989/cat.svg";
+          sha256 = "14qp878n23i1bpc4s5496nql6sh5nkz78bn4m3kc5zx3h2w9l5h4";
+        };
+      in {
+        postInstall = lib.strings.concatStrings [
+          oldAttrs.postInstall
+          ''
+            # Replace logo
+            cp ${logo} $out/${pkgs.python3.sitePackages}/searx/static/themes/simple/img/searxng.png
+            # Replace favicon
+            cp ${favicon} $out/${pkgs.python3.sitePackages}/searx/static/themes/simple/img/favicon.png
+            cp ${favicon-svg} $out/${pkgs.python3.sitePackages}/searx/static/themes/simple/img/favicon.svg
+          ''
+        ];
+      });
+      runInUwsgi = true;
+      uwsgiConfig = {
+        http = ":8420";
+      };
+      environmentFile = config.sops.secrets.searxng-secret.path;
+      settings = {
+        general = {
+          instance_name = "Search";
+          debug = false;
+          privacypolicy_url = false;
+          donation_url = false;
+          contact_url = false;
+          enable_metrics = true;
+        };
+        ui = {
+          query_in_title = true;
+          results_on_new_tab = false;
+          theme_args.simple_style = "dark";
+          infinite_scroll = true;
+        };
+        search = {
+          safe_search = 0;
+          autocomplete = "google";
+        };
+        engines = lib.mapAttrsToList (name: value:
+          {
+            inherit name;
+          }
+          // value) {
+          "duckduckgo".disabled = true;
+          "brave".disabled = true;
+          "bing".disabled = false;
+          "mojeek".disabled = true;
+          "mwmbl".disabled = false;
+          "qwant".disabled = true;
+          "crowdview".disabled = false;
+          "curlie".disabled = true;
+          "ddg definitions".disabled = false;
+          "wikibooks".disabled = false;
+          "wikidata".disabled = false;
+          "wikiquote".disabled = true;
+          "wikisource".disabled = true;
+          "wikispecies".disabled = false;
+          "wikiversity".disabled = false;
+          "wikivoyage".disabled = false;
+          "currency".disabled = true;
+          "dictzone".disabled = true;
+          "lingva".disabled = true;
+          "bing images".disabled = false;
+          "brave.images".disabled = true;
+          "duckduckgo images".disabled = true;
+          "google images".disabled = false;
+          "qwant images".disabled = true;
+          "1x".disabled = true;
+          "artic".disabled = false;
+          "deviantart".disabled = false;
+          "flickr".disabled = true;
+          "frinklac".disabled = false;
+          "imgur".disabled = false;
+          "library of congress".disabled = false;
+          "material icons".disabled = true;
+          "openverse".disabled = false;
+          "pinterest".disabled = true;
+          "svgrepo".disabled = false;
+          "unsplash".disabled = false;
+          "wallhaven".disabled = false;
+          "wikicommons.images".disabled = false;
+          "yacy images".disabled = true;
+          "seekr images (EN)".disabled = true;
+          "bing videos".disabled = false;
+          "brave.videos".disabled = true;
+          "duckduckgo videos".disabled = true;
+          "google videos".disabled = false;
+          "qwant videos".disabled = false;
+          "bilibili".disabled = false;
+          "ccc-tv".disabled = true;
+          "dailymotion".disabled = true;
+          "google play movies".disabled = true;
+          "invidious".disabled = true;
+          "odysee".disabled = true;
+          "peertube".disabled = false;
+          "piped".disabled = true;
+          "rumble".disabled = false;
+          "sepiasearch".disabled = false;
+          "vimeo".disabled = true;
+          "youtube".disabled = false;
+          "mediathekviewweb (DE)".disabled = true;
+          "seekr videos (EN)".disabled = true;
+          "ina (FR)".disabled = true;
+          "brave.news".disabled = true;
+          "google news".disabled = true;
+          "apple maps".disabled = false;
+          "piped.music".disabled = true;
+          "radio browser".disabled = true;
+          "codeberg".disabled = true;
+          "gitlab".disabled = false;
+          "internetarchivescholar".disabled = true;
+          "pdbe".disabled = true;
+        };
+        outgoing = {
+          # request_timeout = 5.0;       # default timeout in seconds, can be override by engine
+          # max_request_timeout = 15.0;  # the maximum timeout in seconds
+          pool_connections = 100; # Maximum number of allowable connections, or null
+          pool_maxsize = 10; # Number of allowable keep-alive connections, or null
+          enable_http2 = true; # See https://www.python-httpx.org/http2/
+        };
+        server = {
+          port = 8420;
+          bind_address = "0.0.0.0";
+          secret_key = "@SEARXNG_SECRET@";
+          base_url = "https://search.nixhome.shop";
+          public_instance = true;
+          image_proxy = false;
+        };
+        redis = {
+          url = "redis://:searxng@nixpro64.nyaa.nixhome.shop:6420";
+        };
+      };
+    };
+    sops.secrets.searxng-secret = {
+      sopsFile = ../../../secrets/searxng-secret.env;
+      format = "dotenv";
+    };
+  };
+}

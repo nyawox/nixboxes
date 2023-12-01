@@ -102,6 +102,14 @@
       url = "github:moni-dz/nixpkgs-f2k";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mozilla-addons-to-nix = {
+      url = "sourcehut:~rycee/mozilla-addons-to-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hardened-firefox = {
+      url = "github:arkenfox/user.js";
+      flake = false;
+    };
     impermanence.url = "github:nix-community/impermanence";
     nur.url = "github:nix-community/nur";
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -217,6 +225,7 @@
               inputs.nix-switch-boot.nixosModules.nix-switch-boot
               inputs.stylix.nixosModules.stylix
               inputs.nix-minecraft.nixosModules.minecraft-servers
+              inputs.nur.nixosModules.nur
             ];
           };
         };
@@ -279,6 +288,7 @@
             alejandra
             deadnix
             statix
+            inputs.mozilla-addons-to-nix.packages.${pkgs.system}.default
           ];
           #TODO Make a better interface, preferably TUI to manage systems
           commands = [

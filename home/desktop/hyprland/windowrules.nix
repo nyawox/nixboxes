@@ -7,6 +7,7 @@
     # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 
     windowrulev2 = opacity 0.85 0.85,class:^(firefox)$
+    windowrulev2 = opacity 0.85 0.85,class:^(librewolf)$
     windowrulev2 = opacity 0.8 0.75,class:^(Alacritty)$
     windowrulev2 = opacity 0.8 0.75,class:^(org.wezfurlong.wezterm)$
     windowrulev2 = opacity 0.8 0.70,class:^(emacs)$

@@ -7,6 +7,7 @@ _: {
     services = {
       tailscale.enable = true;
       homepage.enable = true;
+      searxng.enable = true;
       nfs-client.transmission = true;
       transmission.enable = true;
     };

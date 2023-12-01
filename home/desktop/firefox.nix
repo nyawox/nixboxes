@@ -1,4 +1,9 @@
-{pkgs, ...}: let
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: let
   cascade-repo = {
     "owner" = "andreasgrafen";
     "repo" = "cascade";
@@ -11,41 +16,99 @@
     "rev" = "a77c65f7ab5946b37361ae935d2192a9a714f960";
     "hash" = "sha256-LjLMq7vUwDdxgpdP9ClRae+gN11IPc+XMsx8/+bwUy4=";
   };
+  ugetintegration = pkgs.nur.repos.rycee.firefox-addons.buildFirefoxXpiAddon rec {
+    pname = "ugetintegration";
+    version = "2.1.3.1";
+    addonId = "uget-integration@slgobinath";
+    url = "https://addons.mozilla.org/firefox/downloads/file/911315/ugetintegration-${version}.xpi";
+    sha256 = "11dfw494dgx4qx63cmlv61rpifr1sxyfyacf6dd4x7ppbp52jpr3";
+    meta = with lib; {
+      homepage = "https://github.com/ugetdm/uget-integrator";
+      description = "integrate uGet Download Manager with web browsers";
+      license = licenses.gpl3;
+      platforms = platforms.all;
+    };
+  };
+  linkding-injector = pkgs.nur.repos.rycee.firefox-addons.buildFirefoxXpiAddon rec {
+    pname = "linkding-injector";
+    version = "1.3.4";
+    addonId = "{19561335-5a63-4b4e-8182-1eced17f9b47}";
+    url = "https://addons.mozilla.org/firefox/downloads/file/4190205/linkding_injector-${version}.xpi";
+    sha256 = "0w0frb3pxizdfqypvbmv73a7ifykvnq4486q8pwlijhyyph7kf9y";
+    meta = with lib; {
+      homepage = "https://github.com/Fivefold/linkding-injector";
+      description = "Injects search results from the linkding bookmark service into search pages like google and duckduckgo";
+      license = licenses.mit;
+      platforms = platforms.all;
+    };
+  };
 in {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox.override {
+    package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
       nativeMessagingHosts = with pkgs; [
         uget-integrator
         tridactyl-native
       ];
       extraPrefs = ''
-        // Downloading random PDFs from http website is super annoing with this.
-        lockPref("dom.block_download_insecure", false);
+        // Show more ssl cert infos
+        lockPref("security.identityblock.show_extended_validation",true);
 
-        // Always use XDG portals for stuff
-        lockPref("widget.use-xdg-desktop-portal.file-picker", 1);
+        lockPref("browser.EULA.override",true);
+        lockPref("browser.tabs.inTitlebar",0);
+        lockPref("browser.tabs.tabmanager.enabled",false);
+        lockPref("gfx.webrender.all",true);
+        // Allow search shortcuts
+        lockPref("keyword.enabled",true);
 
-        // Enable userChrome.css
-        lockPref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+        lockPref("webgl.disabled",false);
+        lockPref("media.ffmpeg.vaapi.enabled",true);
+        lockPref("media.ffvpx.enabled",true);
+        lockPref("media.rdd-vpx.enabled",false);
+        lockPref("media.navigator.mediadatadecoder_vpx_enabled",true);
 
-        // Avoid cluttering ~/Downloads for the “Open” action on a file to download.
-        lockPref("browser.download.start_downloads_in_tmp_dir", true);
+        // History & Session
+        // delete history after one week
+        lockPref("browser.history_expire_days",7);
+        // restore pinned tabs
+        lockPref("browser.sessionstore.restore_pinned_tabs_on_demand",true);
 
-        // Automatically enable extensions installed by home-manager
-        lockPref("extensions.autoDisableScopes", 0)
+        lockPref("privacy.sanitize.sanitizeOnShutdown", false);
+        lockPref("privacy.clearOnShutdown.cache", false);
+        lockPref("privacy.clearOnShutdown.history", false);
+        lockPref("privacy.clearOnShutdown.sessions", false);
 
-        // Fix big fonts in 1080p screen
-        lockPref("layout.css.devPixelsPerPx", "0.75")
+        // remove the screenborders, makes you fingerprintable
+        lockPref("privacy.resistFingerprinting.letterboxing",false);
+        // Use system colors
+        lockPref("browser.display.use_system_colors",true);
+        // Enable startup page
+        lockPref("browser.startup.page",1);
+        lockPref("browser.startup.homepage","https://homepage.nixhome.shop");
+        // Enable search suggestions
+        lockPref("browser.search.suggest.enabled",true);
+        lockPref("browser.search.suggest.searches",true);
+        // speed
+        lockPref("network.http.max-persistent-connections-per-server", 30);
+        lockPref("browser.cache.disk.enable", false);
+        // disable pocket and firefox view
+        lockPref("extensions.pocket.enabled", false);
+        lockPref("browser.tabs.firefox-view",false);
+        lockPref("browser.tabs.firefox-view-next",false);
+        lockPref("browser.tabs.firefox-view-newIcon",false);
       '';
       extraPolicies = {
-        "OverrideFirstRunPage" = "";
-        "OverridePostUpdatePage" = "";
+        OverrideFirstRunPage = "";
+        OverridePostUpdatePage = "";
+        DisableFirefoxStudies = true;
+        DisablePocket = true;
       };
     };
     profiles.default = {
       name = "default";
       isDefault = true;
+      # Hardened
+      extraConfig = builtins.readFile "${inputs.hardened-firefox}/user.js";
 
       bookmarks = [
         {
@@ -82,13 +145,30 @@ in {
         stylus
         h264ify
         bitwarden
-        clearurls
+        refined-github
+        sponsorblock
+        linkding-extension
+        unpaywall
+        don-t-fuck-with-paste
+        consent-o-matic
+        ugetintegration
+        linkding-injector
       ];
 
       search = {
-        default = "Google";
+        default = "SearXNG";
         force = true;
         engines = {
+          "SearXNG" = {
+            urls = [
+              {
+                template = "https://search.nixhome.shop/search?q={searchTerms}";
+              }
+            ];
+            iconUpdateURL = "https://nixos.wiki/favicon.png";
+            updateInterval = 24 * 60 * 60 * 1000; # every day
+            definedAliases = ["@nw"];
+          };
           "Nix Packages" = {
             urls = [
               {
@@ -125,7 +205,6 @@ in {
         };
       };
       settings = {
-        "browser.startup.homepage" = "https://homepage.nixhome.shop";
         "browser.search.region" = "US";
         "browser.search.isUS" = true;
         "distribution.searchplugins.defaultLocale" = "en-US";
@@ -137,6 +216,19 @@ in {
             url = "https://nixos.org";
           }
         ];
+        # Fix big fonts in 1080p screen
+        "layout.css.devPixelsPerPx" = 0.75;
+        # Downloading random PDFs from http website is super annoing with this.
+        "dom.block_download_insecure" = false;
+
+        # Always use XDG portals for stuff
+        "widget.use-xdg-desktop-portal.file-picker" = 1;
+
+        # Enable userChrome.css
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
+        # Automatically enable extensions installed by home-manager
+        "extensions.autoDisableScopes" = 0;
       };
       userChrome = ''
         @import 'includes/cascade-config.css';
@@ -166,6 +258,9 @@ in {
       pkgs.fetchFromGitHub cascade-repo + "/chrome/includes/cascade-nav-bar.css";
     ".mozilla/firefox/default/chrome/includes/cascade-tabs.css".source =
       pkgs.fetchFromGitHub cascade-repo + "/chrome/includes/cascade-tabs.css";
+    # Symlink firefox profile for librewolf
+    # ".librewolf/profiles.ini".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/.mozilla/firefox/profiles.ini";
+    # ".librewolf/default".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/.mozilla/firefox/default";
   };
 
   xdg.configFile."tridactyl/tridactylrc".source = ./tridactylrc;

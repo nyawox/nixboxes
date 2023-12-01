@@ -21,7 +21,15 @@ buildPythonPackage rec {
     hash = "sha256-W8bDqdKW9dAa6PtR/LSZZlxtELkPNJkT3szh36kU6ss=";
   };
 
-  propagatedBuildInputs = [certifi jsons requests aiohttp semantic-version cryptography scapy];
+  propagatedBuildInputs = [
+    certifi
+    jsons
+    requests
+    aiohttp
+    semantic-version
+    cryptography
+    scapy
+  ];
 
   doCheck = false;
 

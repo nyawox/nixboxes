@@ -47,10 +47,10 @@
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
         workspace_swipe = true;
       };
-      misc = {
-        enable_swallow = true;
-        swallow_regex = "^(Alacritty|org.wezfurlong.wezterm|kitty|footclient)$";
-      };
+      # misc = {
+      #   enable_swallow = true;
+      #   swallow_regex = "^(Alacritty|org.wezfurlong.wezterm|kitty|footclient)$";
+      # };
       # Example per-device config
       # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
       "device:epic-mouse-v1" = {

@@ -24,6 +24,7 @@
       vaultwarden.enable = true;
       node-red.enable = true;
       influxdb.enable = true;
+      redis.enable = true;
       monitoring.loki.enable = true;
     };
   };

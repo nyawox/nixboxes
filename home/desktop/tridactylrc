@@ -22,6 +22,10 @@ set newtab https://homepage.nixhome.shop/
 " Handy multiwindow/multitasking binds
 bind gd tabdetach
 bind gD composite tabduplicate; tabdetach
+" pin tab
+bind <C-p> pin
+" mute tab
+bind <C-m> mute toggle
 
 " " find
 " "bind / fillcmdline find
