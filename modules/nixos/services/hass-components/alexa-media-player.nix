@@ -6,12 +6,12 @@
 }:
 buildHomeAssistantComponent rec {
   pname = "alexa-media-player";
-  version = "v4.7.9";
+  version = "v4.8.0";
   src = fetchFromGitHub {
     owner = "custom-components";
     repo = "alexa_media_player";
     rev = version;
-    hash = "sha256-iFn08HFZyv6W5G56WSJBBJjYtkwL8Vavc4KoyHowKNw=";
+    hash = "sha256-AnHQ9mLTf8QSbsqN2SXTOVhx7gGyNwxg5TydzfGEqF0=";
   };
 
   propagatedBuildInputs = with python3Packages; [

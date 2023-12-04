@@ -35,6 +35,12 @@ buildPythonPackage rec {
 
   pythonImportsCheck = ["plugp100"];
 
+  # get_host is deprecated and removed from urllib3 2.x
+  patchPhase = ''
+    substituteInPlace plugp100/protocol/klap_protocol.py \
+      --replace 'urllib3.get_host(self._base_url)' 'urllib3.util.parse_url(self._base_url)'
+  '';
+
   meta = with lib; {
     description = "Work in progress implementation of tapo protocol in python.";
     homepage = "https://github.com/petretiandrea/plugp100";
