@@ -18,7 +18,7 @@ in {
     # ssh with hostanme
     services.avahi = {
       enable = true;
-      nssmdns = true;
+      nssmdns6 = true;
       # publish/announce machine
       publish = {
         enable = true;

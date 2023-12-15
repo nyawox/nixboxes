@@ -28,6 +28,7 @@
       monitoring.loki.enable = true;
     };
   };
+  services.switch-boot.enable = true;
 
   secrets = {
     enable = true;

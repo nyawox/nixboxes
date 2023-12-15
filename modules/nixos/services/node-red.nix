@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib; let
@@ -18,7 +17,6 @@ in {
   config = mkIf cfg.enable {
     services.node-red = {
       enable = true;
-      package = pkgs.nodePackages.node-red;
       openFirewall = false;
       withNpmAndGcc = true;
     };

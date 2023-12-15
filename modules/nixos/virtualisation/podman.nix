@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  username,
   ...
 }:
 with lib; let
@@ -25,8 +26,15 @@ in {
       oci-containers.backend = "podman";
     };
 
-    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
-      "/var/lib/containers"
-    ];
+    environment.persistence."/persist" = {
+      directories = mkIf config.modules.sysconf.impermanence.enable [
+        "/var/lib/containers"
+      ];
+      users."${username}" = {
+        directories = mkIf config.modules.sysconf.impermanence.enable [
+          ".local/share/containers"
+        ];
+      };
+    };
   };
 }

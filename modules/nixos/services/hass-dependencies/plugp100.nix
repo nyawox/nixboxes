@@ -8,11 +8,13 @@
   semantic-version,
   cryptography,
   scapy,
+  setuptools,
   fetchFromGitHub,
 }:
 buildPythonPackage rec {
   pname = "plugp100";
   version = "v3.14.0";
+  pyproject = true;
 
   src = fetchFromGitHub {
     owner = "petretiandrea";
@@ -29,6 +31,10 @@ buildPythonPackage rec {
     semantic-version
     cryptography
     scapy
+  ];
+
+  nativeBuildInputs = [
+    setuptools
   ];
 
   doCheck = false;

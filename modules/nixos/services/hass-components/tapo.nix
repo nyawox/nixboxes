@@ -5,10 +5,11 @@
   python3Packages,
 }:
 buildHomeAssistantComponent rec {
-  pname = "home-assistant-tapo-p100";
+  owner = "petretiandrea";
+  domain = "tapo";
   version = "unstable-2013-11-26";
   src = fetchFromGitHub {
-    owner = "petretiandrea";
+    inherit owner;
     repo = "home-assistant-tapo-p100";
     rev = "a8aee7f704294d85078a30e3f0fb4e7328fae139";
     hash = "sha256-pN2wWCAEk+PIp74eX8wAX2irrzWmEd8srq23/xpjgDI=";

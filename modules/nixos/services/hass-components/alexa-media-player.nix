@@ -5,10 +5,11 @@
   python3Packages,
 }:
 buildHomeAssistantComponent rec {
-  pname = "alexa-media-player";
+  owner = "custom-components";
+  domain = "alexa_media";
   version = "v4.8.0";
   src = fetchFromGitHub {
-    owner = "custom-components";
+    inherit owner;
     repo = "alexa_media_player";
     rev = version;
     hash = "sha256-AnHQ9mLTf8QSbsqN2SXTOVhx7gGyNwxg5TydzfGEqF0=";

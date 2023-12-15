@@ -72,8 +72,9 @@
     breeze-icons
     gnome.nautilus
     openjdk
-    mpv
     gradience
     iwgtk
+    recfsusb2n
+    distrobox
   ];
 }

@@ -69,7 +69,6 @@
       writeusb = "sudo dd bs=4M oflag=sync status=progress";
 
       # fastfetch
-      neofetch = "fastfetch";
       fetch = "fastfetch";
     };
   };

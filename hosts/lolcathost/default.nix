@@ -26,12 +26,12 @@
       polkit.enable = true;
     };
     virtualisation.enable = true;
+    virtualisation.podman.enable = true;
   };
 
   services = {
     # github:nyawox/nix-switch-boot
     switch-boot.enable = true;
-    fwupd.enable = true;
     irqbalance.enable = true;
     usbmuxd.enable = true;
     gvfs.enable = true;
@@ -70,7 +70,6 @@
     };
 
     gamemode.enable = true;
-    corectrl.enable = true;
   };
 
   # Open ports in the firewall.

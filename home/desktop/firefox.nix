@@ -66,6 +66,8 @@ in {
         lockPref("media.ffvpx.enabled",true);
         lockPref("media.rdd-vpx.enabled",false);
         lockPref("media.navigator.mediadatadecoder_vpx_enabled",true);
+        // Enable DRM
+        lockPref("media.eme.enabled",true);
 
         // History & Session
         // delete history after one week

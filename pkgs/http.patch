@@ -1,0 +1,1861 @@
+diff --git a/src/Makefile b/src/Makefile
+new file mode 100644
+index 0000000..60ff35b
+--- /dev/null
++++ b/src/Makefile
+@@ -0,0 +1,32 @@
++# options
++B25	= -DB25
++
++ifdef B25
++  B25_PATH = ./arib25
++  B25_OBJS = B25Decoder.o
++  B25_OBJS_EXT = $(B25_PATH)/arib_std_b25.o $(B25_PATH)/b_cas_card.o $(B25_PATH)/multi2.o $(B25_PATH)/ts_section_parser.o
++endif
++
++CXX	= g++
++CXXFLAGS = -O2 -march=native -g -Wall -pthread -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 $(B25)
++CC	= gcc
++CFLAGS  = -O2 -march=native -g -Wall -pthread -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 $(B25)
++OBJS	= fsusb2n.o usbops.o em2874-core.o ktv.o IoThread.o tssplitter_lite.o $(B25_OBJS)
++#LIBS	= -lpthread -lboost_system -lboost_thread-mt -lboost_filesystem
++#LIBS	= -lpthread -lboost_thread-mt -lboost_filesystem
++LIBS   = -lpthread -lboost_system -lboost_thread -lboost_filesystem
++TARGET	= recfsusb2n
++
++all: $(TARGET)
++
++clean:
++	rm -f $(OBJS) $(B25_OBJS_EXT) $(TARGET)
++
++$(TARGET): $(OBJS) $(B25_OBJS_EXT)
++	$(CXX) -o $(TARGET) $(OBJS) $(B25_OBJS_EXT) $(LIBS)
++
++depend:
++	$(CXX) -MM $(OBJS:.o=.cpp) > Makefile.dep
++
++-include Makefile.dep
++
+diff --git a/src/decoder.h b/src/decoder.h
+new file mode 100644
+index 0000000..71a059f
+--- /dev/null
++++ b/src/decoder.h
+@@ -0,0 +1,33 @@
++/* -*- tab-width: 4; indent-tabs-mode: nil -*- */
++#ifndef _DECODER_H_
++#define _DECODER_H_
++
++#include "./arib25/arib_std_b25.h"
++#include "./arib25/b_cas_card.h"
++
++#define TRUE	1
++#define FALSE	0
++
++typedef struct Decoder {
++    ARIB_STD_B25 *b25;
++    B_CAS_CARD *bcas;
++} decoder;
++
++typedef struct Decoder_options {
++    int round;
++    int strip;
++    int emm;
++} decoder_options;
++
++/* prototypes */
++extern decoder *b25_startup(decoder_options *);
++extern int b25_shutdown(decoder *);
++extern int b25_decode(decoder *,
++               ARIB_STD_B25_BUFFER *,
++               ARIB_STD_B25_BUFFER *);
++extern int b25_finish(decoder *,
++               ARIB_STD_B25_BUFFER *,
++               ARIB_STD_B25_BUFFER *);
++
++
++#endif
+diff --git a/src/fsusb2n.cpp b/src/fsusb2n.cpp
+index 6a16dce..ff3710c 100644
+--- a/src/fsusb2n.cpp
++++ b/src/fsusb2n.cpp
+@@ -10,60 +10,121 @@ http://tri.dw.land.to/fsusb2n/
+ #include <signal.h>
+ #include <string.h>
+ #include <getopt.h>
++#include <fcntl.h>
+ 
+ #include <iostream>
++#include <sys/ipc.h>
++#include <sys/msg.h>
++
++#include <sys/socket.h>
++#include <netdb.h>
++#include <arpa/inet.h>
++#include <netinet/in.h>
+ 
+ #include "ktv.hpp"
++#include "decoder.h"
+ 
+ #ifdef B25
++#define _REAL_B25_
+ 	#include "B25Decoder.hpp"
+ #endif
++#include "tssplitter_lite.h"
++
++/* maximum write length at once */
++#define SIZE_CHANK 1316
++
++/* ipc message size */
++#define MSGSZ     255
++
+ 
+ /* usageã®è¡¨ç¤º */
+ void usage(char *argv0)
+ {
+-	std::cerr << "usage: " << argv0
++	std::cerr << "usage:\n" << argv0
+ #ifdef B25
+ 		<< " [--b25]"
+ #endif
+-		<< " [-v] channel recsec destfile" << std::endl;
++		<< " [-v]"
++		<< " [--sid n1,n2,...]"
++		<< " [--wait n] channel recsec destfile\n" << std::endl;
++
++	std::cerr << "Remarks:\n"
++			<< "if rectime  is '-', records indefinitely.\n"
++			<< "if destfile is '-', stdout is used for output.\n" << std::endl;
++
++	std::cerr << "http broadcasting mode:\n" << argv0
++		<< " --http portnumber"
++#ifdef B25
++		<< " [--b25]"
++#endif
++		<< " [-v]"
++		<< " [--sid n1,n2,...]"
++		<< " [--wait n]\n" << std::endl;
++
++	std::cerr << "Options:" << std::endl;
++	std::cerr << "--b25:              Decrypt using BCAS card" << std::endl;
++	std::cerr << "-v:                 " << std::endl;
++	std::cerr << "--sid n1,n2,...:    Specify SID number or keywords(all,hd,sd1,sd2,sd3,1seg,epg) in CSV format" << std::endl;
++	std::cerr << "--http portnumber:  Turn on http broadcasting (run as a daemon)" << std::endl;
++	std::cerr << "--wait n:           Wait insert before of recording (1=100mSec)" << std::endl;
+ 	exit(1);
+ }
++
++EM2874Device		*usbDev;
++KtvDevice			*pDev;
++B25Decoder			b25dec;
++splitter			*sp = NULL;
++static splitbuf_t	splitbuf;
++int					split_select_finish = TSS_ERROR;
++time_t				time_start;	// é–‹å§‹æ™‚é–“
++
+ /* ã‚ªãƒ—ã‚·ãƒ§ãƒ³æƒ…å ± */
+ struct Args {
+ 	bool b25;
+-	bool std_out;
++	bool stdout;
+ 	int channel;
+ 	bool forever;
+ 	int recsec;
+ 	char* destfile;
+ 	bool verbose;
++	bool splitter;
++	char sid_list[32];
++	bool http;
++	int port_http;
++	int waitcnt;
++};
++Args args = {
++	false,
++	false,
++	0,
++	false,
++	0,
++	NULL,
++	false,
++	false,
++	{0},
++	false,
++	12345,
++	0
+ };
+ 
+ /* ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®è§£æ */
+-Args parseOption(int argc, char *argv[])
++void parseOption(int argc, char *argv[])
+ {
+-	Args args = {
+-		false,
+-		false,
+-		0,
+-		false,
+-		0,
+-		NULL,
+-		false
+-	};
+-	
+ 	while (1) {
+ 		int option_index = 0;
+ 		static option long_options[] = {
+ 			{ "b25",      0, NULL, 'b' },
+ 			{ "B25",      0, NULL, 'b' },
++			{ "sid",      1, NULL, 'i' },
++			{ "http",     1, NULL, 'H' },
++			{ "wait",     1, NULL, 'w' },
+ 			{ 0,     0, NULL, 0   }
+ 		};
+ 		
+ 		int r = getopt_long(argc, argv,
+-		                    "bv",
+-		                    long_options, &option_index);
++							"bvi:H:w:",
++							long_options, &option_index);
+ 		if (r < 0) {
+ 			break;
+ 		}
+@@ -75,30 +136,44 @@ Args parseOption(int argc, char *argv[])
+ 			case 'v':
+ 				args.verbose = true;
+ 				break;
++			case 'i':
++				args.splitter = true;
++				strcpy( args.sid_list, optarg );
++				break;
++			case 'H':
++				args.http      = TRUE;
++				args.port_http = atoi(optarg);
++				args.forever   = true;
++				fprintf(stderr, "creating a http daemon\n");
++				break;
++			case 'w':
++				args.waitcnt = atoi(optarg);
++				break;
+ 			default:
+ 				break;
+ 		}
+ 	}
+ 	
+-	if (argc - optind != 3) {
+-		usage(argv[0]);
+-	}
+-	
+-	char* chstr    = argv[optind++];
+-	args.channel   = atoi(chstr);
+-	char *recsecstr = argv[optind++];
+-	if (strcmp("-", recsecstr) == 0) {
+-		args.forever = true;
+-	}
+-	args.recsec    = atoi(recsecstr);
+-	args.destfile = argv[optind++];
+-	if (strcmp("-", args.destfile) == 0) {
+-		args.std_out = true;
++	if( !args.http ){
++		if (argc - optind != 3) {
++			usage(argv[0]);
++		}
++		
++		char* chstr    = argv[optind++];
++		args.channel   = atoi(chstr);
++		char *recsecstr = argv[optind++];
++		if (strcmp("-", recsecstr) == 0) {
++			args.forever = true;
++		}
++		args.recsec    = atoi(recsecstr);
++		args.destfile = argv[optind++];
++		if (strcmp("-", args.destfile) == 0) {
++			args.stdout = true;
++		}
+ 	}
+-	
+-	return args;
+ }
+ 
++
+ static bool caughtSignal = false;
+ 
+ void sighandler(int arg)
+@@ -107,63 +182,184 @@ void sighandler(int arg)
+ }
+ 
+ 
+-int main(int argc, char **argv)
++typedef struct Mmsgbuf {
++	long	mtype;
++	char	mtext[MSGSZ];
++} message_buf;
++
++/* ipc message receive */
++void mq_recv(int msqid)
+ {
+-	Args args = parseOption(argc, argv);
++	message_buf rbuf;
++	char channel[16];
++	char service_id[32] = {0};
++	int ch = 0, recsec = 0, time_to_add = 0;
+ 
+-	if (!args.forever && args.recsec <= 0) {
+-		std::cerr << "recsec must be (recsec > 0)." << std::endl;
+-		exit(1);
++	if(msgrcv(msqid, &rbuf, MSGSZ, 1, IPC_NOWAIT) < 0) {
++		return;
+ 	}
+-	// ãƒ­ã‚°å‡ºåŠ›å…ˆè¨­å®š
+-	std::ostream& log = args.std_out ? std::cerr : std::cout;
+-	log << "recfsusb2n ver. 0.9.2" << std::endl << "ISDB-T DTV Tuner FSUSB2N" << std::endl;
+-	EM2874Device::setLog(&log);
+ 
+-	EM2874Device *usbDev = EM2874Device::AllocDevice();
+-	if(usbDev == NULL)
+-		return 1;
+-	usbDev->initDevice2();
++	sscanf(rbuf.mtext, "ch=%s t=%d e=%d sid=%s", channel, &recsec, &time_to_add, service_id);
++	ch = atoi(channel);
++	if( !strcmp( service_id, "(null)" ) )
++		*service_id = '\0';
++//	fprintf(stderr, "%s >> ch=%d time=%d extend=%d sid=%s\n", rbuf.mtext, ch, recsec, time_to_add, service_id);
+ 
+-	KtvDevice *pDev;
+-	if(usbDev->getDeviceID() == 2) {
+-		pDev = new Ktv2Device(usbDev);
+-	}else{
+-		pDev = new Ktv1Device(usbDev);
+-	}
++	if(ch && args.channel != ch) {
++		/* stop stream */
++		usbDev->stopStream();
+ 
+-	pDev->InitTuner();
+-	// å‘¨æ³¢æ•°ã‚’è¨ˆç®— (UHF13ch = 473143 kHz)
+-	pDev->SetFrequency( (args.channel * 6000) + 395143 );
+-	pDev->InitDeMod();
+-	pDev->ResetDeMod();
++		args.channel = ch;
++		// ãƒãƒ¥ãƒ¼ãƒ‹ãƒ³ã‚°é–‹å§‹
++		pDev->InitTuner();
++		// å‘¨æ³¢æ•°ã‚’è¨ˆç®— (UHF13ch = 473143 kHz)
++		pDev->SetFrequency( (args.channel * 6000) + 395143 );
++		pDev->InitDeMod();
++		pDev->ResetDeMod();
+ 
+ #ifdef B25
+-	// B25åˆæœŸåŒ–
+-	B25Decoder b25dec;
++	uint8_t		*buf = NULL;
++	// B25Decoder flush Data
+ 	if (args.b25) {
++		b25dec.flush();
++		b25dec.get((const uint8_t **)&buf);
++	// B25åˆæœŸåŒ–
+ 		b25dec.setRound(4);
+ 		b25dec.setStrip(true);
+ 		b25dec.setEmmProcess(false);
+ 		if(b25dec.open(usbDev) == 0) {
+-			log << "B25Decoder initialized." << std::endl;
++//			log << "B25Decoder initialized." << std::endl;
+ 		}else{
+ 			// ã‚¨ãƒ©ãƒ¼æ™‚b25ã‚’è¡Œã‚ãšå‡¦ç†ç¶šè¡Œã€‚çµ‚äº†ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹1
+-			std::cerr << "disable b25 decoding." << std::endl;
+-			args.b25 = false;
++//			std::cerr << "disable b25 decoding." << std::endl;
++//			args.b25 = false;
+ 		}
+ 	}
+ #endif /* defined(B25) */
+ 
+-	// å‡ºåŠ›å…ˆãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
+-	FILE *dest;
+-	if(!args.std_out) {
+-		dest = fopen(args.destfile, "w");
+-		if (NULL == dest) {
+-			std::cerr << "can't open file '" << args.destfile << "' to write." << std::endl;
++		// TS splitter å†åˆæœŸåŒ–
++		if( args.splitter ){
++			free( splitbuf.buffer );
++			split_shutdown(sp);
++		}
++		if( strlen(service_id) ){
++			args.splitter = true;
++			strcpy( args.sid_list, service_id );
++		}
++		if( args.splitter ){
++			sp = split_startup(args.sid_list);
++			if( sp != NULL ){
++				splitbuf.buffer          = (u_char *)malloc( LENGTH_SPLIT_BUFFER );
++				splitbuf.allocation_size = LENGTH_SPLIT_BUFFER;
++				split_select_finish      = TSS_ERROR;
++			}else
++				args.splitter = false;
++		}
++
++		// å—ä¿¡å®‰å®šåŒ–å¾…ã¡
++		int timeout = 100;
++		do {
++			usleep(100000);
++			if (--timeout <= 0) {
++				fprintf(stderr, "GetSequenceState timeout." );
++				exit(1);
++			}
++		} while(pDev->DeMod_GetSequenceState() < 9 && !caughtSignal);
++		if (args.waitcnt){
++			usleep(100000*args.waitcnt);
++		}
++
++		/* restart recording */
++		usbDev->startStream();
++	}else{
++		if( strlen(service_id) ){
++			// TS splitter å†åˆæœŸåŒ–
++			if( args.splitter ){
++				free( splitbuf.buffer );
++				split_shutdown(sp);
++			}else
++				args.splitter = true;
++			strcpy( args.sid_list, service_id );
++			sp = split_startup(args.sid_list);
++			if( sp != NULL ){
++				splitbuf.buffer          = (u_char *)malloc( LENGTH_SPLIT_BUFFER );
++				splitbuf.allocation_size = LENGTH_SPLIT_BUFFER;
++				split_select_finish      = TSS_ERROR;
++			}else
++				args.splitter = false;
++		}
++	}
++
++	if(time_to_add) {
++		args.recsec += time_to_add;
++		fprintf(stderr, "Extended %d sec\n", time_to_add);
++	}
++
++	if(recsec) {
++		time_t cur_time;
++		time(&cur_time);
++		args.recsec  = recsec;
++		args.forever = FALSE;
++		if(cur_time - time_start <= recsec) {
++			fprintf(stderr, "Total recording time = %d sec\n", recsec);
++		}
++	}
++}
++
++
++//read 1st line from socket
++int read_line(int socket, char *p){
++	int len = 0;
++	while (1){
++		int ret;
++		ret = read(socket, p, 1);
++		if ( ret == -1 ){
++			perror("read");
+ 			exit(1);
++		} else if ( ret == 0 ){
++			break;
+ 		}
+-	}else dest = stdout;
++		if ( *p == '\n' ){
++			p++;
++			len++;
++			break;
++		}
++		p++;
++		len++;
++	}
++	*p = '\0';
++	return len;
++}
++
++
++int main(int argc, char **argv)
++{
++	ARIB_STD_B25_BUFFER	ubuf;
++	int					dest;
++	int					msqid;
++	int					code = TSS_SUCCESS;
++	int					new_ch = 0;
++
++	parseOption(argc, argv);
++	if (!args.forever && args.recsec <= 0) {
++		std::cerr << "recsec must be (recsec > 0)." << std::endl;
++		exit(1);
++	}
++	// ãƒ­ã‚°å‡ºåŠ›å…ˆè¨­å®š
++	std::ostream& log = args.stdout ? std::cerr : std::cout;
++	log << "recfsusb2n ver. 0.9.2" << std::endl << "ISDB-T DTV Tuner FSUSB2N" << std::endl;
++	EM2874Device::setLog(&log);
++
++	usbDev = EM2874Device::AllocDevice();
++	if(usbDev == NULL)
++		return 1;
++	usbDev->initDevice2();
++
++	if(usbDev->getDeviceID() == 2) {
++		pDev = new Ktv2Device(usbDev);
++	}else{
++		pDev = new Ktv1Device(usbDev);
++	}
+ 
+ 	// SIGINT, SIGTERM
+ 	struct sigaction sa;
+@@ -172,74 +368,393 @@ int main(int argc, char **argv)
+ 	sa.sa_flags = SA_RESTART;
+ 	sigaction(SIGINT,  &sa, NULL);
+ 	sigaction(SIGTERM, &sa, NULL);
++	sigaction(SIGPIPE, &sa, NULL);
++
++	int connected_socket, listening_socket;
++	if( !args.http ){
++		// å‡ºåŠ›å…ˆãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
++		if(!args.stdout) {
++			dest = open(args.destfile, (O_RDWR | O_CREAT | O_TRUNC), 0666);
++			if (0 > dest) {
++				std::cerr << "can't open file '" << args.destfile << "' to write." << std::endl;
++				exit(1);
++			}
++		}else
++			dest = 1;	// stdout;
++	}else{
++		struct sockaddr_in	sin;
++		int					sock_optval = 1;
++		int					ret;
++
++		fprintf(stderr, "run as a daemon..\n");
++		if(daemon(1,1)){
++			perror("failed to start");
++			exit(1);
++		}
+ 
+-	do {
+-		sleep(1);
+-	} while(pDev->DeMod_GetSequenceState() < 8 && !caughtSignal);
++		listening_socket = socket(AF_INET, SOCK_STREAM, 0);
++		if ( listening_socket == -1 ){
++			perror("socket");
++			exit(1);
++		}
++
++		if ( setsockopt(listening_socket, SOL_SOCKET, SO_REUSEADDR, &sock_optval, sizeof(sock_optval)) == -1 ){
++			perror("setsockopt");
++			exit(1);
++		}
+ 
+-	// éŒ²ç”»æ™‚é–“ã®åŸºæº–é–‹å§‹æ™‚é–“
+-	time_t time_start = time(NULL);
++		sin.sin_family = AF_INET;
++		sin.sin_port = htons(args.port_http);
++		sin.sin_addr.s_addr = htonl(INADDR_ANY);
+ 
+-	usbDev->startStream();
++		if ( bind(listening_socket, (struct sockaddr *)&sin, sizeof(sin)) < 0 ){
++			perror("bind");
++			exit(1);
++		}
++
++		ret = listen(listening_socket, SOMAXCONN);
++		if ( ret == -1 ){
++			perror("listen");
++			exit(1);
++		}
++		fprintf(stderr,"listening at port %d\n", args.port_http);
++	}
++	/* spawn ipc */
++	key_t key = (key_t)getpid();
++
++	if ((msqid = msgget(key, IPC_CREAT | 0666)) < 0) {
++		perror("msgget");
++	}
++	log << "pid = " << key << std::endl;
++	/* delete message queue*/
++
++	while(1){
++		if( args.http ){
++			struct hostent		*peer_host;
++			struct sockaddr_in	peer_sin;
++			int					read_size;
++			unsigned int		len;
++			char				buffer[256];
++			char				s0[256],s1[256],s2[256];
++			char				delim[] = "/";
++			char				*channel;
++			char				*sidflg;
++
++			len = sizeof(peer_sin);
++			connected_socket = accept(listening_socket, (struct sockaddr *)&peer_sin, &len);
++			if ( connected_socket == -1 ){
++				perror("accept");
++				exit(1);
++			}
++
++			peer_host = gethostbyaddr((char *)&peer_sin.sin_addr.s_addr, sizeof(peer_sin.sin_addr), AF_INET);
++			if ( peer_host == NULL ){
++				fprintf(stderr, "gethostbyname failed\n");
++				exit(1);
++			}
++			fprintf(stderr,"connect from: %s [%s] port %d\n", peer_host->h_name, inet_ntoa(peer_sin.sin_addr), ntohs(peer_sin.sin_port));
++
++			read_size = read_line(connected_socket, buffer);
++			fprintf(stderr,"request command is %s\n",buffer);
++			sscanf(buffer,"%s%s%s",s0,s1,s2);
++			channel = strtok(s1,delim);
++			fprintf(stderr,"channel is %s\n",channel);
++			new_ch = atoi(channel);
++			sidflg = strtok(NULL,delim);
++			fprintf(stderr,"sidflg is %s\n",sidflg);
++			if(sidflg){
++				args.splitter = TRUE;
++				strcpy( args.sid_list, sidflg );
++			}
++			char header[] =  "HTTP/1.1 200 OK\r\nContent-Type: application/octet-stream\r\nCache-Control: no-cache\r\n\r\n";
++			write(connected_socket, header, strlen(header));
++			//set write target to http
++			dest = connected_socket;
++		}
++		if( new_ch != args.channel ){
++			// ãƒãƒ¥ãƒ¼ãƒ‹ãƒ³ã‚°é–‹å§‹
++			if( new_ch != 0 )
++				args.channel = new_ch;
++			else
++				new_ch = args.channel;
++			pDev->InitTuner();
++			// å‘¨æ³¢æ•°ã‚’è¨ˆç®— (UHF13ch = 473143 kHz)
++			pDev->SetFrequency( (args.channel * 6000) + 395143 );
++			pDev->InitDeMod();
++			pDev->ResetDeMod();
++		}
+ 
+-	// Main loop
+-	while (!caughtSignal && (args.forever || time(NULL) <= time_start + args.recsec)) {
+-		usleep(750000);
+-		const void *buf = NULL;
+-		int rlen = usbDev->getStream(&buf);
+-		if (0 == rlen) continue;
++#ifdef B25
++		// B25åˆæœŸåŒ–
++		if (args.b25) {
++			b25dec.setRound(4);
++			b25dec.setStrip(true);
++			b25dec.setEmmProcess(false);
++			if(b25dec.open(usbDev) == 0) {
++				log << "B25Decoder initialized." << std::endl;
++			}else{
++				// ã‚¨ãƒ©ãƒ¼æ™‚b25ã‚’è¡Œã‚ãšå‡¦ç†ç¶šè¡Œã€‚çµ‚äº†ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹1
++				std::cerr << "disable b25 decoding." << std::endl;
++				args.b25 = false;
++			}
++		}
++#endif /* defined(B25) */
++
++		/* initialize splitter */
++		if(args.splitter) {
++			sp = split_startup(args.sid_list);
++			if(sp != NULL) {
++				splitbuf.buffer = (u_char *)malloc( LENGTH_SPLIT_BUFFER );
++				splitbuf.allocation_size = LENGTH_SPLIT_BUFFER;
++				split_select_finish      = TSS_ERROR;
++			}else{
++				args.splitter = false;
++				std::cerr << "Cannot start TS splitter." << std::endl;
++			}
++		}
++
++		// ãƒãƒ¥ãƒ¼ãƒ‹ãƒ³ã‚°å®Œäº†ãƒ»å—ä¿¡å®‰å®šåŒ–å¾…ã¡
++		int timeout = 100;
++		uint8_t		seq_state;
++		unsigned int	hi_qua = 0, gt_qua;
++
++		do {
++			usleep(100000);
++			if (--timeout <= 0) {
++				log << "GetSequenceState timeout." << std::endl;
++				exit(1);
++			}
++			seq_state = pDev->DeMod_GetSequenceState();
++			gt_qua    = pDev->DeMod_GetQuality();
++			if( seq_state>=8 && gt_qua> hi_qua )
++				hi_qua = gt_qua;
++			if(args.verbose)
++				log << "Sequence = " << (unsigned)seq_state << ", Quality = " << 0.02*gt_qua << std::endl;
++		} while(seq_state < 9 && !caughtSignal);
++		if (args.waitcnt){
++			timeout = 0;
++			do {
++				usleep(100000);
++				seq_state = pDev->DeMod_GetSequenceState();
++				gt_qua    = pDev->DeMod_GetQuality();
++				if( gt_qua> hi_qua )
++					hi_qua = gt_qua;
++				if(args.verbose)
++					log << "Sequence = " << (unsigned)seq_state << ", Quality = " << 0.02*gt_qua << std::endl;
++			} while(++timeout<args.waitcnt);
++		}
++		// å—ä¿¡é–‹å§‹
++		usbDev->startStream();
++		// éŒ²ç”»æ™‚é–“ã®åŸºæº–é–‹å§‹æ™‚é–“
++		time_start = time(NULL);
++
++		uint8_t		*buf = NULL;
++		int			rlen;
++
++		if ( args.waitcnt < 20){
++			// å—ä¿¡å®‰å®šåŒ–å¾…ã¡
++			int			sanity = 0;
++			timeout = 0;
++			do{
++				usleep(50000);
++				gt_qua    = pDev->DeMod_GetQuality();
++				if(args.verbose)
++					log << "Sequence = " << sanity  << ", Quality = " << 0.02*gt_qua << "    " << 0.02*hi_qua << std::endl;
++				if( gt_qua> hi_qua ){
++					if( hi_qua < gt_qua*8/10 ){
++						hi_qua = gt_qua;
++						rlen = usbDev->getStream((const void **)&buf);
++						sanity  = 0;
++						// éŒ²ç”»æ™‚é–“ã®åŸºæº–é–‹å§‹æ™‚é–“
++						time_start = time(NULL);
++						continue;
++					}else
++						hi_qua = gt_qua;
++				}else
++					if( gt_qua < hi_qua*8/10 ){
++						rlen = usbDev->getStream((const void **)&buf);
++						sanity  = 0;
++						// éŒ²ç”»æ™‚é–“ã®åŸºæº–é–‹å§‹æ™‚é–“
++						time_start = time(NULL);
++						continue;
++					}
++				if( ++sanity >= 10*2 )
++					break;
++			}while( !caughtSignal && ++timeout<20*2 );
++			buf = NULL;
++		}
++
++		// Main loop
++		while (!caughtSignal && (args.forever || time(NULL) <= time_start + args.recsec)) {
++			if( buf != NULL )
++				usleep(500000);
++			rlen = usbDev->getStream((const void **)&buf);
++
++			if (0 == rlen) continue;
+ #ifdef B25
+ 			// B25ã‚’çµŒç”±ã—ã¦å—ã‘å–ã‚‹
+ 			if (args.b25) {
+-				const uint8_t *b25buf = (const uint8_t *)buf;
+-				b25dec.put(b25buf, rlen);
+-				rlen = b25dec.get(&b25buf);
++				uint8_t *b25buf;
++				b25dec.put(buf, rlen);
++				rlen = b25dec.get((const uint8_t **)&b25buf);
+ 				if (0 == rlen) {
+ 					continue;
+ 				}
+ 				buf = b25buf;
+ 			}
+ #endif /* defined(B25) */
++			if (args.splitter) {
++				splitbuf.size = 0;
++				if( splitbuf.allocation_size < rlen ){
++					free( splitbuf.buffer );
++					splitbuf.buffer = (u_char *)malloc( rlen );
++					splitbuf.allocation_size = rlen;
++				}
++				ubuf.size = rlen;
++				ubuf.data = buf;
++
++				/* åˆ†é›¢å¯¾è±¡PIDã®æŠ½å‡º */
++				if(split_select_finish != TSS_SUCCESS) {
++					split_select_finish = split_select(sp, &ubuf);
++					if(split_select_finish == TSS_NULL) {
++						/* mallocã‚¨ãƒ©ãƒ¼ç™ºç”Ÿ */
++						log << "split_select malloc failed" << std::endl;
++						args.splitter = false;
++						rlen = ubuf.size;
++						buf = ubuf.data;
++						free( splitbuf.buffer );
++						split_shutdown(sp);
++						goto fin;
++					}
++					else if(split_select_finish != TSS_SUCCESS) {
++						/* åˆ†é›¢å¯¾è±¡PIDãŒå®Œå…¨ã«æŠ½å‡ºã§ãã‚‹ã¾ã§å‡ºåŠ›ã—ãªã„
++						 * 1ç§’ç¨‹åº¦ä½™è£•ã‚’è¦‹ã‚‹ã¨ã„ã„ã‹ã‚‚
++						 */
++						time_t cur_time;
++						time(&cur_time);
++						if(cur_time - time_start > 4) {
++							args.splitter = false;
++							rlen = ubuf.size;
++							buf = ubuf.data;
++							free( splitbuf.buffer );
++							split_shutdown(sp);
++							goto fin;
++						}
++						// ä¿æŒã—ãªã„ã¨ã„ã‹ã‚“ã‹ãªï¼Ÿ
++						ubuf.size = 0;
++						continue;
++					}
++				}
++				/* åˆ†é›¢å¯¾è±¡ä»¥å¤–ã‚’ãµã‚‹ã„è½ã¨ã™ */
++				code = split_ts(sp, &ubuf, &splitbuf);
++				if(code == TSS_NULL) {
++//					split_select_finish = TSS_ERROR;
++					log << "PMT reading.." << std::endl;
++				}
++				else if(code != TSS_SUCCESS) {
++					log << "split_ts failed" << std::endl;
++				}
+ 
+-		if(args.verbose) {
+-			log << "Sequence = " << (unsigned)pDev->DeMod_GetSequenceState() << ", Quality = " << 0.02*pDev->DeMod_GetQuality()
+- << ", " << rlen << "bytes wrote." << std::endl;
++				rlen = splitbuf.size;
++				buf = (uint8_t *)splitbuf.buffer;
++fin:;
++			} /* if */
++
++			if(args.verbose) {
++				log << "Sequence = " << (unsigned)pDev->DeMod_GetSequenceState() << ", Quality = " << 0.02*pDev->DeMod_GetQuality() << ", " << rlen << "bytes wrote." << std::endl;
++			}
++			while(rlen > 0) {
++				ssize_t wc;
++				int ws = rlen < SIZE_CHANK ? rlen : SIZE_CHANK;
++
++				wc = write(dest, buf, ws);
++				if(wc < 0) {
++					log << "write failed." << std::endl;
++					break;
++				}
++				rlen -= wc;
++				buf += wc;
++			}
++			mq_recv(msqid);
+ 		}
+-		if((unsigned)rlen > fwrite(buf, 1, rlen, dest)) {
+-			log << "fwrite failed." << std::endl;
++		if (caughtSignal) {
++			if( args.http )
++				caughtSignal = false;
++			else
++				log << "interrupted." << std::endl;
+ 		}
+-	}
+ 
+-	if (caughtSignal) {
+-		log << "interrupted." << std::endl;
+-	}
+-	usbDev->stopStream();
++		usbDev->stopStream();
++
++        /* delete message queue*/
++        msgctl(msqid, IPC_RMID, NULL);
++		rlen = 0;
++		buf = NULL;
++
++
++#ifdef B25
++		// B25Decoder flush Data
++		if (args.b25) {
++			b25dec.flush();
++			rlen = b25dec.get((const uint8_t **)&buf);
++		}
++#endif /* defined(B25) */
++		if(args.splitter) {
++			if( rlen ){
++				if( splitbuf.allocation_size < rlen ){
++					free( splitbuf.buffer );
++					splitbuf.buffer = (u_char *)malloc( rlen );
++					splitbuf.allocation_size = rlen;
++				}
++				ubuf.size = rlen;
++				ubuf.data = buf;
++				/* åˆ†é›¢å¯¾è±¡ä»¥å¤–ã‚’ãµã‚‹ã„è½ã¨ã™ */
++				code = split_ts(sp, &ubuf, &splitbuf);
++				if(code == TSS_NULL) {
++//	//				split_select_finish = TSS_ERROR;
++					log << "PMT reading.." << std::endl;
++				}else {
++					if(code == TSS_SUCCESS) {
++						log << "split_ts failed" << std::endl;
++					}
++				}
++				rlen = splitbuf.size;
++				buf = (uint8_t *)splitbuf.buffer;
++			}
++			free( splitbuf.buffer );
++			split_shutdown(sp);
++		}
++		while(rlen > 0) {
++			ssize_t wc;
++			int ws = rlen < SIZE_CHANK ? rlen : SIZE_CHANK;
+ 
++			wc = write(dest, buf, ws);
++			if(wc < 0) {
++				log << "write failed." << std::endl;
++				break;
++			}
++			rlen -= wc;
++			buf += wc;
++		}
++		if( args.http ){
++			/* close http socket */
++			close(dest);
++			fprintf(stderr,"connection closed. still listening at port %d\n",args.port_http);
++		}else
++			break;
++	}
+ 	// Default Signal Handler
+ 	struct sigaction saDefault;
+ 	memset(&saDefault, 0, sizeof(struct sigaction));
+ 	saDefault.sa_handler = SIG_DFL;
+ 	sigaction(SIGINT,  &saDefault, NULL);
+ 	sigaction(SIGTERM, &saDefault, NULL);
+-
+-#ifdef B25
+-	// B25Decoder flush Data
+-	if (args.b25) {
+-		b25dec.flush();
+-		const uint8_t *buf = NULL;
+-		int rlen = b25dec.get(&buf);
+-		if (0 < rlen) {
+-			fwrite(buf, 1, rlen, dest);
+-		}
+-	}
+-#endif /* defined(B25) */
+-
++	sigaction(SIGPIPE, &saDefault, NULL);
+ 	// éŒ²ç”»æ™‚é–“ã®æ¸¬å®š
+ 	time_t time_end = time(NULL);
+ 
+-	fflush(dest);
+-	if(!args.std_out) {
+-		fclose(dest);
++	if(!args.stdout ) {
++		close(dest);
+ 	}
+ 
+ 	log << "done." << std::endl;
+diff --git a/src/readme_patch.txt b/src/readme_patch.txt
+new file mode 100755
+index 0000000..cdd7df7
+--- /dev/null
++++ b/src/readme_patch.txt
+@@ -0,0 +1,17 @@
++å·®åˆ†ã®ã¿ã®ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–ã§ã™ã€‚ã‚ªãƒªã‚¸ãƒŠãƒ«ã«ä¸Šæ›¸ã—ã¦ä¸‹ã•ã„ã€‚
++
++
++[å¤‰æ›´ç‚¹]
++ãƒ»recpt1ctlã«å¯¾å¿œ
++ãƒ»ãƒãƒ¥ãƒ¼ãƒ‹ãƒ³ã‚°å®Œäº†åˆ¤å®šã®æ•°å€¤ã‚’å¤‰æ›´ï¼ˆ"pDev->DeMod_GetSequenceState() < 8"ã®8ã‚’9ã«ï¼‰
++ãƒ»å—ä¿¡é–‹å§‹æ™‚å®‰å®šåŒ–å¾…ã¡å‡¦ç†è¿½åŠ 
++ãƒ»httpã‚µãƒ¼ãƒæ©Ÿèƒ½ç§»æ¤(--http portnumber)
++ãƒ»tssplitter_liteã‚’å†…è‡“(--sid n1,n2,.. number,all,hd,sd1,sd2,sd3,1seg,epg)
++ãƒ»å—ä¿¡é–‹å§‹å‰ã«ã‚¦ã‚§ã‚¤ãƒˆã‚’å…¥ã‚Œã‚‹ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã‚’è¿½åŠ (--wait n[1=100mSec])
++
++
++[ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ãƒ»å†é…å¸ƒ]
++tssplitter_liteã¨httpã‚µãƒ¼ãƒãƒ¼ã«ã¤ã„ã¦ã¯è©²å½“éƒ¨åˆ†ã¯ãã‚Œãã‚Œã®ã‚‚ã®ã«æº–æ‹ 
++ä»–ã®éƒ¨åˆ†ã¯ã€æœ¬å®¶ã«æº–æ‹ ã€€ãŸã ã—å•†åˆ©ç”¨ã«ã¤ã„ã¦ã¯æœ¬å®¶ã®æ˜è¨€ãŒã‚ã‚‹ã¾ã§ç¦æ­¢ã¨ã—ã¾ã™ã€‚
++ã¾ãŸæœ¬å®¶ã«å–ã‚Šè¾¼ã¾ã‚ŒãŸå ´åˆã¯ã€ãã®æ™‚ç‚¹ã§å½“æ–¹ã®æ¨©åˆ©ã‚’æœ¬å®¶ã«ç§»è­²ã—ã¾ã™ã€‚
++
+diff --git a/src/tssplitter_lite.cpp b/src/tssplitter_lite.cpp
+new file mode 100644
+index 0000000..811e019
+--- /dev/null
++++ b/src/tssplitter_lite.cpp
+@@ -0,0 +1,812 @@
++/* -*- tab-width: 4; indent-tabs-mode: t -*- */
++/* tssplitter_lite.c -- split TS stream.
++
++   Copyright 2009 querulous
++   Copyright 2010 Naoya OYAMA <naoya.oyama@gmail.com>
++
++   This program is free software: you can redistribute it and/or modify
++   it under the terms of the GNU General Public License as published by
++   the Free Software Foundation, either version 3 of the License, or
++   (at your option) any later version.
++
++   This program is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++   GNU General Public License for more details.
++
++   You should have received a copy of the GNU General Public License
++   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
++
++#include <stdlib.h>
++#include <stdio.h>
++#include <string.h>
++#include <ctype.h>
++
++#include <fcntl.h>
++#include <sys/stat.h>
++#include "decoder.h"
++#include "tssplitter_lite.h"
++
++/* prototypes */
++static int ReadTs(splitter *sp, ARIB_STD_B25_BUFFER *sbuf);
++static int AnalyzePat(splitter *sp, unsigned char *buf);
++static int RecreatePat(splitter *sp, unsigned char *buf, int *pos);
++static char** AnalyzeSid(char *sid);
++static int AnalyzePmt(splitter *sp, unsigned char *buf, unsigned char mark);
++static unsigned int GetCrc32(unsigned char *data, int len);
++static int GetPid(unsigned char *data);
++
++/**
++ * ¥µ¡¼¥Ó¥¹ID²òÀÏ
++ */
++static char** AnalyzeSid(
++	char* sid)						// [in]		¥µ¡¼¥Ó¥¹ID(¥«¥ó¥Ş¶èÀÚ¤ê¥Æ¥­¥¹¥È)
++{
++	int i = 0;
++	char** sid_list = NULL;
++	char* p;
++	int CommaNum = 0;
++
++	/* sid ¤Ï¼¡¤Î·Á¼°¤Î°ú¿ô¤òµöÍÆ¤¹¤ë */
++	/* »ØÄêÌµ¤· */
++	/* SID[0] */
++	/* SID[0],SID[1],...,SID[N-1],SID[N] */
++
++	/*¥«¥ó¥Ş¤Î¿ô¤ò¿ô¤¨¤ë*/
++	p = sid;
++	while(*p != '\0')
++	{
++		if( *p == C_CHAR_COMMA ){
++			CommaNum++;
++		}
++		p++;
++	}
++
++	/* sid_list¤Î¿ô¤Ï¥«¥ó¥Ş¤Î¿ô+2(NULL»ß¤á¤¹¤ë¤«¤é) */
++	sid_list = (char**)malloc(sizeof(char*)*(CommaNum+2));
++	if ( sid_list == NULL )
++	{
++		fprintf(stderr, "AnalyzeSid() malloc error.\n");
++		return NULL;
++	}
++
++	/* sid¤¬¶õ¤Ç¤¢¤ë¾ì¹ç */
++	p = sid;
++	if ( strlen(p) == 0 )
++	{
++		sid_list[0] = NULL;
++		return sid_list;
++	}
++
++	/* ¥«¥ó¥ŞÌµ¤· */
++	if ( CommaNum == 0 )
++	{
++		sid_list[0] = sid;
++		sid_list[1] = NULL;
++		return sid_list;
++	}
++
++	/* ¥«¥ó¥Ş¶èÀÚ¤ê¤ÇÊ£¿ô»ØÄê»ş */
++	i=0;
++	p = sid;
++	/* Ê¸»úÎóÃ¼¤ËÅşÃ£¤¹¤ë¤«¡¢¥«¥ó¥Ş¿ô¤¬¿ô¤¨¤¿¿ô¤ËÃ£¤·¤¿¤é½ªÎ» */
++	while((*p != '\0') || i < CommaNum)
++	{
++		/* ¸½ºß¤Î½èÍı°ÌÃÖ¤òsid_list[i]¤Ë¥»¥Ã¥È */
++		/* ¤³¤Î¥¿¥¤¥ß¥ó¥°¤Î p ¤Ï
++		 * ¡¦sidÀèÆ¬
++		 * ¡¦[,]¤Î¼¡¤ÎÊ¸»ú
++		 * ¤¤¤º¤ì¤«¤Ç¤¢¤ë¤Î¤Ç p ¤ò sid_list[i] ¤ËÂåÆş¤·¤Æ¤è¤¤
++		 */
++		sid_list[i] = p;
++		i++;
++
++		/* ºÇ½é¤Ë¸½¤ì¤ë[,]¤òNULLÊ¸»ú¤ÇÃÖ´¹¤¹¤ë */
++		p = strchr(p, C_CHAR_COMMA);
++		if ( p == NULL )
++		{
++			/* ¥«¥ó¥Ş¤¬¸«¤Ä¤«¤é¤Ê¤¤¾ì¹ç¤ÏºÇ¸å¤Î½èÍıÂĞ¾İ¤Ê¤Î¤Ç½ªÎ» */
++			break;
++		}
++		*p = '\0';
++		/* ½èÍı°ÌÃÖ¤òNULL¤ÇÃÖ´¹¤·¤¿Ê¸»ú¤Î¼¡¤Î°ÌÃÖ¤ËÀßÄê¤¹¤ë */
++		p++;
++	}
++
++	/* ºÇ¸å¤Îsid_list[n]¤ÏNULL¥İ¥¤¥ó¥¿¤Ç»ß¤á¤ë */
++	sid_list[i] = NULL;
++
++	i=0;
++	while( sid_list[i] != NULL )
++	{
++		i++;
++	}
++#if 0
++	for(i=0; sid_list[i] != NULL; i++)
++	{
++		printf("sid_list[%d]=[%s].\n",i, sid_list[i]);
++	}
++#endif
++	return sid_list;
++}
++
++/**
++ * ½é´ü²½½èÍı
++ */
++splitter* split_startup(
++	char *sid		// [in]		¥µ¡¼¥Ó¥¹ID(°ú¿ô¤Ç»ØÄê¤·¤¿Ê¸»úÎó)
++)
++{
++	splitter* sp;
++	sp = (splitter*)malloc(sizeof(splitter));
++	if ( sp == NULL )
++	{
++		fprintf(stderr, "split_startup malloc error.\n");
++		return NULL;
++	}
++	memset(sp->pids, 0, sizeof(sp->pids));
++	memset(sp->pmt_pids, 0, sizeof(sp->pmt_pids));
++
++	sp->sid_list	= NULL;
++	sp->pat			= NULL;
++	sp->sid_list	= AnalyzeSid(sid);
++	if ( sp->sid_list == NULL )
++	{
++		free(sp);
++		return NULL;
++	}
++	sp->pat_count	= 0xFFU;
++	sp->pmt_retain = -1;
++	sp->pmt_counter = 0;
++
++	memset(sp->section_remain, 0U, sizeof(sp->section_remain));
++	memset(sp->packet_seq, 0U, sizeof(sp->packet_seq));
++
++	return sp;
++}
++
++/**
++ * Íî¤È¤¹PID¤ò³ÎÄê¤µ¤»¤ë
++ */
++int split_select(
++	splitter *sp,						// [in/out]		splitter¹½Â¤ÂÎ
++	ARIB_STD_B25_BUFFER *sbuf			// [in]			ÆşÎÏTS
++)
++{
++	int result;
++	// TS²òÀÏ
++	result = ReadTs(sp, sbuf);
++
++	return result;
++}
++
++/**
++ * ½ªÎ»½èÍı
++ */
++void split_shutdown(splitter* sp)
++{
++	if ( sp != NULL ) {
++		if ( sp->pat != NULL )
++		{
++			free(sp->pat);
++			sp->pat = NULL;
++		}
++		if ( sp->sid_list != NULL )
++		{
++			free(sp->sid_list);
++			sp->sid_list = NULL;
++		}
++		free(sp);
++		sp = NULL;
++	}
++}
++
++/**
++ * TS ²òÀÏ½èÍı
++ *
++ * ÂĞ¾İ¤Î¥Á¥ã¥ó¥Í¥ëÈÖ¹æ¤Î¤ß¤Î PAT ¤ÎºÆ¹½ÃÛ¤È½ĞÎÏÂĞ¾İ PID ¤ÎÃê½Ğ¤ò¹Ô¤¦
++ */
++static int ReadTs(splitter *sp, ARIB_STD_B25_BUFFER *sbuf)
++{
++#if 0
++	unsigned char **pat,				// [out]	PAT ¾ğÊó¡ÊºÆ¹½ÃÛ¸å¡Ë
++	unsigned char* pids,				// [out]	½ĞÎÏÂĞ¾İ PID ¾ğÊó
++	char** sid_list,					// [in]		½ĞÎÏÂĞ¾İ¥µ¡¼¥Ó¥¹ ID ¤Î¥ê¥¹¥È
++	unsigned char* pmt_pids,			// [in]		½ĞÎÏÂĞ¾İPID¤ÎPMT PID
++	,			// [in]		pt1_drv¤ÎÆşÎÏTS
++	int* pmt_retain,						// [in]		»Ä¤¹¤Ù¤­PMT¤Î¿ô
++	int* pmt_counter					// [out]	»Ä¤·¤¿PMT¤Î¿ô
++#endif
++
++	int length = sbuf->size;
++	int pid;
++	int result = TSS_ERROR;
++	int index;
++	int analyze_result = 0;
++
++	index = 0;
++	while(length - index - LENGTH_PACKET > 0) {
++		pid = GetPid((unsigned char *)sbuf->data + index + 1);
++		// PAT
++		if(0x0000 == pid) {
++			result = AnalyzePat(sp, (unsigned char *)sbuf->data + index);
++			if(TSS_SUCCESS != result) {
++				/* ²¼°Ì¤Î´Ø¿ôÆâÉô¤Çmalloc errorÈ¯À¸ */
++				return result;
++			}
++		}
++
++		// PMT
++		/* »Ä¤¹pmt_pid¤Ç¤¢¤ë¾ì¹ç¤Ë¤Ï¡¢pmt¤Ë½ñ¤«¤ì¤Æ¤¤¤ë
++		 * »Ä¤¹¤Ù¤­PCR/AUDIO/VIDEO PID¤ò¼èÆÀ¤¹¤ë */
++		if(sp->pmt_pids[pid] == 1) {
++			/* ¤³¤ÎÃæ¤Ë¤ÏPMTËè¤Ë°ìÅÙ¤·¤«Æş¤é¤Ê¤¤¤è¤¦¤Ë¤·¤Æ¤ª¤¯ */
++		    analyze_result = AnalyzePmt(sp, (unsigned char *)sbuf->data + index, 1);
++		    if (TSS_SUCCESS == analyze_result ) {
++			sp->pmt_pids[pid]++;
++			sp->pmt_counter += 1;
++			    *(sbuf->data + index + 1) = 0xffU;
++			    *(sbuf->data + index + 2) = 0xffU;
++			}
++		}
++		/* Ï¿²è¤¹¤ëÁ´¤Æ¤ÎPMT¤Ë¤Ä¤¤¤Æ¡¢Ãæ¤Ë¤¢¤ëPCR/AUDIO/VIDEO¤ÎPID¤ò
++		 * ÆÀ¤ë */
++		/* pmt_counter ¤È pmt_retain ¤¬°ìÃ×¤¹¤ë¾ì¹ç¤Ë¾ò·ï¤ÏËş¤¿¤µ¤ì¤ë */
++		if(sp->pmt_counter == sp->pmt_retain) {
++			result = TSS_SUCCESS;
++			break;
++		}
++		else {
++			result = TSS_ERROR;
++		}
++		index += LENGTH_PACKET;
++	}
++
++	return(result);
++}
++
++static int RescanPID(splitter *splitter, unsigned char *buf)
++{
++	int result = TSS_NULL;
++	int i;
++
++	// clear
++	if (splitter->pmt_counter == splitter->pmt_retain) {
++	    memcpy(splitter->pids, splitter->pmt_pids, sizeof(splitter->pids));
++	    splitter->pmt_counter = 0;
++		memset(splitter->section_remain, 0U, sizeof(splitter->section_remain));
++		memset(splitter->packet_seq, 0U, sizeof(splitter->packet_seq));
++
++		fprintf(stderr, "Rescan PID \n");
++	}
++
++	if (TSS_SUCCESS == AnalyzePmt(splitter, buf, 2)) {
++	    splitter->pmt_counter += 1;
++	}
++
++ 	if (splitter->pmt_retain == splitter->pmt_counter) {
++	    result = TSS_SUCCESS;
++		for (i = 0; MAX_PID > i; i++) {
++		    if (splitter->pids[i] > 0) {
++			    splitter->pids[i] -= 1;
++		    } 
++		}
++		fprintf(stderr, "Rescan PID End\n");
++	}
++
++	return result;
++}
++/**
++ * TS Ê¬Î¥½èÍı
++ */
++int split_ts(
++	splitter *splitter,					// [in]		splitter¥Ñ¥é¥á¡¼¥¿
++	ARIB_STD_B25_BUFFER *sbuf,			// [in]		ÆşÎÏTS
++	splitbuf_t *dbuf							// [out]	½ĞÎÏTS
++)
++{
++	int pid;
++	unsigned char *sptr, *dptr;
++	int s_offset = 0;
++	int d_offset = 0;
++	int result = TSS_SUCCESS;
++	int pmts = 0;
++	int version = 0;
++
++	/* ½é´ü²½ */
++	dbuf->size = 0;
++	if (sbuf->size < 0) {
++		return TSS_ERROR;
++	}
++
++	sptr = (unsigned char *)sbuf->data;
++	dptr = dbuf->buffer;
++
++	while(sbuf->size > s_offset) {
++		pid = GetPid(sptr + s_offset + 1);
++		switch(pid) {
++
++		// PAT
++		case 0x0000:
++			// ½ä²ó¥«¥¦¥ó¥¿¥«¥¦¥ó¥È¥¢¥Ã¥×
++			if(0xFFU == splitter->pat_count) {
++				splitter->pat_count = splitter->pat[3];
++			}
++			else {
++				splitter->pat_count += 1;
++				if(0 == (splitter->pat_count & 0x0fU)) {
++					splitter->pat_count -= 0x10;
++				}
++			}
++			splitter->pat[3] = splitter->pat_count;
++
++			memcpy(dptr + d_offset, splitter->pat, LENGTH_PACKET);
++			d_offset += LENGTH_PACKET;
++			dbuf->size += LENGTH_PACKET;
++			break;
++		default:
++		    if(0 != splitter->pmt_pids[pid]) {
++			    //PMT
++			    if ((sptr + s_offset)[1] & 0x40) {		// PES³«»Ï¥¤¥ó¥¸¥±¡¼¥¿
++				    // ¥Ğ¡¼¥¸¥ç¥ó¥Á¥§¥Ã¥¯
++				    for(pmts = 0; splitter->pmt_retain > pmts; pmts++) { 
++					    if (splitter->pmt_version[pmts].pid == pid) {
++						  version = splitter->pmt_version[pmts].version;
++						  break;
++						}
++					}
++					if((version != ((sptr + s_offset)[10] & 0x3e))
++					   ||(splitter->pmt_retain != splitter->pmt_counter)) {
++					    // ºÆ¥Á¥§¥Ã¥¯
++					    result = RescanPID(splitter, sptr + s_offset);
++					} 
++				}
++				else {
++				    if (splitter->pmt_retain != splitter->pmt_counter) {
++					    // ºÆ¥Á¥§¥Ã¥¯
++					    result = RescanPID(splitter, sptr + s_offset);
++					}
++				}
++			}
++			/* pids[pid] ¤¬ 1 ¤Ï»Ä¤¹¥Ñ¥±¥Ã¥È¤Ê¤Î¤Ç½ñ¤­¹ş¤à */
++			if(0 != splitter->pids[pid]) {
++				memcpy(dptr + d_offset, sptr + s_offset, LENGTH_PACKET);
++				d_offset += LENGTH_PACKET;
++				dbuf->size += LENGTH_PACKET;
++			}
++			break;
++		} /* switch */
++
++		s_offset += LENGTH_PACKET;
++	}
++
++	return result;
++}
++
++/**
++ * PAT ²òÀÏ½èÍı
++ *
++ * PAT ¤ò²òÀÏ¤·¡¢½ĞÎÏÂĞ¾İ¥Á¥ã¥ó¥Í¥ë¤¬´Ş¤Ş¤ì¤Æ¤¤¤ë¤«¥Á¥§¥Ã¥¯¤ò¹Ô¤¤¡¢PAT ¤òºÆ¹½ÃÛ¤¹¤ë
++ */
++static int AnalyzePat(splitter *sp, unsigned char *buf)
++#if 0
++	unsigned char* buf,					// [in]		ÆÉ¤ß¹ş¤ó¤À¥Ğ¥Ã¥Õ¥¡
++	unsigned char** pat,				// [out]	PAT ¾ğÊó¡ÊºÆ¹½ÃÛ¸å¡Ë
++	unsigned char* pids,				// [out]	½ĞÎÏÂĞ¾İ PID ¾ğÊó
++	char** sid_list,					// [in]		½ĞÎÏÂĞ¾İ¥µ¡¼¥Ó¥¹ ID ¤Î¥ê¥¹¥È
++	unsigned char* pmt_pids,			// [out]	¥µ¡¼¥Ó¥¹ ID ¤ËÂĞ±ş¤¹¤ë PMT ¤Î PID
++	int* pmt_retain						// [out]	»Ä¤¹PMT¤Î¿ô
++
++#endif
++{
++	int pos[MAX_PID];
++	int service_id;
++	int i, j, k;
++	int size = 0;
++	int pid;
++	int result = TSS_SUCCESS;
++	char **p;
++	int sid_found = FALSE;
++	int avail_sids[MAX_SERVICES];
++
++	unsigned char *pat = sp->pat;
++	unsigned char *pids = sp->pids;
++	char **sid_list = sp->sid_list;
++	unsigned char *pmt_pids = sp->pmt_pids;
++
++	char chosen_sid[512];
++	chosen_sid[0] = '\0';
++
++	if(pat == NULL) {
++		/* ½é´ü²½ */
++		sp->pmt_retain = 0;
++		memset(pos, 0, sizeof(pos));
++		size = buf[7];
++
++		/* prescan SID/PMT */
++		for(i = 13, j = 0; i < (size + 8) - 4; i = i + 4, j++) {
++			avail_sids[j] = ((int)buf[i] << 8) + buf[i+1];
++			sp->avail_pmts[j] = GetPid(&buf[i+2]);
++			/* NIT (PID 0x0010) ¤ÏÌµ»ë */
++			if(sp->avail_pmts[j] == 0x0010)
++				j--;
++		}
++		sp->num_pmts = j;
++
++		// ÂĞ¾İ¥Á¥ã¥ó¥Í¥ëÈ½Äê
++		/* size + 8 = ¥Ñ¥±¥Ã¥ÈÁ´Ä¹ */
++		/* ºÇ½ª 4 ¥Ğ¥¤¥È¤ÏCRC¤Ê¤Î¤ÇÈô¤Ğ¤¹ */
++		for(i = 13; i < (size + 8) - 4; i = i + 4) {
++
++			service_id = ((int)buf[i] << 8) + buf[i+1];
++			p = sid_list;
++
++			while(*p) {
++				if( sp->pmt_retain >= MAX_SERVICES )
++					return TSS_ERROR;
++				if(service_id == atoi(*p)) {
++					/* Ï¿²èÂĞ¾İ¤Î pmt_pids ¤Ï 1 ¤È¤¹¤ë */
++					/* Ï¿²èÂĞ¾İ¤Î pmt ¤Î pids ¤Ï 1 ¤È¤¹¤ë */
++					pid = GetPid(&buf[i + 2]);
++					if(pid != 0x0010) {
++						*(pmt_pids+pid) = 1;
++						*(pids+pid) = 1;
++						pos[pid] = i;
++						sid_found = TRUE;
++						sp->pmt_version[sp->pmt_retain].pid = pid;
++						sp->pmt_retain += 1;
++						sprintf(chosen_sid, "%s %d", *chosen_sid ? chosen_sid : "", service_id);
++					}
++					p++;
++					continue;
++				}
++				else if(!strcasecmp(*p, "hd") || !strcasecmp(*p, "sd1")) {
++					/* hd/sd1 »ØÄê»ş¤Ë¤Ï1ÈÖÌÜ¤Î¥µ¡¼¥Ó¥¹¤òÊİÂ¸¤¹¤ë */
++					if(service_id == avail_sids[0]) {
++						pid = GetPid(&buf[i + 2]);
++						*(pmt_pids+pid) = 1;
++						*(pids+pid) = 1;
++						pos[pid] = i;
++						sid_found = TRUE;
++						sp->pmt_version[sp->pmt_retain].pid = pid;
++						sp->pmt_retain += 1;
++						sprintf(chosen_sid, "%s %d", *chosen_sid ? chosen_sid : "", service_id);
++					}
++					p++;
++					continue;
++				}
++				else if(!strcasecmp(*p, "sd2")) {
++					/* sd2 »ØÄê»ş¤Ë¤Ï2ÈÖÌÜ¤Î¥µ¡¼¥Ó¥¹¤òÊİÂ¸¤¹¤ë */
++					if(service_id == avail_sids[1]) {
++						pid = GetPid(&buf[i + 2]);
++						*(pmt_pids+pid) = 1;
++						*(pids+pid) = 1;
++						pos[pid] = i;
++						sid_found = TRUE;
++						sp->pmt_version[sp->pmt_retain].pid = pid;
++						sp->pmt_retain += 1;
++						sprintf(chosen_sid, "%s %d", *chosen_sid ? chosen_sid : "", service_id);
++					}
++					p++;
++					continue;
++				}
++				else if(!strcasecmp(*p, "sd3")) {
++					/* sd3 »ØÄê»ş¤Ë¤Ï3ÈÖÌÜ¤Î¥µ¡¼¥Ó¥¹¤òÊİÂ¸¤¹¤ë */
++					if(service_id == avail_sids[2]) {
++						pid = GetPid(&buf[i + 2]);
++						*(pmt_pids+pid) = 1;
++						*(pids+pid) = 1;
++						pos[pid] = i;
++						sid_found = TRUE;
++						sp->pmt_version[sp->pmt_retain].pid = pid;
++						sp->pmt_retain += 1;
++						sprintf(chosen_sid, "%s %d", *chosen_sid ? chosen_sid : "", service_id);
++					}
++					p++;
++					continue;
++				}
++				else if(!strcasecmp(*p, "1seg")) {
++					/* 1seg »ØÄê»ş¤Ë¤Ï PMTPID=0x1FC8 ¤Î¥µ¡¼¥Ó¥¹¤òÊİÂ¸¤¹¤ë */
++					pid = GetPid(&buf[i + 2]);
++					if(pid == 0x1FC8) {
++						*(pmt_pids+pid) = 1;
++						*(pids+pid) = 1;
++						pos[pid] = i;
++						sid_found = TRUE;
++						sp->pmt_version[sp->pmt_retain].pid = pid;
++						sp->pmt_retain += 1;
++						sprintf(chosen_sid, "%s %d", *chosen_sid ? chosen_sid : "", service_id);
++					}
++					p++;
++					continue;
++				}
++				else if(!strcasecmp(*p, "all")) {
++					/* all»ØÄê»ş¤Ë¤ÏÁ´ÊİÂ¸¤¹¤ë */
++					pid = GetPid(&buf[i + 2]);
++					if(pid != 0x0010) {
++						*(pmt_pids+pid) = 1;
++						*(pids+pid) = 1;
++						pos[pid] = i;
++						sid_found = TRUE;
++						sp->pmt_version[sp->pmt_retain].pid = pid;
++						sp->pmt_retain += 1;
++						sprintf(chosen_sid, "%s %d", *chosen_sid ? chosen_sid : "", service_id);
++					}
++					break;
++				}
++				else if(!strcasecmp(*p, "epg")) {
++					/* all»ØÄê»ş¤Ë¤ÏÁ´ÊİÂ¸¤¹¤ë */
++					sid_found    = TRUE;
++					*(pids+0x11) = 1;
++					*(pids+0x12) = 1;
++					*(pids+0x23) = 1;
++					*(pids+0x29) = 1;
++					break;
++				}
++
++				p++;
++			} /* while */
++			if( sp->pmt_retain >= MAX_SERVICES )
++				return TSS_ERROR;
++		}
++
++		/* if sid has been specified but no sid found, fall back to all */
++		if(*sid_list && !sid_found) {
++			for(i = 13; i < (size + 8) - 4; i = i + 4) {
++				service_id = ((int)buf[i] << 8) + buf[i+1];
++				pid = GetPid(&buf[i + 2]);
++				if(pid != 0x0010U) {
++					*(pmt_pids+pid) = 1;
++					*(pids+pid) = 1;
++					pos[pid] = i;
++					sid_found = TRUE;
++					sp->pmt_version[sp->pmt_retain].pid = pid;
++					sp->pmt_retain += 1;
++					sprintf(chosen_sid, "%s %d", *chosen_sid ? chosen_sid : "", service_id);
++					if( sp->pmt_retain >= MAX_SERVICES )
++						return TSS_ERROR;
++				}
++			}
++		}
++
++		/* print SIDs */
++		fprintf(stderr, "Available sid = ");
++		for(k=0; k < sp->num_pmts; k++)
++			fprintf(stderr, "%d ", avail_sids[k]);
++		fprintf(stderr, "\n");
++		fprintf(stderr, "Chosen sid    =%s\n", chosen_sid);
++
++#if 0
++		/* print PMTs */
++		fprintf(stderr, "Available PMT = ");
++		for(k=0; k < sp->num_pmts; k++)
++			fprintf(stderr, "%d ", sp->avail_pmts[k].pid);
++		fprintf(stderr, "\n");
++#endif
++
++		// PAT ºÆ¹½ÃÛ
++		result = RecreatePat(sp, buf, pos);
++#if 0
++		int tc;
++		for(tc=0; tc<188; tc++)
++			fprintf(stderr, "%02x ", *(pat+tc));
++#endif
++	}
++
++	return(result);
++}
++
++/**
++ * PAT ºÆ¹½ÃÛ½èÍı
++ *
++ * PMT ¤«¤é½ĞÎÏÂĞ¾İ¥Á¥ã¥ó¥Í¥ë°Ê³°¤Î¥Á¥ã¥ó¥Í¥ë¾ğÊó¤òºï½ü¤·¡¢PAT ¤òºÆ¹½ÃÛ¤¹¤ë
++ */
++static int RecreatePat(splitter *sp, unsigned char *buf, int *pos)
++#if 0
++	unsigned char* buf,					// [in]		ÆÉ¤ß¹ş¤ó¤À¥Ğ¥Ã¥Õ¥¡
++	unsigned char** pat,				// [out]	PAT ¾ğÊó¡ÊºÆ¹½ÃÛ¸å¡Ë
++	unsigned char* pids,				// [out]	½ĞÎÏÂĞ¾İ PID ¾ğÊó
++	int *pos							// [in]		¼èÆÀÂĞ¾İ PMT ¤Î¥Ğ¥Ã¥Õ¥¡Ãæ¤Î°ÌÃÖ
++#endif
++{
++	unsigned char y[LENGTH_CRC_DATA];
++	unsigned int crc;
++	int i;
++	int j;
++	int pos_i;
++	int pid_num = 0;
++
++	// CRC ·×»»¤Î¤¿¤á¤Î¥Ç¡¼¥¿
++	{
++		// ¥Á¥ã¥ó¥Í¥ë¤Ë¤è¤Ã¤ÆÊÑ¤ï¤é¤Ê¤¤ÉôÊ¬
++		for (i = 0; i < LENGTH_PAT_HEADER-4; i++)
++		{
++			y[i] = buf[i + 5];
++		}
++		// ÀèÆ¬¤Î PMT ¾ğÊó¤ò¶¯À©Åª¤Ë NIT ¤Ë
++		y[LENGTH_PAT_HEADER-4] = 0x00U;
++		y[LENGTH_PAT_HEADER-3] = 0x00U;
++		y[LENGTH_PAT_HEADER-2] = 0xe0U;
++		y[LENGTH_PAT_HEADER-1] = 0x10U;
++		// ¥Á¥ã¥ó¥Í¥ë¤Ë¤è¤Ã¤ÆÊÑ¤ï¤ëÉôÊ¬
++		for (i = 0; i < MAX_PID; i++)
++		{
++			if(pos[i] != 0)
++			{
++				/* buf[pos_i] ¤ò y ¤Ë¥³¥Ô¡¼(Ãê½Ğ¤·¤¿PID¤Î¿ô) */
++				pos_i = pos[i];
++				for (j = 0; j < 4; j++)
++				{
++					y[LENGTH_PAT_HEADER + ((4*pid_num) + j)] = buf[pos_i + j];
++				}
++				pid_num++;
++			}
++		}
++	}
++	/* ¥Ñ¥±¥Ã¥È¥µ¥¤¥º·×»» */
++	y[2] = (unsigned char)(pid_num * 4 + 0x0d);
++	// CRC ·×»»
++	crc = GetCrc32(y, LENGTH_PAT_HEADER + pid_num*4);
++
++	// PAT ºÆ¹½À®
++	sp->pat = (unsigned char*)malloc(LENGTH_PACKET);
++	if(sp->pat == NULL)
++	{
++		fprintf(stderr, "RecreatePat() malloc error.\n");
++		return(TSS_NULL);
++	}
++	memset(sp->pat, 0xFFU, LENGTH_PACKET);
++	for (i = 0; i < 5; i++)
++	{
++		sp->pat[i] = buf[i];
++	}
++	for (i = 0; i < LENGTH_PAT_HEADER + pid_num*4; i++)
++	{
++		sp->pat[i + 5] = y[i];
++	}
++	sp->pat[5 + LENGTH_PAT_HEADER + pid_num*4] = (unsigned char)((crc >> 24) & 0xFFU);
++	sp->pat[6 + LENGTH_PAT_HEADER + pid_num*4] = (unsigned char)((crc >> 16) & 0xFFU);
++	sp->pat[7 + LENGTH_PAT_HEADER + pid_num*4] = (unsigned char)((crc >>  8) & 0xFFU);
++	sp->pat[8 + LENGTH_PAT_HEADER + pid_num*4] = (unsigned char)((crc      ) & 0xFFU);
++
++	return(TSS_SUCCESS);
++}
++
++/**
++ * PMT ²òÀÏ½èÍı
++ *
++ * PMT ¤ò²òÀÏ¤·¡¢ÊİÂ¸ÂĞ¾İ¤Î PID ¤òÆÃÄê¤¹¤ë
++ */
++static int AnalyzePmt(splitter *sp, unsigned char *buf, unsigned char mark)
++#if 0
++	unsigned char* buf,					// [in]		ÆÉ¤ß¹ş¤ó¤À¥Ğ¥Ã¥Õ¥¡
++	unsigned char* pids				// [out]	½ĞÎÏÂĞ¾İ PID ¾ğÊó
++#endif
++{
++	uint32_t Nall;
++	uint32_t N;
++	int pcr;
++	int epid;
++    int count;
++    int pid;
++	int payload_offset;		// ¥Ú¥¤¥í¡¼¥É³«»Ï¥ª¥Õ¥»¥Ã¥È
++
++    pid = GetPid(&buf[1]);
++	if (buf[1] & 0x40U) {		// PES³«»Ï¥¤¥ó¥¸¥±¡¼¥¿
++		sp->section_remain[pid] = ((uint16_t)(buf[6] & 0x0FU) << 8) + buf[7] + 3;	// ¥»¥¯¥·¥ç¥ó¥µ¥¤¥º¼èÆÀ(¥Ø¥Ã¥À¹ş)
++		payload_offset = 5;
++
++		for (count = 0; sp->pmt_retain > count; count++) {
++		    if (sp->pmt_version[count].pid  == pid) {
++                sp->pmt_version[count].version = (int)(buf[10] & 0x3eU);
++			}
++		}
++		// PCR, ÈÖÁÈ¾ğÊó¤¬ÀèÆ¬¤«¤é¤Ï¤ß½Ğ¤ë¤³¤È¤Ï¤Ê¤¤¤À¤í¤¦
++	// PCR
++		pcr = GetPid(&buf[payload_offset + 8]);
++		sp->pids[pcr] = mark;
++
++	// ECM
++		N = ((uint32_t)(buf[payload_offset + 10] & 0x0F) << 8) + buf[payload_offset + 11] + payload_offset + 12;	// ES¾ğÊó³«»ÏÅÀ
++
++		uint32_t p = payload_offset + 12;
++	while(p < N) {
++		uint32_t ca_pid;
++		uint32_t tag;
++		uint32_t len;
++
++		tag = buf[p];
++		len = buf[p+1];
++		p += 2;
++
++		if(tag == 0x09 && len >= 4 && p+len <= N) {
++			ca_pid = (((int)buf[p+2] << 8) | buf[p+3]) & 0x1fffU;
++			sp->pids[ca_pid] = mark;
++		}
++		p += len;
++	}
++	}
++	else {
++	    if (sp->section_remain[pid] == 0) return TSS_ERROR;								// ¥»¥¯¥·¥ç¥óÀèÆ¬¤¬Èô¤ó¤Ç¤¤¤ë
++		if ((buf[3] & 0x0F) != ((sp->packet_seq[pid] + 1) & 0x0F)) return TSS_ERROR;	// ¥Ñ¥±¥Ã¥È¥«¥¦¥ó¥¿¤¬Èô¤ó¤À
++		payload_offset = 4;
++		N = payload_offset;
++	}
++	sp->packet_seq[pid] = (uint8_t)buf[3] & 0x0F;				// ½ä²ó¥«¥¦¥ó¥¿
++	
++	Nall = sp->section_remain[pid];
++	if(Nall > LENGTH_PACKET - payload_offset)
++		Nall = LENGTH_PACKET - payload_offset;
++
++	// ES PID
++	while (N <= Nall + payload_offset - 5)
++	{
++		// ¥¹¥È¥ê¡¼¥à¼ïÊÌ¤¬ 0x0D¡Êtype D¡Ë¤Ï½ĞÎÏÂĞ¾İ³°
++		if (0x0D != buf[N])
++		{
++			epid = GetPid(&buf[N + 1]);
++
++			sp->pids[epid] = mark;
++		}
++		N += 5 + (((int)(buf[N + 3]) & 0x0F) << 8) + buf[N + 4];
++	}
++
++	sp->section_remain[pid] -= Nall;
++
++	if (sp->section_remain[pid] > 0)
++		return SECTION_CONTINUE;
++	else
++	return TSS_SUCCESS;
++}
++
++/**
++ * CRC ·×»»
++ */
++static unsigned int GetCrc32(
++	unsigned char* data,				// [in]		CRC ·×»»ÂĞ¾İ¥Ç¡¼¥¿
++	int len)							// [in]		CRC ·×»»ÂĞ¾İ¥Ç¡¼¥¿Ä¹
++{
++	unsigned int crc;
++	int i, j;
++	unsigned int c;
++	unsigned int bit;
++
++	crc = 0xFFFFFFFFU;
++	for (i = 0; i < len; i++)
++	{
++		unsigned char x;
++		x = data[i];
++
++		for (j = 0; j < 8; j++)
++		{
++
++			bit = (x >> (7 - j)) & 0x1U;
++
++			c = 0;
++			if (crc & 0x80000000U)
++			{
++				c = 1;
++			}
++
++			crc = crc << 1;
++
++			if (c ^ bit)
++			{
++				crc ^= 0x04C11DB7U;
++			}
++
++			crc &= 0xFFFFFFFFU;
++		}
++	}
++
++	return crc;
++}
++
++/**
++ * PID ¼èÆÀ
++ */
++static int GetPid(
++	unsigned char* data)				// [in]		¼èÆÀÂĞ¾İ¥Ç¡¼¥¿¤Î¥İ¥¤¥ó¥¿
++{
++	return ((int)(data[0] & 0x1FU) << 8) + data[1];
++}
+diff --git a/src/tssplitter_lite.h b/src/tssplitter_lite.h
+new file mode 100755
+index 0000000..6429f74
+--- /dev/null
++++ b/src/tssplitter_lite.h
+@@ -0,0 +1,78 @@
++/* -*- tab-width: 4; indent-tabs-mode: t -*- */
++/* tssplitter_lite.h  -- split TS stream program's header.
++
++   Copyright 2009 querulous
++   Copyright 2010 Naoya OYAMA <naoya.oyama@gmail.com>
++
++   This program is free software: you can redistribute it and/or modify
++   it under the terms of the GNU General Public License as published by
++   the Free Software Foundation, either version 3 of the License, or
++   (at your option) any later version.
++
++   This program is distributed in the hope that it will be useful,
++   but WITHOUT ANY WARRANTY; without even the implied warranty of
++   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++   GNU General Public License for more details.
++
++   You should have received a copy of the GNU General Public License
++   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
++#ifndef _TS_SPLITTER_LITE_H_
++#define _TS_SPLITTER_LITE_H_
++
++#define __STDC_FORMAT_MACROS
++#include <inttypes.h>
++#include <unistd.h>
++
++#define LENGTH_PACKET		(188)
++#define MAX_PID				(8192)
++#define MAX_SERVICES		(50)
++#define LENGTH_CRC_DATA		(176)
++#define false				(0)
++#define true				(1)
++
++#define TSS_SUCCESS			(0)
++#define TSS_ERROR			(-1)
++#define TSS_NULL			(-2)
++#define LENGTH_PAT_HEADER	(12)
++#define C_CHAR_COMMA		','
++#define SECTION_CONTINUE	(1)
++#define LENGTH_SPLIT_BUFFER	(3*1024*1024)
++
++typedef struct pmt_version {
++  int pid;
++  int version;
++  int packet;
++} PMT_version;
++
++/**
++ * splitter¹½Â¤ÂÎ
++ */
++typedef struct splitter {
++	unsigned char	pids[MAX_PID];
++	unsigned char	pmt_pids[MAX_PID];
++	unsigned char*	pat;
++	char**			sid_list;
++	unsigned char	pat_count;
++	int pmt_retain;
++	int pmt_counter;
++	int avail_pmts[MAX_SERVICES];
++	PMT_version pmt_version[MAX_SERVICES];
++	int num_pmts;
++	uint16_t section_remain[MAX_PID];	// ¥»¥¯¥·¥ç¥ó»Ä¤ê¥Ğ¥¤¥È¿ô
++	uint8_t packet_seq[MAX_PID];	// ½ä²ó¥«¥¦¥ó¥¿
++} splitter;
++
++/* b25 decoder would hoard up large chank */
++typedef struct _splitbuf_t
++{
++    int size;
++    int allocation_size;
++    u_char *buffer;
++} splitbuf_t;
++
++splitter* split_startup(char *sid);
++int split_select(splitter *sp, ARIB_STD_B25_BUFFER *sbuf);
++void split_shutdown(splitter *sp);
++int split_ts(splitter *splitter, ARIB_STD_B25_BUFFER *sbuf, splitbuf_t *dbuf);
++
++#endif

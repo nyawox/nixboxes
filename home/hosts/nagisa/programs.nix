@@ -26,6 +26,5 @@
     nix-prefetch-git
     cava
     gnome.nautilus
-    mpv
   ];
 }

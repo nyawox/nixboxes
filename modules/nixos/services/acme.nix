@@ -23,7 +23,6 @@ in {
         domain = "nixhome.shop";
         extraDomainNames = ["*.nixhome.shop"];
         dnsProvider = "vultr";
-        dnsPropagationCheck = true;
         credentialsFile = config.sops.secrets.vultr.path;
       };
     };

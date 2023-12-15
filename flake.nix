@@ -86,7 +86,7 @@
       inputs.hyprland.follows = "hyprland";
     };
     srvos = {
-      url = "github:numtide/srvos";
+      url = "github:nix-community/srvos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-switch-boot = {
@@ -163,9 +163,14 @@
 
         nixosModules = {
           common = {...}: {
-            # Allow unfree packages
             nixpkgs = {
-              config = {allowUnfree = true;};
+              config = {
+                allowUnfree = true;
+                permittedInsecurePackages = [
+                  # https://github.com/NixOS/nixpkgs/issues/269713
+                  "openssl-1.1.1w"
+                ];
+              };
               overlays = [
                 inputs.nur.overlay
                 inputs.emacs-overlay.overlay
@@ -288,7 +293,7 @@
             alejandra
             deadnix
             statix
-            inputs.mozilla-addons-to-nix.packages.${pkgs.system}.default
+            # inputs.mozilla-addons-to-nix.packages.${pkgs.system}.default
           ];
           #TODO Make a better interface, preferably TUI to manage systems
           commands = [
