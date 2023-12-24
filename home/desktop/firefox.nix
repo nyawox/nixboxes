@@ -155,6 +155,7 @@ in {
         consent-o-matic
         ugetintegration
         linkding-injector
+        return-youtube-dislikes
       ];
 
       search = {
