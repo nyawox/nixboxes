@@ -77,8 +77,6 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
-
     extraModprobeConfig = ''
       options usbhid quirks=0x046D:0x0A38:0x0004
       options kvm_intel nested=1
