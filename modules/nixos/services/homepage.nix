@@ -141,7 +141,7 @@ in {
                 icon: https://github.com/6c65726f79/Transmissionic/blob/main/public/assets/icon/favicon.png?raw=true
             - Sunshine:
                 href: https://lolcathost.nyaa.nixhome.shop:47990/
-                icon: https://raw.githubusercontent.com/LizardByte/Sunshine/nightly/src_assets/common/assets/web/images/logo-sunshine-45.png
+                icon: https://raw.githubusercontent.com/LizardByte/Sunshine/nightly/src_assets/common/assets/web/public/images/logo-sunshine-45.png
             - Vaultwarden:
                 href: https://vault.nixhome.shop/
                 icon: https://raw.githubusercontent.com/dani-garcia/vaultwarden/main/resources/vaultwarden-icon.svg
