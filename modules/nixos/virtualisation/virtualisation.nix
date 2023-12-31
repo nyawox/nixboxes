@@ -18,7 +18,7 @@ in {
   };
   config = mkIf cfg.enable {
     virtualisation = {
-      waydroid.enable = true;
+      # waydroid.enable = true;
       lxd.enable = false;
       libvirtd = {
         enable = true;

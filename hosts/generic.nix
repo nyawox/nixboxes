@@ -24,7 +24,10 @@
       timeout = lib.mkDefault 0;
     };
 
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_hardened;
+    kernelModules = [
+      "lkrg"
+    ];
     kernelParams = [
       "libahci.ignore_sss=1"
     ];
@@ -32,11 +35,47 @@
     initrd.systemd.enable = lib.mkDefault true;
 
     consoleLogLevel = lib.mkDefault 7;
+    blacklistedKernelModules = [
+      # Obscure network protocols
+      "ax25"
+      "netrom"
+      "rose"
+
+      # Old or rare or insufficiently audited filesystems
+      "adfs"
+      "affs"
+      "bfs"
+      "befs"
+      "cramfs"
+      "efs"
+      "erofs"
+      "exofs"
+      "freevxfs"
+      "f2fs"
+      "hfs"
+      "hpfs"
+      "jfs"
+      "minix"
+      "nilfs2"
+      "ntfs"
+      "omfs"
+      "qnx4"
+      "qnx6"
+      "sysv"
+      "ufs"
+    ];
   };
+
+  security.apparmor.enable = true;
+  security.apparmor.killUnconfinedConfinables = true;
+  security.lockKernelModules = true;
+  security.protectKernelImage = true;
 
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   environment = {
+    memoryAllocator.provider = "scudo";
+    variables.SCUDO_OPTIONS = "ZeroContents=1";
     variables.EDITOR = "nvim";
     systemPackages = with pkgs; [
       neovim
@@ -62,7 +101,7 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-      pinentryFlavor = "gtk2";
+      pinentryFlavor = "curses";
     };
 
     # Some programs need SUID wrappers, can be configured further or are
