@@ -66,16 +66,12 @@
     ];
   };
 
-  security.apparmor.enable = true;
-  security.apparmor.killUnconfinedConfinables = true;
   security.lockKernelModules = true;
   security.protectKernelImage = true;
 
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   environment = {
-    memoryAllocator.provider = "scudo";
-    variables.SCUDO_OPTIONS = "ZeroContents=1";
     variables.EDITOR = "nvim";
     systemPackages = with pkgs; [
       neovim
