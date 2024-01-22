@@ -66,8 +66,8 @@
     ];
   };
 
-  security.lockKernelModules = true;
-  security.protectKernelImage = true;
+  security.lockKernelModules = lib.mkDefault true;
+  security.protectKernelImage = lib.mkDefault true;
 
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 
