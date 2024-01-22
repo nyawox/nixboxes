@@ -1,4 +1,7 @@
 " -*- mode: vimrc -*-
+" Reverse behaviour
+bind J tabnext
+bind K tabprev
 " Comment toggler for Reddit, Hacker News and Lobste.rs
 bind ;c hint -Jc [class*="expand"],[class*="togg"],[class="comment_folder"]
 " GitHub pull request checkout command to clipboard (only works if you're a collaborator or above)
