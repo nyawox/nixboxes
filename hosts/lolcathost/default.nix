@@ -51,6 +51,7 @@
   fileSystems."/mnt/hdd" = {
     device = "/dev/sdb1";
     fsType = "btrfs";
+    noCheck = true;
     options = [
       "compress=zstd"
     ];
@@ -76,7 +77,11 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
 
+  security.lockKernelModules = false;
+  security.protectKernelImage = false;
+
   boot = {
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     extraModprobeConfig = ''
       options usbhid quirks=0x046D:0x0A38:0x0004
       options kvm_intel nested=1
@@ -111,9 +116,11 @@
       "vfio_iommu_type1"
       "vfio_virqfd"
       "vendor-reset"
-      "xpadneo"
+      "uhid"
     ];
-    extraModulePackages = [config.boot.kernelPackages.vendor-reset];
+    extraModulePackages = with config.boot.kernelPackages; [
+      vendor-reset
+    ];
   };
 
   systemd.extraConfig = ''
@@ -130,7 +137,8 @@
       driSupport32Bit = true;
       extraPackages = with pkgs; [vaapiVdpau libvdpau-va-gl];
     };
-    xone.enable = true;
+    xpadneo.enable = true;
+    # xone.enable = true;
   };
 
   environment.persistence."/persist".directories = lib.mkIf config.modules.sysconf.impermanence.enable [
