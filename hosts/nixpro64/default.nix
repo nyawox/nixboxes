@@ -7,10 +7,7 @@
   documentation.man.generateCaches = false;
 
   modules = {
-    sysconf = {
-      wifi.enable = true;
-      bluetooth.enable = false;
-    };
+    sysconf.bluetooth.enable = false;
     desktop = {
       pipewire.enable = false;
       plymouth.enable = false;

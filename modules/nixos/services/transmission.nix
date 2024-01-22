@@ -30,13 +30,13 @@ in {
         rpc-host-whitelist-enabled = false;
         rpc-whitelist-enabled = false;
       };
+      webHome =
+        pkgs.fetchzip
+        {
+          url = "https://github.com/6c65726f79/Transmissionic/releases/download/v1.8.0/Transmissionic-webui-v1.8.0.zip";
+          sha256 = "9e68krz+xbKpng4WZyiol9oHBNZZ9T45HY4Zc4VTpAg=";
+        };
     };
-    systemd.services.transmission.environment.TRANSMISSION_WEB_HOME =
-      pkgs.fetchzip
-      {
-        url = "https://github.com/6c65726f79/Transmissionic/releases/download/v1.8.0/Transmissionic-webui-v1.8.0.zip";
-        sha256 = "9e68krz+xbKpng4WZyiol9oHBNZZ9T45HY4Zc4VTpAg=";
-      };
 
     environment.persistence."/persist".directories = lib.mkIf config.modules.sysconf.impermanence.enable ["/var/lib/transmission"];
   };
