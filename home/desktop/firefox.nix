@@ -156,6 +156,7 @@ in {
         ugetintegration
         linkding-injector
         return-youtube-dislikes
+        tabcenter-reborn
       ];
 
       search = {
@@ -243,6 +244,7 @@ in {
 
         @import 'includes/cascade-nav-bar.css';
         @import 'includes/cascade-tabs.css';
+        @import 'includes/cascade-tcr.css';
       '';
     };
   };
@@ -261,6 +263,8 @@ in {
       pkgs.fetchFromGitHub cascade-repo + "/chrome/includes/cascade-nav-bar.css";
     ".mozilla/firefox/default/chrome/includes/cascade-tabs.css".source =
       pkgs.fetchFromGitHub cascade-repo + "/chrome/includes/cascade-tabs.css";
+    ".mozilla/firefox/default/chrome/includes/cascade-tcr.css".source =
+      pkgs.fetchFromGitHub cascade-repo + "/integrations/tabcenter-reborn/cascade-tcr.css";
     # Symlink firefox profile for librewolf
     # ".librewolf/profiles.ini".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/.mozilla/firefox/profiles.ini";
     # ".librewolf/default".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/.mozilla/firefox/default";
