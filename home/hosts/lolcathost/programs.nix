@@ -1,8 +1,4 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     imv
     prismlauncher
@@ -12,7 +8,7 @@
     steam
     dmidecode
     lutris
-    inputs.latest.legacyPackages.${system}.heroic
+    heroic
     wineWowPackages.waylandFull
     vesktop
     (pkgs.makeDesktopItem {
@@ -47,6 +43,7 @@
     ifuse
     google-chrome
     cemu
+    dolphin-emu
     efibootmgr
     gimp
     pavucontrol

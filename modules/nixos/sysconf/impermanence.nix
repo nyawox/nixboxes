@@ -64,10 +64,13 @@ in {
             directory = ".local/share/keyrings";
             mode = "706";
           }
+          "PopTracker"
           ".local/share/direnv"
           ".local/share/Steam"
           ".local/share/yuzu"
           ".local/share/Cemu"
+          ".local/share/dolphin-emu"
+          ".config/dolphin-emu"
           ".local/share/lutris"
           ".local/share/TelegramDesktop"
           ".local/share/PrismLauncher/instances"
