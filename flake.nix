@@ -86,6 +86,7 @@
       inputs.hyprland.follows = "hyprland";
     };
     srvos = {
+      # cannot coerce a set to a string
       url = "github:nix-community/srvos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
