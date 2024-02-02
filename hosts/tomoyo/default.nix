@@ -8,7 +8,6 @@ _: {
       tailscale.enable = true;
       homepage.enable = true;
       searxng.enable = true;
-      nfs-client.transmission = true;
       transmission.enable = true;
       # Requires podman
       linkding.enable = true;
@@ -38,7 +37,7 @@ _: {
   };
 
   # Alternate keyboard layout not working great inside vnc
-  keyboardlayout.dvorak = false;
+  keyboardlayout.graphite = false;
 
   boot = {
     kernelParams = ["ip=64.112.124.245"];

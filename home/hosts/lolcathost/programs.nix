@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    imv
+    nomacs
+    piper
     prismlauncher
     genymotion
     pciutils
@@ -41,8 +42,7 @@
     killall
     libimobiledevice
     ifuse
-    google-chrome
-    cemu
+    # cemu
     dolphin-emu
     efibootmgr
     gimp

@@ -14,7 +14,6 @@
       tailscale.enable = true;
       avahi.enable = true;
       nfs-client.nixboxes = true;
-      monitoring.enable = false;
     };
     desktop = {
       hyprland.enable = true;

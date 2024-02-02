@@ -65,6 +65,7 @@ in {
             mode = "706";
           }
           "PopTracker"
+          ".local/state/wireplumber"
           ".local/share/direnv"
           ".local/share/Steam"
           ".local/share/yuzu"
@@ -82,9 +83,7 @@ in {
           ".cache"
           ".steam"
           ".zephyr"
-          ".config/Vencord"
-          ".config/VencordDesktop"
-          ".config/discord"
+          ".config/vesktop"
           ".config/emacs"
           ".config/citra-emu"
           ".config/rpcs3"
@@ -92,6 +91,7 @@ in {
           ".config/lutris"
           ".config/transmission-remote-gtk"
           ".mozilla"
+          ".floorp"
           # ".mozilla/firefox/default/storage"
         ];
         files = [

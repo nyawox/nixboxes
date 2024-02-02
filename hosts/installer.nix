@@ -17,6 +17,9 @@
     services.monitoring.enable = false;
   };
 
+  # Disable prometheus enabled automatically by srvos
+  services.prometheus.enable = false;
+
   # Building man-cache on qemu is very slow.
   documentation.man.generateCaches = lib.mkIf (platform != "x86_64-linux") false;
 

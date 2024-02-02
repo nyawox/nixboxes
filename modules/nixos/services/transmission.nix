@@ -25,7 +25,7 @@ in {
         dht-enabled = true;
         encryption = 2;
         download-queue-enabled = false;
-        download-dir = "/mnt/transmission";
+        # download-dir = "/mnt/transmission";
         rpc-bind-address = "0.0.0.0"; #Bind to own IP
         rpc-host-whitelist-enabled = false;
         rpc-whitelist-enabled = false;

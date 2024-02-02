@@ -12,10 +12,6 @@ in {
         type = types.bool;
         default = false;
       };
-      transmission = mkOption {
-        type = types.bool;
-        default = false;
-      };
       backups = mkOption {
         type = types.bool;
         default = false;
@@ -26,11 +22,6 @@ in {
     fileSystems = {
       "/nixboxes" = mkIf cfg.nixboxes {
         device = "lolcathost.nyaa.nixhome.shop:/nixboxes";
-        fsType = "nfs";
-        options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "async"];
-      };
-      "/mnt/transmission" = mkIf cfg.transmission {
-        device = "lolcathost.nyaa.nixhome.shop:/mnt/hdd/transmission";
         fsType = "nfs";
         options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "async"];
       };

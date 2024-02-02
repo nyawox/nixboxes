@@ -20,7 +20,8 @@ in {
     hardware.bluetooth.settings = {
       General = {
         # Speaker icon
-        Class = "0x000414";
+        Class = "0x040414";
+        Name = "lolcathost";
         DiscoverableTimeout = 0;
         PairableTimeout = 0;
       };

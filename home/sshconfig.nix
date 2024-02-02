@@ -32,6 +32,12 @@
           RemoteCommand = "systemctl default";
         };
       };
+      "ChidamaGakuen" = {
+        hostname = "192.168.0.194";
+        user = "hiyori";
+        port = 22;
+        checkHostIP = false;
+      };
     };
   };
 }

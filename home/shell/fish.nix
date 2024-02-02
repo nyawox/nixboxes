@@ -7,6 +7,8 @@
       fish_vi_key_bindings
       # doom emacs path
       fish_add_path ~/.config/emacs/bin
+      # support ctrl backspace
+      bind \cH backward-kill-word
     '';
     plugins = [
       {
@@ -46,6 +48,10 @@
       # cat
       cat = "bat";
 
+      # lazygit
+      lg = "lazygit";
+      # broot
+      ro = "broot";
       # git
       g = "git";
       gc = "git clone";
@@ -55,10 +61,6 @@
 
       # sudo
       do = "sudo";
-
-      # ls
-      s = "lsd";
-      ss = "lsd -lhA";
 
       # boot windows
       windows = "sudo efibootmgr -n 0003; sudo reboot";

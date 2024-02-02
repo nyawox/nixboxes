@@ -11,6 +11,7 @@
     wlr-randr
     xdg-user-dirs
     foot
+    pamixer
   ];
   wayland.windowManager.hyprland = {
     enable = lib.mkDefault true;
@@ -18,7 +19,7 @@
     systemd.enable = lib.mkDefault true;
     xwayland.enable = lib.mkDefault true;
     plugins = [
-      inputs.hyprfocus.packages.${pkgs.system}.default
+      # inputs.hyprfocus.packages.${pkgs.system}.default
     ];
     settings = {
       general = {
@@ -51,11 +52,6 @@
       #   enable_swallow = true;
       #   swallow_regex = "^(Alacritty|org.wezfurlong.wezterm|kitty|footclient)$";
       # };
-      # Example per-device config
-      # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
-      "device:epic-mouse-v1" = {
-        sensitivity = "-0.5";
-      };
     };
   };
 }

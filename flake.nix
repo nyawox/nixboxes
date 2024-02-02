@@ -8,11 +8,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager";
+      # url = "github:nix-community/home-manager";
+      # https://github.com/nix-community/home-manager/issues/4912
+      url = "github:xopclabs/home-manager/floorp-browser";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    helix = {
+      url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
@@ -81,12 +87,7 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprfocus = {
-      url = "github:VortexCoyote/hyprfocus";
-      inputs.hyprland.follows = "hyprland";
-    };
     srvos = {
-      # cannot coerce a set to a string
       url = "github:nix-community/srvos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -228,6 +229,7 @@
               inputs.lanzaboote.nixosModules.lanzaboote
               inputs.disko.nixosModules.disko
               inputs.srvos.nixosModules.roles-prometheus
+              inputs.srvos.nixosModules.mixins-telegraf
               inputs.nix-switch-boot.nixosModules.nix-switch-boot
               inputs.stylix.nixosModules.stylix
               inputs.nix-minecraft.nixosModules.minecraft-servers

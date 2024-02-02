@@ -2,52 +2,52 @@
   wayland.windowManager.hyprland.extraConfig = ''
     # $mainMod = SUPER
 
-    bind = SUPER, RETURN, exec, wezterm
-    bind = SUPER, C, killactive,
-    bind = SUPER, M, exit,
-    bind = SUPER, E, exec, nautilus --new-window
-    bind = SUPER, W, exec, emacsclient -c
-    bind = SUPER, B, exec, firefox
-    bind = SUPER, N, exec, swaync-client -t -sw
+    bind = SUPER, D, killactive,
+    bind = SUPER, X, exec, mpv --no-video ~/sounds/logoff.wav && hyprctl dispatch exit
+    bind = SUPER, H, exec, floorp
+    bind = SUPER, A, exec, emacsclient -c
+    bind = SUPER, E, exec, swaync-client -t -sw
+    bind = SUPER, I, exec, ${pkgs.wofi}/bin/wofi -H 1000 -S drun -I
+    bind = SUPER, O, exec, wezterm
+    bind = SUPER, U, exec, nautilus --new-window
     bind = SUPER, V, togglefloating,
-    bind = SUPER, R, exec, ${pkgs.wofi}/bin/wofi -H 1000 -S drun -I
     bind = SUPER, SPACE, exec, ${pkgs.nwg-drawer}/bin/nwg-drawer -term wezterm -fm nautilus -ovl
     bind = SUPER, P, pseudo, # dwindle
-    bind = SUPER, X, togglesplit, # dwindle
-    bind = SUPER, O, exec, swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color f5c2e7 --text-color cdd6f4 --key-hl-color fab387 --line-color 00000000 --inside-color 1e1e2e88 --separator-color 00000000 --grace 2 --fade-in 0.2
+    bind = SUPER, K, togglesplit, # dwindle
+    bind = SUPER, C, exec, swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color f5c2e7 --text-color cdd6f4 --key-hl-color fab387 --line-color 00000000 --inside-color 1e1e2e88 --separator-color 00000000 --grace 2 --fade-in 0.2
     bind = SUPER, S, exec, ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
 
     # Move focus with mainMod + arrow keys
-    bind = SUPER, h, movefocus, l
-    bind = SUPER, l, movefocus, r
-    bind = SUPER, k, movefocus, u
-    bind = SUPER, j, movefocus, d
+    bind = SUPER, left, movefocus, l
+    bind = SUPER, right, movefocus, r
+    bind = SUPER, up, movefocus, u
+    bind = SUPER, down, movefocus, d
 
     # Move windows
-    bind = SUPER SHIFT, H, movewindow, l
-    bind = SUPER SHIFT, L, movewindow, r
-    bind = SUPER SHIFT, K, movewindow, u
-    bind = SUPER SHIFT, J, movewindow, d
+    bind = SUPER SHIFT, left, movewindow, l
+    bind = SUPER SHIFT, right, movewindow, r
+    bind = SUPER SHIFT, up, movewindow, u
+    bind = SUPER SHIFT, down, movewindow, d
 
-    bind = SUPER CTRL, H, resizeactive, -80 0
-    bind = SUPER CTRL, L, resizeactive, 80 0
-    bind = SUPER CTRL, K, resizeactive, 0 -80
-    bind = SUPER CTRL, J, resizeactive, 0 80
-    bind = SUPER CTRL SHIFT, H, moveactive,  -80 0
-    bind = SUPER CTRL SHIFT, L, moveactive, 80 0
-    bind = SUPER CTRL SHIFT, K, moveactive, 0 -80
-    bind = SUPER CTRL SHIFT, J, moveactive, 0 80
+    bind = SUPER CTRL, left, resizeactive, -80 0
+    bind = SUPER CTRL, right, resizeactive, 80 0
+    bind = SUPER CTRL, up, resizeactive, 0 -80
+    bind = SUPER CTRL, down, resizeactive, 0 80
+    bind = SUPER CTRL SHIFT, left, moveactive,  -80 0
+    bind = SUPER CTRL SHIFT, right, moveactive, 80 0
+    bind = SUPER CTRL SHIFT, up, moveactive, 0 -80
+    bind = SUPER CTRL SHIFT, down, moveactive, 0 80
 
     # Fullscreen
     bind = SUPER, F, fullscreen
 
-    # Focus monitor with mainMod + ,/.
-    bind = SUPER, 25, focusmonitor, 0
-    bind = SUPER, 26, focusmonitor, 1
+    # Focus monitor with mainMod + ./-
+    bind = SUPER, 60, focusmonitor, 0
+    bind = SUPER, 20, focusmonitor, 1
 
     # Move active window to a monitor with mainMod + SHIFT + ,/.
-    bind = SUPER SHIFT, 25, movewindow, mon:0
-    bind = SUPER SHIFT, 26, movewindow, mon:1
+    bind = SUPER SHIFT, 60, movewindow, mon:0
+    bind = SUPER SHIFT, 20, movewindow, mon:1
 
     # Control brightness
     bind=,XF86MonBrightnessDown,exec,/run/current-system/sw/bin/light -U 10

@@ -72,9 +72,9 @@
   hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   environment = {
-    variables.EDITOR = "nvim";
+    variables.EDITOR = "hx";
     systemPackages = with pkgs; [
-      neovim
+      helix
       git
       wget
       fastfetch
@@ -122,20 +122,22 @@
           "video"
           "adbusers"
           "netdev"
+          "uinput"
         ];
       };
       # Default root password is alpinerootroll
       root.password = lib.mkDefault "alpinerootroll";
     };
     groups.wheel = {members = ["${username}" "root"];};
+    # groups.uinput = {members = ["${username}"];}; # required for kanata
     mutableUsers = false;
 
     defaultUserShell = pkgs.fish;
   };
 
   services = {
-    telegraf.enable =
-      if config.modules.services.monitoring.telegraf.enable
+    prometheus.enable =
+      if config.modules.services.monitoring.prometheus.enable
       then lib.mkForce true
       else lib.mkForce false;
     # Use kmscon as virtual console instead of gettys

@@ -19,6 +19,9 @@
           right = 15,
           top = 15,
           bottom = 10,
+        },
+        keys = {
+        { key = 'Backspace', mods = 'CTRL', action = wezterm.action.SendKey {key = 'w', mods = 'CTRL'}, },
         }
       }
     '';

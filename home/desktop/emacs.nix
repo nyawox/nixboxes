@@ -21,7 +21,6 @@
         }
         + "/catppuccin-theme.el";
     };
-    sessionVariables."EDITOR" = "emacsclient -c";
 
     packages = with pkgs; [
       python3

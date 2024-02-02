@@ -1,7 +1,8 @@
 " -*- mode: vimrc -*-
-" Reverse behaviour
-bind J tabnext
-bind K tabprev
+bind <S-ArrowDown> tabnext
+bind <S-ArrowUp> tabprev
+bind <S-ArrowLeft> back
+bind <S-ArrowRight> forward
 " Comment toggler for Reddit, Hacker News and Lobste.rs
 bind ;c hint -Jc [class*="expand"],[class*="togg"],[class="comment_folder"]
 " GitHub pull request checkout command to clipboard (only works if you're a collaborator or above)
@@ -25,6 +26,8 @@ set newtab https://homepage.nixhome.shop/
 " Handy multiwindow/multitasking binds
 bind gd tabdetach
 bind gD composite tabduplicate; tabdetach
+" ge from helix scroll to end of page
+bind ge scrollto 100
 " pin tab
 bind <C-p> pin
 " mute tab
@@ -33,7 +36,7 @@ bind <C-m> mute toggle
 " " find
 " "bind / fillcmdline find
 " "bind n findnext 1
-" "bind p findnext -1
+" "bind N findnext -1
 " "bind ,<Space> nohlsearch
 " set editorcmd to emacs, or use the defaults on other platforms
 js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "emacsclient -c" : "auto"; tri.config.set("editorcmd", editorcmd)})

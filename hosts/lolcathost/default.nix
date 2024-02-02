@@ -36,10 +36,31 @@
     usbmuxd.enable = true;
     gvfs.enable = true;
     tumbler.enable = true;
+    ratbagd.enable = true;
     # sysdvr
     udev.extraRules = ''
       SUBSYSTEM=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="4ee0", MODE="0666"
     '';
+    pipewire.extraConfig.pipewire."10-loopback-line_in" = {
+      "context.modules" = [
+        {
+          name = "libpipewire-module-loopback";
+          args = {
+            "capture.props" = {
+              "audio.position" = ["FL" "FR"];
+              "node.name" = "Line In";
+              "node.target" = "alsa_input.pci-0000_0e_00.3.analog-stereo";
+            };
+            "playback.props" = {
+              "audio.position" = ["FL" "FR"];
+              "node.name" = "Loopback-line_in";
+              "media.class" = "Stream/Output/Audio";
+              "monitor.channel-volumes" = true;
+            };
+          };
+        }
+      ];
+    };
   };
 
   secrets = {
@@ -53,6 +74,7 @@
     fsType = "btrfs";
     noCheck = true;
     options = [
+      "nofail"
       "compress=zstd"
     ];
   };
@@ -81,7 +103,7 @@
   security.protectKernelImage = false;
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     extraModprobeConfig = ''
       options usbhid quirks=0x046D:0x0A38:0x0004
       options kvm_intel nested=1

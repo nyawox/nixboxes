@@ -66,6 +66,7 @@ in {
         waybar.enable = false;
         emacs.enable = false;
         alacritty.enable = false;
+        helix.enable = false;
       };
     };
   };

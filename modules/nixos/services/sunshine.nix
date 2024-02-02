@@ -13,7 +13,7 @@ with lib; let
         heroic
         lutris
         ryujinx
-        cemu
+        # cemu
         citra
         prismlauncher
         wineWowPackages.stable
