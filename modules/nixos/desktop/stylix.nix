@@ -67,6 +67,8 @@ in {
         emacs.enable = false;
         alacritty.enable = false;
         helix.enable = false;
+        zellij.enable = false;
+        fzf.enable = false;
       };
     };
   };

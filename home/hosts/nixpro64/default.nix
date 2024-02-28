@@ -6,4 +6,7 @@
   imports =
     lib.mapAttrsToList toImport
     (lib.filterAttrs filterCaches (builtins.readDir folder));
-in {inherit imports;}
+in {
+  inherit imports;
+  programs.helix.enable = lib.mkForce false;
+}

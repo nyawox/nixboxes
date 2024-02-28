@@ -12,6 +12,7 @@
       editor = {
         bufferline = "multiple"; # Show currently open buffers when multiple exists
         true-color = true;
+        color-modes = true;
         line-number = "relative";
         cursor-shape = {
           normal = "block";
