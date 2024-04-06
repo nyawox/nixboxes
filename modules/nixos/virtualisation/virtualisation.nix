@@ -57,10 +57,6 @@ in {
       ln -Tsnf /etc/libvirt/hooks /var/lib/libvirt/hooks
     '';
 
-    # Enable xrdp
-    services.xrdp.enable = true; # use remote_logout and remote_unlock
-    services.xrdp.defaultWindowManager = "hyprland";
-
     environment = {
       systemPackages = with pkgs; [
         virt-manager
