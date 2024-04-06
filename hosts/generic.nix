@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  self,
   inputs,
   stateVersion,
   hostname,
@@ -154,4 +155,6 @@
   systemd.services.systemd-udev-settle.enable = false;
 
   system.stateVersion = stateVersion;
+  # Include git commit hash on boot label
+  system.configurationRevision = lib.mkIf (self ? rev) self.rev;
 }
