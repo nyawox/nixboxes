@@ -17,7 +17,7 @@
     };
     desktop = {
       hyprland.enable = true;
-      sddm.enable = true;
+      greetd.enable = true;
       swaylock.enable = true;
       polkit.enable = true;
     };

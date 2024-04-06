@@ -8,7 +8,7 @@
 with lib; let
   cfg = config.modules.services.tailscale;
   loginserver = "https://headscale.nixhome.shop";
-  authkey = "fe43d1632c07b6ca59fbcec6c1d980c2374141f7945557d0";
+  authkey = "857c04acb562d52051aad7eb6d9b0851419163beee876328";
 in {
   options = {
     modules.services.tailscale = {

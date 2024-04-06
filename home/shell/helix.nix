@@ -32,9 +32,9 @@
         };
       };
       keys.normal = {
+        ";" = "command_mode"; # Replace : with ;
         space = {
           space = "file_picker";
-          ";" = "command_mode"; # Replace : with ;
           h = {
             o = ":run-shell-command zellij run -fc -- yazi --chooser-file /tmp/yazi-chooser-file";
             u = [":new" ":insert-output cat /tmp/yazi-chooser-file" "split_selection_on_newline" "goto_file" "goto_last_modification" "goto_last_modified_file" ":buffer-close!"];

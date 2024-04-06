@@ -22,13 +22,7 @@
       node-red.enable = true;
       redis.enable = true;
       monitoring.loki.enable = true;
-      homepage.enable = true;
-      searxng.enable = true;
-      transmission.enable = true;
-      # Requires podman
-      linkding.enable = true;
     };
-    virtualisation.podman.enable = true;
   };
   services.switch-boot.enable = true;
 

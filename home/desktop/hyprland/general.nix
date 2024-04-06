@@ -17,6 +17,7 @@
     enable = lib.mkDefault true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     systemd.enable = lib.mkDefault true;
+    systemd.variables = ["--all"]; # required for path to work
     xwayland.enable = lib.mkDefault true;
     plugins = [
       # inputs.hyprfocus.packages.${pkgs.system}.default

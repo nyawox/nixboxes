@@ -151,7 +151,6 @@
             hostname = "tomoyo";
             desktop = false;
             secrets = true;
-            deploy = false;
           };
           ghostcity = myLib.mkLinux {
             hostname = "ghostcity";

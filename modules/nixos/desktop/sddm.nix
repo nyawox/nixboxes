@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   username,
   ...
 }:
@@ -23,7 +22,6 @@ in {
       sddm = {
         enable = true;
         enableHidpi = false;
-        autoNumlock = true;
         settings = {
           AutoLogin = {
             Session = "hyprland";
@@ -31,12 +29,21 @@ in {
           };
         };
         wayland.enable = true;
-        theme = "sugar-catppuccin";
+        theme = "chili";
       };
     };
     environment.systemPackages = [
-      # Only for x86-64
-      inputs.sddm-sugar-catppuccin.packages.${pkgs.system}.default
+      (pkgs.sddm-chili-theme.override {
+        themeConfig = {
+          background = config.stylix.image;
+          changeFontPointSize = 9;
+          ScreenWidth = 1920;
+          ScreenHeight = 1080;
+          recursiveBlurLoops = 4;
+          recursiveBlurRadius = 15;
+          blur = true;
+        };
+      })
     ];
   };
 }

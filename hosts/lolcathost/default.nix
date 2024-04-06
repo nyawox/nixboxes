@@ -23,8 +23,8 @@
     };
     desktop = {
       hyprland.enable = true;
-      sddm.enable = true;
       swaylock.enable = true;
+      greetd.enable = true;
       polkit.enable = true;
     };
     virtualisation.enable = true;
