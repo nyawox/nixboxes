@@ -22,6 +22,9 @@
       keywords = ["discord" "vencord" "electron" "chat"];
     })
     webcord-vencord
+    youtube-music
+    transmission-gtk
+    vivaldi
     tdesktop
     samba
     unzip
@@ -47,13 +50,11 @@
     efibootmgr
     gimp
     pavucontrol
-    rpcs3
     ryujinx
     btrfs-progs
     progress
     parted
     glxinfo
-    citra-nightly
     gamescope
     nix-prefetch-github
     nix-prefetch-git
@@ -73,5 +74,9 @@
     iwgtk
     recfsusb2n
     distrobox
+    gpu-screen-recorder
+    gpu-screen-recorder-gtk
+    scx
+    gex
   ];
 }

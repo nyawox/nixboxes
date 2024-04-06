@@ -19,10 +19,6 @@ _: {
     };
   };
 
-  secrets = {
-    enable = true;
-    enablePassword = true;
-  };
   tmpfsroot = {
     enable = false;
     size = "256M";

@@ -93,11 +93,9 @@
     # Otherwise home-manager will fail https://github.com/nix-community/home-manager/issues/3113
     dconf.enable = true;
 
-    # GTK2 fallback to ncurses when gui isn't available
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-      pinentryFlavor = "curses";
     };
 
     # Some programs need SUID wrappers, can be configured further or are

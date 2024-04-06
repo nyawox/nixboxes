@@ -2,19 +2,19 @@
   wayland.windowManager.hyprland.extraConfig = ''
     # $mainMod = SUPER
 
-    bind = SUPER, D, killactive,
-    bind = SUPER, X, exec, mpv --no-video ~/sounds/logoff.wav && hyprctl dispatch exit
+    bind = ALT, F4, killactive,
+    bind = SUPER, J, exec, mpv --no-video ~/sounds/logoff.wav && hyprctl dispatch exit
     bind = SUPER, H, exec, floorp
     bind = SUPER, A, exec, emacsclient -c
     bind = SUPER, E, exec, swaync-client -t -sw
     bind = SUPER, I, exec, ${pkgs.wofi}/bin/wofi -H 1000 -S drun -I
-    bind = SUPER, O, exec, wezterm
-    bind = SUPER, U, exec, nautilus --new-window
+    bind = SUPER, U, exec, foot
+    bind = SUPER, O, exec, nautilus --new-window
     bind = SUPER, V, togglefloating,
-    bind = SUPER, SPACE, exec, ${pkgs.nwg-drawer}/bin/nwg-drawer -term wezterm -fm nautilus -ovl
+    bind = SUPER, SPACE, exec, ${pkgs.nwg-drawer}/bin/nwg-drawer -term foot -fm nautilus -ovl
     bind = SUPER, P, pseudo, # dwindle
     bind = SUPER, K, togglesplit, # dwindle
-    bind = SUPER, C, exec, swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color f5c2e7 --text-color cdd6f4 --key-hl-color fab387 --line-color 00000000 --inside-color 1e1e2e88 --separator-color 00000000 --grace 2 --fade-in 0.2
+    bind = SUPER, W, exec, swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color f5c2e7 --text-color cdd6f4 --key-hl-color fab387 --line-color 00000000 --inside-color 1e1e2e88 --separator-color 00000000 --grace 2 --fade-in 0.2
     bind = SUPER, S, exec, ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
 
     # Move focus with mainMod + arrow keys

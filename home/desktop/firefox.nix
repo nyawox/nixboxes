@@ -4,12 +4,6 @@
   inputs,
   ...
 }: let
-  cascade-repo = {
-    "owner" = "andreasgrafen";
-    "repo" = "cascade";
-    "rev" = "2f70e8619ce5c721fe9c0736b25c5a79938f1215";
-    "hash" = "sha256-HOOBQ1cNjsDTFSymB3KjiZ1jw3GL16LF/RQxdn0sxr0=";
-  };
   catppuccin-tridactyl = {
     "owner" = "lonepie";
     "repo" = "catppuccin-tridactyl";
@@ -156,6 +150,9 @@ in {
         ugetintegration
         linkding-injector
         return-youtube-dislikes
+        firefox-color
+        catppuccin
+        pkgs.nur.repos.rycee.firefox-addons."2fas-two-factor-authentication"
       ];
 
       search = {
@@ -163,6 +160,14 @@ in {
         default = "Google";
         force = true;
         engines = {
+          "Perplexity" = {
+            urls = [
+              {
+                template = "https://www.perplexity.ai/search?focus=internet&copilot=true&q={searchTerms}";
+              }
+            ];
+            definedAliases = ["@p"];
+          };
           "SearXNG" = {
             urls = [
               {
@@ -171,9 +176,9 @@ in {
             ];
             iconUpdateURL = "https://nixos.wiki/favicon.png";
             updateInterval = 24 * 60 * 60 * 1000; # every day
-            definedAliases = ["@nw"];
+            definedAliases = ["@sx"];
           };
-          "Nix Packages" = {
+          "nixpkgs" = {
             urls = [
               {
                 template = "https://search.nixos.org/packages";
@@ -194,7 +199,7 @@ in {
             definedAliases = ["@np"];
           };
 
-          "NixOS Wiki" = {
+          "nixwiki" = {
             urls = [
               {
                 template = "https://nixos.wiki/index.php?search={searchTerms}";
@@ -209,6 +214,18 @@ in {
         };
       };
       settings = {
+        "floorp.tabbar.style" = 2;
+        "floorp.browser.tabbar.settings" = 2;
+        # Rounded corner
+        "floorp.delete.browser.border" = true;
+        "browser.display.statusbar" = false;
+        "floorp.navbar.bottom" = true;
+        "floorp.bookmarks.fakestatus.mode" = true;
+        # Enable drm
+        "media.eme.enabled" = true;
+        # unlock frame rate
+        "layout.frame_rate" = 0;
+
         "browser.search.region" = "US";
         "browser.search.isUS" = true;
         "distribution.searchplugins.defaultLocale" = "en-US";
@@ -228,43 +245,28 @@ in {
         # Always use XDG portals for stuff
         "widget.use-xdg-desktop-portal.file-picker" = 1;
 
-        # Enable userChrome.css
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-
         # Automatically enable extensions installed by home-manager
         "extensions.autoDisableScopes" = 0;
+
+        #Show more ssl cert infos
+        "security.identityblock.show_extended_validation" = true;
+
+        "browser.EULA.override" = true;
+
+        #History & Session
+        #delete history after one week
+        "browser.history_expire_days" = 7;
+        #restore pinned tabs
+        "browser.sessionstore.restore_pinned_tabs_on_demand" = true;
+
+        #Enable startup page
+        "browser.startup.page" = 1;
+        "browser.startup.homepage" = "https://homepage.nixhome.shop";
+        #speed
+        "network.http.max-persistent-connections-per-server" = 30;
+        "browser.cache.disk.enable" = false;
       };
-      userChrome = ''
-        @import 'includes/cascade-config.css';
-        @import 'includes/cascade-mocha.css';
-
-        @import 'includes/cascade-layout.css';
-        @import 'includes/cascade-responsive.css';
-        @import 'includes/cascade-floating-panel.css';
-
-        @import 'includes/cascade-nav-bar.css';
-        @import 'includes/cascade-tabs.css';
-      '';
     };
-  };
-  home.file = {
-    ".mozilla/firefox/default/chrome/includes/cascade-config.css".source =
-      pkgs.fetchFromGitHub cascade-repo + "/chrome/includes/cascade-config.css";
-    ".mozilla/firefox/default/chrome/includes/cascade-mocha.css".source =
-      pkgs.fetchFromGitHub cascade-repo + "/integrations/catppuccin/cascade-mocha.css";
-    ".mozilla/firefox/default/chrome/includes/cascade-layout.css".source =
-      pkgs.fetchFromGitHub cascade-repo + "/chrome/includes/cascade-layout.css";
-    ".mozilla/firefox/default/chrome/includes/cascade-responsive.css".source =
-      pkgs.fetchFromGitHub cascade-repo + "/chrome/includes/cascade-responsive.css";
-    ".mozilla/firefox/default/chrome/includes/cascade-floating-panel.css".source =
-      pkgs.fetchFromGitHub cascade-repo + "/chrome/includes/cascade-floating-panel.css";
-    ".mozilla/firefox/default/chrome/includes/cascade-nav-bar.css".source =
-      pkgs.fetchFromGitHub cascade-repo + "/chrome/includes/cascade-nav-bar.css";
-    ".mozilla/firefox/default/chrome/includes/cascade-tabs.css".source =
-      pkgs.fetchFromGitHub cascade-repo + "/chrome/includes/cascade-tabs.css";
-    # Symlink firefox profile for librewolf
-    # ".librewolf/profiles.ini".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/.mozilla/firefox/profiles.ini";
-    # ".librewolf/default".source = config.lib.file.mkOutOfStoreSymlink "/home/${username}/.mozilla/firefox/default";
   };
 
   xdg.configFile."tridactyl/tridactylrc".source = ./tridactylrc;

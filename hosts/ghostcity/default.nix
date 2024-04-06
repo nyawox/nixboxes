@@ -12,10 +12,6 @@ _: {
     };
   };
 
-  secrets = {
-    enable = true;
-    enablePassword = true;
-  };
   tmpfsroot = {
     enable = true;
     size = "256M";
@@ -26,7 +22,7 @@ _: {
   disk.device = "/dev/sda";
   esp.size = "256M";
 
-  keyboardlayout.graphite = true;
+  keyboardlayout.akl = true;
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "usb_storage" "uas" "sd_mod"];
   boot.initrd.kernelModules = [];

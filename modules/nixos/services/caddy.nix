@@ -36,7 +36,7 @@ in {
             expire-header
             encode
             ''
-              reverse_proxy http://tomoyo.nyaa.nixhome.shop:8082
+              reverse_proxy http://nixpro64.nyaa.nixhome.shop:8082
             ''
           ];
         };
@@ -46,7 +46,7 @@ in {
             expire-header
             encode
             ''
-              reverse_proxy http://tomoyo.nyaa.nixhome.shop:8420
+              reverse_proxy http://nixpro64.nyaa.nixhome.shop:8420
             ''
           ];
         };
@@ -66,7 +66,7 @@ in {
             expire-header
             encode
             ''
-              reverse_proxy http://tomoyo.nyaa.nixhome.shop:9919
+              reverse_proxy http://nixpro64.nyaa.nixhome.shop:9919
             ''
           ];
         };

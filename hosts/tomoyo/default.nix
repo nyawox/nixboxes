@@ -19,10 +19,6 @@ _: {
     virtualisation.podman.enable = true;
   };
 
-  secrets = {
-    enable = true;
-    enablePassword = true;
-  };
   tmpfsroot = {
     enable = true;
     size = "256M";
@@ -36,8 +32,8 @@ _: {
     size = "256M";
   };
 
-  # Alternate keyboard layout not working great inside vnc
-  keyboardlayout.graphite = false;
+  # Alternate keyboard layout not working inside vnc
+  keyboardlayout.akl = false;
 
   boot = {
     kernelParams = ["ip=64.112.124.245"];

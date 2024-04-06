@@ -42,7 +42,7 @@ in {
             name = "InfluxDB";
             type = "influxdb";
             access = "proxy";
-            url = "http://nixpro64.nyaa.nixhome.shop:8234";
+            url = "http://influxdb.nyaa.nixhome.shop:8234";
             jsonData = {
               dbName = "telegraf_metrics";
               httpMode = "GET";

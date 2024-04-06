@@ -7,8 +7,10 @@
       fish_vi_key_bindings
       # doom emacs path
       fish_add_path ~/.config/emacs/bin
-      # support ctrl backspace
-      bind \cH backward-kill-word
+    '';
+    interactiveShellInit = ''
+      # bind -M insert \b backward-kill-word # ctrl-backspace
+      # bind -M insert \ch backward-kill-word
     '';
     plugins = [
       {
@@ -48,10 +50,7 @@
       # cat
       cat = "bat";
 
-      # lazygit
-      lg = "lazygit";
-      # broot
-      ro = "broot";
+      ge = "gex";
       # git
       g = "git";
       gc = "git clone";

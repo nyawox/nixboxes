@@ -20,17 +20,18 @@
       postgresql.enable = true;
       vaultwarden.enable = true;
       node-red.enable = true;
-      influxdb.enable = true;
       redis.enable = true;
       monitoring.loki.enable = true;
+      homepage.enable = true;
+      searxng.enable = true;
+      transmission.enable = true;
+      # Requires podman
+      linkding.enable = true;
     };
+    virtualisation.podman.enable = true;
   };
   services.switch-boot.enable = true;
 
-  secrets = {
-    enable = true;
-    enablePassword = true;
-  };
   disk.device = "/dev/mmcblk1";
 
   # Open ports in the firewall.

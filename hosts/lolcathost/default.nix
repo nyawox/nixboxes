@@ -8,7 +8,7 @@
   modules = {
     sysconf = {
       wifi.enable = true;
-      secureboot.enable = true;
+      # secureboot.enable = true;
       sshluks.enable = true;
     };
     services = {
@@ -18,6 +18,8 @@
       sunshine.enable = true;
       xmrig.enable = true;
       minecraft-server.enable = true;
+      flatpak.enable = true;
+      influxdb.enable = true;
     };
     desktop = {
       hyprland.enable = true;
@@ -63,10 +65,6 @@
     };
   };
 
-  secrets = {
-    enable = true;
-    enablePassword = true;
-  };
   disk.device = "/dev/nvme0n1";
 
   fileSystems."/mnt/hdd" = {
@@ -103,7 +101,8 @@
   security.protectKernelImage = false;
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    supportedFilesystems = ["ntfs"];
+    kernelPackages = pkgs.linuxPackages_cachyos;
     extraModprobeConfig = ''
       options usbhid quirks=0x046D:0x0A38:0x0004
       options kvm_intel nested=1
@@ -137,12 +136,12 @@
       "vfio-pci"
       "vfio_iommu_type1"
       "vfio_virqfd"
-      "vendor-reset"
+      # "vendor-reset"
       "uhid"
     ];
-    extraModulePackages = with config.boot.kernelPackages; [
-      vendor-reset
-    ];
+    # extraModulePackages = with config.boot.kernelPackages; [
+    # vendor-reset
+    # ];
   };
 
   systemd.extraConfig = ''

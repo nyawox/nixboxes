@@ -9,9 +9,11 @@
     windowrulev2 = opacity 0.85 0.85,class:^(firefox)$
     windowrulev2 = opacity 0.85 0.85,class:^(floorp)$
     windowrulev2 = opacity 0.85 0.85,class:^(librewolf)$
-    windowrulev2 = opacity 0.8 0.85,class:^(Alacritty)$
-    windowrulev2 = opacity 0.8 0.85,class:^(org.wezfurlong.wezterm)$
-    windowrulev2 = opacity 0.8 0.70,class:^(emacs)$
+    windowrulev2 = opacity 0.85 0.85,class:^(Alacritty)$
+    windowrulev2 = opacity 0.85 0.85,class:^(org.wezfurlong.wezterm)$
+    windowrulev2 = opacity 0.85 0.85,class:^(foot)$
+    windowrulev2 = opacity 0.85 0.85,class:^(footclient)$
+    windowrulev2 = opacity 0.85 0.70,class:^(emacs)$
     windowrulev2 = opacity 0.8 0.75,class:^(org.gnome.Nautilus)$
     windowrulev2 = opacity 0.8 0.75,class:^(lutris)$
     windowrulev2 = opacity 0.8 0.75,class:^(pavucontrol)$

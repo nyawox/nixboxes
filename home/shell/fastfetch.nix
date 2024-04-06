@@ -40,7 +40,10 @@
           "format": "{/2}{-}{/}{2}{?3} {3}{?}"
         },
         "cpu",
-        "gpu",
+        {
+          "type": "gpu",
+          "forceVulkan": true
+        },
         {
           "type": "memory",
           "format": "{/1}{-}{/}{/2}{-}{/}{} / {}"

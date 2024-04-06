@@ -14,7 +14,6 @@ with lib; let
         lutris
         ryujinx
         # cemu
-        citra
         prismlauncher
         wineWowPackages.stable
         gamescope

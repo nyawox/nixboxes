@@ -38,8 +38,6 @@ bind <C-m> mute toggle
 " "bind n findnext 1
 " "bind N findnext -1
 " "bind ,<Space> nohlsearch
-" set editorcmd to emacs, or use the defaults on other platforms
-js tri.browserBg.runtime.getPlatformInfo().then(os=>{const editorcmd = os.os=="linux" ? "emacsclient -c" : "auto"; tri.config.set("editorcmd", editorcmd)})
 " Sane hinting mode
 " " set hintfiltermode vimperator-reflow
 "
@@ -79,3 +77,6 @@ jsb browser.webRequest.onHeadersReceived.addListener(tri.request.clobberCSP,{url
 command translate js let googleTranslateCallback = document.createElement('script'); googleTranslateCallback.innerHTML = "function googleTranslateElementInit(){ new google.translate.TranslateElement(); }"; document.body.insertBefore(googleTranslateCallback, document.body.firstChild); let googleTranslateScript = document.createElement('script'); googleTranslateScript.charset="UTF-8"; googleTranslateScript.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&tl=&sl=&hl="; document.body.insertBefore(googleTranslateScript, document.body.firstChild);
 
 colourscheme catppuccin
+
+" ALWAYS IGNORE ON MONKEYTYPE
+autocmd DocStart monkeytype.com mode ignore

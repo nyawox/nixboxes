@@ -32,9 +32,9 @@ in {
           psycopg2
         ];
       customComponents = with pkgs.home-assistant-custom-components; [
-        (pkgs.callPackage hass-components/tapo.nix {})
-        (pkgs.callPackage hass-components/nature-remo.nix {})
-        (pkgs.callPackage hass-components/alexa-media-player.nix {})
+        # (pkgs.callPackage hass-components/tapo.nix {})
+        # (pkgs.callPackage hass-components/nature-remo.nix {})
+        # (pkgs.callPackage hass-components/alexa-media-player.nix {})
       ];
       config = {
         # Includes dependencies for a basic setup

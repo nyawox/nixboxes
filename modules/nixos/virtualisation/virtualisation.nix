@@ -18,16 +18,22 @@ in {
   };
   config = mkIf cfg.enable {
     virtualisation = {
-      # waydroid.enable = true;
+      waydroid.enable = true;
       lxd.enable = false;
       libvirtd = {
         enable = true;
         onBoot = "ignore";
         onShutdown = "shutdown";
-        qemu.ovmf.enable = true;
-        qemu.runAsRoot = true;
+        qemu = {
+          swtpm.enable = true;
+          ovmf.enable = true;
+          ovmf.packages = [pkgs.OVMFFull.fd];
+          runAsRoot = true;
+        };
       };
+      spiceUSBRedirection.enable = true;
     };
+    services.spice-vdagentd.enable = true;
 
     # Add binaries to path so that hooks can use it
     systemd = {
@@ -56,7 +62,15 @@ in {
     services.xrdp.defaultWindowManager = "hyprland";
 
     environment = {
-      systemPackages = with pkgs; [virt-manager];
+      systemPackages = with pkgs; [
+        virt-manager
+        virt-viewer
+        spice
+        spice-gtk
+        spice-protocol
+        win-virtio
+        win-spice
+      ];
       etc = {
         "libvirt/hooks/qemu" = {
           text = ''
@@ -230,7 +244,6 @@ in {
     };
 
     boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
-    virtualisation.spiceUSBRedirection.enable = true;
     environment.persistence."/persist".directories = lib.mkIf config.modules.sysconf.impermanence.enable [
       {
         directory = "/var/lib/waydroid";

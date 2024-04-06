@@ -1,6 +1,6 @@
 {
   programs.broot = {
-    enable = true;
+    enable = false;
     settings = {
       modal = true;
       imports = [

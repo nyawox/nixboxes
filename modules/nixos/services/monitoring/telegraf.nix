@@ -24,23 +24,24 @@ in {
         round_interval = true;
       };
       inputs = {
-        cpu = {
-          percpu = true;
-          totalcpu = true;
-          report_active = true;
-        };
-        disk.mount_points = ["/" "/persist" "/mnt/hdd"];
-        docker.total = true;
-        io.name_templates = ["$ID_FS_LABEL" "$DM_VG_NAME/$DM_LV_NAME"];
-        kernel = {};
-        linux_sysctl_fs = {};
-        net = {};
-        netstat = {};
-        processes = {};
+        # TODO Fix this
+        # cpu = {
+        #   percpu = true;
+        #   totalcpu = true;
+        #   report_active = true;
+        # };
+        # disk.mount_points = ["/" "/persist" "/mnt/hdd"];
+        # docker.total = true;
+        # io.name_templates = ["$ID_FS_LABEL" "$DM_VG_NAME/$DM_LV_NAME"];
+        # kernel = {};
+        # linux_sysctl_fs = {};
+        # net = {};
+        # netstat = {};
+        # processes = {};
       };
       outputs = {
         influxdb = {
-          urls = ["http://nixpro64.nyaa.nixhome.shop:8234"];
+          urls = ["http://lolcathost.nyaa.nixhome.shop:8234"];
           database = "telegraf_metrics";
         };
       };

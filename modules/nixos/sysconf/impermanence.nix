@@ -48,6 +48,7 @@ in {
           "VirtualBox VMs"
           "Projects"
           "Games"
+          "Public"
           {
             directory = ".gnupg";
             mode = "703";
@@ -65,6 +66,7 @@ in {
             mode = "706";
           }
           "PopTracker"
+          "invokeai"
           ".local/state/wireplumber"
           ".local/share/direnv"
           ".local/share/Steam"
@@ -85,11 +87,11 @@ in {
           ".zephyr"
           ".config/vesktop"
           ".config/emacs"
-          ".config/citra-emu"
           ".config/rpcs3"
           ".config/heroic"
           ".config/lutris"
           ".config/transmission-remote-gtk"
+          ".config/Youtube Music"
           ".mozilla"
           ".floorp"
           # ".mozilla/firefox/default/storage"

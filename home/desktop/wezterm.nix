@@ -4,11 +4,13 @@
   ...
 }: {
   programs.wezterm = {
-    enable = true;
+    enable = false; # migrated to foot
     package = inputs.nixpkgs-f2k.packages.${pkgs.system}.wezterm-git;
-    # https://github.com/wez/wezterm/issues/4483
+    # disable wayland temporarily
+    # https://github.com/wez/wezterm/issues/5103
     extraConfig = ''
       return {
+        enable_wayland = false
         font = wezterm.font("Spleen"),
         font_size = 9,
         color_scheme = "Catppuccin Mocha",

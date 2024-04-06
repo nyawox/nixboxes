@@ -1,0 +1,52 @@
+default partial alphanumeric_keys modifier_keys
+xkb_symbols "basic" {
+
+   name[Group1]= "psilocybin";
+
+   key <TLDE>     {[      grave,  asciitilde     ]};
+   key <AE01>     {[      1,  exclam     ]};
+   key <AE02>     {[      2,  at     ]};
+   key <AE03>     {[      3,  numbersign     ]};
+   key <AE04>     {[      4,  dollar     ]};
+   key <AE05>     {[      5,  percent     ]};
+   key <AE06>     {[      6,  asciicircum     ]};
+   key <AE07>     {[      7,  ampersand     ]};
+   key <AE08>     {[      8,  asterisk     ]};
+   key <AE09>     {[      9,  parenleft     ]};
+   key <AE10>     {[      0,  parenright     ]};
+   key <AE11>     {[      minus,  underscore     ]};
+   key <AE12>     {[      equal,  plus     ]};
+
+   key <AD01>     {[      x,  X     ]};
+   key <AD02>     {[      l,  L     ]};
+   key <AD03>     {[      c,  C     ]};
+   key <AD04>     {[      m,  M     ]};
+   key <AD05>     {[      z,  Z     ]};
+   key <AD06>     {[      k,  K     ]};
+   key <AD07>     {[      f,  F     ]};
+   key <AD08>     {[      u,  U     ]};
+   key <AD09>     {[      o,  O     ]};
+   key <AD10>     {[      y,  Y     ]};
+
+   key <AC01>     {[      n,  N     ]};
+   key <AC02>     {[      r,  R     ]};
+   key <AC03>     {[      s,  S     ]};
+   key <AC04>     {[      t,  T     ]};
+   key <AC05>     {[      g,  G     ]};
+   key <AC06>     {[      b,  B     ]};
+   key <AC07>     {[      comma,  less     ]};
+   key <AC08>     {[      e,  E     ]};
+   key <AC09>     {[      a,  A     ]};
+   key <AC10>     {[      i,  I     ]};
+
+   key <AB01>     {[      j,  J     ]};
+   key <AB02>     {[      w,  W     ]};
+   key <AB03>     {[      p,  P     ]};
+   key <AB04>     {[      d,  D     ]};
+   key <AB05>     {[      q,  Q     ]};
+   key <AB06>     {[      v,  V     ]};
+   key <AB07>     {[      h,  H     ]};
+   key <AB08>     {[      semicolon,  colon     ]};
+   key <AB09>     {[      period,  greater     ]};
+   key <AB10>     {[      apostrophe,  quotedbl     ]};
+};

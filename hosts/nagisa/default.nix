@@ -25,14 +25,10 @@
 
   security.lockKernelModules = false;
   security.protectKernelImage = false;
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
 
   services.switch-boot.enable = true;
 
-  secrets = {
-    enable = true;
-    enablePassword = true;
-  };
   tmpfsroot = {
     enable = true;
     size = "1G";

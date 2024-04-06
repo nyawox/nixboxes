@@ -20,7 +20,6 @@
     btrfs-progs
     parted
     glxinfo
-    citra-nightly
     gamescope
     nix-prefetch-github
     nix-prefetch-git

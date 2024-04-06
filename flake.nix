@@ -13,6 +13,10 @@
       url = "github:xopclabs/home-manager/floorp-browser";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -95,11 +99,6 @@
       url = "github:nyawox/nix-switch-boot";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    secrets = {
-      url = "git+ssh://git@codeberg.org/nyawox/secrets.git?ref=main";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-    };
     nixpkgs-f2k = {
       url = "github:moni-dz/nixpkgs-f2k";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -152,6 +151,7 @@
             hostname = "tomoyo";
             desktop = false;
             secrets = true;
+            deploy = false;
           };
           ghostcity = myLib.mkLinux {
             hostname = "ghostcity";
@@ -160,8 +160,6 @@
             deploy = false;
           };
         };
-        installer-x64 = myLib.mkImage {};
-        installer-arm = myLib.mkImage {platform = "aarch64-linux";};
 
         nixosModules = {
           common = {...}: {
@@ -170,7 +168,7 @@
                 allowUnfree = true;
                 permittedInsecurePackages = [
                   # https://github.com/NixOS/nixpkgs/issues/269713
-                  "openssl-1.1.1w"
+                  # "openssl-1.1.1w"
                 ];
               };
               overlays = [
@@ -212,6 +210,7 @@
             imports = [
               ./cachix
               ./modules/nixos/globalvars.nix
+              ./modules/nixos/warnings.nix
               inputs.sops-nix.nixosModules.sops
             ];
           };
@@ -234,13 +233,19 @@
               inputs.stylix.nixosModules.stylix
               inputs.nix-minecraft.nixosModules.minecraft-servers
               inputs.nur.nixosModules.nur
+              inputs.chaotic.nixosModules.default
             ];
           };
         };
 
         homeModules = {
           # Common home-manager configuration
-          common = {...}: {imports = [./home/shell];};
+          common = {...}: {
+            imports = [
+              ./home/shell
+              inputs.chaotic.homeManagerModules.default
+            ];
+          };
           # home-manager config for desktop
           desktop = {...}: {
             imports = [
@@ -332,18 +337,6 @@
               name = "rebuild-boot";
               help = "Rebuild current system and make it the boot default without activating";
               command = "sudo nixos-rebuild boot --flake .#";
-            }
-            {
-              name = "installx64";
-              help = "Build NixOS x86-64 installer iso";
-              command = "nix build .#installer-x64";
-              category = "images";
-            }
-            {
-              name = "installarm";
-              help = "Build NixOS AArch64 installer iso";
-              command = "nix build .#installer-arm";
-              category = "images";
             }
           ];
         };
