@@ -23,20 +23,20 @@ in {
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
 
-    services.xserver = {
-      # Enable the X11 windowing system.
-      enable = true;
+    # services.xserver = {
+    #   # Enable the X11 windowing system.
+    #   enable = true;
 
-      displayManager = {
-        gdm.enable = mkDefault true;
-        autoLogin = {
-          enable = true;
-          user = "${username}";
-        };
-        defaultSession = "hyprland";
-        sessionPackages = [inputs.hyprland.packages.${pkgs.system}.hyprland];
-      };
-    };
+    #   displayManager = {
+    #     gdm.enable = mkDefault true;
+    #     autoLogin = {
+    #       enable = true;
+    #       user = "${username}";
+    #     };
+    #     defaultSession = "hyprland";
+    #     sessionPackages = [inputs.hyprland.packages.${pkgs.system}.hyprland];
+    #   };
+    # };
     services.dbus.enable = true;
     systemd.services."getty@tty1".enable = mkIf config.services.xserver.displayManager.gdm.enable false;
     systemd.services."autovt@tty1".enable = mkIf config.services.xserver.displayManager.gdm.enable false;

@@ -21,6 +21,14 @@ with lib; {
     services.kmscon.extraConfig = ''
       xkb-layout=us
     '';
+    systemd.services.revert-layout = mkIf config.keyboardlayout.akl {
+      description = "revert keyboard layout to qwerty after boot, make kanata handle it";
+      script = ''
+        ${pkgs.kbd}/bin/loadkeys us
+      '';
+      wantedBy = ["multi-user.target"];
+      serviceConfig.Type = "oneshot";
+    };
     console.useXkbConfig = mkIf config.keyboardlayout.akl true;
     services = {
       xserver.xkb.extraLayouts.psilocybin = mkIf config.keyboardlayout.akl {

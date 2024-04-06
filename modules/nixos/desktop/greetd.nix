@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   username,
   ...
 }:
@@ -21,11 +22,11 @@ in {
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --astericks --time --cmd Hyprland";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd ${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
           user = "${username}";
         };
         intial_session = {
-          command = "Hyprland";
+          command = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
           user = "${username}";
         };
       };
