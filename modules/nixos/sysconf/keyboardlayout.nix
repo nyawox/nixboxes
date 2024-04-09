@@ -21,6 +21,7 @@ with lib; {
     services.kmscon.extraConfig = ''
       xkb-layout=us
     '';
+    # force ansi layout on console after booting up
     systemd.services.revert-layout = mkIf config.keyboardlayout.akl {
       description = "revert keyboard layout to qwerty after boot, make kanata handle it";
       script = ''
@@ -29,7 +30,8 @@ with lib; {
       wantedBy = ["multi-user.target"];
       serviceConfig.Type = "oneshot";
     };
-    console.useXkbConfig = mkIf config.keyboardlayout.akl true;
+    # apply layout on luks prompt
+    # console.useXkbConfig = mkIf config.keyboardlayout.akl true;
     services = {
       xserver.xkb.extraLayouts.psilocybin = mkIf config.keyboardlayout.akl {
         description = "psilocybin";
@@ -58,61 +60,83 @@ with lib; {
         keyboards.psilocybin.extraDefCfg = ''
           rapid-event-delay 35
         '';
+        # TODO make jis vesion for laptop
+        # (defsrc
+        #   ZenkakuHankaku  1    2    3    4    5    6    7    8    9    0    -    =  Yen   bspc
+        #   tab  q    w    e    r    t    y    u    i    o    p    [    ]
+        #   caps a    s    d    f    g    h    j    k    l    ;    '    \   ret
+        #   lsft z    x    c    v    b    n    m    ,    .    /    Ro   rsft
+        #   lctl lmet lalt      Muhenkan    spc      Henkan   KatakanaHiragana     ralt
+        # )
+        # (defsrc
+        #   esc  1     2    3    4    5    6     7    8    9    0    -    =    grv
+        #   tab  q     w    e    r    t    y     u    i    o    p    [    ]    bspc
+        #   caps a     s    d    f    g    h     j    k    l    ;    '    ret
+        #   lsft z     x    c    v    b    n     m    ,    .    /    rsft
+        #   lctl lmet  lalt muhenkan spc henkan prtsc ralt rmet rctl
+        # )
+
+        # (deflayer psilocybin
+        #   XX   XX    XX   XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX
+        #   XX   @x    @l   @c   @m   @z   XX    XX   @k   @f   @u   @o   @y   @.
+        #   XX   @n    @r   @s   @t   @g   XX    XX   @b   @mgt @e   @a   @i   @i
+        #   XX   @j    @w   @p   @d   @q   XX    XX   @v   @h   @;   @'   @'
+        #   XX   @lmet lalt @lmet    @cspc @rmet @rmet @ral @rmet @ral
+        # )
         keyboards.psilocybin.config = ''
-          ;; extra jis keys for my laptop
           (defsrc
-            grv  1     2    3    4    5    6     7    8    9    0    -    =    \
+            esc  1     2    3    4    5    6     7    8    9    0    -    =    \    grv
             tab  q     w    e    r    t    y     u    i    o    p    [    ]    bspc
             caps a     s    d    f    g    h     j    k    l    ;    '    ret
             lsft z     x    c    v    b    n     m    ,    .    /    rsft
-            lctl lmet  lalt muhenkan spc henkan prtsc ralt rmet rctl
+            lctl lmet                 spc             ralt rmet rctl
           )
 
           (deflayer psilocybin
-            XX   XX    XX   XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX
+            XX   XX    XX   XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX   XX
             XX   @x    @l   @c   @m   @z   XX    XX   @k   @f   @u   @o   @y   @.
             XX   @n    @r   @s   @t   @g   XX    XX   @b   @mgt @e   @a   @i
             XX   @j    @w   @p   @d   @q   XX    XX   @v   @h   @;   @'
-            XX   @lmet lalt @lmet    @cspc @rmet @rmet @ral @rmet @ral
+            XX   @lmet               @spc            @ral @rmet @ral
           )
 
           (deflayer psilocybin-tp
-            XX   XX    XX   XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX
+            XX   XX    XX   XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX   XX
             XX   x     l    c    m    z    XX    XX   k    f    u    o    y    .
             XX   n     r    s    t    g    XX    XX   b    @mgc e    a    i
             XX   j     w    p    d    q    XX    XX   v    h    ;    '
-            _    _    _    _         spc  _    _    _    _    _
+            _    _                   @spc              _    _    _
           )
 
           (deflayer nav
-            _    _    _    _    _    _    _    _    _    _    _    _    _    _
+            _    _    _    _    _    _    _    _    _    _    _    _    _    XX   XX
             _    tab  XX   esc  @cls XX   XX   XX   @lng home up   end  del  _
             _    @sft @ctl @alt @cmd XX   XX   XX   @cbs left down rght bspc
             _    XX   XX   @cpy @pst XX   XX   XX   XX   ;    caps ret
-            _    _    _    _         _    _    _    _    _    _
+            _    _                   _              _    _    _
           )
 
           (deflayer sym
-            _    _    _    _    _    _    _    _    _    _    _    _    _    _
+            _    _    _    _    _    _    _    _    _    _    _    _    _    XX   XX
             _    @<   [    @{   @lp  @~   XX   XX   @^   @rp  @}   ]    @>   `
             _    -    @*   =    @_   @$   XX   XX   @#   @cmd @alt @ctl @sft
             _    @+   @|   @at  /    @%   XX   XX   \    @&   @?   @!
-            _    _    _    _         _    _    _    _    _    _
+            _    _                   _              _    _    _
           )
           (deflayer num
-            _    f1   f2   f3   f4   f5   XX   f6   f7   f8   f9   f10  f11  f12
+            _    f1   f2   f3   f4   f5   XX   XX   f6   f7   f8   f9   f10  f11  f12
             _    tab  XX   esc  XX   XX   XX   XX   /    7    8    9    @*   .
             _    @sft @ctl @alt @cmd XX   XX   XX   @-   4    5    6    0
             _    XX   XX   XX   XX   XX   XX   XX   @+   1    2    3
-            _    _    _    _         _    _    _    _    _    _
+            _    _                   _              _    _    _
           )
 
           (deflayer game
-            grv  1     2    3    4    5    6     7    8    9    0    -    =    \
-            tab  q     w    e    r    t    y     u    i    o    p    [    ]    C-bspc
-            lctl a     s    d    f    g    h     j    k    l    ;    '    ret
-            lsft z     x    c    v    b    n     m    ,    .    /    rsft
-            _    _    _    _         spc  _    _    _    _    _
+            esc  1     2    3    4    5    6    7    8    9    0    -    =    /    grv
+            tab  q     w    e    r    t    y    u    i    o    p    [    ]    @cbs
+            lctl a     s    d    f    g    h    j    k    l    ;    '    ret
+            lsft z     x    c    v    b    n    m    ,    .    /    rsft
+            _    _                    _              _    _    _
           )
 
           ;; all these complicated typing layer stuff are to disable chord while typing fast
@@ -225,7 +249,6 @@ with lib; {
             repeat (switch
               ;; LSBs
               ((key-history k 1)) e break ;; 0.21% this really sucks, especially when typing "key". ka is fine
-              ;;((key-history ))
               ;; they'
               ((and (key-history t 4) (key-history h 3) (key-history e 2) (key-history y 1))) (macro ' (on-press tap-vkey they)) break
               ;; ing
@@ -237,12 +260,17 @@ with lib; {
               ((and (key-history e 2) (key-history w 1))) (macro i n g) break ;; ewing
               () rpt break
             )
+
             ral @repeat
 
-            cspc (tap-hold 200 300 spc lctl)
+            lrepeat (switch
+              () rpt break
+            )
+
+            spc (tap-hold 200 300 spc lctl)
             lmet (chord thumb lm)
             rmet (chord thumb rm)
-            nav (tap-hold-press 200 300 rpt (layer-toggle nav))
+            nav (layer-toggle nav)
             sym (tap-hold-press 200 300 (fork , ' (lsft rsft)) (layer-toggle sym))
             num (layer-toggle num)
 

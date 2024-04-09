@@ -16,9 +16,5 @@ _: {
         sensitivity = 0
     }
 
-    device:tpps/2-ibm-trockpoint {
-        sensitivity = -1
-    }
-
   '';
 }
