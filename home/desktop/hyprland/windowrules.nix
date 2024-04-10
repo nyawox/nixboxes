@@ -6,14 +6,14 @@
     # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
     # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 
-    windowrulev2 = opacity 0.85 0.85,class:^(firefox)$
-    windowrulev2 = opacity 0.85 0.85,class:^(floorp)$
-    windowrulev2 = opacity 0.85 0.85,class:^(librewolf)$
-    windowrulev2 = opacity 0.85 0.85,class:^(Alacritty)$
-    windowrulev2 = opacity 0.85 0.85,class:^(org.wezfurlong.wezterm)$
-    windowrulev2 = opacity 0.85 0.85,class:^(foot)$
-    windowrulev2 = opacity 0.85 0.85,class:^(footclient)$
-    windowrulev2 = opacity 0.85 0.70,class:^(emacs)$
+    windowrulev2 = opacity 0.90 0.90,class:^(firefox)$
+    windowrulev2 = opacity 0.90 0.90,class:^(floorp)$
+    windowrulev2 = opacity 0.90 0.90,class:^(librewolf)$
+    windowrulev2 = opacity 0.90 0.90,class:^(Alacritty)$
+    windowrulev2 = opacity 0.90 0.90,class:^(org.wezfurlong.wezterm)$
+    windowrulev2 = opacity 0.90 0.90,class:^(foot)$
+    windowrulev2 = opacity 0.90 0.90,class:^(footclient)$
+    windowrulev2 = opacity 0.90 0.70,class:^(emacs)$
     windowrulev2 = opacity 0.8 0.75,class:^(org.gnome.Nautilus)$
     windowrulev2 = opacity 0.8 0.75,class:^(lutris)$
     windowrulev2 = opacity 0.8 0.75,class:^(pavucontrol)$

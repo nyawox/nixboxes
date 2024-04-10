@@ -87,29 +87,29 @@ with lib; {
           (defsrc
             esc  1     2    3    4    5    6     7    8    9    0    -    =    \    grv
             tab  q     w    e    r    t    y     u    i    o    p    [    ]    bspc
-            caps a     s    d    f    g    h     j    k    l    ;    '    ret
+            lctl a     s    d    f    g    h     j    k    l    ;    '    ret
             lsft z     x    c    v    b    n     m    ,    .    /    rsft
-            lctl lmet                 spc             ralt rmet rctl
+            caps lmet                 spc             ralt rmet rctl
           )
 
           (deflayer psilocybin
             XX   XX    XX   XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX   XX
             XX   @x    @l   @c   @m   @z   XX    XX   @k   @f   @u   @o   @y   @.
-            XX   @n    @r   @s   @t   @g   XX    XX   @b   @mgt @e   @a   @i
+            @lrp @n    @r   @s   @t   @g   XX    XX   @b   @mgt @e   @a   @i
             XX   @j    @w   @p   @d   @q   XX    XX   @v   @h   @;   @'
             XX   @lmet               @spc            @ral @rmet @ral
           )
 
           (deflayer psilocybin-tp
-            XX   XX    XX   XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX   XX
-            XX   x     l    c    m    z    XX    XX   k    f    u    o    y    .
-            XX   n     r    s    t    g    XX    XX   b    @mgc e    a    i
-            XX   j     w    p    d    q    XX    XX   v    h    ;    '
-            _    _                   @spc              _    _    _
+            _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
+            _    x     l    c    m    z    XX    XX   k    f    u    o    y    .
+            _    n     r    s    t    g    XX    XX   b    @mgc e    a    i
+            _    j     w    p    d    q    XX    XX   v    h    ;    '
+            _    _                    _               _    _    _
           )
 
           (deflayer nav
-            _    _    _    _    _    _    _    _    _    _    _    _    _    XX   XX
+            _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
             _    tab  XX   esc  @cls XX   XX   XX   @lng home up   end  del  _
             _    @sft @ctl @alt @cmd XX   XX   XX   @cbs left down rght bspc
             _    XX   XX   @cpy @pst XX   XX   XX   XX   ;    caps ret
@@ -117,7 +117,7 @@ with lib; {
           )
 
           (deflayer sym
-            _    _    _    _    _    _    _    _    _    _    _    _    _    XX   XX
+            _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
             _    @<   [    @{   @lp  @~   XX   XX   @^   @rp  @}   ]    @>   `
             _    -    @*   =    @_   @$   XX   XX   @#   @cmd @alt @ctl @sft
             _    @+   @|   @at  /    @%   XX   XX   \    @&   @?   @!
@@ -247,8 +247,22 @@ with lib; {
             mgt (multi @mgc @tp)
 
             repeat (switch
-              ;; LSBs
-              ((key-history k 1)) e break ;; 0.21% this really sucks, especially when typing "key". ka is fine
+              ;; Use this left repeat key mostly when repeating left hand bigram like ll
+              ;; Also key(feels like a roll) ying ing ngin owing rawing ewing
+              ;; LSBs 1.73%
+              ;; ve 0.59% comfy
+              ;; be 0.35% fine
+              ((key-history k 1)) e break ;; 0.21% this really sucks, use only when typing key, otherwise use left repeat key
+              ;; ev 0.17% comfy
+              ;; bu 0.15% comfy
+              ;; ds 0.08% comfy
+              ;; ub 0.04% comfy
+              ;; gs 0.04% fine
+              ;; eb 0.03% fine
+              ;; ek 0.02% not bad
+              ;; sd 0.01% comfy
+              ;; dw 0.01% not bad
+              ;; dc 0.01% not bad
               ;; they'
               ((and (key-history t 4) (key-history h 3) (key-history e 2) (key-history y 1))) (macro ' (on-press tap-vkey they)) break
               ;; ing
@@ -263,7 +277,11 @@ with lib; {
 
             ral @repeat
 
-            lrepeat (switch
+            lrp (switch
+              ;; use this repeat key when typing most ke(s), which is uncomfortable with right repeat key
+              ;; also use for common right hand repeat bigrams like ff, ee(unless next letter is n?)
+              ;; and uncommon bigrams like ii(wii mii)
+              ((key-history k 1)) e break ;; 0.21% lsb, lets also put here because ke really sucks, use for every ke except key
               () rpt break
             )
 

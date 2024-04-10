@@ -2014,7 +2014,6 @@
         "nur": "nur",
         "nvfetcher": "nvfetcher",
         "programsdb": "programsdb",
-        "sddm-sugar-catppuccin": "sddm-sugar-catppuccin",
         "sops-nix": "sops-nix",
         "srvos": "srvos",
         "stylix": "stylix",
@@ -2129,26 +2128,6 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "sddm-sugar-catppuccin": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1686014286,
-        "narHash": "sha256-Q7J6Jt/3V6ZzFH5lCXewHL+HBeNc1hKEzZE3Hjnw9dQ=",
-        "owner": "TiagoDamascena",
-        "repo": "sddm-sugar-catppuccin",
-        "rev": "a7271089a6f990b2df12f34d968a33fb6e3493c9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "TiagoDamascena",
-        "repo": "sddm-sugar-catppuccin",
         "type": "github"
       }
     },

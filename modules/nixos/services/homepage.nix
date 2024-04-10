@@ -26,16 +26,20 @@ in {
                 {
                   abbr = "S";
                   href = "https://search.nixhome.shop";
-                  icon = "https://search.nixhome.shop/static/themes/simple/img/searxng.png";
+                  icon = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/SearXNG-wordmark.svg/1200px-SearXNG-wordmark.svg.png";
                 }
               ];
+            }
+            {
               "NixOS Search" = [
                 {
                   abbr = "NS";
                   href = "https://search.nixos.org/packages";
-                  icon = "https://nixos.org/logo/nix-wiki.png";
+                  icon = "https://wiki.nixos.org/nixos.png";
                 }
               ];
+            }
+            {
               Google = [
                 {
                   abbr = "G";
@@ -43,6 +47,8 @@ in {
                   icon = "https://upload.wikimedia.org/wikipedia/commons/2/2d/Google-favicon-2015.png";
                 }
               ];
+            }
+            {
               "Yandex Image" = [
                 {
                   abbr = "YI";
@@ -63,27 +69,35 @@ in {
                   icon = "https://cdn-icons-png.flaticon.com/512/25/25231.png";
                 }
               ];
+            }
+            {
               "NixOS Wiki" = [
                 {
                   abbr = "NW";
-                  href = "https://nixos.wiki/";
-                  icon = "https://nixos.wiki/images/thumb/2/20/Home-nixos-logo.png/207px-Home-nixos-logo.png";
+                  href = "https://wiki.nixos.org/";
+                  icon = "https://wiki.nixos.org/nixos.png";
                 }
               ];
+            }
+            {
               "Nixpkgs Pull Request Tracker" = [
                 {
                   abbr = "NPR";
                   href = "https://nixpk.gs/pr-tracker.html";
-                  icon = "https://nixos.org/logo/nix-wiki.png";
+                  icon = "https://wiki.nixos.org/nixos.png";
                 }
               ];
+            }
+            {
               "Nixpkgs" = [
                 {
                   abbr = "NP";
                   href = "https://github.com/NixOS/nixpkgs";
-                  icon = "https://nixos.org/logo/nix-wiki.png";
+                  icon = "https://wiki.nixos.org/nixos.png";
                 }
               ];
+            }
+            {
               "Arch Wiki" = [
                 {
                   abbr = "AW";
@@ -91,6 +105,8 @@ in {
                   icon = "https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://wiki.archlinux.org&size=128";
                 }
               ];
+            }
+            {
               "ChatGPT" = [
                 {
                   abbr = "CG";
@@ -111,6 +127,8 @@ in {
                   icon = "https://www.iconpacks.net/icons/2/free-reddit-logo-icon-2436-thumb.png";
                 }
               ];
+            }
+            {
               Twitter = [
                 {
                   abbr = "X";
@@ -118,6 +136,8 @@ in {
                   icon = "https://cdn-icons-png.flaticon.com/512/889/889147.png";
                 }
               ];
+            }
+            {
               Instagram = [
                 {
                   abbr = "INS";
@@ -125,6 +145,8 @@ in {
                   icon = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png?20200512141346";
                 }
               ];
+            }
+            {
               "Proton Mail" = [
                 {
                   abbr = "PM";
@@ -145,6 +167,8 @@ in {
                   icon = "https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png";
                 }
               ];
+            }
+            {
               Twitch = [
                 {
                   abbr = "TW";
@@ -152,6 +176,8 @@ in {
                   icon = "https://cdn-icons-png.flaticon.com/512/5968/5968819.png";
                 }
               ];
+            }
+            {
               Netflix = [
                 {
                   abbr = "NT";
@@ -159,6 +185,8 @@ in {
                   icon = "https://dwglogo.com/wp-content/uploads/2019/02/netflix_emblem_transparent-1024x854.png";
                 }
               ];
+            }
+            {
               "Prime Video" = [
                 {
                   abbr = "PV";
@@ -178,6 +206,8 @@ in {
                 href = "http://nixpro64.nyaa.nixhome.shop:8123/";
                 icon = "https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_homeassistant_icon_130543.png";
               };
+            }
+            {
               "Node-RED" = {
                 href = "http://nixpro64.nyaa.nixhome.shop:1880/";
                 icon = "https://nodered.org/about/resources/media/node-red-icon.svg";
@@ -192,6 +222,8 @@ in {
                 href = "http://vultr.nyaa.nixhome.shop:3042/";
                 icon = "https://cdn.icon-icons.com/icons2/2699/PNG/512/grafana_logo_icon_171048.png";
               };
+            }
+            {
               Prometheus = {
                 href = "http://vultr.nyaa.nixhome.shop:9001/";
                 icon = "https://cdn.icon-icons.com/icons2/3914/PNG/512/prometheus_logo_icon_248769.png";
@@ -206,14 +238,20 @@ in {
                 href = "http://tomoyo.nyaa.nixhome.shop:9091/";
                 icon = "https://github.com/6c65726f79/Transmissionic/blob/main/public/assets/icon/favicon.png?raw=true";
               };
+            }
+            {
               Sunshine = {
                 href = "https://lolcathost.nyaa.nixhome.shop:47990/";
                 icon = "https://raw.githubusercontent.com/LizardByte/Sunshine/nightly/src_assets/common/assets/web/public/images/logo-sunshine-45.png";
               };
+            }
+            {
               Vaultwarden = {
                 href = "https://vault.nixhome.shop/";
                 icon = "https://raw.githubusercontent.com/dani-garcia/vaultwarden/main/resources/vaultwarden-icon.svg";
               };
+            }
+            {
               Linkding = {
                 href = "https://linkding.nixhome.shop/";
                 icon = "https://linkding.nixhome.shop/static/logo.png";
@@ -225,7 +263,7 @@ in {
       widgets = [
         {
           logo = {
-            icon = "https://camo.githubusercontent.com/8c73ac68e6db84a5c58eef328946ba571a92829b3baaa155b7ca5b3521388cc9/68747470733a2f2f692e696d6775722e636f6d2f367146436c41312e706e67";
+            icon = "https://wiki.nixos.org/nixos.png";
           };
         }
         {
