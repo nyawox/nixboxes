@@ -5,8 +5,8 @@ Psilocybin is a magic layout designed for HHKB layout, with slides and magic key
 
 ## Magics 🪄
 ⚝ is the `magic` key(home row right index)\
-✭ is the `right repeat` key(right thumb)\
-● is the `left repeat` key(left outer pinky)\
+⬡ is the `right repeat` key(right thumb)\
+⬢ is the `left repeat` key(left outer pinky)\
 ⎵ is white space
 
 | Combo    | Output      |
@@ -15,13 +15,13 @@ Psilocybin is a magic layout designed for HHKB layout, with slides and magic key
 | `y⚝`     | `y.`        |
 | `e⚝`     | `eu`        |
 | `p⚝`     | `pt`        |
-| `p●`     | `pm`        |
+| `p⬢`     | `pm`        |
 | `r⚝`     | `rl`        |
 | `l⚝`     | `lr`        |
 | `w⚝`     | `ws`        |
 | `s⚝`     | `sw`        |
 | `i⚝`     | `ion`       |
-| `i✭`     | `ing`       |
+| `i⬡`     | `ing`       |
 | `ad⚝`    | `adm`       |
 | `d⚝`     | `dg`        |
 | `v⚝`     | `ver`       |
@@ -29,11 +29,11 @@ Psilocybin is a magic layout designed for HHKB layout, with slides and magic key
 | `t⚝`     | `tch`       |
 | `⎵⚝`     | `th`        |
 | `⎵⚝⎵`    | `the`       |
-| `⎵⚝✭`    | `them`      |
-| `⎵⚝y✭`   | `they'`     |
-| `⎵⚝y✭r`  | `they're`   |
-| `⎵⚝y✭v`  | `they've`   |
-| `⎵⚝y✭l`  | `they'll`   |
+| `⎵⚝⬡`    | `them`      |
+| `⎵⚝y⬡`   | `they'`     |
+| `⎵⚝y⬡r`  | `they're`   |
+| `⎵⚝y⬡v`  | `they've`   |
+| `⎵⚝y⬡l`  | `they'll`   |
 | `⎵⚝r⎵`   | `their`     |
 | `⎵⚝re`   | `there`     |
 | `⎵⚝n`    | `then`      |
@@ -50,17 +50,17 @@ Psilocybin is a magic layout designed for HHKB layout, with slides and magic key
 | `eat⚝`   | `eatment`   |
 | `uit⚝`   | `uitment`   |
 | `mit⚝`   | `mitment`   |
-| `k✭`     | `ke`        |
-| `k●`     | `ke`        |
-| `i✭`     | `ing`       |
-| `y✭`     | `ying`      |
-| `v✭ `    | `ving`      |
-| `ng✭`    | `nging`     |
-| `nd✭`    | `nding`     |
-| `ow✭`    | `owing`     |
-| `raw✭`   | `rawing`    |
-| `row✭`   | `rowing`    |
-| `ew✭ `   | `ewing`     |
+| `k⬡`     | `ke`        |
+| `k⬢`     | `ke`        |
+| `i⬡`     | `ing`       |
+| `y⬡`     | `ying`      |
+| `v⬡ `    | `ving`      |
+| `ng⬡`    | `nging`     |
+| `nd⬡`    | `nding`     |
+| `ow⬡`    | `owing`     |
+| `raw⬡`   | `rawing`    |
+| `row⬡`   | `rowing`    |
+| `ew⬡ `   | `ewing`     |
 
 ### KE
 Make sure to use left repeat key for most `ke`s (`make`, `like`, `take`, `take`, `makes`)\
