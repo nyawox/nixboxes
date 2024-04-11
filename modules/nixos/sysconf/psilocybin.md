@@ -41,9 +41,9 @@ Psilocybin is a magic layout designed for HHKB layout, with slides and magic key
 | `⎵⚝o`    | `tho`       |
 | `⎵⚝os`   | `those`     |
 | `⎵⚝oh`   | `though`    |
-| `op⚝`    | `opment`    |
 | `scrip⚝` | `script`    |
 | `ip⚝`    | `ipment`    |
+| `op⚝`    | `opment`    |
 | `rt⚝`    | `rtment`    |
 | `nt⚝`    | `ntment`    |
 | `st⚝`    | `stment`    |
