@@ -198,7 +198,7 @@ with lib; {
               ;; sfbs and lsbs percentage is from cyanophage, other freqs are from shai corpus
               ;; because freqs and sfbs are rounded differently on cmini
               ((key-history m 1)) p break ;; 0.16% sfb
-              ;; sc 0.09% sfb
+              ;; sc 0.09% sfb index middle
               ;; cs 0.02% sfb index middle
               ;; ue 0.08% sfb slide
               ;; y' scissor can be copped with pinky thumb
@@ -220,7 +220,7 @@ with lib; {
               ((key-history s 1)) w break ;; 0.02% sfb
               ;; gt 0.01% sfb easy index middle
               ((key-history l 1)) r break  ;; 0.01% sfb
-              ;; pd index middle 0.01% sfb
+              ;; pd middle index 0.01% sfb
               ;; e; can't be slided
               ;; dt 0.00% sfb index middle
               ;; maybe bv(obvious) which is a minor sfb can be slided
