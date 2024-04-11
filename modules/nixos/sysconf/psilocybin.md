@@ -27,6 +27,7 @@ Psilocybin is a magic layout designed for HHKB layout, with slides and magic key
 | `v⚝`     | `ver`       |
 | `igh⚝`   | `ighbo`     |
 | `t⚝`     | `tch`       |
+| `t⬢`     | `tp`        |
 | `⎵⚝`     | `th`        |
 | `⎵⚝⎵`    | `the`       |
 | `⎵⚝⬡`    | `them`      |

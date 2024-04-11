@@ -227,7 +227,6 @@ with lib; {
               ((and (key-history i 3) (key-history g 2) (key-history h 1))) (macro b o) break ;; hb 0.01% sfb is mostly neighbo
               ;; 'a 0.01% sfb and a' 0.01% sfb can be pressed with pinky ring in this fat-i wide mod
               ;; total real sfbs 0.05% if the math is correct
-              ;;((key-history t 1)) p break ;; not using this 0.00% sfb anyways
               ;;;;;;;;;;;;;;;
               ;;th is the most common english bigram
               ((or (key-history spc 1) (key-history tab 1) (key-history ret 1))) (macro t h (on-press tap-vkey the)) break
@@ -293,6 +292,7 @@ with lib; {
               ;; and uncommon bigrams like ii(wii mii)
               ((key-history k 1)) e break ;; 0.21% lsb, lets also put here because ke really sucks, use for every ke except key
               ((key-history p 1)) m break ;; 0.01% sfb, use right repeat key for pp, magic key for pment
+              ((key-history t 1)) p break ;; 0.01% sfb
               () rpt break
             )
 
