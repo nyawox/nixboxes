@@ -120,14 +120,14 @@ with lib; {
             _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
             _    @<   [    @{   @lp  @~   XX   XX   @^   @rp  @}   ]    @>   `
             _    -    @*   =    @_   @$   XX   XX   @#   @cmd @alt @ctl @sft
-            _    @+   @|   @at  /    @%   XX   XX   \    @&   @?   @!
+            _    @:   @dq  @at  /    @|   XX   XX   \    @&   @?   @!
             _    _                   _              _    _    _
           )
           (deflayer num
             _    f1   f2   f3   f4   f5   XX   XX   f6   f7   f8   f9   f10  f11  f12
             _    tab  XX   esc  XX   XX   XX   XX   /    7    8    9    @*   .
             _    @sft @ctl @alt @cmd XX   XX   XX   @-   4    5    6    0
-            _    XX   XX   XX   XX   XX   XX   XX   @+   1    2    3
+            _    XX   XX   XX   @%   XX   XX   XX   @+   1    2    3
             _    _                   _              _    _    _
           )
 
@@ -167,7 +167,7 @@ with lib; {
           )
           (deflayermap (they)
             s : (macro r e) ;; <spc>*y<rpt>r -> they're
-            , : (macro v e) ;; <spc>*y<rpt>v -> they've
+            , : (macro v e) ;; <spc>*y<rpt>v -> they've ;; this is the 4th hardest word in this layout
             w : (macro l l) ;; <spc>*y<rpt>l -> they'll
           )
 
@@ -194,41 +194,46 @@ with lib; {
             magic (switch ;;🪄
               ;;;;;;;;;;;;;;;;;;;;;;;;
               ;; psilocybin
-              ;;;sfbs 1.19%(shai)
-              ((key-history m 1)) p break ;; 0.22%
-              ;; sc 0.11%
-              ;; cs 0.02% index middle
-              ;; ue 0.13% slide
-              ;; y' 0.02% sfb can be pressed with pinky thumb
-              ((key-history y 1)) . break ;; 0.09% sfb
-              ((key-history e 1)) u break ;; 0.01%
+              ;;;sfbs 0.82% (1.19% on shai)
+              ;; sfbs and lsbs percentage is from cyanophage, other freqs are from shai corpus
+              ;; because freqs and sfbs are rounded differently on cmini
+              ((key-history m 1)) p break ;; 0.16% sfb
+              ;; sc 0.09% sfb
+              ;; cs 0.02% sfb index middle
+              ;; ue 0.08% sfb slide
+              ;; y' scissor can be copped with pinky thumb
+              ((key-history y 1)) . break ;; 0.06% sfb
+              ((key-history e 1)) u break ;; 0.01% sfb
+              ;; most pms which is 0.01% sfb are pment, use left rpt key for other pms
               ((and (key-history o 2) (key-history p 1))) (macro m e n t) break ;; 0.01% opment
               ;; remove script from the rule below
               ((and (key-history s 5)(key-history c 4)(key-history r 3) (key-history i 2) (key-history p 1))) t break
               ((and (key-history i 2) (key-history p 1))) (macro m e n t) break ;; 0.00% ipment
-              ((key-history p 1)) t break ;; 0.08%
-              ((key-history r 1)) l break ;; 0.07%
-              ;; oa 0.07% is a slide
-              ((key-history w 1)) s break ;; 0.04%
-              ;; i' is easy to slide on wide mod 0.0%
-              ((and (key-history a 2) (key-history d 1))) m break ;; dm 0.01% mostly consists of adm
-              ((key-history d 1)) g break ;; 0.03%
-              ;; tm index middle 0.03%
-              ((key-history s 1)) w break ;; 0.03%
-              ;; gt 0.01% easy index middle
-              ((key-history l 1)) r break  ;; 0.01%
-              ;; pd index middle 0.01%
+              ((key-history p 1)) t break ;; 0.05% sfb
+              ((key-history r 1)) l break ;; 0.05% sfb
+              ;; oa 0.05% sfb is a slide
+              ((key-history w 1)) s break ;; 0.03% sfb
+              ;; i' is easy to slide or pinky ring on wide mod
+              ((and (key-history a 2) (key-history d 1))) m break ;; dm 0.01% sfb mostly consists of adm, otherwise cope with index middle
+              ((key-history d 1)) g break ;; 0.02% sfb
+              ;; tm index middle 0.02% sfb
+              ((key-history s 1)) w break ;; 0.02% sfb
+              ;; gt 0.01% sfb easy index middle
+              ((key-history l 1)) r break  ;; 0.01% sfb
+              ;; pd index middle 0.01% sfb
               ;; e; can't be slided
-              ;; dt 0.01% index middle
-              ((and (key-history i 3) (key-history g 2) (key-history h 1))) (macro b o) break ;; hb 0.01%
-              ;; 'a 0.01% can be pressed with pinky ring in this fat-i wide mod
-              ;; total real sfbs 0.12%
-              ;;((key-history t 1)) p break ;; not using this only 0.01%
+              ;; dt 0.00% sfb index middle
+              ;; maybe bv(obvious) which is a minor sfb can be slided
+              ((and (key-history i 3) (key-history g 2) (key-history h 1))) (macro b o) break ;; hb 0.01% sfb is mostly neighbo
+              ;; 'a 0.01% sfb and a' 0.01% sfb can be pressed with pinky ring in this fat-i wide mod
+              ;; total real sfbs 0.05% if the math is correct
+              ;;((key-history t 1)) p break ;; not using this 0.00% sfb anyways
               ;;;;;;;;;;;;;;;
               ;;th is the most common english bigram
-              ((key-history spc 1)) (macro t h (on-press tap-vkey the)) break
+              ((or (key-history spc 1) (key-history tab 1) (key-history ret 1))) (macro t h (on-press tap-vkey the)) break
               ;;tment most common tm words are tment
-              ;; TODO Fix issue that macro gets interrupted before outputting t, putting delay doesn't fix
+              ;; TODO Fix issue that macro gets interrupted before outputting t, putting delay doesn't fix.
+              ;; must have something with pressing magic key too fast after releasing t
               ((and (key-history r 2) (key-history t 1))) (macro m e n t) break ;; rtment
               ((and (key-history n 2) (key-history t 1))) (macro m e n t) break ;; ntment
               ((and (key-history s 2) (key-history t 1))) (macro m e n t) break ;; stment
@@ -240,6 +245,8 @@ with lib; {
 
               ;;tch
               ((key-history t 1)) (macro c h) break
+              ;; ver 1.003%
+              ((key-history v 1)) (macro e r) break ;; press with index middle, otherwise it just makes more sfb
 
               ;; TODO somehow implement ious
             )
@@ -267,11 +274,14 @@ with lib; {
               ((and (key-history t 4) (key-history h 3) (key-history e 2) (key-history y 1))) (macro ' (on-press tap-vkey they)) break
               ;; ing
               ((key-history i 1)) (macro n g) break ;; i repeat is only 0.011%, compared to ing 3.302% just use left rpt key anyways
-              ((key-history y 1)) (macro i n g) break ;; 0.04% sfb all common yis are ying
+              ((key-history y 1)) (macro i n g) break ;; 0.03% sfb all common yis are ying
               ((and (key-history n 2) (key-history g 1))) (macro i n g) break ;; nging
+              ((and (key-history n 2) (key-history d 1))) (macro i n g) break ;; nding
               ((and (key-history o 2) (key-history w 1))) (macro i n g) break ;; owing
               ((and (key-history r 3) (key-history a 2) (key-history w 1))) (macro i n g) break ;; rawing
+              ((and (key-history r 3) (key-history o 2) (key-history w 1))) (macro i n g) break ;; rowing
               ((and (key-history e 2) (key-history w 1))) (macro i n g) break ;; ewing
+              ((key-history v 1)) (macro i n g) break ;; ving
               () rpt break
             )
 
@@ -282,6 +292,7 @@ with lib; {
               ;; also use for common right hand repeat bigrams like ff, ee(unless next letter is n?)
               ;; and uncommon bigrams like ii(wii mii)
               ((key-history k 1)) e break ;; 0.21% lsb, lets also put here because ke really sucks, use for every ke except key
+              ((key-history p 1)) m break ;; 0.01% sfb, use right repeat key for pp, magic key for pment
               () rpt break
             )
 
@@ -289,7 +300,7 @@ with lib; {
             lmet (chord thumb lm)
             rmet (chord thumb rm)
             nav (layer-toggle nav)
-            sym (tap-hold-press 200 300 (fork , ' (lsft rsft)) (layer-toggle sym))
+            sym (tap-hold-press 200 300 , (layer-toggle sym))
             num (layer-toggle num)
 
             ;; shifted keys
@@ -313,6 +324,7 @@ with lib; {
             < S-,
             > S-.
             dq S-'
+            : S-;
 
             x (multi x @tp)
             l (multi l @tp)
