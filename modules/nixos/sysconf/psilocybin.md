@@ -1,10 +1,13 @@
 # Psilocybin
-![Psilocybin layout](baselayout.png)
+![Psilocybin layout](baselayout.png)\
+
 Psilocybin is a magic layout designed for HHKB layout, with slides and magic key in mind.
 
-### Magics 🪄
-★ is the `magic` key(home row right index), ✪ is the `right repeat` key(right thumb), ❂ is the `left repeat` key(left outer pinky)
-⎵ is white space
+## Magics 🪄
+★ is the `magic` key(home row right index)\
+✪ is the `right repeat` key(right thumb)\
+❂ is the `left repeat` key(left outer pinky)\
+⎵ is white space\
 
 | Combo    | Output      |
 | ------   | --------    |
@@ -59,11 +62,11 @@ Psilocybin is a magic layout designed for HHKB layout, with slides and magic key
 | `row✪`   | `rowing`    |
 | `ew✪ `   | `ewing`     |
 
-#### KE
+### KE
 Make sure to use left repeat key for most `ke`s (`make`, `like`, `take`, `take`, `makes`)
 Use right repeat key only for `key`, it should feel like a roll
 
-### Fingering and slides
+## Fingering and slides
 
 | Keys     | Fingering                |
 | ------   | --------                 |
