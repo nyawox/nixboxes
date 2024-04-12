@@ -1,6 +1,6 @@
 {
   programs.zellij = {
-    enable = true;
+    enable = false;
     enableFishIntegration = false;
     settings = {
       theme = "catppuccin-mocha";
