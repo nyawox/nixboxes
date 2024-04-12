@@ -3,6 +3,28 @@
   pkgs,
   ...
 }: let
+  arcwtf = {
+    owner = "KiKaraage";
+    repo = "ArcWTF";
+    rev = "8f36d39233c0d3321e90e0ddb7068d18348485f2";
+    hash = "sha256-5ODXoDJF8zYRGm/l4r2QQ6+kwM/nbUv6kl4o/zHXyCk=";
+  };
+  # blurfox = pkgs.stdenv.mkDerivation {
+  #   pname = "blurfox";
+  #   version = "1.0.0";
+
+  #   src = pkgs.fetchzip {
+  #     stripRoot = false;
+  #     url = "https://github.com/safak45xx/Blurfox/releases/download/1.0.0/chrome.zip";
+  #     hash = "sha256-+xvjXT2ZV5llaf1fwI53nPd6AIjc/gjzz0QOL8qZRP8=";
+  #   };
+
+  #   buildPhase = "";
+  #   installPhase = ''
+  #     mkdir -p $out
+  #     mv chrome/* $out
+  #   '';
+  # };
   catppuccin-tridactyl = {
     "owner" = "lonepie";
     "repo" = "catppuccin-tridactyl";
@@ -177,6 +199,147 @@ in {
         };
       };
       extraConfig = builtins.readFile smoothfox;
+      userChrome = ''
+        /* ArcWTF main files */
+        @import url("icons/icons.css");
+        /* the tabbar css makes tiny and ugly
+        /*@import url("toolbar/tabbar.css");*/
+        @import url("toolbar/navbar.css");
+        @import url("toolbar/personalbar.css");
+        @import url("toolbar/findbar.css");
+        @import url("toolbar/urlbar.css");
+        @import url("global/colors.css");
+        @import url("global/popup.css");
+        @import url("global/browser.css");
+        @import url("global/tree.css");
+
+        /* Tweaks */
+        @import url("global/tweaks.css");
+        @import url("tweaks/hide-tabs-bar.css") (-moz-bool-pref: "uc.tweak.hide-tabs-bar");
+        @import url("tweaks/cleaner_extensions_menu.css");
+
+        /* global font */
+        * {
+          font-family: IBM Plex Sans, sans-serif !important;
+          font-size: 10pt !important;
+        }
+
+
+        :root #urlbar,
+        :root .searchbar-textbox {
+          font-size: unset !important;
+          min-height: 30px !important;
+        }
+
+        :root #identity-box {
+          max-height: 28px;
+        }
+
+        #main-window[titlepreface*="|| "] {
+          --ovrl-wdt: var(--ovrl-max-wdt);
+
+          & :is(#sidebar-box) {
+          --uc-sidebar-width: var(--uc-sidebar-hover-width);
+            opacity: 100%;
+            overflow: visible;
+            /* & > * { opacity: 100%; } */
+          }
+
+          & .browserContainer::after {
+            margin-left: calc(var(--sdbr-real-wdt) * -1);
+          }
+
+          & #browser > #appcontent {
+            margin-left: var(--sdbr-real-wdt);
+          }
+          & #appcontent browser {
+            margin-left: 0px;
+          }
+          & #statuspanel { margin-left: 2px }
+        }
+
+        /* Replacing Userchrome Toggle icon with a sidebar icon */
+        :is(.webextension-browser-action, .eom-addon-button)[data-extensionid="userchrome-toggle@joolee.nl"] .toolbarbutton-icon { list-style-image: url(./icons/userchrome-toggle.svg); }
+
+        /* [NOTICE] Uncomment the code below, from #sidebar-box until right before "collapsing sidebar header", if you want autohide sidebar. */
+         * Show sidebar only when the cursor is over it  */
+         * The border controlling sidebar width will be removed so you'll need to modify these values to change width */
+
+         /* #sidebar-box{
+          --uc-sidebar-width: 4px;
+          --uc-sidebar-hover-width: 200px;
+          --uc-autohide-sidebar-delay: 100ms; /* Wait 0.1s before hiding sidebar */
+          --uc-autohide-transition-duration: 115ms;
+          --uc-autohide-transition-type: linear;
+          position: relative;
+          min-width: var(--uc-sidebar-width) !important;
+          width: var(--uc-sidebar-width) !important;
+          max-width: var(--uc-sidebar-width) !important;
+          z-index:1;
+        }
+
+        #sidebar-box[positionend]{ direction: rtl }
+        #sidebar-box[positionend] > *{ direction: ltr }
+
+        #sidebar-box[positionend]:-moz-locale-dir(rtl){ direction: ltr }
+        #sidebar-box[positionend]:-moz-locale-dir(rtl) > *{ direction: rtl }
+
+        #main-window[sizemode="maximized"] #sidebar-box{ --uc-sidebar-width: 1px; }
+        #main-window[sizemode="fullscreen"] #sidebar-box{ --uc-sidebar-width: 1px; }
+
+        #sidebar-splitter{ display: none }
+
+        #sidebar-header{
+          overflow: hidden;
+          color: var(--chrome-color, inherit) !important;
+          padding-inline: 0 !important;
+        }
+
+        #sidebar-header::before,
+        #sidebar-header::after{
+          content: "";
+          display: flex;
+          padding-left: 8px;
+        }
+
+        #sidebar-header,
+        #sidebar{
+          transition: min-width var(--uc-autohide-transition-duration) var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay) !important;
+          min-width: var(--uc-sidebar-width) !important;
+          will-change: min-width;
+        }
+        #sidebar-box:hover > #sidebar-header,
+        #sidebar-box:hover > #sidebar{
+          min-width: var(--uc-sidebar-hover-width) !important;
+          transition-delay: 0ms !important;
+        }
+
+        .sidebar-panel{
+          background-color: var(--newtab-text-primary-color) !important;
+          color: var(--newtab-text-primary-color) !important;
+        }
+
+        .sidebar-panel #search-box{
+          -moz-appearance: none !important;
+          background-color: rgba(249,249,250,0.1) !important;
+          color: inherit !important;
+        }
+
+        /* Move statuspanel to the other side when sidebar is hovered so it doesn't get covered by sidebar */
+
+        #sidebar-box:not([positionend]):hover ~ #appcontent #statuspanel{
+          inset-inline: auto 0px !important;
+        }
+        #sidebar-box:not([positionend]):hover ~ #appcontent #statuspanel-label{
+          margin-inline: 0px !important;
+          border-left-style: solid !important;
+        } */
+
+        /* Collapsing sidebar header */
+        #sidebar-header {
+          visibility: collapse !important;
+         }
+      '';
       settings = {
         "floorp.tabbar.style" = 2;
         "floorp.browser.tabbar.settings" = 2;
@@ -185,6 +348,8 @@ in {
         "browser.display.statusbar" = false;
         "floorp.navbar.bottom" = true;
         "floorp.bookmarks.fakestatus.mode" = true;
+        # Open extension sidebar to the right by default
+        "sidebar.position_start" = true;
         # Enable drm
         "media.eme.enabled" = true;
         # unlock frame rate
@@ -230,6 +395,24 @@ in {
             url = "https://nixos.org";
           }
         ];
+        "layout.css.backdrop-filter.enabled" = true;
+        "layers.acceleration.force-enabled" = true;
+        #enable userchrome
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        #tweak theme
+        "uc.tweak.floating-tabs" = true;
+        "uc.tweak.hide-tabs-bar" = false;
+        "uc.tweak.rounded-corners" = true;
+        "uc.tweak.context-menu.hide-firefox-account" = true;
+        "uc.tweak.disable-drag-space" = true;
+        "uc.tweak.popup-search" = true;
+        "uc.tweak.longer-sidebar" = true;
+        "uc.tweak.force-tab-colour" = true;
+        "uc.tweak.hide-sidebar-header" = true;
+        "uc.tweak.hide-newtab-logo" = true;
+        "uc.tweak.remove-tab-separators" = true;
+        "browser.uidensity" = 0;
+        "svg.context-properties.content.enabled" = true;
         # Fix big fonts in 1080p screen
         "layout.css.devPixelsPerPx" = 0.75;
         # Downloading random PDFs from http website is super annoing with this.
@@ -262,4 +445,13 @@ in {
   xdg.configFile."tridactyl/tridactylrc".source = ./tridactylrc;
   xdg.configFile."tridactyl/themes/catppuccin.css".source =
     pkgs.fetchFromGitHub catppuccin-tridactyl + "/catppuccin.css";
+
+  home.file = {
+    ".floorp/default/chrome/content".source = pkgs.fetchFromGitHub arcwtf + "/content";
+    ".floorp/default/chrome/global".source = pkgs.fetchFromGitHub arcwtf + "/global";
+    ".floorp/default/chrome/icons".source = pkgs.fetchFromGitHub arcwtf + "/icons";
+    ".floorp/default/chrome/toolbar".source = pkgs.fetchFromGitHub arcwtf + "/toolbar";
+    ".floorp/default/chrome/tweaks".source = pkgs.fetchFromGitHub arcwtf + "/tweaks";
+    ".floorp/default/chrome/userContent.css".source = pkgs.fetchFromGitHub arcwtf + "/userContent.css";
+  };
 }
