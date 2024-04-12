@@ -191,6 +191,7 @@ with lib; {
             alt (one-shot 2000 lalt)
             cmd (one-shot 2000 lmet)
 
+
             magic (switch ;;🪄
               ;;;;;;;;;;;;;;;;;;;;;;;;
               ;; psilocybin
@@ -231,14 +232,13 @@ with lib; {
               ;;th is the most common english bigram
               ((or (key-history spc 1) (key-history tab 1) (key-history ret 1))) (macro t h (on-press tap-vkey the)) break
               ;;tment most common tm words are tment
-              ;; TODO Fix issue that macro gets interrupted before outputting t, putting delay doesn't fix.
-              ;; must have something with pressing magic key too fast after releasing t
-              ((and (key-history r 2) (key-history t 1))) (macro m e n t) break ;; rtment
-              ((and (key-history n 2) (key-history t 1))) (macro m e n t) break ;; ntment
-              ((and (key-history s 2) (key-history t 1))) (macro m e n t) break ;; stment
-              ((and (key-history e 3) (key-history a 2) (key-history t 1))) (macro m e n t) break ;; eatment
-              ((and (key-history u 3) (key-history i 2) (key-history t 1))) (macro m e n t) break ;; uitment
-              ((and (key-history m 3) (key-history i 2) (key-history t 1))) (macro m e n t) break ;; mitment
+              ;; Put delay to avoid macro being interrupted when the key isn't released. key-release didn't work
+              ((and (key-history r 2) (key-history t 1))) (macro m e n 45 t) break ;; rtment
+              ((and (key-history n 2) (key-history t 1))) (macro m e n 45 t) break ;; ntment
+              ((and (key-history s 2) (key-history t 1))) (macro m e n 45 t) break ;; stment
+              ((and (key-history e 3) (key-history a 2) (key-history t 1))) (macro m e n 45 t) break ;; eatment
+              ((and (key-history u 3) (key-history i 2) (key-history t 1))) (macro m e n 45 t) break ;; uitment
+              ((and (key-history m 3) (key-history i 2) (key-history t 1))) (macro m e n 45 t) break ;; mitment
               ;;ion 1.692%
               ((key-history i 1)) (macro o n) break
 
@@ -274,7 +274,7 @@ with lib; {
               ;; ing
               ((key-history i 1)) (macro n g) break ;; i repeat is only 0.011%, compared to ing 3.302% just use left rpt key anyways
               ((key-history y 1)) (macro i n g) break ;; 0.03% sfb all common yis are ying
-              ((and (key-history n 2) (key-history g 1))) (macro i n g) break ;; nging
+              ((and (key-history n 2) (key-history g 1))) (macro i n 45 g) break ;; nging
               ((and (key-history n 2) (key-history d 1))) (macro i n g) break ;; nding
               ((and (key-history o 2) (key-history w 1))) (macro i n g) break ;; owing
               ((and (key-history r 3) (key-history a 2) (key-history w 1))) (macro i n g) break ;; rawing
