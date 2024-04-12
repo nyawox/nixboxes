@@ -62,6 +62,8 @@ Psilocybin is a magic layout designed for HHKB layout, with slides and magic key
 | `raw⬡`   | `rawing`    |
 | `row⬡`   | `rowing`    |
 | `ew⬡ `   | `ewing`     |
+| `w⬢`     | `was`       |
+| `h⬡`     | `hav`       |
 
 ### KE
 Make sure to use left repeat key for most `ke`s (`make`, `like`, `take`, `take`, `makes`)\

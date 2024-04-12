@@ -281,6 +281,7 @@ with lib; {
               ((and (key-history r 3) (key-history o 2) (key-history w 1))) (macro i n g) break ;; rowing
               ((and (key-history e 2) (key-history w 1))) (macro i n g) break ;; ewing
               ((key-history v 1)) (macro i n g) break ;; ving
+              ((key-history h 1)) (macro a v) break ;; 0.194% sfs
               () rpt break
             )
 
@@ -293,6 +294,7 @@ with lib; {
               ((key-history k 1)) e break ;; 0.21% lsb, lets also put here because ke really sucks, use for every ke except key
               ((key-history p 1)) m break ;; 0.01% sfb, use right repeat key for pp, magic key for pment
               ((key-history t 1)) p break ;; 0.01% sfb
+              ((key-history w 1)) (macro a s) break ;; 0.192% sfs
               () rpt break
             )
 
@@ -300,6 +302,7 @@ with lib; {
             lmet (chord thumb lm)
             rmet (chord thumb rm)
             nav (layer-toggle nav)
+            ;;nav (tap-hold-press 200 300 r (layer-toggle nav)) thumb-r is just a concept, still needs to fix delay
             sym (tap-hold-press 200 300 , (layer-toggle sym))
             num (layer-toggle num)
 
