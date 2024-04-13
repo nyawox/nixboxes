@@ -206,7 +206,8 @@ with lib; {
               ((key-history y 1)) . break ;; 0.06% sfb
               ((key-history e 1)) u break ;; 0.01% sfb
               ;; most pms which is 0.01% sfb are pment, use left rpt key for other pms
-              ((and (key-history o 2) (key-history p 1))) (macro m e n t) break ;; 0.01% opment
+              ((and (key-history l 3)(key-history o 2) (key-history p 1))) (macro m e n t) break ;; 0.01% opment
+              ((and (key-history o 3)(key-history o 2) (key-history p 1))) (macro m e n t) break ;; 0.01% opment
               ;; remove script from the rule below
               ((and (key-history s 5)(key-history c 4)(key-history r 3) (key-history i 2) (key-history p 1))) t break
               ((and (key-history i 2) (key-history p 1))) (macro m e n t) break ;; 0.00% ipment
