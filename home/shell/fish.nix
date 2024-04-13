@@ -67,7 +67,7 @@
       do = "sudo";
 
       # magit
-      magit = "emacs -nw --eval '(magit-status)'";
+      magit = "TERM=xterm-direct emacsclient -nw --eval '(magit-status)'";
 
       # boot windows
       windows = "sudo efibootmgr -n 0003; sudo reboot";

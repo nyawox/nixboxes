@@ -54,5 +54,5 @@
 (setq projectile-project-search-path '("~/Projects" "/nixboxes"))
 
 ;; replace ; and : to make colon commands easier, I only use magit anyways
-(define-key evil-motion-state-map ";" #'evil-ex)
-(define-key evil-motion-state-map ":" #'evil-repeat-find-char)
+(map! :n ";" 'evil-ex)
+(map! :n ":" 'evil-repeat-find-char)
