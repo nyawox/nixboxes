@@ -22,7 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     helix = {
-      url = "github:helix-editor/helix";
+      url = "github:helix-editor/helix/pickers-v2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
