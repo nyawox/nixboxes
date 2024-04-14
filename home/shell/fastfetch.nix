@@ -7,8 +7,8 @@
       "logo": {
         "source": "~/.config/fastfetch/nixos.sixel",
         "type": "raw",
-        "width": 50,
-        "height": 20,
+        "width": 45,
+        "height": 18,
       },
       "modules": [
         "title",
