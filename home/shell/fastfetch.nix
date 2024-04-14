@@ -1,8 +1,15 @@
 {
   xdg.configFile."fastfetch/nixos.png".source = ../nixos.png;
+  xdg.configFile."fastfetch/nixos.sixel".source = ../nixos.sixel;
   xdg.configFile."fastfetch/config.jsonc".text = ''
     {
       "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+      "logo": {
+        "source": "~/.config/fastfetch/nixos.sixel",
+        "type": "raw",
+        "width": 50,
+        "height": 20,
+      },
       "modules": [
         "title",
         "separator",
