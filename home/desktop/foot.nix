@@ -10,7 +10,7 @@
         term = "xterm-256color";
         pad = "5x2";
         font = "Spleen:size=9";
-        line-height = "15px";
+        line-height = "16px";
         dpi-aware = "yes";
       };
       cursor.style = "beam";
