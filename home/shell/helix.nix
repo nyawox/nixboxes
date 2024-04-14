@@ -24,7 +24,7 @@
           display-messages = true;
         };
         indent-guides = {
-          character = ":";
+          character = "│";
           render = true;
         };
         statusline = {
