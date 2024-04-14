@@ -49,14 +49,14 @@ Psilocybin is a magic layout designed for HHKB layout, with slides and magic key
 | `rt⚝`    | `rtment`    |
 | `nt⚝`    | `ntment`    |
 | `st⚝`    | `stment`    |
+| `ft⚝`    | `ftment`    |
 | `eat⚝`   | `eatment`   |
 | `uit⚝`   | `uitment`   |
 | `mit⚝`   | `mitment`   |
-| `k⬡`     | `ke`        |
-| `k⬢`     | `ke`        |
 | `i⬡`     | `ing`       |
 | `y⬡`     | `ying`      |
 | `v⬡ `    | `ving`      |
+| `k⬢ `    | `king`      |
 | `ng⬡`    | `nging`     |
 | `nd⬡`    | `nding`     |
 | `ow⬡`    | `owing`     |
@@ -66,9 +66,6 @@ Psilocybin is a magic layout designed for HHKB layout, with slides and magic key
 | `w⬢`     | `was`       |
 | `h⬡`     | `hav`       |
 
-### KE
-Make sure to use left repeat key for most `ke`s (`make`, `like`, `take`, `take`, `makes`)\
-Use right repeat key only for `key`, it should feel like a roll
 
 ## Fingering and slides
 

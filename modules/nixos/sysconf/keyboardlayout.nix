@@ -94,7 +94,7 @@ with lib; {
 
           (deflayer psilocybin
             XX   XX    XX   XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX   XX
-            XX   @x    @l   @c   @m   @z   XX    XX   @k   @f   @u   @o   @y   @.
+            XX   @x    @l   @c   @m   @k   XX    XX   @z   @f   @u   @o   @y   @.
             @lrp @n    @r   @s   @t   @g   XX    XX   @b   @mgt @e   @a   @i
             XX   @j    @w   @p   @d   @q   XX    XX   @v   @h   @;   @'
             XX   @lmet               @spc            @ral @rmet @ral
@@ -102,7 +102,7 @@ with lib; {
 
           (deflayer psilocybin-tp
             _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
-            _    x     l    c    m    z    XX    XX   k    f    u    o    y    .
+            _    x     l    c    m    k    XX    XX   z    f    u    o    y    .
             _    n     r    s    t    g    XX    XX   b    @mgc e    a    i
             _    j     w    p    d    q    XX    XX   v    h    ;    '
             _    _                    _               _    _    _
@@ -139,7 +139,7 @@ with lib; {
             _    _                    _              _    _    _
           )
 
-          ;; all these complicated typing layer stuff are to disable chord while typing fast
+          ;; typing layer are used to disable chord while typing fast
           (deffakekeys
             to-base (layer-switch psilocybin)
             the (one-shot 5000 (layer-toggle the))
@@ -237,6 +237,7 @@ with lib; {
               ((and (key-history r 2) (key-history t 1))) (macro m e n 50 t) break ;; rtment
               ((and (key-history n 2) (key-history t 1))) (macro m e n 50 t) break ;; ntment
               ((and (key-history s 2) (key-history t 1))) (macro m e n 50 t) break ;; stment
+              ((and (key-history f 2) (key-history t 1))) (macro m e n 50 t) break ;; ftment
               ((and (key-history e 3) (key-history a 2) (key-history t 1))) (macro m e n 50 t) break ;; eatment
               ((and (key-history u 3) (key-history i 2) (key-history t 1))) (macro m e n 50 t) break ;; uitment
               ((and (key-history m 3) (key-history i 2) (key-history t 1))) (macro m e n 50 t) break ;; mitment
@@ -256,12 +257,12 @@ with lib; {
             repeat (switch
               ;; Use this left repeat key mostly when repeating left hand bigram like ll
               ;; Also key(feels like a roll) ying ing ngin owing rawing ewing
-              ;; LSBs 1.73%
+              ;; LSBs 1.75%
               ;; ve 0.59% comfy
               ;; be 0.35% fine
-              ((key-history k 1)) e break ;; 0.21% this really sucks, use only when typing key, otherwise use left repeat key
               ;; ev 0.17% comfy
               ;; bu 0.15% comfy
+              ;; ck 0.13% comfy
               ;; ds 0.08% comfy
               ;; ub 0.04% comfy
               ;; gs 0.04% fine
@@ -292,8 +293,8 @@ with lib; {
               ;; use this repeat key when typing most ke(s), which is uncomfortable with right repeat key
               ;; also use for common right hand repeat bigrams like ff, ee(unless next letter is n?)
               ;; and uncommon bigrams like ii(wii mii)
-              ((key-history k 1)) e break ;; 0.21% lsb, lets also put here because ke really sucks, use for every ke except key
               ((key-history p 1)) m break ;; 0.01% sfb, use right repeat key for pp, magic key for pment
+              ((key-history k 1)) (macro i n g) break ;; 0.305% the rule is, put one the opposite hand repeat key
               ((key-history t 1)) p break ;; 0.01% sfb
               ((key-history w 1)) (macro a s) break ;; 0.192% sfs
               () rpt break
