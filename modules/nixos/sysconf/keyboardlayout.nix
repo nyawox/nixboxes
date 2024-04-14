@@ -294,7 +294,7 @@ with lib; {
               ;; also use for common right hand repeat bigrams like ff, ee(unless next letter is n?)
               ;; and uncommon bigrams like ii(wii mii)
               ((key-history p 1)) m break ;; 0.01% sfb, use right repeat key for pp, magic key for pment
-              ((key-history k 1)) (macro i n g) break ;; 0.305% the rule is, put one the opposite hand repeat key
+              ((key-history k 1)) (macro i n g) break ;; 0.305% the rule is, put on the opposite hand repeat key
               ((key-history t 1)) p break ;; 0.01% sfb
               ((key-history w 1)) (macro a s) break ;; 0.192% sfs
               () rpt break
