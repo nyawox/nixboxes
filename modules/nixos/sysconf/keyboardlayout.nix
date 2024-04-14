@@ -247,7 +247,9 @@ with lib; {
               ;;tch
               ((key-history t 1)) (macro c h) break
               ;; ver 1.003%
-              ((key-history v 1)) (macro e r) break ;; press with index middle, otherwise it just makes more sfb
+              ((key-history v 1)) (macro e r) break ;; press with index middle, otherwise it just makes another sfb
+              ;; just 0.232%, still most frequent ngram that starts with j
+              ((key-history j 1)) (macro u s t) break
 
               ;; TODO somehow implement ious
             )
