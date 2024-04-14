@@ -1,5 +1,4 @@
 {
-  xdg.configFile."fastfetch/nixos.png".source = ../nixos.png;
   xdg.configFile."fastfetch/nixos.sixel".source = ../nixos.sixel;
   xdg.configFile."fastfetch/config.jsonc".text = ''
     {
