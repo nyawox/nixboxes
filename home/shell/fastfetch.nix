@@ -9,6 +9,9 @@
         "type": "raw",
         "width": 45,
         "height": 18,
+        "padding": {
+          "top": 2,
+        },
       },
       "modules": [
         "title",
