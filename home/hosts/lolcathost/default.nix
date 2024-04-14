@@ -8,5 +8,5 @@
     (lib.filterAttrs filterCaches (builtins.readDir folder));
 in {
   inherit imports;
-  programs.zellij.enableFishIntegration = lib.mkForce true;
+  # programs.zellij.enableFishIntegration = lib.mkForce true;
 }
