@@ -35,7 +35,7 @@
     sopsFile = ../../secrets/switch.env;
     format = "dotenv";
     owner = config.users.users.${username}.name;
-    group = config.users.users.${username}.group;
+    inherit (config.users.users.${username}) group;
   };
   services = {
     # github:nyawox/nix-switch-boot
