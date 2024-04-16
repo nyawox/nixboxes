@@ -9,8 +9,8 @@
     };
     home-manager = {
       # url = "github:nix-community/home-manager";
-      # https://github.com/nix-community/home-manager/issues/4912
-      url = "github:xopclabs/home-manager/floorp-browser";
+      # https://github.com/nix-community/home-manager/pull/5128
+      url = "github:brckd/home-manager/ff-forks/floorp";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     chaotic = {
@@ -102,10 +102,6 @@
     mozilla-addons-to-nix = {
       url = "sourcehut:~rycee/mozilla-addons-to-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hardened-firefox = {
-      url = "github:arkenfox/user.js";
-      flake = false;
     };
     impermanence.url = "github:nix-community/impermanence";
     nur.url = "github:nix-community/nur";

@@ -17,8 +17,7 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    services.xserver.displayManager = {
-      gdm.enable = false;
+    services.displayManager = {
       sddm = {
         enable = true;
         enableHidpi = false;
