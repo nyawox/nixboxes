@@ -144,8 +144,8 @@
       enable = true;
       fonts = [
         {
-          name = "BlexMono Nerd Font";
-          package = pkgs.nerdfonts.override {fonts = ["IBMPlexMono"];};
+          name = "Spleen";
+          package = pkgs.spleen;
         }
       ];
     };

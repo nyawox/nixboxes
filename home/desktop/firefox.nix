@@ -103,9 +103,6 @@ in {
     profiles.default = {
       name = "default";
       isDefault = true;
-      # Hardened
-      extraConfig = builtins.readFile "${inputs.hardened-firefox}/user.js";
-
       bookmarks = [
         {
           name = "wikipedia";
@@ -270,6 +267,9 @@ in {
   };
 
   xdg.configFile."tridactyl/tridactylrc".source = ./tridactylrc;
-  xdg.configFile."tridactyl/themes/catppuccin.css".source =
-    pkgs.fetchFromGitHub catppuccin-tridactyl + "/catppuccin.css";
+  xdg.configFile."tridactyl/themes/catppuccin.css".text =
+    (pkgs.fetchFromGitHub catppuccin-tridactyl + "/catppuccin.css")
+    + ''
+      --tridactyl-hintspan-font-family: monospace;
+    '';
 }

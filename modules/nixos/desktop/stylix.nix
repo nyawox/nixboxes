@@ -26,18 +26,18 @@ in {
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
       fonts = {
         serif = {
-          package = pkgs.ibm-plex;
-          name = "IBM Plex Serif";
+          package = pkgs.poppins;
+          name = "Poppins";
         };
 
         sansSerif = {
-          package = pkgs.ibm-plex;
-          name = "IBM Plex Sans";
+          package = pkgs.poppins;
+          name = "Poppins";
         };
 
         monospace = {
-          package = pkgs.nerdfonts.override {fonts = ["IBMPlexMono"];};
-          name = "BlexMono Nerd Font";
+          package = pkgs.spleen;
+          name = "Spleen-6x12";
         };
 
         emoji = {
