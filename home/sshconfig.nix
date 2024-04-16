@@ -32,6 +32,14 @@
           RemoteCommand = "systemctl default";
         };
       };
+      "router" = {
+        hostname = "192.168.0.160";
+        user = "root";
+      };
+      "routerhallway" = {
+        hostname = "192.168.0.155";
+        user = "root";
+      };
       "ChidamaGakuen" = {
         hostname = "192.168.0.194";
         user = "hiyori";
