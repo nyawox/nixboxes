@@ -6,8 +6,7 @@
 <a href="https://github.com/nyawox/nixboxes"><img alt="LICENSE" src="https://img.shields.io/github/license/nyawox/nixboxes.svg?style=for-the-badge&labelColor=11111b&color=94e2d5" /></a>
 #+end_html
 
-[[file:./assets/screenshot1.png]]
-[[file:./assets/screenshot2.png]]
+[[file:./assets/screenshot.png]]
 * Quick Start
 
 *SSH keys in /etc/ssh will be copied over to new installation*
