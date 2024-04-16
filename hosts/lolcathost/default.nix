@@ -31,9 +31,19 @@
     virtualisation.podman.enable = true;
   };
 
+  sops.secrets."switch" = {
+    sopsFile = ../../secrets/switch.env;
+    format = "dotenv";
+    owner = config.users.users.${username}.name;
+    group = config.users.users.${username}.group;
+  };
   services = {
     # github:nyawox/nix-switch-boot
     switch-boot.enable = true;
+    switch-presence = {
+      enable = true;
+      environmentFile = config.sops.secrets.switch.path;
+    };
     irqbalance.enable = true;
     usbmuxd.enable = true;
     gvfs.enable = true;
