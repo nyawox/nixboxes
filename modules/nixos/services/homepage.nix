@@ -254,7 +254,7 @@ in {
             {
               Linkding = {
                 href = "https://linkding.nixhome.shop/";
-                icon = "https://linkding.nixhome.shop/static/logo.png";
+                icon = "https://lh3.googleusercontent.com/bp6jwFNA7tzooOc6OfnBsfy2D5SIDomN1imuF2WZqlZiJUU0cHC8ilZUSUuDQ69wb5UjkYnK6LJoBbk174uXTijO8s8=s60";
               };
             }
           ];
