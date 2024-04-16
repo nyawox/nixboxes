@@ -87,6 +87,7 @@ in {
           ".steam"
           ".zephyr"
           ".config/vesktop"
+          ".config/uGet"
           ".config/emacs"
           ".config/rpcs3"
           ".config/heroic"
