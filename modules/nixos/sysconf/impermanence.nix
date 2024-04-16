@@ -73,6 +73,7 @@ in {
           ".local/share/yuzu"
           ".local/share/Cemu"
           ".local/share/dolphin-emu"
+          ".local/share/waydroid"
           ".config/dolphin-emu"
           ".local/share/lutris"
           ".local/share/TelegramDesktop"
