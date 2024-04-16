@@ -15,7 +15,8 @@
     bind = SUPER, P, pseudo, # dwindle
     bind = SUPER, K, togglesplit, # dwindle
     bind = SUPER, W, exec, swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color f5c2e7 --text-color cdd6f4 --key-hl-color fab387 --line-color 00000000 --inside-color 1e1e2e88 --separator-color 00000000 --grace 2 --fade-in 0.2
-    bind = SUPER, S, exec, ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+    bind = SHIFT, Print, exec, ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
+    bind = ,Print, exec, ${pkgs.grim}/bin/grim $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S.png')
 
     # Move focus with mainMod + arrow keys
     bind = SUPER, left, movefocus, l

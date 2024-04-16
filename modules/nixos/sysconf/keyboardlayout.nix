@@ -112,7 +112,7 @@ with lib; {
             _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
             _    tab  XX   esc  @cls XX   XX   XX   @lng home up   end  del  _
             _    @sft @ctl @alt @cmd XX   XX   XX   @cbs left down rght bspc
-            _    XX   XX   @cpy @pst XX   XX   XX   XX   ;    caps ret
+            _    XX   prnt @cpy @pst XX   XX   XX   XX   ;    caps ret
             _    _                   _              _    _    _
           )
 
