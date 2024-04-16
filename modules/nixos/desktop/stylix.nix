@@ -60,6 +60,10 @@ in {
         applications = 0.75;
         terminal = 0.75;
       };
+      targets = {
+        console.enable = false;
+        grub.enable = false;
+      };
     };
     home-manager.users."${username}".stylix = {
       targets = {
