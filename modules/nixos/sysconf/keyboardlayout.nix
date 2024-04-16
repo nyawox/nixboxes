@@ -216,12 +216,15 @@ with lib; {
               ;; oa 0.05% sfb is a slide
               ((key-history w 1)) s break ;; 0.03% sfb
               ;; i' is easy to slide or pinky ring on wide mod
+              ((and (key-history g 3) (key-history a 2) (key-history d 1))) g break ;; gadget
+              ((and (key-history b 3) (key-history a 2) (key-history d 1))) g break ;; badge
               ((and (key-history a 2) (key-history d 1))) m break ;; dm 0.01% sfb mostly consists of adm, otherwise cope with index middle
               ((key-history d 1)) g break ;; 0.02% sfb
               ;; tm index middle 0.02% sfb
               ((key-history s 1)) w break ;; 0.02% sfb
               ;; gt 0.01% sfb easy index middle
-              ((key-history l 1)) r break  ;; 0.01% sfb
+              ((key-history l 1)) r break ;; 0.01% sfb
+              ((key-history a 1)) o break ;; 0.00% sfb but still, cause it's not altable
               ;; pd middle index 0.01% sfb
               ;; e; can't be slided
               ;; dt 0.00% sfb index middle
@@ -251,7 +254,13 @@ with lib; {
               ;; just 0.232%, still most frequent ngram that starts with j
               ((key-history j 1)) (macro u s t) break
 
+              ;; get 0.16% common sfs
+              ((key-history g 1)) (macro e t) break
+              ;; nts 0.13% common redirect
+              ((key-history n 1)) (macro t s) break
               ;; TODO somehow implement ious
+              ;; Currently at 15.765% usage
+              ;; this can be increased up to > 20%
             )
             mgc (chord jkesc *)
             mgt (multi @mgc @tp)
@@ -286,7 +295,10 @@ with lib; {
               ((and (key-history e 2) (key-history w 1))) (macro i n g) break ;; ewing
               ((key-history v 1)) (macro i n g) break ;; ving
               ((key-history h 1)) (macro a v) break ;; 0.194% sfs
+              ((key-history a 1)) (macro n d) break ;; 3.639% common ngram
               () rpt break
+              ;; Currently 7.168% usage + 6.046% of repeats, total 13.214
+              ;; Space bar is like 20% usage
             )
 
             ral @repeat
@@ -299,7 +311,9 @@ with lib; {
               ((key-history k 1)) (macro i n g) break ;; 0.305% the rule is, put on the opposite hand repeat key
               ((key-history t 1)) p break ;; 0.01% sfb
               ((key-history w 1)) (macro a s) break ;; 0.192% sfs
-              () rpt break
+              () rpt break ;; 1.567%
+              ;; Currently 2.56% usage + 1.567% of repeats, total 4.127%
+              ;; keep this as low as possible
             )
 
             spc (tap-hold 200 300 spc lctl)
