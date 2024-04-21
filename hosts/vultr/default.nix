@@ -10,8 +10,8 @@ _: {
       caddy.enable = true;
       headscale.enable = true;
       frp.enable = true;
-      monitoring.grafana.enable = true;
-      monitoring.prometheus.enable = true;
+      # monitoring.grafana.enable = true;
+      # monitoring.prometheus.enable = true;
     };
     desktop = {
       pipewire.enable = false;

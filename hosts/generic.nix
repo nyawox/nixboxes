@@ -15,6 +15,7 @@
   nixpkgs.hostPlatform = platform;
   var.username = username;
   modules.deploy.enable = deploy;
+  modules.services.monitoring.enable = false;
 
   boot = {
     loader = {
