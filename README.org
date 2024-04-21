@@ -49,6 +49,7 @@ generate secureboot keys
 --initrdssh
 generate initrd ssh host keys
 #+end_src
+~--initrdssh~ requires sudo
 
 * Deploy
 ~deploy -k~ deploys all hosts and keeps gc roots in ~.deploy-gc~
