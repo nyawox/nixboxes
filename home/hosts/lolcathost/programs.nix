@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   home.packages = with pkgs; [
     nomacs
     piper
@@ -78,5 +82,7 @@
     gpu-screen-recorder-gtk
     scx
     gex
+    inputs.nixpkgs-yuzu.legacyPackages.${pkgs.system}.citra
+    remmina
   ];
 }

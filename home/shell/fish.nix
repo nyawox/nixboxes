@@ -69,8 +69,14 @@
       # magit
       magit = "TERM=xterm-direct emacsclient -nw --eval '(magit-status)'";
 
-      # boot windows
-      windows = "sudo efibootmgr -n 0003; sudo reboot";
+      # windows vm
+      winstart = "sudo systemctl start podman-windows";
+      winstop = "sudo systemctl stop podman-windows";
+      winrestart = "sudo systemctl restart podman-windows";
+      winstatus = "systemctl status podman-windows";
+      winlog = "journalctl -feu podman-windows";
+      winlogs = "journalctl -xeu podman-windows";
+      winview = "xdg-open http://127.0.0.1:8006/";
 
       # run balena etcher
       etcher = "NIXPKGS_ALLOW_INSECURE=1 nix run nixpkgs#etcher --impure";

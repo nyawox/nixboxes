@@ -67,6 +67,7 @@ in {
           }
           "PopTracker"
           "invokeai"
+          "winshare"
           ".local/state/wireplumber"
           ".local/share/direnv"
           ".local/share/Steam"
@@ -92,6 +93,7 @@ in {
           ".config/rpcs3"
           ".config/heroic"
           ".config/lutris"
+          ".config/remmina"
           ".config/transmission-remote-gtk"
           ".config/Youtube Music"
           ".mozilla"

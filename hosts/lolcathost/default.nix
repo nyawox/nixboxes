@@ -20,6 +20,7 @@
       minecraft-server.enable = true;
       flatpak.enable = true;
       influxdb.enable = true;
+      windows.enable = true;
     };
     desktop = {
       hyprland.enable = true;

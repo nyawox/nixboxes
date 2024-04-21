@@ -55,5 +55,3 @@ generate initrd ssh host keys
 
 Pass ~-s~ to skip flake checks
 
-* Credits
-Sound effects https://youtube.com/watch?v=Fto1ePGFq_o&si=C43FwWfWArUYnCoi

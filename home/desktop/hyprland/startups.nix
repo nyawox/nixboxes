@@ -5,6 +5,6 @@
     exec-once = fcitx5
     exec-once = ${pkgs.swaynotificationcenter}/bin/swaync
     exec-once = configure-gtk
-    exec-once = mpv --no-video ~/sounds/logon.wav
+    exec-once = ${pkgs.pulseaudio}/bin/paplay ~/sounds/logon.wav
   '';
 }

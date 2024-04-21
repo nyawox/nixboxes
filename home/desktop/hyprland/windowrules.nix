@@ -31,5 +31,6 @@
     windowrule = fullscreen, class:^(.gamescope-wrapped)$
     windowrule = float, class:^(Uget-gtk)$
     windowrule = float, title:^(uGet)$
+    windowrule = float, class:^(Tor Browser)$
   '';
 }

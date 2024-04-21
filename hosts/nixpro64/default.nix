@@ -17,11 +17,12 @@
       tailscale.enable = true;
       avahi.enable = true;
       home-assistant.enable = true;
+      firefox-syncserver.enable = true;
       postgresql.enable = true;
       vaultwarden.enable = true;
       node-red.enable = true;
       redis.enable = true;
-      monitoring.loki.enable = true;
+      # monitoring.loki.enable = true;
     };
   };
   services.switch-boot.enable = true;

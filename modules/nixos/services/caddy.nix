@@ -60,6 +60,16 @@ in {
             ''
           ];
         };
+        "firefox-syncserver.nixhome.shop" = {
+          useACMEHost = "nixhome.shop";
+          extraConfig = lib.strings.concatStrings [
+            expire-header
+            encode
+            ''
+              reverse_proxy http://nixpro64.nyaa.nixhome.shop:5003
+            ''
+          ];
+        };
         "linkding.nixhome.shop" = {
           useACMEHost = "nixhome.shop";
           extraConfig = lib.strings.concatStrings [

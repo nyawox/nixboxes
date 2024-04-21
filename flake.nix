@@ -2,15 +2,14 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     latest.url = "github:nixos/nixpkgs";
+    nixpkgs-yuzu.url = "github:nixos/nixpkgs/95002f7";
     # Make sure to follow nixpkgs to unclutter lock file
     nix-darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      # url = "github:nix-community/home-manager";
-      # https://github.com/nix-community/home-manager/pull/5128
-      url = "github:brckd/home-manager/ff-forks/floorp";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     chaotic = {
@@ -83,6 +82,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    schizofox = {
+      url = "github:schizofox/schizofox";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -97,10 +101,6 @@
     };
     nixpkgs-f2k = {
       url = "github:moni-dz/nixpkgs-f2k";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    mozilla-addons-to-nix = {
-      url = "sourcehut:~rycee/mozilla-addons-to-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
@@ -194,8 +194,8 @@
               # Automatically run GC whenever there is not enough space left
               # Bytes
               extraOptions = ''
-                min-free = ${toString (1 * 1024 * 1024 * 1024)}
-                max-free = ${toString (2 * 1024 * 1024 * 1024)}
+                min-free = ${toString (100 * 1024 * 1024)}
+                max-free = ${toString (1024 * 1024 * 1024)}
               '';
             };
             imports = [
@@ -245,6 +245,7 @@
               ./home/desktop/waybar
               ./home/files.nix
               ./home/xdg.nix
+              inputs.schizofox.homeManagerModule
             ];
           };
         };
@@ -292,7 +293,6 @@
             alejandra
             deadnix
             statix
-            # inputs.mozilla-addons-to-nix.packages.${pkgs.system}.default
           ];
           #TODO Make a better interface, preferably TUI to manage systems
           commands = [

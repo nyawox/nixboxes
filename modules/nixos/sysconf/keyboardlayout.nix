@@ -307,6 +307,7 @@ with lib; {
               ;; use this repeat key when typing most ke(s), which is uncomfortable with right repeat key
               ;; also use for common right hand repeat bigrams like ff, ee(unless next letter is n?)
               ;; and uncommon bigrams like ii(wii mii)
+              ((and (key-history i 2) (key-history p 1))) (macro t) break
               ((key-history p 1)) m break ;; 0.01% sfb, use right repeat key for pp, magic key for pment
               ((key-history k 1)) (macro i n g) break ;; 0.305% the rule is, put on the opposite hand repeat key
               ((key-history t 1)) p break ;; 0.01% sfb
@@ -365,7 +366,6 @@ with lib; {
             t (multi t @tp)
             d (multi d @tp)
             y (multi y @tp)
-            h (multi h @tp)
             e (multi (chord jkesc e) @tp)
             a (multi a @tp)
             i (multi i @tp)
@@ -376,7 +376,8 @@ with lib; {
             w (multi w @tp)
             z (multi z @tp)
             p (multi p @tp)
-            k (multi (chord backspace k) @tp)
+            k (multi k @tp)
+            h (multi (chord backspace h) @tp)
             ; (multi (chord backspace ;) @tp)
             / (multi / @tp)
             . (multi . @tp)
@@ -395,9 +396,9 @@ with lib; {
           )
 
           (defchords backspace 20
-            (k   ) k
+            (h   ) h
             (  ; ) ;
-            (k ; ) bspc
+            (h ; ) bspc
           )
 
           (deflocalkeys-linux

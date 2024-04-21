@@ -103,4 +103,4 @@ if [ $secureboot == "y" ]; then
 fi
 
 # Install NixOS to the destination with our secrets
-nix run github:numtide/nixos-anywhere -- --extra-files "$temp" --flake .#"$host" -p "$port" root@"$ip"
+nix run github:numtide/nixos-anywhere/rsync-scp -- --extra-files "$temp" --flake .#"$host" -p "$port" root@"$ip"
