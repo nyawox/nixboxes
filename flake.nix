@@ -150,6 +150,22 @@
             secrets = true;
             deploy = false;
           };
+          iso = inputs.nixpkgs.lib.nixosSystem {
+            modules = [
+              "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+              self.nixosModules.common
+              ({pkgs, ...}: {
+                nixpkgs.hostPlatform = "x86_64-linux";
+                users.users.nixos.openssh.authorizedKeys.keys = [
+                  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9QP7hABDQ+esrZnDhQulFfrhfuT8cPmREYvtPRzjF4 93813719+nyawox@users.noreply.github.com"
+                ];
+                environment.systemPackages = with pkgs; [
+                  rsync
+                ];
+              })
+              ./modules/nixos/sysconf/zram.nix
+            ];
+          };
         };
 
         nixosModules = {
@@ -318,6 +334,11 @@
               name = "update";
               help = "Update all flake inputs and commit lock file";
               command = "nix flake update --commit-lock-file";
+            }
+            {
+              name = "isobuild";
+              help = "Build iso";
+              command = "nix build .#nixosConfigurations.iso.config.system.build.isoImage";
             }
             {
               name = "rebuild";
