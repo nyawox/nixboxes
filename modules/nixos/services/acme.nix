@@ -17,7 +17,7 @@ in {
   config = mkIf cfg.enable {
     security.acme = {
       acceptTerms = true;
-      defaults.email = "93813719+nyawox@users.noreply.github.com";
+      defaults.email = "nyawox.git@gmail.com";
 
       certs."nixhome.shop" = {
         domain = "nixhome.shop";
