@@ -15,8 +15,8 @@
 in {
   home.file = {
     ".wallpaper.jpg".source = pkgs.fetchurl {
-      url = "https://www.pixelstalk.net/wp-content/uploads/images8/Desktop-Wallpaper-Free-Download.jpg";
-      sha256 = "11k6n82l09gnvr885y71pngvwqw48n9vwwa7zx2hgh4r6wmb05gn";
+      url = "https://i.pinimg.com/originals/24/ca/db/24cadbfc4de7599a86ef5e8bc238853e.jpg";
+      sha256 = "1fraqngiw0l164i1ar7i3bzq0bz7zdcvydqgxrr0rqqq3y4rq6sv";
     };
     ".doom.d/splash.png".source =
       pkgs.fetchFromGitHub
