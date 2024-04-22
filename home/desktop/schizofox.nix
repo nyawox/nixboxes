@@ -79,8 +79,6 @@ in {
     };
 
     settings = {
-      # use selfhosted firefox sync server
-      "identity.fxaccounts.autoconfig.uri" = "https://firefox-syncserver.nixlap.top/token/1.0/sync/1.5";
       # smoothfox stuff
       "nglayout.initialpaint.delay" = 0;
       "nglayout.initialpaint.delay_in_oopif" = 0;

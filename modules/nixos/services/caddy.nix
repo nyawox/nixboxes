@@ -60,23 +60,13 @@ in {
             ''
           ];
         };
-        "firefox-syncserver.nixlap.top" = {
-          useACMEHost = "nixlap.top";
-          extraConfig = lib.strings.concatStrings [
-            expire-header
-            encode
-            ''
-              reverse_proxy http://nixpro64.nyaa.nixlap.top:5003
-            ''
-          ];
-        };
         "linkding.nixlap.top" = {
           useACMEHost = "nixlap.top";
           extraConfig = lib.strings.concatStrings [
             expire-header
             encode
             ''
-              reverse_proxy http://tomoyo.nyaa.nixlap.top:9919
+              reverse_proxy http://tomoyo.nyaa.nixlap.top:9090
             ''
           ];
         };
