@@ -53,6 +53,14 @@ with lib; {
           };
           cargoHash = "sha256-DdaKa8DGPAqRTpNQTxOSv8JX1SrD6n7tod6cf0Mu6yE=";
           buildFeatures = ["cmd"];
+          meta = with lib; {
+            description = "A tool to improve keyboard comfort and usability with advanced customization";
+            homepage = "https://github.com/jtroo/kanata";
+            license = licenses.lgpl3Only;
+            maintainers = with maintainers; [bmanuel linj];
+            platforms = platforms.unix;
+            mainProgram = "kanata";
+          };
         };
 
         # workaround one-shot shift not working on keys with chord defined
