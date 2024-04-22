@@ -49,10 +49,12 @@
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
         workspace_swipe = true;
       };
-      # misc = {
-      #   enable_swallow = true;
-      #   swallow_regex = "^(Alacritty|org.wezfurlong.wezterm|kitty|footclient)$";
-      # };
+      misc = {
+        enable_swallow = true;
+        swallow_regex = "^(Alacritty|org.wezfurlong.wezterm|kitty|foot|footclient)$";
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
+      };
     };
   };
 }
