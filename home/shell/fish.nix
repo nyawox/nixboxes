@@ -86,6 +86,10 @@
 
       # fastfetch
       fetch = "fastfetch";
+
+      # zoxide
+      j = "cd"; # j is easier to press than z on my layout
+      ji = "cdi";
     };
   };
   xdg.configFile."fish/themes".source =
