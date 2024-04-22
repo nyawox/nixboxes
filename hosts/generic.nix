@@ -15,7 +15,6 @@
   nixpkgs.hostPlatform = platform;
   var.username = username;
   modules.deploy.enable = deploy;
-  modules.services.monitoring.enable = false;
 
   boot = {
     loader = {
@@ -136,10 +135,6 @@
   };
 
   services = {
-    prometheus.enable =
-      if config.modules.services.monitoring.prometheus.enable
-      then lib.mkForce true
-      else lib.mkForce false;
     # Use kmscon as virtual console instead of gettys
     kmscon = {
       enable = true;

@@ -21,8 +21,8 @@ unbind --mode=ex <C-a>
 "
 " Allow Ctrl-c to copy in the commandline
 unbind --mode=ex <C-c>
-"set homepages ["https://homepage.nixhome.shop/"]
-"set newtab https://homepage.nixhome.shop/
+set homepages ["https://homepage.nixlap.top/"]
+set newtab https://homepage.nixlap.top/
 " Handy multiwindow/multitasking binds
 bind gd tabdetach
 bind gD composite tabduplicate; tabdetach

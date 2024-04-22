@@ -260,5 +260,6 @@ in {
         mode = "756";
       }
     ];
+    environment.persistence."/persist".users."${username}".directories = mkIf config.modules.sysconf.impermanence.enable [".local/share/waydroid"];
   };
 }

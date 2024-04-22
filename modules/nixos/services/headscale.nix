@@ -5,7 +5,7 @@
 }:
 with lib; let
   cfg = config.modules.services.headscale;
-  domain = "headscale.nixhome.shop";
+  domain = "headscale.nixlap.top";
   derpPort = 3478;
 in {
   options = {
@@ -25,7 +25,7 @@ in {
         settings = {
           dns_config = {
             magic_dns = true;
-            base_domain = "nixhome.shop";
+            base_domain = "nixlap.top";
             nameservers = ["9.9.9.9" "149.112.112.112"];
             # Magic DNS not working without this
             # https://github.com/juanfont/headscale/issues/660
@@ -42,7 +42,7 @@ in {
       };
 
       caddy.virtualHosts.${domain} = {
-        useACMEHost = "nixhome.shop";
+        useACMEHost = "nixlap.top";
         extraConfig = ''
           reverse_proxy http://[::1]:8085
         '';

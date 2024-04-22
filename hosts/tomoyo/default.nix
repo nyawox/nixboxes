@@ -8,7 +8,6 @@ _: {
       tailscale.enable = true;
       homepage.enable = true;
       searxng.enable = true;
-      transmission.enable = true;
       # Requires podman
       linkding.enable = true;
     };

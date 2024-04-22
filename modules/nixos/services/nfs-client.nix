@@ -21,12 +21,12 @@ in {
   config = {
     fileSystems = {
       "/nixboxes" = mkIf cfg.nixboxes {
-        device = "lolcathost.nyaa.nixhome.shop:/nixboxes";
+        device = "lolcathost.nyaa.nixlap.top:/nixboxes";
         fsType = "nfs";
         options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "async"];
       };
       "/var/backup" = mkIf cfg.backups {
-        device = "lolcathost.nyaa.nixhome.shop:/var/backup";
+        device = "lolcathost.nyaa.nixlap.top:/var/backup";
         fsType = "nfs";
         options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "async"];
       };

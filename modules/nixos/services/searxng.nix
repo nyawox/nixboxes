@@ -160,12 +160,12 @@ in {
           port = 8420;
           bind_address = "0.0.0.0";
           secret_key = "@SEARXNG_SECRET@";
-          base_url = "https://search.nixhome.shop";
+          base_url = "https://search.nixlap.top";
           public_instance = true;
           image_proxy = false;
         };
         redis = {
-          url = "redis://:searxng@nixpro64.nyaa.nixhome.shop:6420";
+          url = "redis://:searxng@nixpro64.nyaa.nixlap.top:6420";
         };
       };
     };

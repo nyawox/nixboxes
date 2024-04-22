@@ -157,7 +157,8 @@
           #     "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
           #     self.nixosModules.common
           #     ({pkgs, ...}: {
-          #       nixpkgs.hostPlatform = "x86_64-linux";
+          #       # nixpkgs.hostPlatform = "x86_64-linux";
+          #       nixpkgs.hostPlatform = "aarch64-linux";
           #       users.users.nixos.openssh.authorizedKeys.keys = [
           #         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9QP7hABDQ+esrZnDhQulFfrhfuT8cPmREYvtPRzjF4 93813719+nyawox@users.noreply.github.com"
           #       ];
@@ -231,13 +232,10 @@
               ./modules/nixos/virtualisation
               ./modules/nixos/sysconf
               ./modules/nixos/services
-              ./modules/nixos/services/monitoring
               ./modules/nixos/desktop
               inputs.impermanence.nixosModules.impermanence
               inputs.lanzaboote.nixosModules.lanzaboote
               inputs.disko.nixosModules.disko
-              inputs.srvos.nixosModules.roles-prometheus
-              inputs.srvos.nixosModules.mixins-telegraf
               inputs.nixtendo-switch.nixosModules.nixtendo-switch
               inputs.stylix.nixosModules.stylix
               inputs.nix-minecraft.nixosModules.minecraft-servers

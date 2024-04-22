@@ -17,17 +17,20 @@ in {
   config = mkIf cfg.enable {
     security.acme = {
       acceptTerms = true;
-      defaults.email = "nyawox.git@gmail.com";
+      defaults = {
+        email = "nyawox.git@gmail.com";
+        # server = "https://acme-staging-v02.api.letsencrypt.org/directory";
+      };
 
-      certs."nixhome.shop" = {
-        domain = "nixhome.shop";
-        extraDomainNames = ["*.nixhome.shop"];
-        dnsProvider = "vultr";
-        credentialsFile = config.sops.secrets.vultr.path;
+      certs."nixlap.top" = {
+        domain = "nixlap.top";
+        extraDomainNames = ["*.nixlap.top"];
+        dnsProvider = "cloudflare";
+        credentialsFile = config.sops.secrets.cloudflare.path;
       };
     };
-    sops.secrets.vultr = {
-      sopsFile = ../../../secrets/vultr.env;
+    sops.secrets.cloudflare = {
+      sopsFile = ../../../secrets/cloudflare.env;
       format = "dotenv";
     };
 

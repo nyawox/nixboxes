@@ -30,53 +30,53 @@ in {
       globalConfig = ''
       '';
       virtualHosts = {
-        "homepage.nixhome.shop" = {
-          useACMEHost = "nixhome.shop";
+        "homepage.nixlap.top" = {
+          useACMEHost = "nixlap.top";
           extraConfig = lib.strings.concatStrings [
             expire-header
             encode
             ''
-              reverse_proxy http://tomoyo.nyaa.nixhome.shop:8082
+              reverse_proxy http://tomoyo.nyaa.nixlap.top:8082
             ''
           ];
         };
-        "search.nixhome.shop" = {
-          useACMEHost = "nixhome.shop";
+        "search.nixlap.top" = {
+          useACMEHost = "nixlap.top";
           extraConfig = lib.strings.concatStrings [
             expire-header
             encode
             ''
-              reverse_proxy http://tomoyo.nyaa.nixhome.shop:8420
+              reverse_proxy http://tomoyo.nyaa.nixlap.top:8420
             ''
           ];
         };
-        "vault.nixhome.shop" = {
-          useACMEHost = "nixhome.shop";
+        "vault.nixlap.top" = {
+          useACMEHost = "nixlap.top";
           extraConfig = lib.strings.concatStrings [
             expire-header
             encode
             ''
-              reverse_proxy http://nixpro64.nyaa.nixhome.shop:3011
+              reverse_proxy http://nixpro64.nyaa.nixlap.top:3011
             ''
           ];
         };
-        "firefox-syncserver.nixhome.shop" = {
-          useACMEHost = "nixhome.shop";
+        "firefox-syncserver.nixlap.top" = {
+          useACMEHost = "nixlap.top";
           extraConfig = lib.strings.concatStrings [
             expire-header
             encode
             ''
-              reverse_proxy http://nixpro64.nyaa.nixhome.shop:5003
+              reverse_proxy http://nixpro64.nyaa.nixlap.top:5003
             ''
           ];
         };
-        "linkding.nixhome.shop" = {
-          useACMEHost = "nixhome.shop";
+        "linkding.nixlap.top" = {
+          useACMEHost = "nixlap.top";
           extraConfig = lib.strings.concatStrings [
             expire-header
             encode
             ''
-              reverse_proxy http://tomoyo.nyaa.nixhome.shop:9919
+              reverse_proxy http://tomoyo.nyaa.nixlap.top:9919
             ''
           ];
         };

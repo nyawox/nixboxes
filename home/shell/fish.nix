@@ -77,6 +77,7 @@
       winlog = "journalctl -feu podman-windows";
       winlogs = "journalctl -xeu podman-windows";
       winview = "xdg-open http://127.0.0.1:8006/";
+      winrdp = "remmina -c rdp://docker@127.0.0.1:3389";
 
       # run balena etcher
       etcher = "NIXPKGS_ALLOW_INSECURE=1 nix run nixpkgs#etcher --impure";

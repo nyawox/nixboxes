@@ -26,6 +26,7 @@ in {
         config = {
           rocketAddress = "0.0.0.0";
           rocketPort = 3011;
+          # signups_allowed = true;
           signups_allowed = false;
           databaseUrl = "postgresql://vaultwarden@%2Frun%2Fpostgresql/vaultwarden";
           enableDbWal = "false";

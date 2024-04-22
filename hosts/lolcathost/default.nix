@@ -173,18 +173,41 @@
     # xone.enable = true;
   };
 
-  environment.persistence."/persist".directories = lib.mkIf config.modules.sysconf.impermanence.enable [
-    {
-      directory = "/nixboxes";
-      user = "${username}";
-      group = "users";
-      mode = "757";
-    }
-    {
-      directory = "/var/backup";
-      user = "${username}";
-      group = "users";
-      mode = "757";
-    }
-  ];
+  environment.persistence."/persist" = {
+    directories = lib.mkIf config.modules.sysconf.impermanence.enable [
+      {
+        directory = "/nixboxes";
+        user = "${username}";
+        group = "users";
+        mode = "757";
+      }
+      {
+        directory = "/var/backup";
+        user = "${username}";
+        group = "users";
+        mode = "757";
+      }
+    ];
+    users."${username}" = {
+      directories = [
+        "PopTracker"
+        "invokeai"
+        ".local/share/Steam"
+        ".local/share/yuzu"
+        ".local/share/Cemu"
+        ".local/share/dolphin-emu"
+        ".config/dolphin-emu"
+        ".local/share/remmina"
+        ".local/share/lutris"
+        ".local/share/PrismLauncher/instances"
+        ".local/share/PrismLauncher/logs"
+        ".local/share/PrismLauncher/translations"
+        ".local/share/PrismLauncher/meta"
+        ".config/rpcs3"
+        ".config/heroic"
+        ".config/lutris"
+        ".config/remmina"
+      ];
+    };
+  };
 }

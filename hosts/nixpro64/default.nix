@@ -22,7 +22,6 @@
       vaultwarden.enable = true;
       node-red.enable = true;
       redis.enable = true;
-      # monitoring.loki.enable = true;
     };
   };
   services.switch-boot.enable = true;
@@ -78,6 +77,7 @@
 
     consoleLogLevel = 7;
   };
+  keyboardlayout.akl = false;
 
   networking.interfaces.wlu1.useDHCP = lib.mkDefault true;
 

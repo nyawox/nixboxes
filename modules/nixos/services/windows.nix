@@ -73,5 +73,6 @@ in {
     '';
     networking.firewall.allowedTCPPorts = [5050];
     environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable ["/var/lib/${app}"];
+    environment.persistence."/persist".users."${username}".directories = mkIf config.modules.sysconf.impermanence.enable ["winshare"];
   };
 }

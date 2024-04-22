@@ -18,6 +18,7 @@ in {
   };
   config = mkIf cfg.enable {
     services.mysql.package = pkgs.mariadb;
+    #TODO Fix this is unreachable
     services.firefox-syncserver = {
       enable = true;
       secrets = config.sops.secrets.firefoxsync.path;
@@ -25,8 +26,8 @@ in {
       logLevel = "error";
       singleNode = {
         enable = true;
-        hostname = "127.0.0.1";
-        url = "http://127.0.0.1:5003";
+        hostname = "0.0.0.0";
+        url = "http://0.0.0.0:5003";
       };
     };
     sops.secrets.firefoxsync = {

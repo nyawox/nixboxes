@@ -25,7 +25,7 @@ in {
               Search = [
                 {
                   abbr = "S";
-                  href = "https://search.nixhome.shop";
+                  href = "https://search.nixlap.top";
                   icon = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/SearXNG-wordmark.svg/1200px-SearXNG-wordmark.svg.png";
                 }
               ];
@@ -203,30 +203,14 @@ in {
           Home = [
             {
               "Home Assistant" = {
-                href = "http://nixpro64.nyaa.nixhome.shop:8123/";
+                href = "http://nixpro64.nyaa.nixlap.top:8123/";
                 icon = "https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_homeassistant_icon_130543.png";
               };
             }
             {
               "Node-RED" = {
-                href = "http://nixpro64.nyaa.nixhome.shop:1880/";
+                href = "http://nixpro64.nyaa.nixlap.top:1880/";
                 icon = "https://nodered.org/about/resources/media/node-red-icon.svg";
-              };
-            }
-          ];
-        }
-        {
-          Monitoring = [
-            {
-              Grafana = {
-                href = "http://vultr.nyaa.nixhome.shop:3042/";
-                icon = "https://cdn.icon-icons.com/icons2/2699/PNG/512/grafana_logo_icon_171048.png";
-              };
-            }
-            {
-              Prometheus = {
-                href = "http://vultr.nyaa.nixhome.shop:9001/";
-                icon = "https://cdn.icon-icons.com/icons2/3914/PNG/512/prometheus_logo_icon_248769.png";
               };
             }
           ];
@@ -234,26 +218,20 @@ in {
         {
           Tools = [
             {
-              Transmissionic = {
-                href = "http://tomoyo.nyaa.nixhome.shop:9091/";
-                icon = "https://github.com/6c65726f79/Transmissionic/blob/main/public/assets/icon/favicon.png?raw=true";
-              };
-            }
-            {
               Sunshine = {
-                href = "https://lolcathost.nyaa.nixhome.shop:47990/";
+                href = "https://lolcathost.nyaa.nixlap.top:47990/";
                 icon = "https://raw.githubusercontent.com/LizardByte/Sunshine/nightly/src_assets/common/assets/web/public/images/logo-sunshine-45.png";
               };
             }
             {
               Vaultwarden = {
-                href = "https://vault.nixhome.shop/";
+                href = "https://vault.nixlap.top/";
                 icon = "https://raw.githubusercontent.com/dani-garcia/vaultwarden/main/resources/vaultwarden-icon.svg";
               };
             }
             {
               Linkding = {
-                href = "https://linkding.nixhome.shop/";
+                href = "https://linkding.nixlap.top/";
                 icon = "https://lh3.googleusercontent.com/bp6jwFNA7tzooOc6OfnBsfy2D5SIDomN1imuF2WZqlZiJUU0cHC8ilZUSUuDQ69wb5UjkYnK6LJoBbk174uXTijO8s8=s60";
               };
             }
@@ -282,7 +260,7 @@ in {
         {
           search = {
             provider = "custom";
-            url = "https://search.nixhome.shop/search?q=";
+            url = "https://search.nixlap.top/search?q=";
             focus = false;
             target = "_blank";
           };
