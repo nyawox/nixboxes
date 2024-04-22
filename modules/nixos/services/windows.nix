@@ -66,12 +66,14 @@ in {
       ${pkgs.podman}/bin/podman network create ${app} \
       --subnet=${ipContainerNetwork}
     '';
-    networking.nftables.enable = lib.mkForce false;
-    networking.firewall.extraCommands = ''
-      iptables -A INPUT -p tcp --destination-port 53 -s ${ipContainerNetwork} -j ACCEPT
-      iptables -A INPUT -p udp --destination-port 53 -s ${ipContainerNetwork} -j ACCEPT
-    '';
-    networking.firewall.allowedTCPPorts = [5050];
+    networking = {
+      nftables.enable = lib.mkForce false;
+      firewall.extraCommands = ''
+        iptables -A INPUT -p tcp --destination-port 53 -s ${ipContainerNetwork} -j ACCEPT
+        iptables -A INPUT -p udp --destination-port 53 -s ${ipContainerNetwork} -j ACCEPT
+      '';
+      firewall.allowedTCPPorts = [5050];
+    };
     environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable ["/var/lib/${app}"];
     environment.persistence."/persist".users."${username}".directories = mkIf config.modules.sysconf.impermanence.enable ["winshare"];
   };
