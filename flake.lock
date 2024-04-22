@@ -1892,11 +1892,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1713606209,
-        "narHash": "sha256-SVuTVtx0QTCafz4lr1VHmEfeGgh0WLDWWaTzhd+ywJA=",
+        "lastModified": 1713796868,
+        "narHash": "sha256-HHea7niUFVo1abE4cqUbfXZN9jZOaOxlVI11jo7wTbo=",
         "owner": "nyawox",
         "repo": "nixtendo-switch",
-        "rev": "79032b247b25b0f3905f3a8bb98c1a34e6aae13d",
+        "rev": "d704343f63730382007aedc6289e6a6a747f8bf4",
         "type": "github"
       },
       "original": {
