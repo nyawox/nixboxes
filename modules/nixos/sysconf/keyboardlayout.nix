@@ -68,7 +68,7 @@ with lib; let
   '';
   jis = ''
     (defsrc
-      ZenkakuHankaku  1    2    3    4    5    6    7    8    9    0    -    =  Yen   bspc
+      Grv  1    2    3    4    5    6    7    8    9    0    -    =  Yen   bspc
       tab  q    w    e    r    t    y    u    i    o    p    [    ]     ret
       caps a    s    d    f    g    h    j    k    l    ;    '    \
       lsft z    x    c    v    b    n    m    ,    .    /    Ro   rsft

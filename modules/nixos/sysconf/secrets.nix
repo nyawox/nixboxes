@@ -21,20 +21,6 @@ with lib; {
         Enable password from secrets
       '';
     };
-    homewifiSSID = mkOption {
-      type = types.str;
-      default = "AP-5G";
-      description = ''
-        Default wifi SSID used on iwd
-      '';
-    };
-    home2GwifiSSID = mkOption {
-      type = types.str;
-      default = "AP-2.4G";
-      description = ''
-        Default wifi SSID used on iwd
-      '';
-    };
   };
   config = {
     sops = mkIf config.secrets.enable {
