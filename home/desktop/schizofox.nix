@@ -73,6 +73,8 @@ in {
         "uget-integration@slgobinath".install_url = "${exturl}/ugetintegration/latest.xpi";
         "CanvasBlocker@kkapsner.de".install_url = "${exturl}/canvasblocker/latest.xpi";
         "{76aabc99-c1a8-4c1e-832b-d4f2941d5a7a}".install_url = "${exturl}/catppuccin-mocha-mauve-git/latest.xpi";
+        "@contain-amzn".install_url = "${exturl}/contain-amazon/latest.xpi";
+        "{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7}".install_url = "${exturl}/user-agent-string-switcher/latest.xpi";
         # "userchrome-toggle@joolee.nl".install_url = "${exturl}/userchrome-toggle/latest.xpi";
         # "ATBC@EasonWong".install_url = "${exturl}/adaptive-tab-bar-colour/latest.xpi";
       };
@@ -118,6 +120,16 @@ in {
       "privacy.fingerprintingProtection" = true;
       "privacy.fingerprintingProtection.pbmode" = true;
       "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme"; # Add ,-JSDateTimeUTC to prevent forcing the time zone to UTC
+      "network.http.referer.XOriginPolicy" = 0;
+      "privacy.fingerprintingProtection.granularOverrides" = [
+        {
+          "id" = 1;
+          "last_modified" = 1713820945000;
+          "overrides" = "-AllTargets";
+          "firstPartyDomain" = "*.twitch.tv";
+          "thirdPartyDomain" = "*.twitch.tv";
+        }
+      ];
       "layout.css.font-visibility.private" = 1;
       "layout.css.font-visibility.standard" = 1;
       "layout.css.font-visibility.trackingprotection" = 1;
