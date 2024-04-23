@@ -24,7 +24,7 @@ in {
   };
   config = mkIf cfg.enable {
     virtualisation.oci-containers.containers.${app} = {
-      image = "docker.io/dockurr/windows:latest"; # <https://hub.docker.com/r/dockurr/windows/tags>
+      image = "docker.io/dockurr/windows:2.16"; # <https://hub.docker.com/r/dockurr/windows/tags>
       user = "root:root";
       autoStart = false; # start it when needed with `sudo systemctl start podman-windows.service`
       environment = {
@@ -58,7 +58,12 @@ in {
         "--network=${app}"
         "--ip=${ipContainer1}"
       ];
-      volumes = ["${dataDir}:/storage" "/home/${username}/winshare:/storage/shared"];
+      volumes = [
+        "${dataDir}:/storage"
+        "/home/${username}/winshare:/storage/shared"
+        # custom iso
+        "/home/${username}/Downloads/iso/tiny11.iso:/storage/custom.iso"
+      ];
     };
     systemd.tmpfiles.rules = ["d '${dataDir}' 0700 root root - -"];
     systemd.services."podman-${app}".preStart = ''
