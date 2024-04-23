@@ -7,7 +7,6 @@
   modules = {
     sysconf = {
       wifi.enable = true;
-      secureboot.enable = true;
       laptop.enable = true;
     };
     services = {
