@@ -66,12 +66,13 @@ with lib; let
       _    _                    _              _    _    _
     )
   '';
+  # TODO Fix ro \ duplicate somehow
   jis = ''
     (defsrc
-      Grv  1    2    3    4    5    6    7    8    9    0    -    =  Yen   bspc
-      tab  q    w    e    r    t    y    u    i    o    p    [    ]     ret
+      grv  1    2    3    4    5    6    7    8    9    0    -    =  yen  bspc
+      tab  q    w    e    r    t    y    u    i    o    p    [    ]    ret
       caps a    s    d    f    g    h    j    k    l    ;    '    \
-      lsft z    x    c    v    b    n    m    ,    .    /    Ro   rsft
+      lsft z    x    c    v    b    n    m    ,    .    /    ro   rsft
       lctl lmet lalt Muhenkan    spc      Henkan KatakanaHiragana ralt prtsc rctl
     )
 
@@ -441,10 +442,10 @@ in {
         extraDefCfg = defCfg;
         config = ansi + psilocybin;
       };
-      keyboards.psilocybinjis = mkIf config.keyboardlayout.jis {
-        extraDefCfg = defCfg;
-        config = jis + psilocybin;
-      };
+      # keyboards.psilocybinjis = mkIf config.keyboardlayout.jis {
+      #   extraDefCfg = defCfg;
+      #   config = jis + psilocybin;
+      # };
     };
   };
 }
