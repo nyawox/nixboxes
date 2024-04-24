@@ -56,6 +56,7 @@ in {
     systemd.tmpfiles.rules = [
       "C /var/lib/iwd/${cfg.homewifiSSID}.psk 0600 root root - ${config.sops.secrets."home.psk".path}"
       "C /var/lib/iwd/${cfg.home2GwifiSSID}.psk 0600 root root - ${config.sops.secrets."home.psk".path}"
+      "C /var/lib/iwd/=4150332d322e3447.psk 0600 root root - ${config.sops.secrets."home.psk".path}"
     ];
   };
 }
