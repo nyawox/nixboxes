@@ -66,29 +66,28 @@ with lib; let
       _    _                    _              _    _    _
     )
   '';
-  # TODO Fix ro \ duplicate somehow
   jis = ''
     (defsrc
-      grv  1    2    3    4    5    6    7    8    9    0    -    =  yen  bspc
+      grv  1    2    3    4    5    6    7    8    9    0    -    =    ¥   bspc
       tab  q    w    e    r    t    y    u    i    o    p    [    ]    ret
       caps a    s    d    f    g    h    j    k    l    ;    '    \
       lsft z    x    c    v    b    n    m    ,    .    /    ro   rsft
-      lctl lmet lalt Muhenkan    spc      Henkan KatakanaHiragana ralt prtsc rctl
+      lctl lmet lalt mhnk      spc       henk  kana ralt prtsc rctl
     )
 
     (deflayer psilocybin
       XX   XX    XX   XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX  XX
       XX   @x    @l   @c   @m   @z   XX    XX   @k   @f   @u   @o   @y   @.
       XX   @n    @r   @s   @t   @g   XX    XX   @b   @mgt @e   @a   @i
-      XX   @j    @w   @p   @d   @q   XX    XX   @v   @h   @;   @'   XX
-      XX   XX    lalt @lmet     @cspc      XX    XX   @rmet @ral XX
+      XX   @j    @w   @p   @d   @q   XX    XX   @v   @h   @;   @'   @'
+      XX   XX    lalt @lmet     @spc       XX    XX  XX   @rmet @ral
     )
 
     (deflayer psilocybin-tp
       _    _     _    _    _    _    _     _    _    _    _    _    _    _    _
       _    x     l    c    m    k    XX    XX   z    f    u    o    y    .
       _    n     r    s    t    g    XX    XX   b    @mgc e    a    i
-      _    j     w    p    d    q    XX    XX   v    h    ;    '    _
+      _    j     w    p    d    q    XX    XX   v    h    ;    '    '
       _    _     _    _         _          _     _    _     _   _
     )
 
@@ -96,7 +95,7 @@ with lib; let
       _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
       _    tab  XX   esc  @cls XX   XX   XX   @lng home up   end  del  _
       _    @sft @ctl @alt @cmd XX   XX   XX   @cbs left down rght bspc
-      _    XX   prnt @cpy @pst XX   XX   XX   XX   ;    caps ret  _
+      _    XX   prnt @cpy @pst XX   XX   XX   XX   ;    caps ret  ret
       _    _     _    _         _          _     _    _     _   _
     )
 
@@ -104,14 +103,14 @@ with lib; let
       _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
       _    @<   [    @{   @lp  @~   XX   XX   @^   @rp  @}   ]    @>   `
       _    -    @*   =    @_   @$   XX   XX   @#   @cmd @alt @ctl @sft
-      _    @:   @dq  @at  /    @|   XX   XX   \    @&   @?   @!   _
+      _    @:   @dq  @at  /    @|   XX   XX   \    @&   @?   @!   @!
       _    _     _    _         _          _     _    _     _   _
     )
     (deflayer num
       _    f1   f2   f3   f4   f5   XX   XX   f6   f7   f8   f9   f10  f11  f12
       _    tab  XX   esc  XX   XX   XX   XX   /    7    8    9    @*   .
       _    @sft @ctl @alt @cmd XX   XX   XX   @-   4    5    6    0
-      _    XX   XX   XX   @%   XX   XX   XX   @+   1    2    3    _
+      _    XX   XX   XX   @%   XX   XX   XX   @+   1    2    3    3
       _    _     _    _         _          _     _    _     _   _
     )
 
@@ -119,7 +118,7 @@ with lib; let
       esc  1     2    3    4    5    6    7    8    9    0    -    =    /    grv
       tab  q     w    e    r    t    y    u    i    o    p    [    ]    @cbs
       lctl a     s    d    f    g    h    j    k    l    ;    '    ret
-      lsft z     x    c    v    b    n    m    ,    .    /    rsft
+      lsft z     x    c    v    b    n    m    ,    .    /    rsft rsft
       _    _     _    _         _          _     _    _     _   _
     )
 
@@ -442,10 +441,10 @@ in {
         extraDefCfg = defCfg;
         config = ansi + psilocybin;
       };
-      # keyboards.psilocybinjis = mkIf config.keyboardlayout.jis {
-      #   extraDefCfg = defCfg;
-      #   config = jis + psilocybin;
-      # };
+      keyboards.psilocybinjis = mkIf config.keyboardlayout.jis {
+        extraDefCfg = defCfg;
+        config = jis + psilocybin;
+      };
     };
   };
 }
