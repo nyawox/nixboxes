@@ -3,15 +3,6 @@
     pciutils
     steam-run
     vesktop
-    (pkgs.makeDesktopItem {
-      name = "vencorddesktop-wayland";
-      exec = "${pkgs.vesktop}/bin/vencorddesktop -enable-features=UseOzonePlatform --ozone-platform=wayland %U";
-      desktopName = "Vesktop Wayland";
-      icon = "vencorddesktop";
-      startupWMClass = "VencordDesktop";
-      genericName = "Internet Messenger";
-      keywords = ["discord" "vencord" "electron" "chat"];
-    })
     webcord-vencord
     tdesktop
     mangohud
