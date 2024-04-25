@@ -37,9 +37,9 @@ with lib; let
 
     (deflayer nav
       _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
-      _    tab  XX   esc  @cls XX   XX   XX   @lng home up   end  del  _
-      _    @sft @ctl @alt @cmd XX   XX   XX   @cbs left down rght bspc
-      _    XX   prnt @cpy @pst XX   XX   XX   XX   ;    caps ret
+      _    ⭾    XX   esc  @cls XX   XX   XX   @lng ⇤    ▲    ⇥    ⌦    _
+      _    @sft @ctl @alt @cmd XX   XX   XX   @cbs ◀    ▼    ▶    ⌫
+      _    XX   prnt @cpy @pst XX   XX   XX   XX   ;    ⇪    ⏎
       _    _                   _              _    _    _
     )
 
@@ -52,9 +52,9 @@ with lib; let
     )
     (deflayer num
       _    f1   f2   f3   f4   f5   XX   XX   f6   f7   f8   f9   f10  f11  f12
-      _    tab  XX   esc  XX   XX   XX   XX   /    7    8    9    @*   .
-      _    @sft @ctl @alt @cmd XX   XX   XX   @-   4    5    6    0
-      _    XX   XX   XX   @%   XX   XX   XX   @+   1    2    3
+      _    ⭾    XX   esc  XX   XX   XX   XX   ⁄    7    8    9    🔢∗  .
+      _    @sft @ctl @alt @cmd XX   XX   XX   -    4    5    6    0
+      _    XX   XX   XX   @%   XX   XX   XX   🔢₊  1    2    3
       _    _                   _              _    _    _
     )
 
@@ -93,9 +93,9 @@ with lib; let
 
     (deflayer nav
       _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
-      _    tab  XX   esc  @cls XX   XX   XX   @lng home up   end  del  _
-      _    @sft @ctl @alt @cmd XX   XX   XX   @cbs left down rght bspc
-      _    XX   prnt @cpy @pst XX   XX   XX   XX   ;    caps ret  ret
+      _    ⭾    XX   esc  @cls XX   XX   XX   @lng ⇤    ▲    ⇥    ⌦    _
+      _    @sft @ctl @alt @cmd XX   XX   XX   @cbs ◀    ▼    ▶    ⌫
+      _    XX   prnt @cpy @pst XX   XX   XX   XX   ;    ⇪    ⏎    ⏎
       _    _     _    _         _          _     _    _     _   _
     )
 
@@ -108,9 +108,9 @@ with lib; let
     )
     (deflayer num
       _    f1   f2   f3   f4   f5   XX   XX   f6   f7   f8   f9   f10  f11  f12
-      _    tab  XX   esc  XX   XX   XX   XX   /    7    8    9    @*   .
-      _    @sft @ctl @alt @cmd XX   XX   XX   @-   4    5    6    0
-      _    XX   XX   XX   @%   XX   XX   XX   @+   1    2    3    3
+      _    ⭾    XX   esc  XX   XX   XX   XX   ⁄    7    8    9    🔢∗  .
+      _    @sft @ctl @alt @cmd XX   XX   XX   -    4    5    6    0
+      _    XX   XX   XX   @%   XX   XX   XX   🔢₊  1    2    3    3
       _    _     _    _         _          _     _    _     _   _
     )
 
@@ -321,7 +321,6 @@ with lib; let
       _ S--
       $ S-4
       # S-3
-      + S-=
       | S-\
       at S-2
       % S-5
