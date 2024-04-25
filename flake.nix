@@ -73,8 +73,8 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
+    niri = {
+      url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
@@ -238,6 +238,7 @@
               inputs.lanzaboote.nixosModules.lanzaboote
               inputs.disko.nixosModules.disko
               inputs.nixtendo-switch.nixosModules.nixtendo-switch
+              inputs.niri.nixosModules.niri
               inputs.stylix.nixosModules.stylix
               inputs.nix-minecraft.nixosModules.minecraft-servers
               inputs.nur.nixosModules.nur
@@ -260,7 +261,7 @@
           desktop = {...}: {
             imports = [
               ./home/desktop
-              ./home/desktop/hyprland
+              ./home/desktop/niri
               ./home/desktop/waybar
               ./home/files.nix
               ./home/xdg.nix

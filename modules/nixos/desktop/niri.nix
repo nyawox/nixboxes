@@ -7,10 +7,10 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.desktop.hyprland;
+  cfg = config.modules.desktop.niri;
 in {
   options = {
-    modules.desktop.hyprland = {
+    modules.desktop.niri = {
       enable = mkOption {
         type = types.bool;
         default = false;
@@ -18,23 +18,18 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    programs.hyprland = {
+    programs.niri = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      package = pkgs.niri-unstable;
     };
+    nixpkgs.overlays = [inputs.niri.overlays.niri];
 
-    services.dbus.enable = true;
-    environment.systemPackages = with pkgs; [
-      #screen sharing on wayland
-      cifs-utils
-    ];
-
+    # Handle keyboard media keys
+    sound.mediaKeys.enable = true;
     xdg.portal.enable = true;
     xdg.portal.extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
     ];
-    # Handle keyboard media keys
-    sound.mediaKeys.enable = true;
 
     environment.persistence."/persist".users.${username} = {
       directories = [".local/share/nwg-look"];

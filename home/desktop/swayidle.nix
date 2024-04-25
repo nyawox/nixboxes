@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   services.swayidle = {
     enable = true;
-    systemdTarget = "hyprland-session.target";
+    # systemdTarget = "graphical-session.target";
     events = [
       {
         event = "before-sleep";
@@ -9,7 +9,7 @@
       }
       {
         event = "lock";
-        command = "sleep 5s; hyprctl dispatch dons off";
+        command = "sleep 5s; ${pkgs.niri-unstable}/bin/niri msg action power-off-monitors";
       }
     ];
     timeouts = [
@@ -20,7 +20,7 @@
       {
         timeout = 1805;
         command = "hyprctl dispatch dpms off";
-        resumeCommand = "hyprctl dispatch dpms on";
+        resumeCommand = "${pkgs.niri-unstable}/bin/niri msg action power-off-monitors";
       }
     ];
   };
