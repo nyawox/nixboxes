@@ -239,8 +239,8 @@ with lib; let
         ;; just 0.232%, still most frequent ngram that starts with j
         ((key-history j 1)) (macro u s t) break
 
-        ;; get 0.16% common sfs
-        ((key-history g 1)) (macro e t) break
+        ;; ght 0.317% common sfs
+        ((key-history g 1)) (macro h t) break
         ;; nts 0.13% common redirect
         ((key-history n 1)) (macro t s) break
         ;; TODO somehow implement ious
@@ -297,6 +297,8 @@ with lib; let
         ((key-history k 1)) (macro i n g) break ;; 0.305% the rule is, put on the opposite hand repeat key
         ((key-history t 1)) p break ;; 0.01% sfb
         ((key-history w 1)) (macro a s) break ;; 0.192% sfs
+        ;; get 0.134% common sfs
+        ((key-history g 1)) (macro e t) break
         () rpt break ;; 1.567%
         ;; Currently 2.56% usage + 1.567% of repeats, total 4.127%
         ;; keep this as low as possible
