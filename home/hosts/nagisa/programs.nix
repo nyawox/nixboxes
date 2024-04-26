@@ -4,7 +4,6 @@
     steam-run
     vesktop
     webcord-vencord
-    tdesktop
     mangohud
     gimp
     pavucontrol
@@ -16,5 +15,8 @@
     nix-prefetch-git
     cava
     gnome.nautilus
+  ];
+  services.flatpak.packages = [
+    "org.telegram.desktop"
   ];
 }

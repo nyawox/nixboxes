@@ -20,7 +20,6 @@
     youtube-music
     transmission-gtk
     vivaldi
-    tdesktop
     samba
     unzip
     unrar
@@ -75,5 +74,8 @@
     gex
     inputs.nixpkgs-yuzu.legacyPackages.${pkgs.system}.citra
     remmina
+  ];
+  services.flatpak.packages = [
+    "org.telegram.desktop"
   ];
 }

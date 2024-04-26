@@ -104,6 +104,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
     nur.url = "github:nix-community/nur";
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
@@ -241,6 +242,7 @@
               inputs.nix-minecraft.nixosModules.minecraft-servers
               inputs.nur.nixosModules.nur
               inputs.chaotic.nixosModules.default
+              inputs.nix-flatpak.nixosModules.nix-flatpak
             ];
           };
         };
@@ -251,6 +253,7 @@
             imports = [
               ./home/shell
               inputs.chaotic.homeManagerModules.default
+              inputs.nix-flatpak.homeManagerModules.nix-flatpak
             ];
           };
           # home-manager config for desktop

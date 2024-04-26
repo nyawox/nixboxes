@@ -64,9 +64,9 @@ in {
             directory = ".local/share/keyrings";
             mode = "706";
           }
+          ".var/app"
           ".local/state/wireplumber"
           ".local/share/direnv"
-          ".local/share/TelegramDesktop"
           ".local/share/zoxide"
           ".wine"
           ".cache"
