@@ -75,6 +75,8 @@ in {
         "{76aabc99-c1a8-4c1e-832b-d4f2941d5a7a}".install_url = "${exturl}/catppuccin-mocha-mauve-git/latest.xpi";
         "@contain-amzn".install_url = "${exturl}/contain-amazon/latest.xpi";
         "{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7}".install_url = "${exturl}/user-agent-string-switcher/latest.xpi";
+        "firefox-addon@pronoundb.org".install_url = "${exturl}/pronoundb/latest.xpi";
+        "{a218c3db-51ef-4170-804b-eb053fc9a2cd}".install_url = "${exturl}/qr-code-address-bar/latest.xpi";
         # "userchrome-toggle@joolee.nl".install_url = "${exturl}/userchrome-toggle/latest.xpi";
         # "ATBC@EasonWong".install_url = "${exturl}/adaptive-tab-bar-colour/latest.xpi";
       };
@@ -226,4 +228,14 @@ in {
   xdg.configFile."tridactyl/tridactylrc".source = ./tridactylrc;
   xdg.configFile."tridactyl/themes/catppuccin.css".source =
     catppuccin-tridactyl + "/catppuccin.css";
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "Schizofox.desktop";
+      "x-scheme-handler/http" = "Schizofox.desktop";
+      "x-scheme-handler/https" = "Schizofox.desktop";
+      "x-scheme-handler/about" = "Schizofox.desktop";
+      "x-scheme-handler/unknown" = "Schizofox.desktop";
+    };
+  };
 }
