@@ -180,15 +180,16 @@ with lib; let
       magic (switch ;;🪄
         ;;;;;;;;;;;;;;;;;;;;;;;;
         ;; psilocybin
-        ;;;sfbs 0.82% (1.19% on shai)
-        ;; sfbs and lsbs percentage is from cyanophage, other freqs are from shai corpus
-        ;; because freqs and sfbs are rounded differently on cmini
+        ;;;sfbs 0.82%
         ((key-history m 1)) p break ;; 0.16% sfb
         ;; sc 0.09% sfb index middle
         ;; cs 0.02% sfb index middle
         ;; ue 0.08% sfb slide
         ;; y' scissor can be copped with pinky thumb
         ((key-history y 1)) . break ;; 0.06% sfb
+        ((and (key-history a 5) (key-history m 4) (key-history a 3) (key-history t 2) (key-history e 1))) u break ;; te* -> ted unless amateur
+        ((and (key-history m 2) (key-history a 1))) t break ;; ma* -> mat sfs
+        ((and (key-history t 2) (key-history e 1))) d break ;; te* -> ted sfs
         ((key-history e 1)) u break ;; 0.01% sfb
         ;; most pms which is 0.01% sfb are pment, use left rpt key for other pms
         ((and (key-history l 3)(key-history o 2) (key-history p 1))) (macro m e n t) break ;; 0.01% opment
