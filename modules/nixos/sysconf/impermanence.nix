@@ -76,6 +76,7 @@ in {
           ".config/emacs"
           ".config/transmission-remote-gtk"
           ".config/Youtube Music"
+          ".config/Cider"
           ".mozilla"
         ];
         files = [

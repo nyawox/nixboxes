@@ -16,8 +16,9 @@
     heroic
     wineWowPackages.waylandFull
     vesktop
-    webcord-vencord
+    # webcord-vencord
     youtube-music
+    cider
     transmission-gtk
     vivaldi
     samba
