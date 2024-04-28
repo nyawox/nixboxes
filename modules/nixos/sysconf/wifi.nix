@@ -23,7 +23,7 @@ in {
       };
       home2GwifiSSID = mkOption {
         type = types.str;
-        default = "=41502d322e3447";
+        default = "=4150332d322e3447";
         description = ''
           Default wifi SSID used on iwd
           The ssid appears verbatim in the name if it contains only alphanumeric characters, spaces, underscores or minus signs.
@@ -56,7 +56,6 @@ in {
     systemd.tmpfiles.rules = [
       "C /var/lib/iwd/${cfg.homewifiSSID}.psk 0600 root root - ${config.sops.secrets."home.psk".path}"
       "C /var/lib/iwd/${cfg.home2GwifiSSID}.psk 0600 root root - ${config.sops.secrets."home.psk".path}"
-      "C /var/lib/iwd/=4150332d322e3447.psk 0600 root root - ${config.sops.secrets."home.psk".path}"
     ];
   };
 }
