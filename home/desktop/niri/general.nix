@@ -82,9 +82,11 @@ in {
       struts.left = 10;
       struts.right = 10;
       border.enable = false;
-      focus-ring.enable = true;
-      focus-ring.active.color = "rgb(245 194 231)";
-      focus-ring.inactive.color = "rgb(24 24 37)";
+      focus-ring = {
+        enable = true;
+        active.color = "rgb(245 194 231)";
+        inactive.color = "rgb(24 24 37)";
+      };
     };
     animations = let
       butter = {

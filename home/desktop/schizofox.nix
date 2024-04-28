@@ -225,17 +225,21 @@ in {
     ".mozilla/native-messaging-hosts/com.ugetdm.firefox.json".source = "${pkgs.uget-integrator}/lib/mozilla/native-messaging-hosts/com.ugetdm.firefox.json";
     ".mozilla/native-messaging-hosts/tridactyl.json".source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
   };
-  xdg.configFile."tridactyl/tridactylrc".source = ./tridactylrc;
-  xdg.configFile."tridactyl/themes/catppuccin.css".source =
-    catppuccin-tridactyl + "/catppuccin.css";
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "text/html" = "Schizofox.desktop";
-      "x-scheme-handler/http" = "Schizofox.desktop";
-      "x-scheme-handler/https" = "Schizofox.desktop";
-      "x-scheme-handler/about" = "Schizofox.desktop";
-      "x-scheme-handler/unknown" = "Schizofox.desktop";
+  xdg = {
+    configFile = {
+      "tridactyl/tridactylrc".source = ./tridactylrc;
+      "tridactyl/themes/catppuccin.css".source =
+        catppuccin-tridactyl + "/catppuccin.css";
+    };
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "text/html" = "Schizofox.desktop";
+        "x-scheme-handler/http" = "Schizofox.desktop";
+        "x-scheme-handler/https" = "Schizofox.desktop";
+        "x-scheme-handler/about" = "Schizofox.desktop";
+        "x-scheme-handler/unknown" = "Schizofox.desktop";
+      };
     };
   };
 }
