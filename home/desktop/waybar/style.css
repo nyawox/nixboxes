@@ -13,14 +13,14 @@ window#waybar {
   background-color: transparent;
 }
 
-#workspaces {
+#taskbar {
   background-color: transparent;
   margin-top: 8px;
   margin-bottom: 8px;
   margin-right: 8px;
   margin-left: 20px;
 }
-#workspaces button {
+#taskbar button {
   box-shadow: rgba(205, 214, 444, 0.116) 2 2 5 2px;
   background-color: #181825;
   border-radius: 8px;
@@ -32,7 +32,7 @@ window#waybar {
   color: #a6adc8;
 }
 
-#workspaces button.active {
+#taskbar button.active {
   box-shadow: rgba(0, 0, 0, 0.288) 2 2 5 2px;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
   padding-left: 20px;
@@ -67,7 +67,7 @@ window#waybar {
 #battery,
 #pulseaudio,
 #tray,
-#window {
+#custom-window {
   padding: 0 10px;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.116) 2 2 5 2px;
@@ -76,7 +76,7 @@ window#waybar {
   margin-right: 8px;
 }
 
-#window {
+#custom-window {
   background: linear-gradient(
     45deg,
     rgba(166, 227, 161, 1) 0%,

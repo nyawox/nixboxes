@@ -23,7 +23,7 @@
       windows.enable = true;
     };
     desktop = {
-      hyprland.enable = true;
+      niri.enable = true;
       swaylock.enable = true;
       greetd.enable = true;
       polkit.enable = true;

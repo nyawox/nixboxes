@@ -15,7 +15,7 @@
       nfs-client.nixboxes = true;
     };
     desktop = {
-      hyprland.enable = true;
+      niri.enable = true;
       greetd.enable = true;
       swaylock.enable = true;
       polkit.enable = true;

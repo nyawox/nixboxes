@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   username,
   ...
 }:
@@ -22,11 +21,11 @@ in {
       enable = true;
       settings = {
         default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd ${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd ${pkgs.niri-unstable}/bin/niri-session";
           user = "${username}";
         };
         intial_session = {
-          command = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
+          command = "${pkgs.niri-unstable}/bin/niri-session";
           user = "${username}";
         };
       };
