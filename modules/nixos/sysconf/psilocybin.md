@@ -1,8 +1,8 @@
 # Psilocybin
 
-![Psilocybin layout](baselayout.png)
+![Psilocybin](baselayout.png)
 
-Psilocybin is a magic layout designed for HHKB layout, with slides and magic key in mind.
+Designed for row stagger, with slides and magic key in mind.
 
 ## Magics 🪄
 
