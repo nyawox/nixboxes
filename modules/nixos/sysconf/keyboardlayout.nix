@@ -77,8 +77,8 @@ with lib; let
 
     (deflayer psilocybin
       XX   XX    XX   XX   XX   XX   XX    XX   XX   XX   XX   XX   XX   XX  XX
-      XX   @x    @l   @c   @m   @z   XX    XX   @k   @f   @u   @o   @y   @.
-      XX   @n    @r   @s   @t   @g   XX    XX   @b   @mgt @e   @a   @i
+      XX   @x    @l   @c   @m   @k   XX    XX   @z   @f   @u   @o   @y   @.
+      @lrp @n    @r   @s   @t   @g   XX    XX   @b   @mgt @e   @a   @i
       XX   @j    @w   @p   @d   @q   XX    XX   @v   @h   @;   @'   @'
       XX   XX    lalt @lmet     @spc       XX    XX  XX   @rmet @ral
     )
