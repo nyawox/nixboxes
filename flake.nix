@@ -99,10 +99,6 @@
       url = "github:nyawox/nixtendo-switch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-f2k = {
-      url = "github:moni-dz/nixpkgs-f2k";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     impermanence.url = "github:nix-community/impermanence";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nur.url = "github:nix-community/nur";
