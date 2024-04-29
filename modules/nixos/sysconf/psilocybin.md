@@ -23,8 +23,6 @@ Designed for row stagger, with slides and magic key in mind.
 | l⚝     | lr      |
 | w⚝     | ws      |
 | s⚝     | sw      |
-| g⚝     | ght     |
-| g⬡     | get     |
 | n⚝     | nts     |
 | i⚝     | ion     |
 | i⬡     | ing     |
@@ -70,10 +68,14 @@ Designed for row stagger, with slides and magic key in mind.
 | raw⬡   | rawing  |
 | row⬡   | rowing  |
 | ew⬡    | ewing   |
+| g⚝     | ght     |
+| g⬡     | get     |
 | w⬢     | was     |
 | h⬡     | hav     |
 | j⚝     | just    |
 | a⬡     | and     |
+| pu⚝    | put     |
+| to⚝    | top     |
 
 ## Fingering and slides
 

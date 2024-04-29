@@ -244,9 +244,12 @@ with lib; let
         ((key-history g 1)) (macro h t) break
         ;; nts 0.13% common redirect
         ((key-history n 1)) (macro t s) break
+        ;; put 0.04% sfs
+        ((and (key-history p 2) (key-history u 1))) t break
+        ;; top 0.03%
+        ((and (key-history t 2) (key-history o 1))) p break
+
         ;; TODO somehow implement ious
-        ;; Currently at 15.765% usage
-        ;; this can be increased up to > 20%
       )
       mgc (chord jkesc *)
       mgt (multi @mgc @tp)
