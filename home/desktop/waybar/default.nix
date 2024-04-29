@@ -93,8 +93,8 @@ in {
               "format-bluetooth-muted": "  {format_source}",
               "format-muted": " {format_source}",
               "format-icons": {
-                  "headphone": "",
-                  "hands-free": "",
+                  "headphone": "󰋋",
+                  "hands-free": "󰋋",
                   "headset": "",
                   "phone": "",
                   "portable": "",

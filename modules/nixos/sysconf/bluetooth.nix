@@ -19,6 +19,9 @@ in {
     hardware.bluetooth.enable = true;
     hardware.bluetooth.settings = {
       General = {
+        # uncomment this to allow pairing Airpods then restart the bluetooth stack sudo systemctl restart bluetooth
+        # only required at initial pairing
+        # ControllerMode = "bredr";
         # Speaker icon
         Class = "0x040414";
         Name = "lolcathost";
