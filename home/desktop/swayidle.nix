@@ -20,7 +20,6 @@
       {
         timeout = 120; # 2 minutes
         command = "${pkgs.niri-unstable}/bin/niri msg action power-off-monitors";
-        resumeCommand = "${pkgs.niri-unstable}/bin/niri msg action power-off-monitors";
       }
     ];
   };
