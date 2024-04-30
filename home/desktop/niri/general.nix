@@ -143,7 +143,10 @@ in {
         # fix electron
         NIXOS_OZONE_WL = "1";
         # force wayland
-        QT_QPA_PLATFORM = "wayland";
+        QT_QPA_PLATFORM = "wayland;xcb";
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1"; # Disables window decorations on Qt applications
+        GDK_BACKEND = "wayland,x11,*";
+        GTK_THEME = config.gtk.theme.name;
       };
       screenshot-path = "/home/${username}/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
       spawn-at-startup = [
