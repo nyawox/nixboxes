@@ -131,6 +131,18 @@ in {
             {app-id = "org.gnome.Nautilus";}
             {app-id = "org.telegram.desktop";}
             {app-id = "Cider";}
+            {app-id = "xdg-desktop-portal-gtk";}
+            {app-id = "gpu-screen-recorder-gtk";}
+            {app-id = "uget-gtk";}
+            {app-id = "pavucontrol";}
+            {app-id = "lutris";}
+            {app-id = ".blueman-manager-wrapped";}
+          ];
+          excludes = [
+            {
+              app-id = "org.telegram.desktop";
+              title = "Media viewer";
+            }
           ];
           opacity = 0.9;
           draw-border-with-background = false;
