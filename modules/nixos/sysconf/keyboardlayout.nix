@@ -214,7 +214,7 @@ with lib; let
         ;; pd middle index 0.01% sfb
         ;; e; can't be slided
         ;; dt 0.00% sfb index middle
-        ;; maybe bv(obvious) which is a minor sfb can be slided
+        ;; maybe bv(obvious) which is a rare sfb can be slided
         ((and (key-history i 3) (key-history g 2) (key-history h 1))) (macro b o) break ;; hb 0.01% sfb is mostly neighbo
         ;; 'a 0.01% sfb and a' 0.01% sfb can be pressed with pinky ring in this fat-i wide mod
         ;; total real sfbs 0.05% if the math is correct
