@@ -112,9 +112,6 @@ in {
                 extraFormatArgs = ["--pbkdf ${config.disk.encryption.pbkdf} --hash sha256"];
                 extraOpenArgs = ["--allow-discards"];
                 askPassword = true;
-                # Cannot coerce set to string
-                #askPassword = mkIf (config.disk.encryption.interactive) true;
-                #settings.keyFile = mkIf (!config.disk.encryption.interactive) "/tmp/secret.key";
                 content = {
                   type = "btrfs";
                   extraArgs = ["-L" "${hostname}" "-f"];

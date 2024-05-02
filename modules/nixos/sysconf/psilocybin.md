@@ -90,5 +90,4 @@ Designed for row stagger, with slides and magic key in mind.
 | 'a/a' | pinky-ring             |
 | ue    | slide                  |
 | oa    | slide                  |
-| y'    | maybe pinky thumb, idk |
 | i'    | pinky ring             |
