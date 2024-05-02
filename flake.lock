@@ -2279,11 +2279,11 @@
         "systems": "systems_13"
       },
       "locked": {
-        "lastModified": 1713898254,
-        "narHash": "sha256-akvy+YbglqUDx8INqR+NjrQ2x/Vyk3E6K7pcjqnPN1s=",
+        "lastModified": 1714677453,
+        "narHash": "sha256-MlkAYTZz5/bFJgNIewbJa8mbtoVqg6Pq7t8A5Z1wVvc=",
         "owner": "schizofox",
         "repo": "schizofox",
-        "rev": "fe4723efebe82666608a27e2a04531dfa2cdc879",
+        "rev": "9c7263441064d0e3e4c94e1d8dbd8d260d00408d",
         "type": "github"
       },
       "original": {

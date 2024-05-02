@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  username,
   ...
 }: let
   exturl = "https://addons.mozilla.org/firefox/downloads/latest";
@@ -40,6 +41,9 @@ in {
     security = {
       sanitizeOnShutdown = false;
       sandbox = false;
+      # extraSandboxBinds = [
+      #   "/home/${username}/.config/tridactyl"
+      # ];
       userAgent = "Mozilla/5.0 (Windows NT 10.0; rv:109.0) Gecko/20100101 Firefox/115.0";
     };
 
