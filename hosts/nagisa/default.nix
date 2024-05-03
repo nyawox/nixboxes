@@ -36,7 +36,7 @@
     enable = true;
   };
   disk.device = "/dev/sda";
-  keyboardlayout.jis = true;
+  psilocybin.jis = true;
 
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;

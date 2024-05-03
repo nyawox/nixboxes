@@ -99,6 +99,10 @@
       url = "github:nyawox/nixtendo-switch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    psilocybin = {
+      url = "github:nyawox/psilocybin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     impermanence.url = "github:nix-community/impermanence";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nur.url = "github:nix-community/nur";
@@ -234,6 +238,7 @@
               inputs.lanzaboote.nixosModules.lanzaboote
               inputs.disko.nixosModules.disko
               inputs.nixtendo-switch.nixosModules.nixtendo-switch
+              inputs.psilocybin.nixosModules.psilocybin
               inputs.niri.nixosModules.niri
               inputs.stylix.nixosModules.stylix
               inputs.nix-minecraft.nixosModules.minecraft-servers

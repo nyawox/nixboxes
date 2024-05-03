@@ -132,6 +132,7 @@
 
     defaultUserShell = pkgs.fish;
   };
+  psilocybin.enable = lib.mkDefault true;
 
   services = {
     # Use kmscon as virtual console instead of gettys

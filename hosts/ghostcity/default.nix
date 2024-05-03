@@ -22,8 +22,6 @@ _: {
   disk.device = "/dev/sda";
   esp.size = "256M";
 
-  keyboardlayout.akl = true;
-
   boot.initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "usb_storage" "uas" "sd_mod"];
   boot.initrd.kernelModules = [];
 }

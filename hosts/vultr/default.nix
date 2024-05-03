@@ -36,7 +36,7 @@ _: {
     linkConfig.RequiredForOnline = "routable";
   };
   boot.kernelParams = ["ip=149.28.98.185"];
-  keyboardlayout.akl = false; # disable this otherwise vnc becomes unusable
+  psilocybin.enable = false; # disable this otherwise vnc becomes unusable
 
   # Kernel modules required to boot on virtual machine
   # Make sure to include ethernet module to remote unlock luks

@@ -76,7 +76,7 @@
 
     consoleLogLevel = 7;
   };
-  keyboardlayout.akl = false;
+  psilocybin.enable = false;
 
   networking.interfaces.wlu1.useDHCP = lib.mkDefault true;
 

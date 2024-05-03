@@ -31,8 +31,8 @@ _: {
     size = "256M";
   };
 
-  # Alternate keyboard layout not working inside vnc
-  keyboardlayout.akl = false;
+  # messes up with vnc
+  psilocybin.enable = false;
 
   boot = {
     kernelParams = ["ip=64.112.124.245"];
