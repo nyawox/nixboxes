@@ -145,6 +145,10 @@
         }
       ];
     };
+    dbus = {
+      enable = true;
+      implementation = "broker";
+    };
   };
 
   # Boot faster

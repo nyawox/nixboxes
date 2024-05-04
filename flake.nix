@@ -1,8 +1,8 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    latest.url = "github:nixos/nixpkgs";
-    nixpkgs-yuzu.url = "github:nixos/nixpkgs/95002f7";
+    nixpkgs.url = "github:auxolotl/nixpkgs/nixos-unstable";
+    latest.url = "github:auxolotl/nixpkgs";
+    nixpkgs-yuzu.url = "github:auxolotl/nixpkgs/95002f7";
     # Make sure to follow nixpkgs to unclutter lock file
     nix-darwin = {
       url = "github:lnl7/nix-darwin/master";
