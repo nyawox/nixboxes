@@ -77,6 +77,10 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -187,6 +191,7 @@
                 inputs.emacs-overlay.overlay
                 inputs.berberman.overlays.default
                 inputs.nix-minecraft.overlay
+                inputs.niri.overlays.niri
                 (
                   final: prev: {
                     deploy-rs = {
@@ -240,6 +245,7 @@
               inputs.nixtendo-switch.nixosModules.nixtendo-switch
               inputs.psilocybin.nixosModules.psilocybin
               inputs.niri.nixosModules.niri
+              inputs.nixos-cosmic.nixosModules.default
               inputs.stylix.nixosModules.stylix
               inputs.nix-minecraft.nixosModules.minecraft-servers
               inputs.nur.nixosModules.nur

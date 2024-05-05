@@ -1,15 +1,14 @@
 {
   config,
   lib,
-  pkgs,
   username,
   ...
 }:
 with lib; let
-  cfg = config.modules.desktop.niri;
+  cfg = config.modules.desktop.cosmic;
 in {
   options = {
-    modules.desktop.niri = {
+    modules.desktop.cosmic = {
       enable = mkOption {
         type = types.bool;
         default = false;
@@ -17,20 +16,17 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    programs.niri = {
-      enable = true;
-      package = pkgs.niri-unstable;
-    };
+    services.desktopManager.cosmic.enable = true;
+    services.displayManager.cosmic-greeter.enable = true;
 
     # Handle keyboard media keys
     sound.mediaKeys.enable = true;
-    xdg.portal.enable = true;
-    xdg.portal.extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
 
     environment.persistence."/persist".users.${username} = {
-      directories = [".local/share/nwg-look"];
+      directories = [
+        ".local/share/nwg-look"
+        ".config/cosmic"
+      ];
       files = [".config/xsettingsd/xsettingsd.conf"];
     };
   };

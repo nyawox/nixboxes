@@ -1,7 +1,8 @@
 {
   pkgs,
   config,
-  username,
+  lib,
+  osConfig,
   ...
 }: let
   exturl = "https://addons.mozilla.org/firefox/downloads/latest";
@@ -151,7 +152,7 @@ in {
       "uc.tweak.rounded-corners" = true;
       #####
       # Fix big fonts in 1080p screen
-      "layout.css.devPixelsPerPx" = 0.75;
+      "layout.css.devPixelsPerPx" = lib.mkIf osConfig.modules.desktop.niri.enable 0.75;
       # Downloading random files from http website is super annoing with this.
       "dom.block_download_insecure" = false;
 

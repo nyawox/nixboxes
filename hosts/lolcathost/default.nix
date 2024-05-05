@@ -23,10 +23,11 @@
       windows.enable = true;
     };
     desktop = {
-      niri.enable = true;
-      swaylock.enable = true;
-      greetd.enable = true;
-      polkit.enable = true;
+      # niri.enable = true;
+      # swaylock.enable = true;
+      # greetd.enable = true;
+      # polkit.enable = true;
+      cosmic.enable = true;
     };
     virtualisation.enable = true;
     virtualisation.podman.enable = true;

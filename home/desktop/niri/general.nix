@@ -191,7 +191,7 @@ in {
             "XF86MonBrightnessUp".action = sh "brightnessctl set 10%+";
             "XF86MonBrightnessDown".action = sh "brightnessctl set 10%-";
 
-            "Alt+F4".action = close-window;
+            "Mod+Q".action = close-window;
           }
           (binds {
             suffixes = {
