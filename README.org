@@ -7,6 +7,7 @@
 #+end_html
 
 [[file:./assets/screenshot.png]]
+(note the screenshot is outdated. I already migrated to niri on my laptop, and currently testing cosmic on my desktop.)
 * Quick Start
 
 *SSH keys in /etc/ssh will be copied over to new installation*
