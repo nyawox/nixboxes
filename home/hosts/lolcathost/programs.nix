@@ -17,6 +17,7 @@
     wineWowPackages.waylandFull
     vesktop
     # webcord-vencord
+    element-desktop
     youtube-music
     cider
     transmission-gtk

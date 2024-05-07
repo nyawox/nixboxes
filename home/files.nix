@@ -65,5 +65,14 @@ in {
           color: #cdd6f4
       }
     '';
+    "Element/config.json".source =
+      pkgs.fetchFromGitHub
+      {
+        owner = "catppuccin";
+        repo = "element";
+        rev = "39df7053631176cdb4b0ddbed837c07d7565f07c";
+        hash = "sha256-wzoC5I9qEr3ADD+3iBRPxmAe58KrLCO0qSk/7+fivjM=";
+      }
+      + "/config.json";
   };
 }

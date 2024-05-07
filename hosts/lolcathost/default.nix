@@ -208,6 +208,7 @@
         ".config/heroic"
         ".config/lutris"
         ".config/remmina"
+        ".config/Element"
       ];
     };
   };
