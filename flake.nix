@@ -4,6 +4,15 @@
     latest.url = "github:nixos/nixpkgs";
     nixpkgs-yuzu.url = "github:nixos/nixpkgs/95002f7";
     # Make sure to follow nixpkgs to unclutter lock file
+    # lix = {
+    #   url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
+    #   flake = false;
+    # };
+    # lix-module = {
+    #   url = "git+https://git.lix.systems/lix-project/nixos-module";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.lix.follows = "lix";
+    # };
     nix-darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -228,6 +237,7 @@
               ./modules/nixos/globalvars.nix
               ./modules/nixos/warnings.nix
               inputs.sops-nix.nixosModules.sops
+              # inputs.lix-module.nixosModules.default
             ];
           };
           # NixOS specific configuration
