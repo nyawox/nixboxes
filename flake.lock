@@ -2182,11 +2182,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1714881682,
-        "narHash": "sha256-h33ydjY0+W0yooz/sdRBAEsJ5+XM3fbsDsGiiuR46bw=",
+        "lastModified": 1715260949,
+        "narHash": "sha256-pG6CDRqepXo8HiWaDGh+y3dm1HUBEYErP0/iVF5F10Q=",
         "owner": "nyawox",
         "repo": "psilocybin",
-        "rev": "bfa136c2659ffe479255104fe7eaab3f920c0b51",
+        "rev": "844e70a7ba2deea7cf8c4368835985796b51214c",
         "type": "github"
       },
       "original": {
