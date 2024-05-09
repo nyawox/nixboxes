@@ -21,6 +21,7 @@
       flatpak.enable = true;
       influxdb.enable = true;
       windows.enable = true;
+      airplay.enable = true;
     };
     desktop = {
       # niri.enable = true;
