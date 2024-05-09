@@ -28,6 +28,7 @@ in {
       description = "AirPlay";
       wantedBy = ["graphical-session.target"];
       serviceConfig = {
+        # without unbuffer the logs are only printed when stopping service
         ExecStart = "${pkgs.expect}/bin/unbuffer ${pkgs.uxplay}/bin/uxplay -n ${config.networking.hostName} -reg /home/${username}/.config/.uxplay.register";
         Environment = "UXPLAYRC=/etc/uxplayrc";
         Restart = "on-failure";
