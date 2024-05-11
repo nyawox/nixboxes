@@ -41,7 +41,7 @@
     inherit (config.users.users.${username}) group;
   };
   services = {
-    # github:nyawox/nix-switch-boot
+    # github:nyawox/nixtendo-switch
     switch-boot.enable = true;
     switch-presence = {
       enable = true;
