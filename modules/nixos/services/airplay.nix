@@ -50,6 +50,7 @@ in {
       p 15244
       nh
       pin
+      fs
     '';
     environment.persistence."/persist".users."${username}".files = mkIf config.modules.sysconf.impermanence.enable [".config/.uxplay.register"];
   };
