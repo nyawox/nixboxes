@@ -1,5 +1,10 @@
-{pkgs, ...}: {
-  services.swayidle = {
+{
+  pkgs,
+  osConfig,
+  lib,
+  ...
+}: {
+  services.swayidle = lib.mkIf osConfig.modules.desktop.niri.enable {
     enable = true;
     # systemdTarget = "graphical-session.target";
     events = [
