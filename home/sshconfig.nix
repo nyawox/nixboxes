@@ -32,6 +32,16 @@
           RemoteCommand = "systemctl default";
         };
       };
+      "rockluks" = {
+        hostname = "192.168.0.185";
+        user = "root";
+        port = 42420;
+        checkHostIP = false;
+        extraOptions = {
+          RequestTTY = "force";
+          RemoteCommand = "systemctl default";
+        };
+      };
       "router" = {
         hostname = "192.168.0.160";
         user = "root";
