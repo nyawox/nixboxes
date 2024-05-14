@@ -69,6 +69,9 @@
       # magit
       magit = "TERM=xterm-direct emacsclient -nw --eval '(magit-status)'";
 
+      # lix
+      lix = "nix";
+
       # run balena etcher
       etcher = "NIXPKGS_ALLOW_INSECURE=1 nix run nixpkgs#etcher --impure";
 
