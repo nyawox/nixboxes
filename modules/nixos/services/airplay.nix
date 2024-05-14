@@ -40,20 +40,20 @@ in {
       15245
       15246
     ];
-  };
-  environment = {
-    systemPackages = [
-      pkgs.uxplay
-    ];
-    shellAliases = {
-      airplay = "journalctl --user -xfeu airplay.service";
+    environment = {
+      systemPackages = [
+        pkgs.uxplay
+      ];
+      shellAliases = {
+        airplay = "journalctl --user -xfeu airplay.service";
+      };
+      persistence."/persist".users."${username}".files = mkIf config.modules.sysconf.impermanence.enable [".config/.uxplay.register"];
+      etc."uxplayrc".text = ''
+        p 15244
+        nh
+        pin
+        fs
+      '';
     };
-    persistence."/persist".users."${username}".files = mkIf config.modules.sysconf.impermanence.enable [".config/.uxplay.register"];
-    etc."uxplayrc".text = ''
-      p 15244
-      nh
-      pin
-      fs
-    '';
   };
 }
