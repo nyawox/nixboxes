@@ -79,17 +79,19 @@ in {
       '';
       firewall.allowedTCPPorts = [5050];
     };
-    environment.shellAliases = {
-      winstart = "sudo systemctl start podman-windows";
-      winstop = "sudo systemctl stop podman-windows";
-      winrestart = "sudo systemctl restart podman-windows";
-      winstatus = "systemctl status podman-windows";
-      winlog = "journalctl -feu podman-windows";
-      winlogs = "journalctl -xeu podman-windows";
-      winview = "xdg-open http://127.0.0.1:8006/";
-      winrdp = "remmina -c rdp://docker@127.0.0.1:3389";
+    environment = {
+      shellAliases = {
+        winstart = "sudo systemctl start podman-windows";
+        winstop = "sudo systemctl stop podman-windows";
+        winrestart = "sudo systemctl restart podman-windows";
+        winstatus = "systemctl status podman-windows";
+        winlog = "journalctl -feu podman-windows";
+        winlogs = "journalctl -xeu podman-windows";
+        winview = "xdg-open http://127.0.0.1:8006/";
+        winrdp = "remmina -c rdp://docker@127.0.0.1:3389";
+      };
+      persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable ["/var/lib/${app}"];
+      persistence."/persist".users."${username}".directories = mkIf config.modules.sysconf.impermanence.enable ["winshare"];
     };
-    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable ["/var/lib/${app}"];
-    environment.persistence."/persist".users."${username}".directories = mkIf config.modules.sysconf.impermanence.enable ["winshare"];
   };
 }

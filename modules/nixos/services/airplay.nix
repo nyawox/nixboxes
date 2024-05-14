@@ -17,12 +17,6 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    environment.systemPackages = [
-      pkgs.uxplay
-    ];
-    environment.shellAliases = {
-      airplay = "journalctl --user -xfeu airplay.service";
-    };
     systemd.user.services.airplay = {
       enable = true;
       description = "AirPlay";
@@ -46,12 +40,20 @@ in {
       15245
       15246
     ];
-    environment.etc."uxplayrc".text = ''
+  };
+  environment = {
+    systemPackages = [
+      pkgs.uxplay
+    ];
+    shellAliases = {
+      airplay = "journalctl --user -xfeu airplay.service";
+    };
+    persistence."/persist".users."${username}".files = mkIf config.modules.sysconf.impermanence.enable [".config/.uxplay.register"];
+    etc."uxplayrc".text = ''
       p 15244
       nh
       pin
       fs
     '';
-    environment.persistence."/persist".users."${username}".files = mkIf config.modules.sysconf.impermanence.enable [".config/.uxplay.register"];
   };
 }
