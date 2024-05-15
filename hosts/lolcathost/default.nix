@@ -96,6 +96,7 @@
     gnome-disks.enable = true;
     adb.enable = true;
     ns-usbloader.enable = true;
+    honkers-railway-launcher.enable = true;
     kdeconnect = {
       enable = true;
       # broken

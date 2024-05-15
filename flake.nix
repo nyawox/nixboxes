@@ -95,6 +95,10 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     srvos = {
       url = "github:nix-community/srvos";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -252,6 +256,7 @@
               inputs.nur.nixosModules.nur
               inputs.chaotic.nixosModules.default
               inputs.nix-flatpak.nixosModules.nix-flatpak
+              inputs.aagl.nixosModules.default
             ];
           };
         };

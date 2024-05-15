@@ -68,6 +68,7 @@ in {
           ".local/state/wireplumber"
           ".local/share/direnv"
           ".local/share/zoxide"
+          ".local/share/honkers-railway-launcher"
           ".wine"
           ".cache"
           ".steam"
