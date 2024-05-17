@@ -29,6 +29,8 @@ _: {
     size = "256M";
   };
 
+  security.lockKernelModules = false; # fix podman netlink issue
+
   # messes up with vnc
   psilocybin.enable = false;
 
