@@ -18,7 +18,7 @@ _: {
 
   tmpfsroot = {
     enable = true;
-    size = "256M";
+    size = "512M";
   };
   disk = {
     encryption.enable = true;
