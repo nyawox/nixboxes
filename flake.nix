@@ -44,6 +44,10 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    arion = {
+      url = "github:hercules-ci/arion";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -257,6 +261,7 @@
               inputs.chaotic.nixosModules.default
               inputs.nix-flatpak.nixosModules.nix-flatpak
               inputs.aagl.nixosModules.default
+              inputs.arion.nixosModules.arion
             ];
           };
         };

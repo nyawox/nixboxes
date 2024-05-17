@@ -31,7 +31,7 @@
       cosmic.enable = true;
     };
     virtualisation.enable = true;
-    virtualisation.podman.enable = true;
+    virtualisation.arion.enable = true;
   };
 
   sops.secrets."switch" = {
