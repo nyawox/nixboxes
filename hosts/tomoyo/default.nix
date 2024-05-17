@@ -8,14 +8,12 @@ _: {
       tailscale.enable = true;
       homepage.enable = true;
       searxng.enable = true;
-      # Requires podman
       linkding.enable = true;
     };
     desktop = {
       pipewire.enable = false;
       plymouth.enable = false;
     };
-    virtualisation.podman.enable = true;
   };
 
   tmpfsroot = {
