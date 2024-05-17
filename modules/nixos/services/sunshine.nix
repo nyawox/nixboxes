@@ -11,9 +11,6 @@ with lib; let
     extraPkgs = pkgs:
       with pkgs; [
         heroic
-        lutris
-        ryujinx
-        # cemu
         prismlauncher
         wineWowPackages.stable
         gamescope

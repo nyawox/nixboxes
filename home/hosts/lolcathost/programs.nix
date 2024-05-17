@@ -46,7 +46,6 @@
     efibootmgr
     gimp
     pavucontrol
-    ryujinx
     btrfs-progs
     progress
     parted
