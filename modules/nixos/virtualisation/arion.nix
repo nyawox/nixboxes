@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  username,
   ...
 }:
 with lib; let
@@ -25,8 +26,13 @@ in {
       ];
       persistence."/persist" = {
         directories = mkIf config.modules.sysconf.impermanence.enable [
-          "/var/lib/podman"
+          "/var/lib/containers"
         ];
+        users."${username}" = {
+          directories = mkIf config.modules.sysconf.impermanence.enable [
+            ".local/share/containers"
+          ];
+        };
       };
     };
   };
