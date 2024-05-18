@@ -64,8 +64,10 @@ in {
           # custom iso
           "/home/${username}/Downloads/iso/tiny11.iso:/storage/custom.iso"
         ];
+        stop_grace_period = "2m";
       };
     };
+    systemd.services.arion-windows.wantedBy = lib.mkForce []; # Don't autostart
     systemd.tmpfiles.rules = ["d /var/lib/windows ' 0700 root root - -"];
     networking = {
       nftables.enable = lib.mkForce false;
@@ -73,7 +75,6 @@ in {
         iptables -A INPUT -p tcp --destination-port 53 -s ${ipSubnet} -j ACCEPT
         iptables -A INPUT -p udp --destination-port 53 -s ${ipSubnet} -j ACCEPT
       '';
-      firewall.allowedTCPPorts = [5050];
     };
     environment = {
       shellAliases = {

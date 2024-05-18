@@ -30,8 +30,8 @@
       # polkit.enable = true;
       cosmic.enable = true;
     };
-    virtualisation.enable = true;
-    virtualisation.arion.enable = true;
+    virtualisation.waydroid.enable = true;
+    virtualisation.waydroid.rdp = true;
   };
 
   sops.secrets."switch" = {

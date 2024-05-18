@@ -18,8 +18,6 @@ in {
   };
   config = mkIf cfg.enable {
     virtualisation = {
-      waydroid.enable = true;
-      lxd.enable = false;
       libvirtd = {
         enable = true;
         onBoot = "ignore";
@@ -215,22 +213,6 @@ in {
         };
       };
 
-      etc."gbinder.d/waydroid.conf".source =
-        lib.mkForce
-        (pkgs.writeText "waydroid.conf" ''
-          [Protocol]
-          /dev/binder = aidl3
-          /dev/vndbinder = aidl3
-          /dev/hwbinder = hidl
-
-          [ServiceManager]
-          /dev/binder = aidl3
-          /dev/vndbinder = aidl3
-          /dev/hwbinder = hidl
-
-          [General]
-          ApiLevel = 30
-        '');
       etc."sysctl.d/90-max_map_count.conf".text = ''
         vm.max_map_count=1048576
       '';
@@ -242,24 +224,11 @@ in {
     boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
     environment.persistence."/persist".directories = lib.mkIf config.modules.sysconf.impermanence.enable [
       {
-        directory = "/var/lib/waydroid";
-        user = "root";
-        group = "root";
-        mode = "756";
-      }
-      {
-        directory = "/var/lib/lxc";
-        user = "root";
-        group = "root";
-        mode = "756";
-      }
-      {
         directory = "/var/lib/libvirt";
         user = "root";
         group = "root";
         mode = "756";
       }
     ];
-    environment.persistence."/persist".users."${username}".directories = mkIf config.modules.sysconf.impermanence.enable [".local/share/waydroid"];
   };
 }
