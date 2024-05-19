@@ -25,11 +25,6 @@ in {
         fsType = "nfs";
         options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "async"];
       };
-      "/var/backup" = mkIf cfg.backups {
-        device = "lolcathost.nyaa.nixlap.top:/var/backup";
-        fsType = "nfs";
-        options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "async"];
-      };
     };
   };
 }

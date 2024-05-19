@@ -33,6 +33,7 @@ in {
         }
         "/etc/NetworkManager/system-connections"
         "/tmp"
+        "/root/.ssh"
       ];
       files = [
         "/etc/machine-id"
