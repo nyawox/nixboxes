@@ -58,7 +58,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo "### Formatting hard drive with disko ###"
-sudo nix run github:nix-community/disko -- --mode zap_create_mount --flake .#"${host}"
+sudo nix --extra-experimental-features "nix-command flakes" run github:nix-community/disko -- --mode zap_create_mount --flake github:nyawox/nixboxes#"${host}"
 
 # Create the directory where sshd expects to find the host keys
 install -d -m755 "/mnt/persist/etc/ssh"

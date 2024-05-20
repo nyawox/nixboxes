@@ -42,10 +42,10 @@ in {
             level-seed = "10292992";
           };
           symlinks = {
-            "server-icon.png" = pkgs.fetchurl {
-              url = "https://cdn.discordapp.com/attachments/1158393833034362943/1178081388780585000/server-icon.png?ex=6574d8ca&is=656263ca&hm=17e8ec689a89dd9cfb2767f2b7444a796771b35e7afe41310c1d41ceba6cbb5d&";
-              sha256 = "1mmy548qrihys20wxrlcb043mrw3904arnir6wm7n4ldmkkj88qc";
-            };
+            # "server-icon.png" = pkgs.fetchurl {
+            #   url = "https://cdn.discordapp.com/attachments/1158393833034362943/1178081388780585000/server-icon.png?ex=6574d8ca&is=656263ca&hm=17e8ec689a89dd9cfb2767f2b7444a796771b35e7afe41310c1d41ceba6cbb5d&";
+            #   sha256 = "1mmy548qrihys20wxrlcb043mrw3904arnir6wm7n4ldmkkj88qc";
+            # };
           };
         };
       };

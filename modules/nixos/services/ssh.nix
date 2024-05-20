@@ -45,7 +45,7 @@ in {
     };
     # make accesible from my desktop
     users.users."${username}".openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9QP7hABDQ+esrZnDhQulFfrhfuT8cPmREYvtPRzjF4 93813719+nyawox@users.noreply.github.com"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID5qlsDn/KSu4YvgGjyY4wZJylWpMCjbXoDBxyKp50uT nyawox.git@gmail.com"
     ];
     # Smoother ssh
     programs.mosh.enable = true;

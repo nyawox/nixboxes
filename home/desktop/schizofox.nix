@@ -151,8 +151,6 @@ in {
       "uc.tweak.floating-tabs" = true;
       "uc.tweak.rounded-corners" = true;
       #####
-      # Fix big fonts in 1080p screen
-      "layout.css.devPixelsPerPx" = lib.mkIf osConfig.modules.desktop.niri.enable 0.75;
       # Downloading random files from http website is super annoing with this.
       "dom.block_download_insecure" = false;
 

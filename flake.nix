@@ -87,10 +87,6 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    niri = {
-      url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -183,7 +179,7 @@
           #       # nixpkgs.hostPlatform = "x86_64-linux";
           #       nixpkgs.hostPlatform = "aarch64-linux";
           #       users.users.nixos.openssh.authorizedKeys.keys = [
-          #         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP9QP7hABDQ+esrZnDhQulFfrhfuT8cPmREYvtPRzjF4 93813719+nyawox@users.noreply.github.com"
+          #         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID5qlsDn/KSu4YvgGjyY4wZJylWpMCjbXoDBxyKp50uT nyawox.git@gmail.com"
           #       ];
           #       environment.systemPackages = with pkgs; [
           #         rsync
@@ -209,7 +205,6 @@
                 inputs.emacs-overlay.overlay
                 inputs.berberman.overlays.default
                 inputs.nix-minecraft.overlay
-                inputs.niri.overlays.niri
                 (
                   final: prev: {
                     deploy-rs = {
@@ -264,7 +259,6 @@
               inputs.disko.nixosModules.disko
               inputs.nixtendo-switch.nixosModules.nixtendo-switch
               inputs.psilocybin.nixosModules.psilocybin
-              inputs.niri.nixosModules.niri
               inputs.nixos-cosmic.nixosModules.default
               inputs.stylix.nixosModules.stylix
               inputs.nix-minecraft.nixosModules.minecraft-servers
@@ -290,8 +284,6 @@
           desktop = {...}: {
             imports = [
               ./home/desktop
-              ./home/desktop/niri
-              ./home/desktop/waybar
               ./home/files.nix
               ./home/xdg.nix
               inputs.schizofox.homeManagerModule

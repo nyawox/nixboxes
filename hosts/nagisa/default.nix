@@ -15,9 +15,7 @@
       nfs-client.nixboxes = true;
     };
     desktop = {
-      niri.enable = true;
-      greetd.enable = true;
-      swaylock.enable = true;
+      cosmic.enable = true;
       polkit.enable = true;
     };
   };
