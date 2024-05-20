@@ -1539,11 +1539,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1715957265,
-        "narHash": "sha256-JcCzkLK3YfUyqXvS5yotgxOCKLBItlntbli2nYHQyAE=",
+        "lastModified": 1716182869,
+        "narHash": "sha256-DI+F9TzEQgUhs6NamfRkFlAG6Vw0uEdcSXJOidjnnDU=",
         "owner": "lilyinstarlight",
         "repo": "nixos-cosmic",
-        "rev": "d7ae6acbc012a13d2d1439e9c8d84ed8e2dbc859",
+        "rev": "ad060778b0547b2fb9800c3698d71f4819472d42",
         "type": "github"
       },
       "original": {

@@ -12,5 +12,6 @@ with lib; {
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1"; # Disables window decorations on Qt applications
       GTK_THEME = config.gtk.theme.name;
     };
+    xdg.configFile."cosmic-comp.ron".source = ./cosmic-comp.ron;
   };
 }

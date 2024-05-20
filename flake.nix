@@ -284,6 +284,7 @@
           desktop = {...}: {
             imports = [
               ./home/desktop
+              ./home/desktop/cosmic
               ./home/files.nix
               ./home/xdg.nix
               inputs.schizofox.homeManagerModule
