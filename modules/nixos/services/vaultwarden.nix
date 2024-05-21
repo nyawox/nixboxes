@@ -78,6 +78,7 @@ in {
     environment.persistence."/persist" = mkIf cfg.enable {
       directories = mkIf config.modules.sysconf.impermanence.enable [
         "/var/lib/bitwarden_rs"
+        "/var/backup/bitwarden_rs"
       ];
     };
   };

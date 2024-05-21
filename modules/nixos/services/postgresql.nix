@@ -67,6 +67,7 @@ in {
     };
     environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
       "/var/lib/postgresql"
+      "/var/backup/postgresql"
     ];
   };
 }

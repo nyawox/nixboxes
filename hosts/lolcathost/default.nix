@@ -184,12 +184,6 @@
         group = "users";
         mode = "757";
       }
-      {
-        directory = "/var/backup";
-        user = "${username}";
-        group = "users";
-        mode = "757";
-      }
     ];
     users."${username}" = {
       directories = [

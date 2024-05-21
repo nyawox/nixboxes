@@ -18,7 +18,6 @@ in {
     services.nfs.server.enable = true;
     services.nfs.server.exports = ''
       /nixboxes *(rw,async,no_subtree_check)
-      /var/backup *(rw,async,no_subtree_check,no_root_squash)
     '';
   };
 }
