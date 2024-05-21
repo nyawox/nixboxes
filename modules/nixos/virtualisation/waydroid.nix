@@ -40,12 +40,7 @@ in {
           ApiLevel = 30
         '');
       persistence."/persist".directories = lib.mkIf config.modules.sysconf.impermanence.enable [
-        {
-          directory = "/var/lib/waydroid";
-          user = "root";
-          group = "root";
-          mode = "756";
-        }
+        "/var/lib/waydroid"
         {
           directory = "/var/lib/lxc";
           user = "root";
