@@ -75,6 +75,7 @@
     gex
     inputs.nixpkgs-yuzu.legacyPackages.${pkgs.system}.citra
     remmina
+    evince
   ];
   services.flatpak.packages = [
     "org.telegram.desktop"
