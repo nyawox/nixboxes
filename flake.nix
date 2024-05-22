@@ -179,7 +179,7 @@
           #       # nixpkgs.hostPlatform = "x86_64-linux";
           #       nixpkgs.hostPlatform = "aarch64-linux";
           #       users.users.nixos.openssh.authorizedKeys.keys = [
-          #         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID5qlsDn/KSu4YvgGjyY4wZJylWpMCjbXoDBxyKp50uT nyawox.git@gmail.com"
+          #         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ+HhlLh3dtTBvWN6WO8gHma2BoGupqhjVuy2raQ+JS2 nyawox.git@gmail.com"
           #       ];
           #       environment.systemPackages = with pkgs; [
           #         rsync
