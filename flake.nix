@@ -218,7 +218,7 @@
             };
             # Enable flakes
             nix = {
-              package = pkgs.lix;
+              # package = pkgs.lix;
               settings = {
                 experimental-features = ["nix-command" "flakes" "repl-flake"];
                 trusted-users = ["@wheel"];
