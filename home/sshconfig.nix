@@ -12,6 +12,10 @@
       UpdateHostKeys yes
     '';
     matchBlocks = {
+      "phone" = {
+        hostname = "192.168.0.132";
+        user = "root";
+      };
       "vultrluks" = {
         hostname = "149.28.98.185";
         user = "root";

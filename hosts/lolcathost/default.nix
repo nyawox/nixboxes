@@ -124,7 +124,7 @@
       options kvm ignore_msrs=1
     '';
 
-    binfmt.emulatedSystems = ["aarch64-linux"];
+    # binfmt.emulatedSystems = ["aarch64-linux"];
 
     kernelParams = [
       "allow_discards"
