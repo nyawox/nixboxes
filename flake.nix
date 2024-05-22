@@ -191,7 +191,7 @@
         };
 
         nixosModules = {
-          common = {pkgs, ...}: {
+          common = {...}: {
             nixpkgs = {
               config = {
                 allowUnfree = true;

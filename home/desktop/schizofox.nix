@@ -1,8 +1,6 @@
 {
   pkgs,
   config,
-  lib,
-  osConfig,
   ...
 }: let
   exturl = "https://addons.mozilla.org/firefox/downloads/latest";
