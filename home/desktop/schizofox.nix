@@ -22,19 +22,23 @@ in {
 
     search = {
       defaultSearchEngine = "searx";
-      removeEngines = ["Brave" "Bing" "Amazon.com" "eBay" "Twitter" "Wikipedia"];
-      searxRandomizer = {
-        enable = true;
-      };
-      # addEngines = [
-      #   {
-      #     Name = "Etherscan";
-      #     Description = "Checking balances";
-      #     Alias = "!eth";
-      #     Method = "GET";
-      #     URLTemplate = "https://etherscan.io/search?f=0&q={searchTerms}";
-      #   }
-      # ];
+      removeEngines = ["Brave" "Bing" "Amazon.com" "eBay" "Twitter" "Wikipedia (en)" "Google" "DuckDuckGo" "LibRedirect"];
+      addEngines = [
+        {
+          Name = "searx";
+          Description = "selfhosted searxng";
+          Alias = "!sx";
+          Method = "GET";
+          URLTemplate = "https://search.nixlap.top/search?q={searchTerms}";
+        }
+        {
+          Name = "pp";
+          Description = "Perplexity";
+          Alias = "pp";
+          Method = "GET";
+          URLTemplate = "https://www.perplexity.ai/search?q={searchTerms}";
+        }
+      ];
     };
 
     security = {
@@ -80,6 +84,7 @@ in {
         "{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7}".install_url = "${exturl}/user-agent-string-switcher/latest.xpi";
         "firefox-addon@pronoundb.org".install_url = "${exturl}/pronoundb/latest.xpi";
         "{a218c3db-51ef-4170-804b-eb053fc9a2cd}".install_url = "${exturl}/qr-code-address-bar/latest.xpi";
+        "searxng-favicons@micahmo.com".install_url = "${exturl}/searxng-favicons/latest.xpi";
         # "userchrome-toggle@joolee.nl".install_url = "${exturl}/userchrome-toggle/latest.xpi";
         # "ATBC@EasonWong".install_url = "${exturl}/adaptive-tab-bar-colour/latest.xpi";
       };
