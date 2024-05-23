@@ -23,23 +23,12 @@ in {
           url = "https://illust8.com/wp-content/uploads/2019/10/cute_purple_cat_5021.png";
           sha256 = "1hdwk9qw72z0jdjf6igx2rwwzc2x3nw804yy2bd3cr3y67rinjg4";
         };
-        favicon = pkgs.fetchurl {
-          url = "https://cdn-icons-png.flaticon.com/512/3468/3468377.png";
-          sha256 = "16nxg7dkj1j3sypgi5q1a17vxkgiiyhcvnmwzgpiwfjvv6skxji5";
-        };
-        favicon-svg = pkgs.fetchurl {
-          url = "https://www.svgrepo.com/show/231989/cat.svg";
-          sha256 = "14qp878n23i1bpc4s5496nql6sh5nkz78bn4m3kc5zx3h2w9l5h4";
-        };
       in {
         postInstall = lib.strings.concatStrings [
           oldAttrs.postInstall
           ''
             # Replace logo
             cp ${logo} $out/${pkgs.python3.sitePackages}/searx/static/themes/simple/img/searxng.png
-            # Replace favicon
-            cp ${favicon} $out/${pkgs.python3.sitePackages}/searx/static/themes/simple/img/favicon.png
-            cp ${favicon-svg} $out/${pkgs.python3.sitePackages}/searx/static/themes/simple/img/favicon.svg
           ''
         ];
       });
@@ -161,7 +150,7 @@ in {
           bind_address = "0.0.0.0";
           secret_key = "@SEARXNG_SECRET@";
           base_url = "https://search.nixlap.top";
-          public_instance = true;
+          public_instance = false;
           image_proxy = false;
         };
         redis = {
