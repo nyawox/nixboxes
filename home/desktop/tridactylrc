@@ -1,4 +1,26 @@
 " -*- mode: vimrc -*-
+" init searchurls
+setnull searchurls.pp
+setnull searchurls.searx
+set searchurls {"pp":"https://www.perplexity.ai/search?q=","searx":"https://search.nixlap.top/search?q="}
+setnull searchurls.googlelucky
+setnull searchurls.scholar
+setnull searchurls.googleuk
+setnull searchurls.bing
+setnull searchurls.duckduckgo
+setnull searchurls.yahoo
+setnull searchurls.twitter
+setnull searchurls.wikipedia
+setnull searchurls.youtube
+setnull searchurls.amazon
+setnull searchurls.amazonuk
+setnull searchurls.startpage
+setnull searchurls.github
+setnull searchurls.cnrtl
+setnull searchurls.osm
+setnull searchurls.mdn
+setnull searchurls.gentoo_wiki
+setnull searchurls.qwant
 bind <S-ArrowDown> tabnext
 bind <S-ArrowUp> tabprev
 bind <S-ArrowLeft> back
