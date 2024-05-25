@@ -18,6 +18,7 @@
     vesktop
     # webcord-vencord
     element-desktop
+    telegram-desktop
     youtube-music
     cider
     transmission-gtk
@@ -77,7 +78,7 @@
     remmina
     evince
   ];
-  services.flatpak.packages = [
-    "org.telegram.desktop"
-  ];
+  # services.flatpak.packages = [
+  #   "org.telegram.desktop"
+  # ];
 }
