@@ -47,7 +47,6 @@ in {
           "Documents"
           "Videos"
           "Projects"
-          "Games"
           "Public"
           {
             directory = ".gnupg";
@@ -69,10 +68,8 @@ in {
           ".local/state/wireplumber"
           ".local/share/direnv"
           ".local/share/zoxide"
-          ".local/share/honkers-railway-launcher"
           ".wine"
           ".cache"
-          ".steam"
           ".config/vesktop"
           ".config/uGet"
           ".config/emacs"
@@ -83,9 +80,6 @@ in {
         ];
         files = [
           ".config/pulse/cookie"
-          ".local/share/PrismLauncher/prismlauncher.cfg"
-          ".local/share/PrismLauncher/accounts.json"
-          ".local/share/PrismLauncher/metacache"
         ];
       };
     };

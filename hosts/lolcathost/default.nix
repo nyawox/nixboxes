@@ -187,8 +187,10 @@
     ];
     users."${username}" = {
       directories = [
+        "Games"
         "PopTracker"
         "invokeai"
+        ".local/share/honkers-railway-launcher"
         ".local/share/Steam"
         ".local/share/yuzu"
         ".local/share/Cemu"
@@ -205,6 +207,12 @@
         ".config/lutris"
         ".config/remmina"
         ".config/Element"
+        ".steam"
+      ];
+      files = [
+        ".local/share/PrismLauncher/prismlauncher.cfg"
+        ".local/share/PrismLauncher/accounts.json"
+        ".local/share/PrismLauncher/metacache"
       ];
     };
   };
