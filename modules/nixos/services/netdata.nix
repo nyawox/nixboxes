@@ -39,6 +39,7 @@ in {
   config = mkIf cfg.enable {
     sops.secrets.netdata-ntfy = mkIf cfg.receiver {
       sopsFile = ../../../secrets/netdata-ntfy.env;
+      owner = "netdata";
       format = "dotenv";
     };
     services.netdata = {
@@ -92,9 +93,6 @@ in {
         };
       };
     };
-    environment.systemPackages = [
-      pkgs.jq
-    ];
     environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
       "/var/lib/netdata"
     ];
