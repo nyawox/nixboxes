@@ -28,7 +28,7 @@ in {
         };
       };
     };
-    environment.persistence."/persist".directories = [
+    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
       "/var/lib/flatpak"
     ];
   };
