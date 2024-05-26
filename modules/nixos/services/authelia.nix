@@ -17,20 +17,22 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    sops.secrets.authelia-jwt = {
-      sopsFile = ../../../secrets/authelia-jwt.psk;
-      owner = config.systemd.services.authelia-main.serviceConfig.User;
-      format = "binary";
-    };
-    sops.secrets.authelia-storage = {
-      sopsFile = ../../../secrets/authelia-storage.psk;
-      owner = config.systemd.services.authelia-main.serviceConfig.User;
-      format = "binary";
-    };
-    sops.secrets.authelia-session = {
-      sopsFile = ../../../secrets/authelia-session.psk;
-      owner = config.systemd.services.authelia-main.serviceConfig.User;
-      format = "binary";
+    sops.secrets = {
+      authelia-jwt = {
+        sopsFile = ../../../secrets/authelia-jwt.psk;
+        owner = config.systemd.services.authelia-main.serviceConfig.User;
+        format = "binary";
+      };
+      authelia-storage = {
+        sopsFile = ../../../secrets/authelia-storage.psk;
+        owner = config.systemd.services.authelia-main.serviceConfig.User;
+        format = "binary";
+      };
+      authelia-session = {
+        sopsFile = ../../../secrets/authelia-session.psk;
+        owner = config.systemd.services.authelia-main.serviceConfig.User;
+        format = "binary";
+      };
     };
     services.authelia.instances.main = {
       enable = true;
