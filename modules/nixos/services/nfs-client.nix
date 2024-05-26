@@ -12,10 +12,6 @@ in {
         type = types.bool;
         default = false;
       };
-      backups = mkOption {
-        type = types.bool;
-        default = false;
-      };
     };
   };
   config = {
