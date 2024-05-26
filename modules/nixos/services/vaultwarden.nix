@@ -33,22 +33,6 @@ in {
           websocketEnabled = true;
         };
       };
-      restic.backups.vaultwarden-local = mkIf cfg.backup {
-        initialize = true;
-        paths = ["/var/lib/bitwarden_rs"];
-        passwordFile = config.sops.secrets.restic-vaultwarden-pw.path;
-        repository = "/var/backup/bitwarden_rs";
-        timerConfig = {
-          # backup every 1d
-          OnUnitActiveSec = "1d";
-        };
-        # keep 7 daily, 5 weekly, and 10 annual backups
-        pruneOpts = [
-          "--keep-daily 7"
-          "--keep-weekly 5"
-          "--keep-yearly 10"
-        ];
-      };
       restic.backups.vaultwarden = mkIf cfg.backup {
         initialize = true;
         paths = ["/var/lib/bitwarden_rs"];
@@ -78,7 +62,6 @@ in {
     environment.persistence."/persist" = mkIf cfg.enable {
       directories = mkIf config.modules.sysconf.impermanence.enable [
         "/var/lib/bitwarden_rs"
-        "/var/backup/bitwarden_rs"
       ];
     };
   };
