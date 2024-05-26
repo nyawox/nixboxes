@@ -13,6 +13,10 @@
     };
     services = {
       tailscale.enable = true;
+      netdata = {
+        enable = true;
+        apikey = "2e117745-b8b7-4f7b-8b50-e4df187e36ea";
+      };
       avahi.enable = true;
       nfs-server.enable = true;
       sunshine.enable = true;

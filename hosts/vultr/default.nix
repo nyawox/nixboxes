@@ -6,6 +6,10 @@ _: {
     };
     services = {
       tailscale.enable = true;
+      netdata = {
+        enable = true;
+        apikey = "85abac58-b907-45ed-be65-c52856a2d4c8";
+      };
       acme.enable = true;
       caddy.enable = true;
       headscale.enable = true;

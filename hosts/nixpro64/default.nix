@@ -16,8 +16,12 @@
       plymouth.enable = false;
     };
     services = {
-      nfs-client.backups = true;
       tailscale.enable = true;
+      netdata = {
+        enable = true;
+        apikey = "a73b169d-3a46-46d1-b8d5-48bd53933f9a";
+      };
+      authelia.enable = true;
       avahi.enable = true;
       home-assistant.enable = true;
       postgresql.enable = true;

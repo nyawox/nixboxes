@@ -70,6 +70,30 @@ in {
             ''
           ];
         };
+        "auth.nixlap.top" = {
+          useACMEHost = "nixlap.top";
+          extraConfig = lib.strings.concatStrings [
+            expire-header
+            encode
+            ''
+              reverse_proxy http://nixpro64.nyaa.nixlap.top:9150
+            ''
+          ];
+        };
+        "netdata.nixlap.top" = {
+          useACMEHost = "nixlap.top";
+          extraConfig = lib.strings.concatStrings [
+            expire-header
+            encode
+            ''
+              forward_auth nixpro64.nyaa.nixlap.top:9150 {
+              	uri /api/verify?rd=https://auth.nixlap.top
+              	copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
+              }
+               reverse_proxy http://tomoyo.nyaa.nixlap.top:19999
+            ''
+          ];
+        };
       };
     };
   };

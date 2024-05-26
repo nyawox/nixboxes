@@ -9,6 +9,11 @@ _: {
       homepage.enable = true;
       searxng.enable = true;
       linkding.enable = true;
+      netdata = {
+        enable = true;
+        receiver = true;
+        apikey = "c96533b8-4709-48ea-862e-cca0871b72a4";
+      };
     };
     desktop = {
       pipewire.enable = false;

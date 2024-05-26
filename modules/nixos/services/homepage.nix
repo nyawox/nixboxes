@@ -235,6 +235,12 @@ in {
                 icon = "https://lh3.googleusercontent.com/bp6jwFNA7tzooOc6OfnBsfy2D5SIDomN1imuF2WZqlZiJUU0cHC8ilZUSUuDQ69wb5UjkYnK6LJoBbk174uXTijO8s8=s60";
               };
             }
+            {
+              netdata = {
+                href = "https://netdata.nixlap.top/";
+                icon = "https://dev-to-uploads.s3.amazonaws.com/uploads/organization/profile_image/3293/0fc83944-0e3d-438e-bc6f-7d187e7562d7.png";
+              };
+            }
           ];
         }
       ];
