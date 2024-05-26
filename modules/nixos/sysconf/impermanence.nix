@@ -31,6 +31,13 @@ in {
           group = "colord";
           mode = "u=rwx,g=rx,o=";
         }
+        # Add this globally to prevent permission issues
+        {
+          directory = "/var/lib/private/";
+          user = "root";
+          group = "root";
+          mode = "700";
+        }
         "/etc/NetworkManager/system-connections"
         "/tmp"
         "/root/.ssh"

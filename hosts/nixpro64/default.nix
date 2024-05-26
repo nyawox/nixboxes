@@ -21,6 +21,7 @@
         enable = true;
         apikey = "a73b169d-3a46-46d1-b8d5-48bd53933f9a";
       };
+      ntfy-sh.enable = true;
       authelia.enable = true;
       avahi.enable = true;
       home-assistant.enable = true;

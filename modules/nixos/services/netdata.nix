@@ -1,3 +1,5 @@
+# sudo ntfy user add (user)
+# sudo ntfy access (topic) (user) rw
 {
   config,
   lib,
@@ -35,8 +37,13 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    sops.secrets.netdata-ntfy = mkIf cfg.receiver {
+      sopsFile = ../../../secrets/netdata-ntfy.env;
+      format = "dotenv";
+    };
     services.netdata = {
       enable = true;
+      configDir."health_alarm_notify.conf" = mkIf cfg.receiver config.sops.secrets.netdata-ntfy.path;
       configDir."stream.conf" = let
         mkChildNode = apiKey: allowFrom: ''
           [${apiKey}]
