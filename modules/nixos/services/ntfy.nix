@@ -22,6 +22,7 @@ in {
       settings = {
         listen-http = ":2521";
         base-url = "https://ntfy.nixlap.top";
+        upstream-base-url = "https://ntfy.sh"; # required to send ios app push notification https://docs.ntfy.sh/known-issues/
         auth-default-access = "deny-all";
       };
     };
