@@ -15,7 +15,6 @@
     nix-prefetch-git
     cava
     gnome.nautilus
-    telegram-desktop
   ];
   # services.flatpak.packages = [
   #   "org.telegram.desktop"

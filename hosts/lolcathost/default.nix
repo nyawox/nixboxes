@@ -206,6 +206,7 @@
         ".local/share/PrismLauncher/logs"
         ".local/share/PrismLauncher/translations"
         ".local/share/PrismLauncher/meta"
+        ".local/share/TelegramDesktop"
         ".config/rpcs3"
         ".config/heroic"
         ".config/lutris"
