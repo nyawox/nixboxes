@@ -174,5 +174,5 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = args: import ./outputs.nix args;
+  outputs = args: import ./modules/outputs.nix args;
 }
