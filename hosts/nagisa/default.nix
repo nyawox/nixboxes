@@ -39,7 +39,10 @@
     enable = true;
   };
   disk.device = "/dev/sda";
-  psilocybin.jis = true;
+  psilocybin = {
+    jis = true;
+    devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
+  };
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 

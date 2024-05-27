@@ -102,6 +102,7 @@
       "compress=zstd"
     ];
   };
+  psilocybin.devices = [ "/dev/input/by-id/usb-Topre_Corporation_HHKB_Professional-event-kbd" ];
 
   gtk.iconCache.enable = true;
 
