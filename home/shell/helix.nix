@@ -3,6 +3,9 @@
   inputs,
   ...
 }: {
+  home.packages = with pkgs; [
+    markdown-oxide # markdown language server
+  ];
   programs.helix = {
     enable = true;
     package = inputs.helix.packages.${pkgs.system}.helix;
