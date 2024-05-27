@@ -66,6 +66,7 @@ in
           ".var/app"
           ".local/share/direnv"
           ".local/share/zoxide"
+          ".local/share/gvfs-metadata"
           ".wine"
           ".cache"
           ".config/vesktop"
