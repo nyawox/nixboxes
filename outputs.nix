@@ -64,13 +64,7 @@ inputs.flake-parts.lib.mkFlake {inherit inputs;} {
     nixosModules = {
       common = {pkgs, ...}: {
         nixpkgs = {
-          config = {
-            allowUnfree = true;
-            permittedInsecurePackages = [
-              # https://github.com/NixOS/nixpkgs/issues/269713
-              # "openssl-1.1.1w"
-            ];
-          };
+          config.allowUnfree = true;
           overlays = [
             inputs.nur.overlay
             inputs.emacs-overlay.overlay
