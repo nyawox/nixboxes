@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   username,
   ...
 }:
@@ -27,44 +28,45 @@ in
       pulse.enable = true;
       # If you want to use JACK applications, uncomment this
       #jack.enable = true;
-      wireplumber.enable = true;
-    };
-    environment.etc = {
-      # "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
-      #   bluez_monitor.properties = {
-      #     ["bluez5.enable-sbc-xq"] = true,
-      #     ["bluez5.enable-msbc"] = true,
-      #     ["bluez5.enable-hw-volume"] = true,
-      #     ["bluez5.codecs"] = "[ sbc sbc_xq ]"
-      #      }
-      # '';
-      # Low latency
-      # "pipewire/pipewire.conf.d/92-low-latency.conf".text = ''
-      #   context.properties = {
-      #     default.clock.rate = 48000
-      #     default.clock.quantum = 32
-      #     default.clock.min-quantum = 32
-      #     default.clock.max-quantum = 32
-      #   }
-      # '';
-      # "pipewire/pipewire-pulse.d/92-low-latency.conf".source = json.generate "92-low-latency.conf" {
-      #   context.modules = [
-      #     {
-      #       name = "libpipewire-module-protocol-pulse";
-      #       args = {
-      #         pulse.min.req = "32/48000";
-      #         pulse.default.req = "32/48000";
-      #         pulse.max.req = "32/48000";
-      #         pulse.min.quantum = "32/48000";
-      #         pulse.max.quantum = "32/48000";
-      #       };
-      #     }
-      #   ];
-      #   stream.properties = {
-      #     node.latency = "32/48000";
-      #     resample.quality = 1;
-      #   };
-      # };
+      extraConfig.pipewire = {
+        "92-low-latency.conf" = {
+          context.properties = {
+            default.clock.rate = 48000;
+            default.clock.quantum = 32;
+            default.clock.min-quantum = 32;
+            default.clock.max-quantum = 32;
+          };
+          context.modules = [
+            {
+              name = "libpipewire-module-protocol-pulse";
+              args = {
+                pulse.min.req = "32/48000";
+                pulse.default.req = "32/48000";
+                pulse.max.req = "32/48000";
+                pulse.min.quantum = "32/48000";
+                pulse.max.quantum = "32/48000";
+              };
+            }
+          ];
+          stream.properties = {
+            node.latency = "32/48000";
+            resample.quality = 1;
+          };
+        };
+      };
+      wireplumber = {
+        enable = true;
+        configPackages = [
+          (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/10-bluez.conf" ''
+            monitor.bluez.properties = {
+              bluez5.enable-sbc-xq = true
+              bluez5.enable-msbc = true
+              bluez5.enable-hw-volume = true
+              bluez5.codecs = [ sbc sbc_xq aac ]
+            }
+          '')
+        ];
+      };
     };
     environment.persistence."/persist".users."${username}" = {
       directories = [ ".local/state/wireplumber" ];
