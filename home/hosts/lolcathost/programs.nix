@@ -68,7 +68,6 @@
     openjdk
     gradience
     iwgtk
-    recfsusb2n
     distrobox
     gpu-screen-recorder
     gpu-screen-recorder-gtk

@@ -4,7 +4,7 @@
   sources,
 }:
 stdenv.mkDerivation {
-  inherit (sources.fcitx5-catppuccin) pname version src;
+  inherit (sources.catppuccin-fcitx5) pname version src;
 
   dontBuild = true;
   dontConfigure = true;

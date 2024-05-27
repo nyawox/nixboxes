@@ -1,4 +1,4 @@
 # nvfetcher.toml
-[fcitx5-catppuccin]
+[catppuccin-fcitx5]
 src.git = "https://github.com/catppuccin/fcitx5"
 fetch.github = "catppuccin/fcitx5"

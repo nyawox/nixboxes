@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib; let
@@ -25,17 +24,11 @@ in {
       ];
       extraPackages = ps:
         with ps; [
-          (callPackage hass-dependencies/plugp100.nix {})
           gtts
           pyatv
           pychromecast
           psycopg2
         ];
-      customComponents = with pkgs.home-assistant-custom-components; [
-        # (pkgs.callPackage hass-components/tapo.nix {})
-        # (pkgs.callPackage hass-components/nature-remo.nix {})
-        # (pkgs.callPackage hass-components/alexa-media-player.nix {})
-      ];
       config = {
         # Includes dependencies for a basic setup
         # https://www.home-assistant.io/integrations/default_config/

@@ -1,21 +1,10 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }: let
   exturl = "https://addons.mozilla.org/firefox/downloads/latest";
-  arcwtf = pkgs.fetchFromGitHub {
-    owner = "kikaraage";
-    repo = "arcwtf";
-    rev = "bb6f2b7ef7e3d201e23d86bf8636e5d0ea4bd68b";
-    hash = "sha256-gyJiIVnyZOYVX6G3m4SSbsb7K9g4zKZWlrHphEIQwsY=";
-  };
-  catppuccin-tridactyl = pkgs.fetchFromGitHub {
-    "owner" = "lonepie";
-    "repo" = "catppuccin-tridactyl";
-    "rev" = "a77c65f7ab5946b37361ae935d2192a9a714f960";
-    "hash" = "sha256-LjLMq7vUwDdxgpdP9ClRae+gN11IPc+XMsx8/+bwUy4=";
-  };
 in {
   programs.schizofox = {
     enable = true;
@@ -223,11 +212,11 @@ in {
     tridactyl-native
   ];
   home.file = {
-    ".mozilla/firefox/schizo.default/chrome/content/".source = arcwtf + "/content";
-    ".mozilla/firefox/schizo.default/chrome/global/".source = arcwtf + "/global";
-    ".mozilla/firefox/schizo.default/chrome/icons/".source = arcwtf + "/icons";
-    ".mozilla/firefox/schizo.default/chrome/toolbar/".source = arcwtf + "/toolbar";
-    ".mozilla/firefox/schizo.default/chrome/tweaks/".source = arcwtf + "/tweaks";
+    ".mozilla/firefox/schizo.default/chrome/content/".source = inputs.arcwtf.outPath + "/content";
+    ".mozilla/firefox/schizo.default/chrome/global/".source = inputs.arcwtf.outPath + "/global";
+    ".mozilla/firefox/schizo.default/chrome/icons/".source = inputs.arcwtf.outPath + "/icons";
+    ".mozilla/firefox/schizo.default/chrome/toolbar/".source = inputs.arcwtf.outPath + "/toolbar";
+    ".mozilla/firefox/schizo.default/chrome/tweaks/".source = inputs.arcwtf.outPath + "/tweaks";
     ".mozilla/native-messaging-hosts/com.ugetdm.firefox.json".source = "${pkgs.uget-integrator}/lib/mozilla/native-messaging-hosts/com.ugetdm.firefox.json";
     ".mozilla/native-messaging-hosts/tridactyl.json".source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
   };
@@ -235,7 +224,7 @@ in {
     configFile = {
       "tridactyl/tridactylrc".source = ./tridactylrc;
       "tridactyl/themes/catppuccin.css".source =
-        catppuccin-tridactyl + "/catppuccin.css";
+        inputs.catppuccin-tridactyl.outPath + "/catppuccin.css";
     };
     mimeApps = {
       enable = true;

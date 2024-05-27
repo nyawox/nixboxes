@@ -1,6 +1,7 @@
 {
   pkgs,
   username,
+  inputs,
   ...
 }: let
   apps = {
@@ -18,15 +19,7 @@ in {
       url = "https://i.pinimg.com/originals/24/ca/db/24cadbfc4de7599a86ef5e8bc238853e.jpg";
       sha256 = "1fraqngiw0l164i1ar7i3bzq0bz7zdcvydqgxrr0rqqq3y4rq6sv";
     };
-    ".doom.d/splash.png".source =
-      pkgs.fetchFromGitHub
-      {
-        owner = "jeetelongname";
-        repo = "doom-banners";
-        rev = "38f24e1e5bbd190bb805fcaa400143eb2b426e71";
-        sha256 = "DNa6Nqh0OcXP17o0soSkKUYASA+BBufq3uCrXMFSnmY=";
-      }
-      + "/splashes/emacs/emacs-e-logo.png";
+    ".doom.d/splash.png".source = inputs.doom-banners.outPath + "/splashes/emacs/emacs-e-logo.png";
     ".local/share/PrismLauncher/themes/Catppuccin-Mocha".source = let
       zip = pkgs.fetchurl {
         url = "https://raw.githubusercontent.com/catppuccin/prismlauncher/423e359d6c17b0339e8c851bb2953bcf5c7e1e49/themes/Mocha/Catppuccin-Mocha.zip";
@@ -48,15 +41,7 @@ in {
       };
   };
   xdg.configFile = {
-    "cava/config".source =
-      pkgs.fetchFromGitHub
-      {
-        owner = "catppuccin";
-        repo = "cava";
-        rev = "ad3301b50786e22e31cbf4316985827d6f05845e";
-        sha256 = "hYC6ExtroRy2UoxGNHAzKm9MlTdJSegUWToat4VoN20=";
-      }
-      + "/mocha.cava";
+    "cava/config".source = inputs.catppuccin-cava.outPath + "/mocha.cava";
     "sunshine/sunshine.conf".source = ./sunshine.conf;
     "sunshine/apps.json".text = builtins.toJSON apps;
     "nwg-drawer/drawer.css".text = ''
@@ -65,14 +50,6 @@ in {
           color: #cdd6f4
       }
     '';
-    "Element/config.json".source =
-      pkgs.fetchFromGitHub
-      {
-        owner = "catppuccin";
-        repo = "element";
-        rev = "39df7053631176cdb4b0ddbed837c07d7565f07c";
-        hash = "sha256-wzoC5I9qEr3ADD+3iBRPxmAe58KrLCO0qSk/7+fivjM=";
-      }
-      + "/config.json";
+    "Element/config.json".source = inputs.catppuccin-element.outPath + "/config.json";
   };
 }

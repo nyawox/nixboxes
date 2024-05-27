@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.emacs = {
     enable = true;
     package = pkgs.emacs29-pgtk;
@@ -11,15 +15,7 @@
         source = ./doom.d;
         recursive = true;
       };
-      ".doom.d/themes/catppuccin-theme.el".source =
-        pkgs.fetchFromGitHub
-        {
-          owner = "catppuccin";
-          repo = "emacs";
-          rev = "fa9e421b5e041217d4841bea27384faa194deff6";
-          sha256 = "rUvY6yautK+5wvHy8oteGo4Lftip1h5He9ejADso0Ag=";
-        }
-        + "/catppuccin-theme.el";
+      ".doom.d/themes/catppuccin-theme.el".source = inputs.catppuccin-emacs.outPath + "/catppuccin-theme.el";
     };
 
     packages = with pkgs; [

@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.fish = {
     enable = true;
     shellInit = ''
@@ -20,21 +24,11 @@
     plugins = [
       {
         name = "autopair";
-        src = pkgs.fetchFromGitHub {
-          owner = "jorgebucaran";
-          repo = "autopair.fish";
-          rev = "4d1752ff5b39819ab58d7337c69220342e9de0e2";
-          hash = "sha256-qt3t1iKRRNuiLWiVoiAYOu+9E7jsyECyIqZJ/oRIT1A=";
-        };
+        src = inputs.fish-autopair.outPath;
       }
       {
         name = "fish-abbreviation-tips";
-        src = pkgs.fetchFromGitHub {
-          owner = "gazorby";
-          repo = "fish-abbreviation-tips";
-          rev = "8ed76a62bb044ba4ad8e3e6832640178880df485";
-          hash = "sha256-F1t81VliD+v6WEWqj1c1ehFBXzqLyumx5vV46s/FZRU=";
-        };
+        src = inputs.fish-abbreviation-tips.outPath;
       }
       # colorized command output
       {
@@ -85,15 +79,7 @@
       ji = "cdi";
     };
   };
-  xdg.configFile."fish/themes".source =
-    pkgs.fetchFromGitHub
-    {
-      owner = "catppuccin";
-      repo = "fish";
-      rev = "b90966686068b5ebc9f80e5b90fdf8c02ee7a0ba";
-      sha256 = "wQlYQyqklU/79K2OXRZXg5LvuIugK7vhHgpahpLFaOw=";
-    }
-    + "/themes";
+  xdg.configFile."fish/themes".source = inputs.catppuccin-fish.outPath + "/themes";
 
   home.packages = with pkgs; [
     grc

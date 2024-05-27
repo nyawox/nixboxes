@@ -1,9 +1,9 @@
 {
-  "fcitx5-catppuccin": {
+  "catppuccin-fcitx5": {
     "cargoLocks": null,
     "date": "2022-10-05",
     "extract": null,
-    "name": "fcitx5-catppuccin",
+    "name": "catppuccin-fcitx5",
     "passthru": null,
     "pinned": false,
     "src": {
