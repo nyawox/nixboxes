@@ -1,4 +1,3 @@
-
 # nixboxes
 
 [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
@@ -6,7 +5,7 @@
 [![GitHub Actions](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fnyawox%2Fnixboxes%2Fbadge%3Fref%3Dmain&style=for-the-badge&labelColor=11111b)](https://actions-badge.atrox.dev/nyawox/nixboxes/goto?ref=main)
 [![LICENSE](https://img.shields.io/github/license/nyawox/nixboxes.svg?style=for-the-badge&labelColor=11111b&color=94e2d5)](https://github.com/nyawox/nixboxes)
 
-![](./assets/screenshot.png) *(Note: the screenshot is outdated. I am currently testing Cosmic.)*
+![](./assets/screenshot.png) _(Note: the screenshot is outdated. I am currently testing Cosmic.)_
 
 ## Quick Start
 
