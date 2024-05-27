@@ -20,6 +20,9 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    nixpkgs.overlays = [
+      inputs.nix-minecraft.overlay
+    ];
     services = {
       minecraft-server.dataDir = "/var/lib/minecraft/null";
       minecraft-servers = {

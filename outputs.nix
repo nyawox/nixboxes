@@ -75,7 +75,6 @@ inputs.flake-parts.lib.mkFlake {inherit inputs;} {
             inputs.nur.overlay
             inputs.emacs-overlay.overlay
             inputs.berberman.overlays.default
-            inputs.nix-minecraft.overlay
             (
               final: prev: {
                 deploy-rs = {
@@ -125,7 +124,6 @@ inputs.flake-parts.lib.mkFlake {inherit inputs;} {
           ./cachix
           ./modules/nixos/globalvars.nix
           ./modules/nixos/warnings.nix
-          inputs.sops-nix.nixosModules.sops
         ];
       };
       # NixOS specific configuration

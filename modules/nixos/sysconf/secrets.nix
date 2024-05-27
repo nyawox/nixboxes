@@ -2,10 +2,14 @@
   config,
   lib,
   pkgs,
+  inputs,
   username,
   ...
 }:
 with lib; {
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+  ];
   options.secrets = {
     enable = mkOption {
       type = types.bool;
