@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.services.vaultwarden;
-in {
+in
+{
   options = {
     modules.services.vaultwarden = {
       enable = mkOption {
@@ -35,7 +33,7 @@ in {
       };
       restic.backups.vaultwarden = mkIf cfg.backup {
         initialize = true;
-        paths = ["/var/lib/bitwarden_rs"];
+        paths = [ "/var/lib/bitwarden_rs" ];
         passwordFile = config.sops.secrets.restic-vaultwarden-pw.path;
         environmentFile = config.sops.secrets.restic-vaultwarden-env.path;
         repository = "b2:vaultwarden-nyan";
@@ -60,9 +58,7 @@ in {
       format = "dotenv";
     };
     environment.persistence."/persist" = mkIf cfg.enable {
-      directories = mkIf config.modules.sysconf.impermanence.enable [
-        "/var/lib/bitwarden_rs"
-      ];
+      directories = mkIf config.modules.sysconf.impermanence.enable [ "/var/lib/bitwarden_rs" ];
     };
   };
 }

@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.services.homepage;
-in {
+in
+{
   options = {
     modules.services.homepage = {
       enable = mkOption {
@@ -250,9 +248,7 @@ in {
             icon = "https://wiki.nixos.org/nixos.png";
           };
         }
-        {
-          resources = false;
-        }
+        { resources = false; }
         {
           datetime = {
             text_size = "3x1";

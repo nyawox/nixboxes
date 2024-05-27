@@ -6,9 +6,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.services.netdata;
-in {
+in
+{
   options = {
     modules.services.netdata = {
       enable = mkOption {
@@ -29,10 +31,7 @@ in {
       };
       webui = mkOption {
         type = types.bool;
-        default =
-          if cfg.receiver
-          then true
-          else false;
+        default = if cfg.receiver then true else false;
       };
     };
   };
@@ -45,23 +44,20 @@ in {
     services.netdata = {
       enable = true;
       configDir."health_alarm_notify.conf" = mkIf cfg.receiver config.sops.secrets.netdata-ntfy.path;
-      configDir."stream.conf" = let
-        mkChildNode = apiKey: allowFrom: ''
-          [${apiKey}]
-            enabled = yes
-            default history = 604800
-            default memory mode = dbengine
-            health enabled by default = auto
-            allow from = ${allowFrom}
-        '';
-      in
+      configDir."stream.conf" =
+        let
+          mkChildNode = apiKey: allowFrom: ''
+            [${apiKey}]
+              enabled = yes
+              default history = 604800
+              default memory mode = dbengine
+              health enabled by default = auto
+              allow from = ${allowFrom}
+          '';
+        in
         pkgs.writeText "stream.conf" ''
           [stream]
-          enabled = ${
-            if cfg.receiver
-            then "no"
-            else "yes"
-          }
+          enabled = ${if cfg.receiver then "no" else "yes"}
           enable compression = yes
 
 
@@ -86,7 +82,9 @@ in {
           ''}
         '';
       config = mkIf (!cfg.webui) {
-        global = {"memory mode" = "none";};
+        global = {
+          "memory mode" = "none";
+        };
         web = {
           mode = "none";
           "accept a streaming request every seconds" = 0;

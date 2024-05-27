@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.sysconf.silentboot;
-in {
+in
+{
   options = {
     modules.sysconf.silentboot = {
       enable = mkOption {

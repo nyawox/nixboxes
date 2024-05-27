@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.sysconf.locale;
-in {
+in
+{
   options = {
     modules.sysconf.locale = {
       enable = mkOption {

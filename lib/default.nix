@@ -4,8 +4,17 @@
   outputs,
   stateVersion,
   ...
-}: let
-  gen = import ./gen.nix {inherit self inputs outputs stateVersion;};
-in {
+}:
+let
+  gen = import ./gen.nix {
+    inherit
+      self
+      inputs
+      outputs
+      stateVersion
+      ;
+  };
+in
+{
   inherit (gen) mkLinux;
 }

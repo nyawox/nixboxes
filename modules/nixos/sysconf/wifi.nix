@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.sysconf.wifi;
-in {
+in
+{
   options = {
     modules.sysconf.wifi = {
       enable = mkOption {
@@ -52,7 +50,9 @@ in {
       sopsFile = ../../../secrets/home.psk;
       format = "binary";
     };
-    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable ["/var/lib/iwd"];
+    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
+      "/var/lib/iwd"
+    ];
     systemd.tmpfiles.rules = [
       "C /var/lib/iwd/${cfg.homewifiSSID}.psk 0600 root root - ${config.sops.secrets."home.psk".path}"
       "C /var/lib/iwd/${cfg.home2GwifiSSID}.psk 0600 root root - ${config.sops.secrets."home.psk".path}"

@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.services.searxng;
-in {
+in
+{
   options = {
     modules.services.searxng = {
       enable = mkOption {
@@ -18,20 +20,24 @@ in {
   config = mkIf cfg.enable {
     services.searx = {
       enable = true;
-      package = pkgs.searxng.overrideAttrs (oldAttrs: let
-        logo = pkgs.fetchurl {
-          url = "https://illust8.com/wp-content/uploads/2019/10/cute_purple_cat_5021.png";
-          sha256 = "1hdwk9qw72z0jdjf6igx2rwwzc2x3nw804yy2bd3cr3y67rinjg4";
-        };
-      in {
-        postInstall = lib.strings.concatStrings [
-          oldAttrs.postInstall
-          ''
-            # Replace logo
-            cp ${logo} $out/${pkgs.python3.sitePackages}/searx/static/themes/simple/img/searxng.png
-          ''
-        ];
-      });
+      package = pkgs.searxng.overrideAttrs (
+        oldAttrs:
+        let
+          logo = pkgs.fetchurl {
+            url = "https://illust8.com/wp-content/uploads/2019/10/cute_purple_cat_5021.png";
+            sha256 = "1hdwk9qw72z0jdjf6igx2rwwzc2x3nw804yy2bd3cr3y67rinjg4";
+          };
+        in
+        {
+          postInstall = lib.strings.concatStrings [
+            oldAttrs.postInstall
+            ''
+              # Replace logo
+              cp ${logo} $out/${pkgs.python3.sitePackages}/searx/static/themes/simple/img/searxng.png
+            ''
+          ];
+        }
+      );
       runInUwsgi = true;
       uwsgiConfig = {
         http = ":8420";
@@ -56,11 +62,7 @@ in {
           safe_search = 0;
           autocomplete = "google";
         };
-        engines = lib.mapAttrsToList (name: value:
-          {
-            inherit name;
-          }
-          // value) {
+        engines = lib.mapAttrsToList (name: value: { inherit name; } // value) {
           "duckduckgo".disabled = true;
           "brave".disabled = true;
           "bing".disabled = false;

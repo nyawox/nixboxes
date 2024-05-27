@@ -1,11 +1,23 @@
 {
-  config,
   lib,
+  config,
   osConfig,
   ...
 }:
-with lib; {
-  config = mkIf osConfig.modules.desktop.cosmic.enable {
+with lib;
+let
+  cfg = config.modules.desktop.cosmic;
+in
+{
+  options = {
+    modules.desktop.cosmic = {
+      enable = mkOption {
+        type = types.bool;
+        default = if osConfig.modules.desktop.cosmic.enable then true else false;
+      };
+    };
+  };
+  config = mkIf cfg.enable {
     home.sessionVariables = {
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1"; # Disables window decorations on Qt applications
       GTK_THEME = config.gtk.theme.name;

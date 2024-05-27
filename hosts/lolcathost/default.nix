@@ -3,8 +3,11 @@
   lib,
   pkgs,
   username,
+  inputs,
   ...
-}: {
+}:
+{
+  imports = [ inputs.aagl.nixosModules.default ];
   modules = {
     sysconf = {
       wifi.enable = true;
@@ -66,12 +69,18 @@
           name = "libpipewire-module-loopback";
           args = {
             "capture.props" = {
-              "audio.position" = ["FL" "FR"];
+              "audio.position" = [
+                "FL"
+                "FR"
+              ];
               "node.name" = "Line In";
               "node.target" = "alsa_input.pci-0000_0e_00.3.analog-stereo";
             };
             "playback.props" = {
-              "audio.position" = ["FL" "FR"];
+              "audio.position" = [
+                "FL"
+                "FR"
+              ];
               "node.name" = "Loopback-line_in";
               "media.class" = "Stream/Output/Audio";
               "monitor.channel-volumes" = true;
@@ -119,7 +128,7 @@
   security.protectKernelImage = false;
 
   boot = {
-    supportedFilesystems = ["ntfs"];
+    supportedFilesystems = [ "ntfs" ];
     kernelPackages = pkgs.linuxPackages_cachyos;
     extraModprobeConfig = ''
       options usbhid quirks=0x046D:0x0A38:0x0004
@@ -145,8 +154,14 @@
 
     initrd = {
       verbose = false;
-      availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "sd_mod"];
-      kernelModules = ["amdgpu"];
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "ahci"
+        "usbhid"
+        "sd_mod"
+      ];
+      kernelModules = [ "amdgpu" ];
     };
     kernelModules = [
       "kvm-amd"
@@ -174,7 +189,10 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
-      extraPackages = with pkgs; [vaapiVdpau libvdpau-va-gl];
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
     };
     xpadneo.enable = true;
     # xone.enable = true;

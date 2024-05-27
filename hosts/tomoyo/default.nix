@@ -40,10 +40,25 @@ _: {
   psilocybin.enable = false;
 
   boot = {
-    kernelParams = ["ip=64.112.124.245"];
+    kernelParams = [ "ip=64.112.124.245" ];
     # Kernel modules required to boot on virtual machine
     # Make sure to include ethernet module to remote unlock luks
-    initrd.availableKernelModules = ["ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "sd_mod" "virtio_blk" "virtio-net" "virtio_mmio virtio_scsi" "9p" "9pnet_virtio"];
-    initrd.kernelModules = ["virtio_balloon" "virtio_console" "virtio_rng"];
+    initrd.availableKernelModules = [
+      "ata_piix"
+      "uhci_hcd"
+      "virtio_pci"
+      "sr_mod"
+      "sd_mod"
+      "virtio_blk"
+      "virtio-net"
+      "virtio_mmio virtio_scsi"
+      "9p"
+      "9pnet_virtio"
+    ];
+    initrd.kernelModules = [
+      "virtio_balloon"
+      "virtio_console"
+      "virtio_rng"
+    ];
   };
 }

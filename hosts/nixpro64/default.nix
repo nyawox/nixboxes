@@ -1,8 +1,5 @@
+{ pkgs, lib, ... }:
 {
-  pkgs,
-  lib,
-  ...
-}: {
   # Building man-cache on qemu is very slow.
   documentation.man.generateCaches = false;
 
@@ -44,7 +41,7 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = false;
 
-    initrd.availableKernelModules = ["usbhid"];
+    initrd.availableKernelModules = [ "usbhid" ];
     # This list of modules is not entirely minified, but represents
     # a set of modules that is required for the display to work in stage-1.
     # Further minification can be done, but requires trial-and-error mainly.
@@ -78,8 +75,8 @@
       "gpio_charger"
       "rtc_rk808"
     ];
-    kernelModules = [];
-    extraModulePackages = [];
+    kernelModules = [ ];
+    extraModulePackages = [ ];
     kernelPackages = pkgs.linuxPackages_latest;
 
     consoleLogLevel = 7;

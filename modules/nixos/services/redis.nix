@@ -4,9 +4,11 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.services.redis;
-in {
+in
+{
   options = {
     modules.services.redis = {
       enable = mkOption {
@@ -16,7 +18,7 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    environment.systemPackages = [pkgs.redis-dump];
+    environment.systemPackages = [ pkgs.redis-dump ];
     services.redis.servers = {
       searxng = {
         enable = true;
@@ -31,6 +33,8 @@ in {
         };
       };
     };
-    environment.persistence."/persist".directories = lib.mkIf config.modules.sysconf.impermanence.enable ["/var/lib/redis"];
+    environment.persistence."/persist".directories =
+      lib.mkIf config.modules.sysconf.impermanence.enable
+        [ "/var/lib/redis" ];
   };
 }

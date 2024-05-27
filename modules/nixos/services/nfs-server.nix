@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.services.nfs-server;
-in {
+in
+{
   options = {
     modules.services.nfs-server = {
       enable = mkOption {

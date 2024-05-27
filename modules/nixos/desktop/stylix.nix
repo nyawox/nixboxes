@@ -1,17 +1,17 @@
 {
-  config,
   lib,
+  config,
   pkgs,
   inputs,
   username,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.desktop.stylix;
-in {
-  imports = [
-    inputs.stylix.nixosModules.stylix
-  ];
+in
+{
+  imports = [ inputs.stylix.nixosModules.stylix ];
   options = {
     modules.desktop.stylix = {
       enable = mkOption {

@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.services.node-red;
-in {
+in
+{
   options = {
     modules.services.node-red = {
       enable = mkOption {

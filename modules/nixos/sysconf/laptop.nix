@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.sysconf.laptop;
-in {
+in
+{
   options = {
     modules.sysconf.laptop = {
       enable = mkOption {

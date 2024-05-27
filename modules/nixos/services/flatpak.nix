@@ -4,12 +4,12 @@
   inputs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.services.flatpak;
-in {
-  imports = [
-    inputs.nix-flatpak.nixosModules.nix-flatpak
-  ];
+in
+{
+  imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
   options = {
     modules.services.flatpak = {
       enable = mkOption {
@@ -24,7 +24,11 @@ in {
       overrides = {
         global = {
           # Force Wayland by default
-          Context.sockets = ["wayland" "!x11" "!fallback-x11"];
+          Context.sockets = [
+            "wayland"
+            "!x11"
+            "!fallback-x11"
+          ];
 
           Environment = {
             XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";

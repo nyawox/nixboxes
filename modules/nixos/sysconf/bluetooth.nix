@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.sysconf.bluetooth;
-in {
+in
+{
   options = {
     modules.sysconf.bluetooth = {
       enable = mkOption {
@@ -32,6 +30,8 @@ in {
     # Make sure to trust the device immediately when using pipewire as bluetooth speaker
     #
     # Save bluetooth settings
-    environment.persistence."/persist".directories = lib.mkIf config.modules.sysconf.impermanence.enable ["/var/lib/bluetooth"];
+    environment.persistence."/persist".directories =
+      lib.mkIf config.modules.sysconf.impermanence.enable
+        [ "/var/lib/bluetooth" ];
   };
 }

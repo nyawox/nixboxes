@@ -44,12 +44,8 @@
  '(treemacs-nerd-icons-file-face ((t (:foreground "#b4befe"))))
  '(treemacs-nerd-icons-root-face      ((t (:foreground "#b4befe")))))
 
-(set-formatter! 'alejandra '("alejandra" "--quiet") :modes '(nix-mode))
-
-(after! apheleia
-  (push '(alejandra . ("alejandra" "-")) apheleia-formatters)
-  (setf (alist-get 'nix apheleia-mode-alist) 'alejandra))
-
+(set-formatter! 'nixfmt '("nixfmt") :modes '(nix-mode))
+(setq-hook! 'nix-mode-hook +format-with-lsp nil)
 
 (setq projectile-project-search-path '("~/Projects" "/nixboxes"))
 

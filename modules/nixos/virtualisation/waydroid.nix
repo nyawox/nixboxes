@@ -5,9 +5,11 @@
   username,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.virtualisation.waydroid;
-in {
+in
+{
   options = {
     modules.virtualisation.waydroid = {
       enable = mkOption {
@@ -23,9 +25,8 @@ in {
         pkgs.wl-clipboard # clipboard sharing
       ];
 
-      etc."gbinder.d/waydroid.conf".source =
-        lib.mkForce
-        (pkgs.writeText "waydroid.conf" ''
+      etc."gbinder.d/waydroid.conf".source = lib.mkForce (
+        pkgs.writeText "waydroid.conf" ''
           [Protocol]
           /dev/binder = aidl3
           /dev/vndbinder = aidl3
@@ -38,7 +39,8 @@ in {
 
           [General]
           ApiLevel = 30
-        '');
+        ''
+      );
       persistence."/persist".directories = lib.mkIf config.modules.sysconf.impermanence.enable [
         "/var/lib/waydroid"
         {
@@ -48,7 +50,9 @@ in {
           mode = "756";
         }
       ];
-      persistence."/persist".users."${username}".directories = mkIf config.modules.sysconf.impermanence.enable [".local/share/waydroid"];
+      persistence."/persist".users."${username}".directories =
+        mkIf config.modules.sysconf.impermanence.enable
+          [ ".local/share/waydroid" ];
     };
   };
 }

@@ -5,9 +5,11 @@
   username,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.services.airplay;
-in {
+in
+{
   options = {
     modules.services.airplay = {
       enable = mkOption {
@@ -20,7 +22,7 @@ in {
     systemd.user.services.airplay = {
       enable = true;
       description = "AirPlay";
-      wantedBy = ["graphical-session.target"];
+      wantedBy = [ "graphical-session.target" ];
       serviceConfig = {
         # without unbuffer the logs are only printed when stopping service
         ExecStart = "${pkgs.expect}/bin/unbuffer ${pkgs.uxplay}/bin/uxplay -n ${config.networking.hostName} -reg /home/${username}/.config/.uxplay.register";
@@ -41,13 +43,13 @@ in {
       15246
     ];
     environment = {
-      systemPackages = [
-        pkgs.uxplay
-      ];
+      systemPackages = [ pkgs.uxplay ];
       shellAliases = {
         airplay = "journalctl --user -xfeu airplay.service";
       };
-      persistence."/persist".users."${username}".files = mkIf config.modules.sysconf.impermanence.enable [".config/.uxplay.register"];
+      persistence."/persist".users."${username}".files = mkIf config.modules.sysconf.impermanence.enable [
+        ".config/.uxplay.register"
+      ];
       etc."uxplayrc".text = ''
         p 15244
         nh

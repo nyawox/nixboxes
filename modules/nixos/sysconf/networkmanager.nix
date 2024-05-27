@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.sysconf.networkmanager;
-in {
+in
+{
   options = {
     modules.sysconf.networkmanager = {
       enable = mkOption {
@@ -30,10 +28,8 @@ in {
     };
     # Don't wait for network startup
     # https://old.reddit.com/r/NixOS/comments/vdz86j/how_to_remove_boot_dependency_on_network_for_a
-    systemd.targets.network-online.wantedBy =
-      lib.mkForce []; # Normally ["multi-user.target"]
-    systemd.services.NetworkManager-wait-online.wantedBy =
-      lib.mkForce []; # Normally ["network-online.target"]
+    systemd.targets.network-online.wantedBy = lib.mkForce [ ]; # Normally ["multi-user.target"]
+    systemd.services.NetworkManager-wait-online.wantedBy = lib.mkForce [ ]; # Normally ["network-online.target"]
     environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
       "/etc/NetworkManager/system-connections"
     ];

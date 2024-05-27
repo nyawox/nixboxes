@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.services.avahi;
-in {
+in
+{
   options = {
     modules.services.avahi = {
       enable = mkOption {

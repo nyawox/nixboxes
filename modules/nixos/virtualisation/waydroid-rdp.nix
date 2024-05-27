@@ -6,13 +6,15 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.virtualisation.waydroid;
   waydroid-launch = pkgs.writeShellScript "waydroid-launch" ''
     sleep 3
     ${pkgs.waydroid}/bin/waydroid show-full-ui
   '';
-in {
+in
+{
   options = {
     modules.virtualisation.waydroid = {
       rdp = mkOption {
@@ -27,7 +29,7 @@ in {
       user.services.waydroid-rdp = {
         enable = true;
         description = "cloud android";
-        wantedBy = ["graphical-session.target"];
+        wantedBy = [ "graphical-session.target" ];
         serviceConfig = {
           ExecStart = ''
             ${pkgs.weston}/bin/weston --config=/etc/waydroid-cloud.ini --shell=kiosk --backend=rdp --rdp-tls-cert=/var/lib/waydroid/waydroid-rdp.crt --rdp-tls-key=/var/lib/waydroid/waydroid-rdp.key --height=953 --width=496 --port=3150 --no-clients-resize
@@ -48,7 +50,7 @@ in {
         };
       };
       timers.waydroid-cert-renewal = {
-        wantedBy = ["timers.target"];
+        wantedBy = [ "timers.target" ];
         timerConfig = {
           OnCalendar = "yearly";
           Persistent = true;
@@ -57,7 +59,7 @@ in {
       };
     };
     environment = {
-      etc."waydroid-cloud.ini".text = lib.generators.toINI {} {
+      etc."waydroid-cloud.ini".text = lib.generators.toINI { } {
         autolaunch = {
           path = "${waydroid-launch}";
         };

@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.services.nfs-client;
-in {
+in
+{
   options = {
     modules.services.nfs-client = {
       nixboxes = mkOption {
@@ -19,7 +17,12 @@ in {
       "/nixboxes" = mkIf cfg.nixboxes {
         device = "lolcathost.nyaa.nixlap.top:/nixboxes";
         fsType = "nfs";
-        options = ["nfsvers=4.2" "x-systemd.automount" "noauto" "async"];
+        options = [
+          "nfsvers=4.2"
+          "x-systemd.automount"
+          "noauto"
+          "async"
+        ];
       };
     };
   };

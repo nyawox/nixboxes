@@ -1,16 +1,16 @@
 {
-  config,
   lib,
+  config,
   inputs,
   username,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.desktop.cosmic;
-in {
-  imports = [
-    inputs.nixos-cosmic.nixosModules.default
-  ];
+in
+{
+  imports = [ inputs.nixos-cosmic.nixosModules.default ];
   options = {
     modules.desktop.cosmic = {
       enable = mkOption {
@@ -31,7 +31,7 @@ in {
         ".local/share/nwg-look"
         ".config/cosmic"
       ];
-      files = [".config/xsettingsd/xsettingsd.conf"];
+      files = [ ".config/xsettingsd/xsettingsd.conf" ];
     };
   };
 }

@@ -9,7 +9,8 @@
   platform,
   deploy,
   ...
-}: {
+}:
+{
   networking.hostName = hostname;
   nixpkgs.hostPlatform = platform;
   var.username = username;
@@ -25,12 +26,8 @@
     };
 
     kernelPackages = lib.mkDefault pkgs.linuxPackages_hardened;
-    kernelModules = [
-      "lkrg"
-    ];
-    kernelParams = [
-      "libahci.ignore_sss=1"
-    ];
+    kernelModules = [ "lkrg" ];
+    kernelParams = [ "libahci.ignore_sss=1" ];
 
     initrd.systemd.enable = lib.mkDefault true;
 
@@ -77,17 +74,12 @@
       helix
       git
       wget
-      fastfetch
-      pfetch
-      # required for direnv
-      gnugrep
       # backup
       restic
     ];
   };
   programs = {
-    command-not-found.dbPath =
-      inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
+    command-not-found.dbPath = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
 
     fish.enable = true;
     # Otherwise home-manager will fail https://github.com/nix-community/home-manager/issues/3113
@@ -126,7 +118,12 @@
       # Default root password is alpinerootroll
       root.password = lib.mkDefault "alpinerootroll";
     };
-    groups.wheel = {members = ["${username}" "root"];};
+    groups.wheel = {
+      members = [
+        "${username}"
+        "root"
+      ];
+    };
     # groups.uinput = {members = ["${username}"];}; # required for kanata
     mutableUsers = false;
 

@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ lib, config, ... }:
+with lib;
+let
   cfg = config.modules.desktop.plymouth;
-in {
+in
+{
   options = {
     modules.desktop.plymouth = {
       enable = mkOption {

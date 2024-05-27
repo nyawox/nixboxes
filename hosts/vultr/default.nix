@@ -34,15 +34,22 @@ _: {
   esp.size = "256M";
   systemd.network.networks."ens3" = {
     matchConfig.Name = "ens3";
-    address = ["149.28.98.185/23"];
-    routes = [{routeConfig.Gateway = "149.28.98.1";}];
+    address = [ "149.28.98.185/23" ];
+    routes = [ { routeConfig.Gateway = "149.28.98.1"; } ];
     # make the routes on this interface a dependency for network-online.target
     linkConfig.RequiredForOnline = "routable";
   };
-  boot.kernelParams = ["ip=149.28.98.185"];
+  boot.kernelParams = [ "ip=149.28.98.185" ];
   psilocybin.enable = false; # disable this otherwise vnc becomes unusable
 
   # Kernel modules required to boot on virtual machine
   # Make sure to include ethernet module to remote unlock luks
-  boot.initrd.availableKernelModules = ["ata_piix" "uhci_hcd" "virtio_pci" "sr_mod" "virtio_blk" "virtio-net"];
+  boot.initrd.availableKernelModules = [
+    "ata_piix"
+    "uhci_hcd"
+    "virtio_pci"
+    "sr_mod"
+    "virtio_blk"
+    "virtio-net"
+  ];
 }

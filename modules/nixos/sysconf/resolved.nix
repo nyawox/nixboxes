@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.sysconf.resolved;
-in {
+in
+{
   options = {
     modules.sysconf.resolved = {
       enable = mkOption {
@@ -18,13 +16,19 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    networking.nameservers = ["9.9.9.9" "149.112.112.112"];
+    networking.nameservers = [
+      "9.9.9.9"
+      "149.112.112.112"
+    ];
 
     services.resolved = {
       enable = true;
       dnssec = "true";
-      domains = ["~."];
-      fallbackDns = ["9.9.9.9" "149.112.112.112"];
+      domains = [ "~." ];
+      fallbackDns = [
+        "9.9.9.9"
+        "149.112.112.112"
+      ];
       extraConfig = ''
         DNSOverTLS=yes
       '';

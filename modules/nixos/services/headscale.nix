@@ -1,13 +1,11 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.services.headscale;
   domain = "headscale.nixlap.top";
   derpPort = 3478;
-in {
+in
+{
   options = {
     modules.services.headscale = {
       enable = mkOption {
@@ -26,7 +24,10 @@ in {
           dns_config = {
             magic_dns = true;
             base_domain = "nixlap.top";
-            nameservers = ["9.9.9.9" "149.112.112.112"];
+            nameservers = [
+              "9.9.9.9"
+              "149.112.112.112"
+            ];
             # Magic DNS not working without this
             # https://github.com/juanfont/headscale/issues/660
             override_local_dns = true;
@@ -49,10 +50,15 @@ in {
       };
     };
 
-    environment.systemPackages = [config.services.headscale.package];
-    networking.firewall.allowedTCPPorts = [80 443];
-    networking.firewall.allowedUDPPorts = [derpPort];
+    environment.systemPackages = [ config.services.headscale.package ];
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
+    networking.firewall.allowedUDPPorts = [ derpPort ];
 
-    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable ["/var/lib/headscale"];
+    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
+      "/var/lib/headscale"
+    ];
   };
 }

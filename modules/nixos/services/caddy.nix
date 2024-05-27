@@ -1,9 +1,6 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.services.caddy;
   expire-header = ''
     @static {
@@ -15,7 +12,8 @@ with lib; let
   encode = ''
     encode gzip zstd
   '';
-in {
+in
+{
   options = {
     modules.services.caddy = {
       enable = mkOption {
@@ -27,8 +25,7 @@ in {
   config = mkIf cfg.enable {
     services.caddy = {
       enable = true;
-      globalConfig = ''
-      '';
+      globalConfig = '''';
       virtualHosts = {
         "homepage.nixlap.top" = {
           useACMEHost = "nixlap.top";

@@ -1,10 +1,31 @@
-{inputs, ...}: {
-  programs.zathura = {
-    enable = true;
-    extraConfig = ''
-      include catppuccin-mocha
-    '';
+{
+  lib,
+  config,
+  inputs,
+  ...
+}:
+with lib;
+let
+  cfg = config.modules.desktop.zathura;
+in
+{
+  options = {
+    modules.desktop.zathura = {
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+      };
+    };
   };
+  config = mkIf cfg.enable {
+    programs.zathura = {
+      enable = true;
+      extraConfig = ''
+        include catppuccin-mocha
+      '';
+    };
 
-  xdg.configFile."zathura/catppuccin-mocha".source = inputs.catppuccin-zathura.outPath + "/src/catppuccin-mocha";
+    xdg.configFile."zathura/catppuccin-mocha".source =
+      inputs.catppuccin-zathura.outPath + "/src/catppuccin-mocha";
+  };
 }

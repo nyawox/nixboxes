@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.services.influxdb;
-in {
+in
+{
   options = {
     modules.services.influxdb = {
       enable = mkOption {

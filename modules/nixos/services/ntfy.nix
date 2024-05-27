@@ -1,13 +1,11 @@
 # You must add user imperatively
 # sudo ntfy user add
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.services.ntfy-sh;
-in {
+in
+{
   options = {
     modules.services.ntfy-sh = {
       enable = mkOption {

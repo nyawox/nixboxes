@@ -1,11 +1,9 @@
-{
-  config,
-  lib,
-  ...
-}:
-with lib; let
+{ config, lib, ... }:
+with lib;
+let
   cfg = config.modules.services.home-assistant;
-in {
+in
+{
   options = {
     modules.services.home-assistant = {
       enable = mkOption {
@@ -22,8 +20,8 @@ in {
         "met"
         "radio_browser"
       ];
-      extraPackages = ps:
-        with ps; [
+      extraPackages =
+        ps: with ps; [
           gtts
           pyatv
           pychromecast
@@ -32,7 +30,7 @@ in {
       config = {
         # Includes dependencies for a basic setup
         # https://www.home-assistant.io/integrations/default_config/
-        default_config = {};
+        default_config = { };
         recorder.db_url = "postgresql:///hass";
       };
     };

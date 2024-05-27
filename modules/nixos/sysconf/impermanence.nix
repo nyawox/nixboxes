@@ -5,12 +5,12 @@
   username,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.modules.sysconf.impermanence;
-in {
-  imports = [
-    inputs.impermanence.nixosModules.impermanence
-  ];
+in
+{
+  imports = [ inputs.impermanence.nixosModules.impermanence ];
   options = {
     modules.sysconf.impermanence = {
       enable = mkOption {
