@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   inputs,
   username,
   ...
@@ -22,6 +23,11 @@ in
   config = mkIf cfg.enable {
     services.desktopManager.cosmic.enable = true;
     services.displayManager.cosmic-greeter.enable = true;
+    environment.cosmic.excludePackages = with pkgs; [
+      fira
+      gnome.adwaita-icon-theme
+      hicolor-icon-theme
+    ];
 
     # Handle keyboard media keys
     sound.mediaKeys.enable = true;
