@@ -13,7 +13,6 @@
     heroic
     wineWowPackages.waylandFull
     vesktop
-    # webcord-vencord
     element-desktop
     telegram-desktop
     youtube-music

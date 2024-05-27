@@ -4,7 +4,6 @@
     pciutils
     steam-run
     vesktop
-    webcord-vencord
     mangohud
     gimp
     pavucontrol
