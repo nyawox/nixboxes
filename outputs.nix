@@ -137,19 +137,11 @@ inputs.flake-parts.lib.mkFlake {inherit inputs;} {
           ./modules/nixos/sysconf
           ./modules/nixos/services
           ./modules/nixos/desktop
-          inputs.impermanence.nixosModules.impermanence
-          inputs.lanzaboote.nixosModules.lanzaboote
-          inputs.disko.nixosModules.disko
           inputs.nixtendo-switch.nixosModules.nixtendo-switch
           inputs.psilocybin.nixosModules.psilocybin
-          inputs.nixos-cosmic.nixosModules.default
-          inputs.stylix.nixosModules.stylix
-          inputs.nix-minecraft.nixosModules.minecraft-servers
           inputs.nur.nixosModules.nur
           inputs.chaotic.nixosModules.default
-          inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.aagl.nixosModules.default
-          inputs.arion.nixosModules.arion
         ];
       };
     };

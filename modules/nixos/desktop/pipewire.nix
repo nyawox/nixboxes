@@ -63,5 +63,13 @@ in {
       #   };
       # };
     };
+    environment.persistence."/persist".users."${username}" = {
+      directories = [
+        ".local/state/wireplumber"
+      ];
+      files = [
+        ".config/pulse/cookie"
+      ];
+    };
   };
 }

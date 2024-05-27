@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  inputs,
   pkgs,
   username,
   ...
@@ -8,6 +9,9 @@
 with lib; let
   cfg = config.modules.virtualisation.arion;
 in {
+  imports = [
+    inputs.arion.nixosModules.arion
+  ];
   options = {
     modules.virtualisation.arion = {
       enable = mkOption {

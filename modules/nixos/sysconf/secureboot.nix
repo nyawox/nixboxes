@@ -2,11 +2,15 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 with lib; let
   cfg = config.modules.sysconf.secureboot;
 in {
+  imports = [
+    inputs.lanzaboote.nixosModules.lanzaboote
+  ];
   options = {
     modules.sysconf.secureboot = {
       enable = mkOption {

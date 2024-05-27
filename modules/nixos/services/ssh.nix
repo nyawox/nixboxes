@@ -50,9 +50,20 @@ in {
     # Smoother ssh
     programs.mosh.enable = true;
 
-    environment.persistence."/persist".files = lib.mkIf config.modules.sysconf.impermanence.enable [
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
-    ];
+    environment.persistence."/persist" = {
+      directories = mkIf config.modules.sysconf.impermanence.enable [
+        "/root/.ssh"
+      ];
+      files = lib.mkIf config.modules.sysconf.impermanence.enable [
+        "/etc/ssh/ssh_host_ed25519_key"
+        "/etc/ssh/ssh_host_ed25519_key.pub"
+      ];
+      users."${username}".directories = [
+        {
+          directory = ".ssh";
+          mode = "704";
+        }
+      ];
+    };
   };
 }

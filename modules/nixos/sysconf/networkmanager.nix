@@ -34,5 +34,8 @@ in {
       lib.mkForce []; # Normally ["multi-user.target"]
     systemd.services.NetworkManager-wait-online.wantedBy =
       lib.mkForce []; # Normally ["network-online.target"]
+    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
+      "/etc/NetworkManager/system-connections"
+    ];
   };
 }

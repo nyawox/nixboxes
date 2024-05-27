@@ -2,11 +2,15 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 with lib; let
   cfg = config.modules.services.minecraft-server;
 in {
+  imports = [
+    inputs.nix-minecraft.nixosModules.minecraft-servers
+  ];
   options = {
     modules.services.minecraft-server = {
       enable = mkOption {

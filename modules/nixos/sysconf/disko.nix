@@ -1,12 +1,16 @@
 {
   config,
   lib,
+  inputs,
   ...
 }:
 with lib; let
   cfg = config.modules.sysconf.disko;
   hostname = config.networking.hostName;
 in {
+  imports = [
+    inputs.disko.nixosModules.disko
+  ];
   options = {
     modules.sysconf.disko = {
       enable = mkOption {

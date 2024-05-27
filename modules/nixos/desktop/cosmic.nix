@@ -1,12 +1,16 @@
 {
   config,
   lib,
+  inputs,
   username,
   ...
 }:
 with lib; let
   cfg = config.modules.desktop.cosmic;
 in {
+  imports = [
+    inputs.nixos-cosmic.nixosModules.default
+  ];
   options = {
     modules.desktop.cosmic = {
       enable = mkOption {

@@ -1,12 +1,16 @@
 {
   config,
   lib,
+  inputs,
   username,
   ...
 }:
 with lib; let
   cfg = config.modules.sysconf.impermanence;
 in {
+  imports = [
+    inputs.impermanence.nixosModules.impermanence
+  ];
   options = {
     modules.sysconf.impermanence = {
       enable = mkOption {
@@ -25,12 +29,6 @@ in {
         "/var/lib/nixos"
         "/var/lib/systemd/coredump"
         "/var/lib/systemd/timesync/clock"
-        {
-          directory = "/var/lib/colord";
-          user = "colord";
-          group = "colord";
-          mode = "u=rwx,g=rx,o=";
-        }
         # Add this globally to prevent permission issues
         {
           directory = "/var/lib/private/";
@@ -38,9 +36,7 @@ in {
           group = "root";
           mode = "700";
         }
-        "/etc/NetworkManager/system-connections"
         "/tmp"
-        "/root/.ssh"
       ];
       files = [
         "/etc/machine-id"
@@ -60,10 +56,6 @@ in {
             mode = "703";
           }
           {
-            directory = ".ssh";
-            mode = "704";
-          }
-          {
             directory = ".nixops";
             mode = "705";
           }
@@ -72,7 +64,6 @@ in {
             mode = "706";
           }
           ".var/app"
-          ".local/state/wireplumber"
           ".local/share/direnv"
           ".local/share/zoxide"
           ".wine"
@@ -84,9 +75,6 @@ in {
           ".config/Youtube Music"
           ".config/Cider"
           ".mozilla"
-        ];
-        files = [
-          ".config/pulse/cookie"
         ];
       };
     };
