@@ -156,6 +156,8 @@ in
         "layout.css.font-visibility.private" = 1;
         "layout.css.font-visibility.standard" = 1;
         "layout.css.font-visibility.trackingprotection" = 1;
+        #Disable autofocus on input fields
+        "browser.autofocus" = false;
         #use my own fonts
         "browser.display.use_document_fonts" = true;
         #Enable extensions on mozilla sites

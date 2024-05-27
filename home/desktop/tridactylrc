@@ -1,4 +1,6 @@
 " -*- mode: vimrc -*-
+" disable autofocus
+set allowautofocus false
 " init searchurls
 setnull searchurls.pp
 setnull searchurls.searx
