@@ -111,6 +111,7 @@
     adb.enable = true;
     ns-usbloader.enable = true;
     honkers-railway-launcher.enable = true;
+    anime-game-launcher.enable = true;
     kdeconnect = {
       enable = true;
       # broken
@@ -214,6 +215,7 @@
         "PopTracker"
         "invokeai"
         ".local/share/honkers-railway-launcher"
+        ".local/share/anime-game-launcher"
         ".local/share/Steam"
         ".local/share/yuzu"
         ".local/share/Cemu"
