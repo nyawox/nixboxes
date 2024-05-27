@@ -52,23 +52,26 @@ in
       ];
       wantedBy = [ "multi-user.target" ];
 
-      # set this service as a oneshot job
-      serviceConfig.Type = "oneshot";
+      serviceConfig = {
+        Type = "oneshot";
+        Restart = "on-failure";
+        RestartSec = "20";
+      };
 
-      # have the job run this shell script
-      script = with pkgs; ''
-        # wait for tailscaled to settle
-        sleep 5
-
-        # check if we are already authenticated to tailscale
-        status="$(${tailscale}/bin/tailscale status -json | ${jq}/bin/jq -r .BackendState)"
+      path = with pkgs; [
+        tailscale
+        jq
+        coreutils
+      ];
+      script = ''
+        set -x
+        set -eu
+        sleep 2
+        status="$(tailscale status -json | jq -r .BackendState)"
         if [ $status = "Running" ]; then # if so, then do nothing
           exit 0
         fi
-
-        # otherwise authenticate with tailscale
-        ${tailscale}/bin/tailscale up --login-server ${loginserver} --auth-key $(${coreutils}/bin/cat /run/secrets/tailscale_preauthkey)
-        # don't forget to replace auth key each time
+        tailscale up --login-server ${loginserver} --auth-key $(cat /run/secrets/tailscale_preauthkey)
       '';
     };
   };
