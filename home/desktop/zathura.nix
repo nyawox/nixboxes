@@ -22,6 +22,7 @@ in
       enable = true;
       extraConfig = ''
         include catppuccin-mocha
+        set selection-clipboard clipboard
       '';
     };
 
