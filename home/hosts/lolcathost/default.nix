@@ -23,9 +23,13 @@ let
 in
 {
   inherit imports;
-  modules.desktop.vivaldi.enable = true;
-  modules.desktop.zathura.enable = true;
-  modules.shell.yazi.enable = true;
+  modules = {
+    desktop = {
+      vivaldi.enable = true;
+      zathura.enable = true;
+    };
+    shell.yazi.enable = true;
+  };
   home.file.".local/share/PrismLauncher/themes/Catppuccin-Mocha".source =
     let
       zip = pkgs.fetchurl {
