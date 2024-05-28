@@ -239,7 +239,6 @@
         ".local/share/PrismLauncher/prismlauncher.cfg"
         ".local/share/PrismLauncher/accounts.json"
         ".local/share/PrismLauncher/metacache"
-        ".local/share/recently-used.xbel"
       ];
     };
   };
