@@ -221,6 +221,7 @@
         ".local/share/Cemu"
         ".local/share/dolphin-emu"
         ".config/dolphin-emu"
+        ".local/share/zathura"
         ".local/share/remmina"
         ".local/share/lutris"
         ".local/share/PrismLauncher/instances"
