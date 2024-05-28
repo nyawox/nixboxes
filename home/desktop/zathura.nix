@@ -25,7 +25,12 @@ in
       '';
     };
 
-    xdg.configFile."zathura/catppuccin-mocha".source =
-      inputs.catppuccin-zathura.outPath + "/src/catppuccin-mocha";
+    xdg = {
+      configFile."zathura/catppuccin-mocha".source =
+        inputs.catppuccin-zathura.outPath + "/src/catppuccin-mocha";
+      mimeApps.defaultApplications = {
+        "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf.desktop" ];
+      };
+    };
   };
 }
