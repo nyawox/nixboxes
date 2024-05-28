@@ -7,13 +7,13 @@ Usage : localinstall -h <hostname> [options]
 Options:
 
 * -h, --host <hostname>
-set the config hostname to install from this flake
+Set the config hostname to install from this flake
 
 * --secureboot
-generate secureboot keys
+Generate secure boot keys.
 
 * --initrdssh
-generate initrd ssh host keys
+Generate initrd SSH host keys.
 
 USAGE
 }
