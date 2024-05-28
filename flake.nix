@@ -1,4 +1,4 @@
-# Only inputs are defined here because they must be a static set. No calculations are allowed, meaning they can't be stored in other files.
+# Inputs must be defined here because they must be a static set. No calculations are allowed, meaning they can't be stored in other files.
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
