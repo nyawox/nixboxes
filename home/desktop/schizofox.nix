@@ -197,7 +197,7 @@ in
 
         extraUserChrome = ''
           /* ArcWTF main files */
-          @import url("icons/icons.css");
+          /* @import url("icons/icons.css"); */
           @import url("toolbar/tabbar.css");
           @import url("toolbar/navbar.css");
           @import url("toolbar/personalbar.css");
