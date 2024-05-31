@@ -43,7 +43,7 @@ in
             expire-header
             encode
             ''
-              reverse_proxy http://tomoyo.nyaa.nixlap.top:8420
+              reverse_proxy http://vultr.nyaa.nixlap.top:8420
             ''
           ];
         };

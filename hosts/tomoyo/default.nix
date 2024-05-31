@@ -7,7 +7,6 @@ _: {
     services = {
       tailscale.enable = true;
       homepage.enable = true;
-      searxng.enable = true;
       linkding.enable = true;
       netdata = {
         enable = true;
