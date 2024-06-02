@@ -62,7 +62,10 @@ in
           default_policy = "deny";
           rules = [
             {
-              domain = [ "netdata.nixlap.top" ];
+              domain = [
+                "netdata.nixlap.top"
+                "search.nixlap.top"
+              ];
               policy = "two_factor";
             }
             {

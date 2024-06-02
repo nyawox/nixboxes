@@ -12,6 +12,12 @@ let
   encode = ''
     encode gzip zstd
   '';
+  auth = ''
+    forward_auth nixpro64.nyaa.nixlap.top:9150 {
+    	uri /api/verify?rd=https://auth.nixlap.top
+    	copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
+    }
+  '';
 in
 {
   options = {
@@ -42,6 +48,7 @@ in
           extraConfig = lib.strings.concatStrings [
             expire-header
             encode
+            auth
             ''
               reverse_proxy http://vultr.nyaa.nixlap.top:8420
             ''
@@ -82,12 +89,9 @@ in
           extraConfig = lib.strings.concatStrings [
             expire-header
             encode
+            auth
             ''
-              forward_auth nixpro64.nyaa.nixlap.top:9150 {
-              	uri /api/verify?rd=https://auth.nixlap.top
-              	copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
-              }
-               reverse_proxy http://tomoyo.nyaa.nixlap.top:19999
+              reverse_proxy http://tomoyo.nyaa.nixlap.top:19999
             ''
           ];
         };
