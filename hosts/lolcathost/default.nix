@@ -114,9 +114,7 @@
     anime-game-launcher.enable = true;
     kdeconnect = {
       enable = true;
-      # broken
-      # https://github.com/NixOS/nixpkgs/pull/269663
-      # package = pkgs.valent;
+      package = pkgs.valent;
     };
 
     gamemode.enable = true;
