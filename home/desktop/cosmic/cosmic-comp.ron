@@ -48,8 +48,8 @@
 
         (modifiers: [Super], key: "l"): ToggleOrientation,
         (modifiers: [Super], key: "c"): ToggleStacking,
-        (modifiers: [Super], key: "m"): ToggleTiling,
-        (modifiers: [Super], key: "k"): ToggleWindowFloating,
+        (modifiers: [Super], key: "m"): ToggleWindowFloating,
+        (modifiers: [Super], key: "k"): ToggleTiling,
         (modifiers: [Super], key: "x"): SwapWindow,
 
         (modifiers: [Super], key: "f"): Maximize,
