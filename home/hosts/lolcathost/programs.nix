@@ -74,6 +74,7 @@
     gex
     inputs.nixpkgs-yuzu.legacyPackages.${pkgs.system}.citra
     remmina
+    onlyoffice-bin
   ];
   # services.flatpak.packages = [
   #   "org.telegram.desktop"
