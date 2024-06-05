@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-with lib;
-let
-  cfg = config.modules.services.frp;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.services.frp;
+in {
   options = {
     modules.services.frp = {
       enable = mkOption {
@@ -22,6 +24,6 @@ in
         };
       };
     };
-    networking.firewall.allowedTCPPorts = [ 25565 ];
+    networking.firewall.allowedTCPPorts = [25565];
   };
 }

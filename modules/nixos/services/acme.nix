@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-with lib;
-let
-  cfg = config.modules.services.acme;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.services.acme;
+in {
   options = {
     modules.services.acme = {
       enable = mkOption {
@@ -22,7 +24,7 @@ in
 
       certs."nixlap.top" = {
         domain = "nixlap.top";
-        extraDomainNames = [ "*.nixlap.top" ];
+        extraDomainNames = ["*.nixlap.top"];
         dnsProvider = "cloudflare";
         credentialsFile = config.sops.secrets.cloudflare.path;
       };
@@ -32,7 +34,7 @@ in
       format = "dotenv";
     };
 
-    users.users.caddy.extraGroups = [ "acme" ];
+    users.users.caddy.extraGroups = ["acme"];
     environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
       "/var/lib/acme"
     ];

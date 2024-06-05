@@ -3,8 +3,7 @@
   self,
   lib,
   ...
-}:
-{
+}: {
   flake = {
     deploy = {
       sshOpts = [
@@ -20,13 +19,10 @@
       magicRollback = false;
       nodes = builtins.mapAttrs (_: nixosConfig: {
         hostname =
-          if
-            builtins.isNull nixosConfig.config.modules.deploy.ip
+          if builtins.isNull nixosConfig.config.modules.deploy.ip
           # Connection through Tailscale using MagicDNS
-          then
-            "${nixosConfig.config.networking.hostName}"
-          else
-            "${nixosConfig.config.modules.deploy.ip}";
+          then "${nixosConfig.config.networking.hostName}"
+          else "${nixosConfig.config.modules.deploy.ip}";
 
         profiles.system = {
           user = "root";
@@ -37,8 +33,10 @@
     };
 
     # This is highly advised, and will prevent many possible mistakes
-    checks = builtins.mapAttrs (
-      _system: deployLib: deployLib.deployChecks self.deploy
-    ) inputs.deploy-rs.lib;
+    checks =
+      builtins.mapAttrs (
+        _system: deployLib: deployLib.deployChecks self.deploy
+      )
+      inputs.deploy-rs.lib;
   };
 }

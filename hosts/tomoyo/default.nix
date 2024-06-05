@@ -39,7 +39,7 @@ _: {
   psilocybin.enable = false;
 
   boot = {
-    kernelParams = [ "ip=64.112.124.245" ];
+    kernelParams = ["ip=64.112.124.245"];
     # Kernel modules required to boot on virtual machine
     # Make sure to include ethernet module to remote unlock luks
     initrd.availableKernelModules = [

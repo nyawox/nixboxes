@@ -4,11 +4,9 @@
   hostname,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.sysconf.bluetooth;
-in
-{
+in {
   options = {
     modules.sysconf.bluetooth = {
       enable = mkOption {
@@ -42,6 +40,6 @@ in
     # Save bluetooth settings
     environment.persistence."/persist".directories =
       lib.mkIf config.modules.sysconf.impermanence.enable
-        [ "/var/lib/bluetooth" ];
+      ["/var/lib/bluetooth"];
   };
 }

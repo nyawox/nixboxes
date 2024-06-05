@@ -5,11 +5,9 @@
   inputs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.shell.helix;
-in
-{
+in {
   options = {
     modules.shell.helix = {
       enable = mkOption {
@@ -70,14 +68,14 @@ in
           {
             name = "nix";
             auto-format = true;
-            formatter.command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+            formatter.command = "${pkgs.alejandra}/bin/alejandra";
           }
         ];
       };
       themes = {
         catppuccin_mocha_transparent = {
           "inherits" = "catppuccin_mocha";
-          "ui.background" = { };
+          "ui.background" = {};
         };
       };
     };

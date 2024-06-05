@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-with lib;
-let
-  cfg = config.modules.services.nfs-client;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.services.nfs-client;
+in {
   options = {
     modules.services.nfs-client = {
       nixboxes = mkOption {

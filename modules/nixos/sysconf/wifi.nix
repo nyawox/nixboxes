@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-with lib;
-let
-  cfg = config.modules.sysconf.wifi;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.sysconf.wifi;
+in {
   options = {
     modules.sysconf.wifi = {
       enable = mkOption {

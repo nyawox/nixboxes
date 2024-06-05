@@ -5,12 +5,10 @@
   username,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.services.windows;
   ipSubnet = "172.25.0.0/16";
-in
-{
+in {
   options = {
     modules.services.windows = {
       enable = mkOption {
@@ -27,7 +25,7 @@ in
         default = {
           name = "windows";
           ipam = {
-            config = [ { subnet = ipSubnet; } ];
+            config = [{subnet = ipSubnet;}];
           };
         };
       };
@@ -67,8 +65,8 @@ in
         stop_grace_period = "2m";
       };
     };
-    systemd.services.arion-windows.wantedBy = lib.mkForce [ ]; # Don't autostart
-    systemd.tmpfiles.rules = [ "d /var/lib/windows ' 0700 root root - -" ];
+    systemd.services.arion-windows.wantedBy = lib.mkForce []; # Don't autostart
+    systemd.tmpfiles.rules = ["d /var/lib/windows ' 0700 root root - -"];
     networking = {
       nftables.enable = lib.mkForce false;
       firewall.extraCommands = ''
@@ -92,7 +90,7 @@ in
       ];
       persistence."/persist".users."${username}".directories =
         mkIf config.modules.sysconf.impermanence.enable
-          [ "winshare" ];
+        ["winshare"];
     };
   };
 }

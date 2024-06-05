@@ -4,11 +4,9 @@
   pkgs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.desktop.fonts;
-in
-{
+in {
   options = {
     modules.desktop.fonts = {
       enable = mkOption {
@@ -26,7 +24,7 @@ in
       liberation_ttf
       wqy_zenhei
       font-awesome
-      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
   };
 }

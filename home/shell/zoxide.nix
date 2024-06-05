@@ -1,9 +1,11 @@
-{ lib, config, ... }:
-with lib;
-let
-  cfg = config.modules.shell.zoxide;
-in
 {
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.shell.zoxide;
+in {
   options = {
     modules.shell.zoxide = {
       enable = mkOption {

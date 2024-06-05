@@ -1,9 +1,11 @@
-{ lib, config, ... }:
-with lib;
-let
-  cfg = config.modules.desktop.qt;
-in
 {
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.desktop.qt;
+in {
   options = {
     modules.desktop.qt = {
       enable = mkOption {

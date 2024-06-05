@@ -4,11 +4,9 @@
   pkgs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.desktop.vivaldi;
-in
-{
+in {
   options = {
     modules.desktop.vivaldi = {
       enable = mkOption {

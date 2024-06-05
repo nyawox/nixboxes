@@ -1,9 +1,11 @@
-{ lib, config, ... }:
-with lib;
-let
-  cfg = config.modules.common.xdg;
-in
 {
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.common.xdg;
+in {
   options = {
     modules.common.xdg = {
       enable = mkOption {

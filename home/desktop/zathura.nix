@@ -4,11 +4,9 @@
   inputs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.desktop.zathura;
-in
-{
+in {
   options = {
     modules.desktop.zathura = {
       enable = mkOption {
@@ -30,7 +28,7 @@ in
       configFile."zathura/catppuccin-mocha".source =
         inputs.catppuccin-zathura.outPath + "/src/catppuccin-mocha";
       mimeApps.defaultApplications = {
-        "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf.desktop" ];
+        "application/pdf" = ["org.pwmt.zathura-pdf-mupdf.desktop"];
       };
     };
   };

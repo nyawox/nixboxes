@@ -4,16 +4,17 @@
   osConfig,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.desktop.cosmic;
-in
-{
+in {
   options = {
     modules.desktop.cosmic = {
       enable = mkOption {
         type = types.bool;
-        default = if osConfig.modules.desktop.cosmic.enable then true else false;
+        default =
+          if osConfig.modules.desktop.cosmic.enable
+          then true
+          else false;
       };
     };
   };

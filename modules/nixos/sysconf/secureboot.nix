@@ -5,12 +5,10 @@
   inputs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.sysconf.secureboot;
-in
-{
-  imports = [ inputs.lanzaboote.nixosModules.lanzaboote ];
+in {
+  imports = [inputs.lanzaboote.nixosModules.lanzaboote];
   options = {
     modules.sysconf.secureboot = {
       enable = mkOption {

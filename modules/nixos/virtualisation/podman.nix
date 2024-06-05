@@ -4,11 +4,9 @@
   username,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.virtualisation.podman;
-in
-{
+in {
   options = {
     modules.virtualisation.podman = {
       enable = mkOption {
@@ -29,9 +27,9 @@ in
     };
 
     environment.persistence."/persist" = {
-      directories = mkIf config.modules.sysconf.impermanence.enable [ "/var/lib/containers" ];
+      directories = mkIf config.modules.sysconf.impermanence.enable ["/var/lib/containers"];
       users."${username}" = {
-        directories = mkIf config.modules.sysconf.impermanence.enable [ ".local/share/containers" ];
+        directories = mkIf config.modules.sysconf.impermanence.enable [".local/share/containers"];
       };
     };
   };

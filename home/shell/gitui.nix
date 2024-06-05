@@ -4,11 +4,9 @@
   inputs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.shell.gitui;
-in
-{
+in {
   options = {
     modules.shell.gitui = {
       enable = mkOption {

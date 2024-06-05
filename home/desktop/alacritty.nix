@@ -4,11 +4,9 @@
   inputs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.desktop.alacritty;
-in
-{
+in {
   options = {
     modules.desktop.alacritty = {
       enable = mkOption {
@@ -26,8 +24,8 @@ in
             family = "Spleen";
             style = "Regular";
           };
-          bold = lib.mkForce { family = "Spleen"; };
-          italic = lib.mkForce { family = "Spleen"; };
+          bold = lib.mkForce {family = "Spleen";};
+          italic = lib.mkForce {family = "Spleen";};
           # size in pt
           size = 9;
         };
@@ -41,7 +39,7 @@ in
         env = {
           TERM = "xterm-256color";
         };
-        import = [ "~/.config/alacritty/catppuccin/catppuccin-mocha.yml" ];
+        import = ["~/.config/alacritty/catppuccin/catppuccin-mocha.yml"];
       };
     };
     xdg.configFile."alacritty/catppuccin" = lib.mkIf config.programs.alacritty.enable {

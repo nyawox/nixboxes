@@ -9,8 +9,7 @@
   platform,
   deploy,
   ...
-}:
-{
+}: {
   networking.hostName = hostname;
   nixpkgs.hostPlatform = platform;
   var.username = username;
@@ -26,8 +25,8 @@
     };
 
     kernelPackages = lib.mkDefault pkgs.linuxPackages_hardened;
-    kernelModules = [ "lkrg" ];
-    kernelParams = [ "libahci.ignore_sss=1" ];
+    kernelModules = ["lkrg"];
+    kernelParams = ["libahci.ignore_sss=1"];
 
     initrd.systemd.enable = lib.mkDefault true;
 

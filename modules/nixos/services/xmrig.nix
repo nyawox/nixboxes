@@ -4,11 +4,9 @@
   hostname,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.services.xmrig;
-in
-{
+in {
   options = {
     modules.services.xmrig = {
       enable = mkOption {
@@ -38,6 +36,6 @@ in
       };
     };
     # Don't automatically start xmrig
-    systemd.services."xmrig".wantedBy = lib.mkForce [ ];
+    systemd.services."xmrig".wantedBy = lib.mkForce [];
   };
 }

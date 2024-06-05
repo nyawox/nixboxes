@@ -1,9 +1,11 @@
-{ lib, config, ... }:
-with lib;
-let
-  cfg = config.modules.shell.lsd;
-in
 {
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.shell.lsd;
+in {
   options = {
     modules.shell.lsd = {
       enable = mkOption {

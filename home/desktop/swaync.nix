@@ -4,11 +4,9 @@
   pkgs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.desktop.swaync;
-in
-{
+in {
   options = {
     modules.desktop.swaync = {
       enable = mkOption {
@@ -20,7 +18,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       swaynotificationcenter
-      (nerdfonts.override { fonts = [ "Ubuntu" ]; })
+      (nerdfonts.override {fonts = ["Ubuntu"];})
     ];
     xdg.configFile."swaync/style.css".source = pkgs.fetchurl {
       url = "https://github.com/catppuccin/swaync/releases/download/v0.1.2.1/mocha.css";

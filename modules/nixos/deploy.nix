@@ -5,11 +5,9 @@
   username,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.deploy;
-in
-{
+in {
   options = {
     modules.deploy = {
       enable = mkOption {
@@ -30,11 +28,11 @@ in
   config = mkIf cfg.enable {
     security.sudo-rs.extraRules = mkIf cfg.noPass [
       {
-        users = [ "${username}" ];
+        users = ["${username}"];
         commands = [
           {
             command = "/nix/store/*-activatable-nixos-system-${hostname}-*/activate-rs";
-            options = [ "NOPASSWD" ];
+            options = ["NOPASSWD"];
           }
         ];
       }

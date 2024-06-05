@@ -1,9 +1,11 @@
-{ lib, config, ... }:
-with lib;
-let
-  cfg = config.modules.shell.bat;
-in
 {
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.shell.bat;
+in {
   options = {
     modules.shell.bat = {
       enable = mkOption {
@@ -19,6 +21,6 @@ in
         pager = "less -FR";
       };
     };
-    programs.fish.shellAliases = mkIf config.modules.shell.fish.enable { cat = "bat"; };
+    programs.fish.shellAliases = mkIf config.modules.shell.fish.enable {cat = "bat";};
   };
 }

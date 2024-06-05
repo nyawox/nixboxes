@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-with lib;
-let
-  cfg = config.modules.sysconf.zram;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.sysconf.zram;
+in {
   options = {
     modules.sysconf.zram = {
       enable = mkOption {

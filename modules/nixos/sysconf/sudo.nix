@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-with lib;
-let
-  cfg = config.modules.sysconf.sudo;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.sysconf.sudo;
+in {
   options = {
     modules.sysconf.sudo = {
       enable = mkOption {

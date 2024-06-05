@@ -4,11 +4,9 @@
   username,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.services.ssh;
-in
-{
+in {
   options = {
     modules.services.ssh = {
       enable = mkOption {
@@ -37,7 +35,7 @@ in
         # Listen to all ipv6 address
         ListenAddress ::
       '';
-      ports = [ 22420 ];
+      ports = [22420];
       hostKeys = [
         {
           path = "/etc/ssh/ssh_host_ed25519_key";
@@ -53,7 +51,7 @@ in
     programs.mosh.enable = true;
 
     environment.persistence."/persist" = {
-      directories = mkIf config.modules.sysconf.impermanence.enable [ "/root/.ssh" ];
+      directories = mkIf config.modules.sysconf.impermanence.enable ["/root/.ssh"];
       files = lib.mkIf config.modules.sysconf.impermanence.enable [
         "/etc/ssh/ssh_host_ed25519_key"
         "/etc/ssh/ssh_host_ed25519_key.pub"

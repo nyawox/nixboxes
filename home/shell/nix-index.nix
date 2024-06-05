@@ -4,12 +4,10 @@
   inputs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.shell.nix-index;
-in
-{
-  imports = [ inputs.nix-index-database.hmModules.nix-index ];
+in {
+  imports = [inputs.nix-index-database.hmModules.nix-index];
   options = {
     modules.shell.nix-index = {
       enable = mkOption {

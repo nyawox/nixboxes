@@ -4,12 +4,10 @@
   inputs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.services.flatpak;
-in
-{
-  imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];
+in {
+  imports = [inputs.nix-flatpak.nixosModules.nix-flatpak];
   options = {
     modules.services.flatpak = {
       enable = mkOption {

@@ -5,9 +5,8 @@
   username,
   inputs,
   ...
-}:
-{
-  imports = [ inputs.aagl.nixosModules.default ];
+}: {
+  imports = [inputs.aagl.nixosModules.default];
   modules = {
     sysconf = {
       wifi.enable = true;
@@ -102,7 +101,7 @@
       "compress=zstd"
     ];
   };
-  psilocybin.devices = [ "/dev/input/by-id/usb-Topre_Corporation_HHKB_Professional-event-kbd" ];
+  psilocybin.devices = ["/dev/input/by-id/usb-Topre_Corporation_HHKB_Professional-event-kbd"];
 
   gtk.iconCache.enable = true;
 
@@ -128,7 +127,7 @@
   security.protectKernelImage = false;
 
   boot = {
-    supportedFilesystems = [ "ntfs" ];
+    supportedFilesystems = ["ntfs"];
     kernelPackages = pkgs.linuxPackages_cachyos;
     extraModprobeConfig = ''
       options usbhid quirks=0x046D:0x0A38:0x0004
@@ -161,7 +160,7 @@
         "usbhid"
         "sd_mod"
       ];
-      kernelModules = [ "amdgpu" ];
+      kernelModules = ["amdgpu"];
     };
     kernelModules = [
       "kvm-amd"

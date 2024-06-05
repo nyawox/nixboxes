@@ -4,13 +4,11 @@
   inputs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.sysconf.disko;
   hostname = config.networking.hostName;
-in
-{
-  imports = [ inputs.disko.nixosModules.disko ];
+in {
+  imports = [inputs.disko.nixosModules.disko];
   options = {
     modules.sysconf.disko = {
       enable = mkOption {
@@ -113,8 +111,8 @@ in
               content = {
                 type = "luks";
                 name = hostname;
-                extraFormatArgs = [ "--pbkdf ${config.disk.encryption.pbkdf} --hash sha256" ];
-                extraOpenArgs = [ "--allow-discards" ];
+                extraFormatArgs = ["--pbkdf ${config.disk.encryption.pbkdf} --hash sha256"];
+                extraOpenArgs = ["--allow-discards"];
                 askPassword = true;
                 content = {
                   type = "btrfs";
@@ -149,7 +147,7 @@ in
                         "space_cache=v2"
                       ];
                     };
-                    "root-blank" = mkIf (!config.tmpfsroot.enable) { };
+                    "root-blank" = mkIf (!config.tmpfsroot.enable) {};
                   };
                 };
               };
@@ -190,7 +188,7 @@ in
                       "space_cache=v2"
                     ];
                   };
-                  "root-blank" = mkIf (!config.tmpfsroot.enable) { };
+                  "root-blank" = mkIf (!config.tmpfsroot.enable) {};
                 };
               };
             };
@@ -209,12 +207,12 @@ in
     fileSystems."/nix".neededForBoot = true;
     fileSystems."/persist".neededForBoot = true;
     boot = {
-      supportedFilesystems = [ "btrfs" ];
+      supportedFilesystems = ["btrfs"];
       loader = {
         systemd-boot.enable = mkIf config.esp.mbr false;
         grub = mkIf config.esp.mbr {
           enable = true;
-          devices = [ config.disk.device ];
+          devices = [config.disk.device];
           efiSupport = true;
           enableCryptodisk = mkIf config.disk.encryption.enable true;
         };
@@ -222,12 +220,12 @@ in
       initrd.systemd.services = mkIf (!config.tmpfsroot.enable) {
         rollback = {
           description = "Rollback BTRFS root subvolume to a pristine state";
-          wantedBy = [ "initrd.target" ];
+          wantedBy = ["initrd.target"];
           after = mkIf config.disk.encryption.enable [
             # LUKS/TPM process
             "systemd-cryptsetup@${hostname}.service"
           ];
-          before = [ "sysroot.mount" ];
+          before = ["sysroot.mount"];
           unitConfig.DefaultDependencies = "no";
           serviceConfig.Type = "oneshot";
           script = ''
@@ -235,10 +233,9 @@ in
             # We first mount the btrfs root to /mnt
             # so we can manipulate btrfs subvolumes.
             mount -o subvol=/ ${
-              if config.disk.encryption.enable then
-                "/dev/mapper/" + hostname
-              else
-                "/dev/disk/by-label/" + hostname
+              if config.disk.encryption.enable
+              then "/dev/mapper/" + hostname
+              else "/dev/disk/by-label/" + hostname
             } /mnt
             # While we're tempted to just delete /root and create
             # a new snapshot from /root-blank, /root is already

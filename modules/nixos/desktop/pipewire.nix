@@ -5,11 +5,9 @@
   username,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.desktop.pipewire;
-in
-{
+in {
   options = {
     modules.desktop.pipewire = {
       enable = mkOption {
@@ -41,8 +39,8 @@ in
       };
     };
     environment.persistence."/persist".users."${username}" = {
-      directories = [ ".local/state/wireplumber" ];
-      files = [ ".config/pulse/cookie" ];
+      directories = [".local/state/wireplumber"];
+      files = [".config/pulse/cookie"];
     };
   };
 }

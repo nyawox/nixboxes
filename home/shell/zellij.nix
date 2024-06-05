@@ -1,9 +1,11 @@
-{ lib, config, ... }:
-with lib;
-let
-  cfg = config.modules.shell.zellij;
-in
 {
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.shell.zellij;
+in {
   options = {
     modules.shell.zellij = {
       enable = mkOption {
@@ -24,7 +26,7 @@ in
           unbind = "Ctrl h";
           move = {
             bind = {
-              _args = [ "Ctrl a" ];
+              _args = ["Ctrl a"];
               SwitchToMode = "Normal";
             };
           };

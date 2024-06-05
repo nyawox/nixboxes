@@ -5,11 +5,9 @@
   username,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.virtualisation;
-in
-{
+in {
   options = {
     modules.virtualisation = {
       enable = mkOption {
@@ -27,7 +25,7 @@ in
         qemu = {
           swtpm.enable = true;
           ovmf.enable = true;
-          ovmf.packages = [ pkgs.OVMFFull.fd ];
+          ovmf.packages = [pkgs.OVMFFull.fd];
           runAsRoot = true;
         };
       };
@@ -39,21 +37,19 @@ in
     systemd = {
       services = {
         libvirtd = {
-          path =
-            let
-              env = pkgs.buildEnv {
-                name = "qemu-hook-env";
-                paths = with pkgs; [
-                  bash
-                  libvirt
-                  kmod
-                  systemd
-                  ripgrep
-                  sd
-                ];
-              };
-            in
-            [ env ];
+          path = let
+            env = pkgs.buildEnv {
+              name = "qemu-hook-env";
+              paths = with pkgs; [
+                bash
+                libvirt
+                kmod
+                systemd
+                ripgrep
+                sd
+              ];
+            };
+          in [env];
         };
         pcscd.enable = false;
       };
@@ -235,13 +231,13 @@ in
     boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
     environment.persistence."/persist".directories =
       lib.mkIf config.modules.sysconf.impermanence.enable
-        [
-          {
-            directory = "/var/lib/libvirt";
-            user = "root";
-            group = "root";
-            mode = "756";
-          }
-        ];
+      [
+        {
+          directory = "/var/lib/libvirt";
+          user = "root";
+          group = "root";
+          mode = "756";
+        }
+      ];
   };
 }

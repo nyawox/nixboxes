@@ -5,11 +5,9 @@
   inputs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.common.files;
-in
-{
+in {
   options = {
     modules.common.files = {
       enable = mkOption {

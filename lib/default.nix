@@ -4,8 +4,7 @@
   outputs,
   stateVersion,
   ...
-}:
-let
+}: let
   gen = import ./gen.nix {
     inherit
       self
@@ -14,7 +13,6 @@ let
       stateVersion
       ;
   };
-in
-{
+in {
   inherit (gen) mkLinux;
 }

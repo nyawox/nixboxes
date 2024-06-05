@@ -3,8 +3,7 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   modules = {
     sysconf = {
       wifi.enable = true;
@@ -41,12 +40,12 @@
   disk.device = "/dev/sda";
   psilocybin = {
     jis = true;
-    devices = [ "/dev/input/by-path/platform-i8042-serio-0-event-kbd" ];
+    devices = ["/dev/input/by-path/platform-i8042-serio-0-event-kbd"];
   };
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  boot.initrd.kernelModules = [ "i915" ];
+  boot.initrd.kernelModules = ["i915"];
 
   environment.variables = {
     VDPAU_DRIVER = lib.mkIf config.hardware.opengl.enable (lib.mkDefault "va_gl");
@@ -54,10 +53,9 @@
 
   hardware.opengl.extraPackages = with pkgs; [
     (
-      if (lib.versionOlder (lib.versions.majorMinor lib.version) "23.11") then
-        vaapiIntel
-      else
-        intel-vaapi-driver
+      if (lib.versionOlder (lib.versions.majorMinor lib.version) "23.11")
+      then vaapiIntel
+      else intel-vaapi-driver
     )
     libvdpau-va-gl
     intel-media-driver

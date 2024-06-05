@@ -5,12 +5,10 @@
   inputs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.desktop.schizofox;
   exturl = "https://addons.mozilla.org/firefox/downloads/latest";
-in
-{
+in {
   options = {
     modules.desktop.schizofox = {
       enable = mkOption {

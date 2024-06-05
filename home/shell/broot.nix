@@ -1,9 +1,11 @@
-{ lib, config, ... }:
-with lib;
-let
-  cfg = config.modules.shell.broot;
-in
 {
+  lib,
+  config,
+  ...
+}:
+with lib; let
+  cfg = config.modules.shell.broot;
+in {
   options = {
     modules.shell.broot = {
       enable = mkOption {

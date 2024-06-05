@@ -5,12 +5,10 @@
   username,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.services.tailscale;
   loginserver = "https://headscale.nixlap.top";
-in
-{
+in {
   options = {
     modules.services.tailscale = {
       enable = mkOption {
@@ -26,8 +24,8 @@ in
     };
     networking.firewall = {
       checkReversePath = "loose";
-      trustedInterfaces = [ "tailscale0" ];
-      allowedUDPPorts = [ config.services.tailscale.port ];
+      trustedInterfaces = ["tailscale0"];
+      allowedUDPPorts = [config.services.tailscale.port];
     };
     environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
       "/var/lib/tailscale"
@@ -50,7 +48,7 @@ in
         "network-pre.target"
         "tailscale.service"
       ];
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = ["multi-user.target"];
 
       serviceConfig = {
         Type = "oneshot";

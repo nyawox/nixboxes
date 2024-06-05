@@ -4,11 +4,9 @@
   username,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.sysconf.sshluks;
-in
-{
+in {
   options = {
     modules.sysconf.sshluks = {
       enable = mkOption {
@@ -24,7 +22,7 @@ in
       enable = true;
       port = 42420;
       authorizedKeys = config.users.users."${username}".openssh.authorizedKeys.keys;
-      hostKeys = [ "/persist/etc/secrets/initrd/ssh_host_ed25519_key" ];
+      hostKeys = ["/persist/etc/secrets/initrd/ssh_host_ed25519_key"];
     };
     services.openssh.hostKeys = [
       {
@@ -35,6 +33,6 @@ in
 
     environment.persistence."/persist".directories =
       lib.mkIf config.modules.sysconf.impermanence.enable
-        [ "/etc/secrets/initrd" ];
+      ["/etc/secrets/initrd"];
   };
 }

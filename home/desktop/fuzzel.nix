@@ -4,11 +4,9 @@
   pkgs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.desktop.fuzzel;
-in
-{
+in {
   options = {
     modules.desktop.fuzzel = {
       enable = mkOption {

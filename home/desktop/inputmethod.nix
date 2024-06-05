@@ -4,11 +4,9 @@
   pkgs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.desktop.inputmethod;
-in
-{
+in {
   options = {
     modules.desktop.inputmethod = {
       enable = mkOption {

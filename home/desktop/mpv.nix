@@ -4,11 +4,9 @@
   pkgs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.desktop.mpv;
-in
-{
+in {
   options = {
     modules.desktop.mpv = {
       enable = mkOption {
@@ -35,6 +33,6 @@ in
         pkgs.mpvScripts.quality-menu
       ];
     };
-    home.packages = with pkgs; [ yt-dlp ];
+    home.packages = with pkgs; [yt-dlp];
   };
 }

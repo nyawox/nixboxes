@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-with lib;
-let
-  cfg = config.modules.sysconf.networkd;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.sysconf.networkd;
+in {
   options = {
     modules.sysconf.networkd = {
       enable = mkOption {

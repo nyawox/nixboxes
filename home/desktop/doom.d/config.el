@@ -44,7 +44,7 @@
  '(treemacs-nerd-icons-file-face ((t (:foreground "#b4befe"))))
  '(treemacs-nerd-icons-root-face      ((t (:foreground "#b4befe")))))
 
-(set-formatter! 'nixfmt '("nixfmt") :modes '(nix-mode))
+(set-formatter! 'alejandra '("alejandra" "--quiet") :modes '(nix-mode))
 (setq-hook! 'nix-mode-hook +format-with-lsp nil)
 
 (setq projectile-project-search-path '("~/Projects" "/nixboxes"))

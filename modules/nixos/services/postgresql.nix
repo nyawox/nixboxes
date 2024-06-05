@@ -4,11 +4,9 @@
   pkgs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.services.postgresql;
-in
-{
+in {
   options = {
     modules.services.postgresql = {
       enable = mkOption {
@@ -46,7 +44,7 @@ in
       };
       restic.backups.postgresql = {
         initialize = true;
-        paths = [ "/var/backup/postgresql" ];
+        paths = ["/var/backup/postgresql"];
         passwordFile = config.sops.secrets.restic-postgresql-pw.path;
         environmentFile = config.sops.secrets.restic-postgresql-env.path;
         repository = "b2:postgresql-nyan";

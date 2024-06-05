@@ -5,12 +5,10 @@
   inputs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.services.minecraft-server;
-in
-{
-  imports = [ inputs.nix-minecraft.nixosModules.minecraft-servers ];
+in {
+  imports = [inputs.nix-minecraft.nixosModules.minecraft-servers];
   options = {
     modules.services.minecraft-server = {
       enable = mkOption {
@@ -20,7 +18,7 @@ in
     };
   };
   config = mkIf cfg.enable {
-    nixpkgs.overlays = [ inputs.nix-minecraft.overlay ];
+    nixpkgs.overlays = [inputs.nix-minecraft.overlay];
     services = {
       minecraft-server.dataDir = "/var/lib/minecraft/null";
       minecraft-servers = {

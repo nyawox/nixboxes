@@ -5,11 +5,9 @@
   username,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.virtualisation.waydroid;
-in
-{
+in {
   options = {
     modules.virtualisation.waydroid = {
       enable = mkOption {
@@ -52,7 +50,7 @@ in
       ];
       persistence."/persist".users."${username}".directories =
         mkIf config.modules.sysconf.impermanence.enable
-          [ ".local/share/waydroid" ];
+        [".local/share/waydroid"];
     };
   };
 }

@@ -4,11 +4,9 @@
   pkgs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.shell.direnv;
-in
-{
+in {
   options = {
     modules.shell.direnv = {
       enable = mkOption {

@@ -4,11 +4,9 @@
   pkgs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.desktop.polkit;
-in
-{
+in {
   options = {
     modules.desktop.polkit = {
       enable = mkOption {
@@ -22,9 +20,9 @@ in
     systemd = {
       user.services.polkit-gnome-authentication-agent-1 = {
         description = "polkit-gnome-authentication-agent-1";
-        wantedBy = [ "graphical-session.target" ];
-        wants = [ "graphical-session.target" ];
-        after = [ "graphical-session.target" ];
+        wantedBy = ["graphical-session.target"];
+        wants = ["graphical-session.target"];
+        after = ["graphical-session.target"];
         serviceConfig = {
           Type = "simple";
           ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";

@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   nix = {
     package = pkgs.lix;
     settings = {
@@ -8,8 +7,8 @@
         "flakes"
         "repl-flake"
       ];
-      trusted-users = [ "@wheel" ];
-      allowed-users = [ "@wheel" ];
+      trusted-users = ["@wheel"];
+      allowed-users = ["@wheel"];
     };
     optimise.automatic = true;
     gc = {
@@ -30,7 +29,7 @@
           "kvm"
           "nixos-test"
         ];
-        mandatoryFeatures = [ ];
+        mandatoryFeatures = [];
       }
     ];
     distributedBuilds = true;

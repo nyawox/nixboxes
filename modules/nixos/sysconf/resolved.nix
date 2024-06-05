@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-with lib;
-let
-  cfg = config.modules.sysconf.resolved;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.sysconf.resolved;
+in {
   options = {
     modules.sysconf.resolved = {
       enable = mkOption {
@@ -24,7 +26,7 @@ in
     services.resolved = {
       enable = true;
       dnssec = "true";
-      domains = [ "~." ];
+      domains = ["~."];
       fallbackDns = [
         "9.9.9.9"
         "149.112.112.112"

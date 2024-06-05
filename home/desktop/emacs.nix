@@ -5,11 +5,9 @@
   inputs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.desktop.emacs;
-in
-{
+in {
   options = {
     modules.desktop.emacs = {
       enable = mkOption {
@@ -22,7 +20,7 @@ in
     programs.emacs = {
       enable = true;
       package = pkgs.emacs29-pgtk;
-      extraPackages = epkgs: [ epkgs.vterm ];
+      extraPackages = epkgs: [epkgs.vterm];
     };
     services.emacs.enable = true;
     home = {
@@ -40,7 +38,7 @@ in
         python3
         ripgrep
         # formatter
-        nixfmt-rfc-style
+        alejandra
         # Language servers
         nil
         emmet-ls

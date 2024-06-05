@@ -4,11 +4,9 @@
   pkgs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.sysconf.tty;
-in
-{
+in {
   options = {
     modules.sysconf.tty = {
       enable = mkOption {
@@ -19,7 +17,7 @@ in
   };
   config = mkIf cfg.enable {
     # Configure console font
-    console.packages = with pkgs; [ spleen ];
+    console.packages = with pkgs; [spleen];
     console.font = "${pkgs.spleen}/share/consolefonts/spleen-8x16.psfu";
 
     # Catppuccin Mocha

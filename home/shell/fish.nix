@@ -5,11 +5,9 @@
   inputs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.shell.fish;
-in
-{
+in {
   options = {
     modules.shell.fish = {
       enable = mkOption {
@@ -79,6 +77,6 @@ in
     };
     xdg.configFile."fish/themes".source = inputs.catppuccin-fish.outPath + "/themes";
 
-    home.packages = with pkgs; [ grc ];
+    home.packages = with pkgs; [grc];
   };
 }

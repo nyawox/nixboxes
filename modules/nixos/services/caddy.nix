@@ -1,6 +1,9 @@
-{ config, lib, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.modules.services.caddy;
   expire-header = ''
     @static {
@@ -18,8 +21,7 @@ let
     	copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
     }
   '';
-in
-{
+in {
   options = {
     modules.services.caddy = {
       enable = mkOption {

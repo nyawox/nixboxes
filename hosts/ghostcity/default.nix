@@ -29,5 +29,5 @@ _: {
     "uas"
     "sd_mod"
   ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [];
 }

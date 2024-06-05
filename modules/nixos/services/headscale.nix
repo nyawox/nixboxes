@@ -1,11 +1,13 @@
-{ config, lib, ... }:
-with lib;
-let
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.modules.services.headscale;
   domain = "headscale.nixlap.top";
   derpPort = 3478;
-in
-{
+in {
   options = {
     modules.services.headscale = {
       enable = mkOption {
@@ -50,12 +52,12 @@ in
       };
     };
 
-    environment.systemPackages = [ config.services.headscale.package ];
+    environment.systemPackages = [config.services.headscale.package];
     networking.firewall.allowedTCPPorts = [
       80
       443
     ];
-    networking.firewall.allowedUDPPorts = [ derpPort ];
+    networking.firewall.allowedUDPPorts = [derpPort];
 
     environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
       "/var/lib/headscale"

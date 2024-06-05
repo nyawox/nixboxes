@@ -1,11 +1,13 @@
 # You must add user to /var/lib/authelia-main/users_database.yml manually
 # sudo hx /var/lib/authelia-main/notification.txt to check 2fa email
-{ config, lib, ... }:
-with lib;
-let
-  cfg = config.modules.services.authelia;
-in
 {
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.modules.services.authelia;
+in {
   options = {
     modules.services.authelia = {
       enable = mkOption {
@@ -69,7 +71,7 @@ in
               policy = "two_factor";
             }
             {
-              domain = [ "*.nixlap.top" ];
+              domain = ["*.nixlap.top"];
               policy = "bypass";
             }
           ];

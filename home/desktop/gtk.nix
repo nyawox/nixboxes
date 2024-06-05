@@ -4,11 +4,9 @@
   pkgs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.desktop.gtk;
-in
-{
+in {
   options = {
     modules.desktop.gtk = {
       enable = mkOption {
@@ -28,7 +26,7 @@ in
             "pink"
           ];
           size = "standard";
-          tweaks = [ "rimless" ];
+          tweaks = ["rimless"];
           variant = "mocha";
         };
       };
@@ -45,6 +43,6 @@ in
         size = 16;
       };
     };
-    home.packages = with pkgs; [ glib ];
+    home.packages = with pkgs; [glib];
   };
 }

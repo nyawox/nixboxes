@@ -4,11 +4,9 @@
   pkgs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.shell.fastfetch;
-in
-{
+in {
   options = {
     modules.shell.fastfetch = {
       enable = mkOption {
@@ -18,8 +16,8 @@ in
     };
   };
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.fastfetch ];
-    programs.fish.shellAliases = mkIf config.modules.shell.fish.enable { fetch = "fastfetch"; };
+    home.packages = [pkgs.fastfetch];
+    programs.fish.shellAliases = mkIf config.modules.shell.fish.enable {fetch = "fastfetch";};
     xdg.configFile."fastfetch/nixos.sixel".source = ../nixos.sixel;
     xdg.configFile."fastfetch/config.jsonc".text = ''
       {

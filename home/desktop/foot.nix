@@ -4,11 +4,9 @@
   pkgs,
   ...
 }:
-with lib;
-let
+with lib; let
   cfg = config.modules.desktop.foot;
-in
-{
+in {
   options = {
     modules.desktop.foot = {
       enable = mkOption {
