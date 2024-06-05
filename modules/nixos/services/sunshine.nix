@@ -63,18 +63,14 @@ in {
     '';
 
     environment.systemPackages = with pkgs; [sunshine];
-    networking.firewall.allowedTCPPortRanges = [
-      {
-        from = 47984;
-        to = 48010;
-      }
-    ];
-    networking.firewall.allowedUDPPortRanges = [
-      {
-        from = 47998;
-        to = 48010;
-      }
-    ];
+    networking.firewall.allowedTCPPortRanges = lib.singleton {
+      from = 47984;
+      to = 48010;
+    };
+    networking.firewall.allowedUDPPortRanges = lib.singleton {
+      from = 47998;
+      to = 48010;
+    };
     environment.persistence."/persist".users.${username} = {
       directories = [".config/sunshine/credentials"];
       files = [

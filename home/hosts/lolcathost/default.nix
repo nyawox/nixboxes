@@ -12,12 +12,10 @@
 
   apps = {
     env = "/run/current-system/sw/bin:/run/wrappers/bin:/home/${username}/.nix-profile/bin:/etc/profiles/per-user/${username}/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
-    apps = [
-      {
-        name = "Desktop";
-        image-path = "desktop.png";
-      }
-    ];
+    apps = lib.singleton {
+      name = "Desktop";
+      image-path = "desktop.png";
+    };
   };
 in {
   inherit imports;

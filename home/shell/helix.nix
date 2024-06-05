@@ -64,13 +64,11 @@ in {
         };
       };
       languages = {
-        language = [
-          {
-            name = "nix";
-            auto-format = true;
-            formatter.command = "${pkgs.alejandra}/bin/alejandra";
-          }
-        ];
+        language = lib.singleton {
+          name = "nix";
+          auto-format = true;
+          formatter.command = "${pkgs.alejandra}/bin/alejandra";
+        };
       };
       themes = {
         catppuccin_mocha_transparent = {

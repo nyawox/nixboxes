@@ -24,12 +24,10 @@ in {
       authorizedKeys = config.users.users."${username}".openssh.authorizedKeys.keys;
       hostKeys = ["/persist/etc/secrets/initrd/ssh_host_ed25519_key"];
     };
-    services.openssh.hostKeys = [
-      {
-        path = "/persist/etc/secrets/initrd/ssh_host_ed25519_key";
-        type = "ed25519";
-      }
-    ];
+    services.openssh.hostKeys = lib.singleton {
+      path = "/persist/etc/secrets/initrd/ssh_host_ed25519_key";
+      type = "ed25519";
+    };
 
     environment.persistence."/persist".directories =
       lib.mkIf config.modules.sysconf.impermanence.enable

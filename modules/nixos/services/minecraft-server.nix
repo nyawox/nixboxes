@@ -94,13 +94,11 @@ in {
       rcon
       tmux
     ];
-    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
-      {
-        directory = "/var/lib/minecraft";
-        user = "minecraft";
-        group = "minecraft";
-      }
-    ];
+    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable (lib.singleton {
+      directory = "/var/lib/minecraft";
+      user = "minecraft";
+      group = "minecraft";
+    });
     sops.secrets.restic-minecraft-pw = {
       sopsFile = ../../../secrets/restic-minecraft.psk;
       format = "binary";

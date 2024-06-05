@@ -25,12 +25,10 @@ in {
       };
     };
 
-    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
-      {
-        directory = "/var/db/influxdb";
-        user = "influxdb";
-        group = "influxdb";
-      }
-    ];
+    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable (lib.singleton {
+      directory = "/var/db/influxdb";
+      user = "influxdb";
+      group = "influxdb";
+    });
   };
 }

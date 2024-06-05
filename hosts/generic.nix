@@ -134,12 +134,10 @@
     # Use kmscon as virtual console instead of gettys
     kmscon = {
       enable = true;
-      fonts = [
-        {
-          name = "Spleen";
-          package = pkgs.spleen;
-        }
-      ];
+      fonts = lib.singleton {
+        name = "Spleen";
+        package = pkgs.spleen;
+      };
     };
     dbus = {
       enable = true;

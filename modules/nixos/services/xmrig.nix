@@ -23,16 +23,14 @@ in {
         cpu = true;
         opencl = false;
         cuda = false;
-        pools = [
-          {
-            url = "kr.zephyr.herominers.com:1123";
-            user = "ZEPHYR3CscuZdJv2BMKuqzYNPq4iNcvKZexWb3UA1yx2X4fR4sFGT113bxNdPuMqy1EupxgYjX1QBMe9nzUA3uxd95KNd7DJkR14k";
-            pass = hostname;
-            algo = "rx/0";
-            keepalive = true;
-            tls = true;
-          }
-        ];
+        pools = lib.singleton {
+          url = "kr.zephyr.herominers.com:1123";
+          user = "ZEPHYR3CscuZdJv2BMKuqzYNPq4iNcvKZexWb3UA1yx2X4fR4sFGT113bxNdPuMqy1EupxgYjX1QBMe9nzUA3uxd95KNd7DJkR14k";
+          pass = hostname;
+          algo = "rx/0";
+          keepalive = true;
+          tls = true;
+        };
       };
     };
     # Don't automatically start xmrig

@@ -11,7 +11,7 @@ stdenv.mkDerivation {
 
   installPhase = ''
     install -d $out/share/fcitx5/themes/
-            cp -r ./src/* $out/share/fcitx5/themes/
+    cp -r ./src/* $out/share/fcitx5/themes/
   '';
 
   meta = with lib; {

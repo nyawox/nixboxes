@@ -28,9 +28,7 @@ in {
 
     environment.persistence."/persist" = {
       directories = mkIf config.modules.sysconf.impermanence.enable ["/var/lib/containers"];
-      users."${username}" = {
-        directories = mkIf config.modules.sysconf.impermanence.enable [".local/share/containers"];
-      };
+      users."${username}".directories = mkIf config.modules.sysconf.impermanence.enable [".local/share/containers"];
     };
   };
 }

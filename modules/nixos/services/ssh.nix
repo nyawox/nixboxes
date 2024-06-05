@@ -36,12 +36,10 @@ in {
         ListenAddress ::
       '';
       ports = [22420];
-      hostKeys = [
-        {
-          path = "/etc/ssh/ssh_host_ed25519_key";
-          type = "ed25519";
-        }
-      ];
+      hostKeys = lib.singleton {
+        path = "/etc/ssh/ssh_host_ed25519_key";
+        type = "ed25519";
+      };
     };
     # make accesible from my desktop
     users.users."${username}".openssh.authorizedKeys.keys = [
@@ -56,12 +54,10 @@ in {
         "/etc/ssh/ssh_host_ed25519_key"
         "/etc/ssh/ssh_host_ed25519_key.pub"
       ];
-      users."${username}".directories = [
-        {
-          directory = ".ssh";
-          mode = "704";
-        }
-      ];
+      users."${username}".directories = lib.singleton {
+        directory = ".ssh";
+        mode = "704";
+      };
     };
   };
 }

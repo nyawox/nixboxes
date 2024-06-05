@@ -229,15 +229,11 @@ in {
     };
 
     boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
-    environment.persistence."/persist".directories =
-      lib.mkIf config.modules.sysconf.impermanence.enable
-      [
-        {
-          directory = "/var/lib/libvirt";
-          user = "root";
-          group = "root";
-          mode = "756";
-        }
-      ];
+    environment.persistence."/persist".directories = lib.mkIf config.modules.sysconf.impermanence.enable (lib.singleton {
+      directory = "/var/lib/libvirt";
+      user = "root";
+      group = "root";
+      mode = "756";
+    });
   };
 }

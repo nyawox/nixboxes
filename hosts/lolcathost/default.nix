@@ -22,7 +22,6 @@
       avahi.enable = true;
       nfs-server.enable = true;
       sunshine.enable = true;
-      xmrig.enable = true;
       minecraft-server.enable = true;
       flatpak.enable = true;
       influxdb.enable = true;
@@ -63,30 +62,28 @@
       SUBSYSTEM=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="4ee0", MODE="0666"
     '';
     pipewire.extraConfig.pipewire."10-loopback-line_in" = {
-      "context.modules" = [
-        {
-          name = "libpipewire-module-loopback";
-          args = {
-            "capture.props" = {
-              "audio.position" = [
-                "FL"
-                "FR"
-              ];
-              "node.name" = "Line In";
-              "node.target" = "alsa_input.pci-0000_0e_00.3.analog-stereo";
-            };
-            "playback.props" = {
-              "audio.position" = [
-                "FL"
-                "FR"
-              ];
-              "node.name" = "Loopback-line_in";
-              "media.class" = "Stream/Output/Audio";
-              "monitor.channel-volumes" = true;
-            };
+      "context.modules" = lib.singleton {
+        name = "libpipewire-module-loopback";
+        args = {
+          "capture.props" = {
+            "audio.position" = [
+              "FL"
+              "FR"
+            ];
+            "node.name" = "Line In";
+            "node.target" = "alsa_input.pci-0000_0e_00.3.analog-stereo";
           };
-        }
-      ];
+          "playback.props" = {
+            "audio.position" = [
+              "FL"
+              "FR"
+            ];
+            "node.name" = "Loopback-line_in";
+            "media.class" = "Stream/Output/Audio";
+            "monitor.channel-volumes" = true;
+          };
+        };
+      };
     };
   };
 
@@ -198,14 +195,12 @@
   };
 
   environment.persistence."/persist" = {
-    directories = lib.mkIf config.modules.sysconf.impermanence.enable [
-      {
-        directory = "/nixboxes";
-        user = "${username}";
-        group = "users";
-        mode = "757";
-      }
-    ];
+    directories = lib.mkIf config.modules.sysconf.impermanence.enable (lib.singleton {
+      directory = "/nixboxes";
+      user = "${username}";
+      group = "users";
+      mode = "757";
+    });
     users."${username}" = {
       directories = [
         "Games"

@@ -43,12 +43,10 @@ in {
     #   path = "/var/lib/hass/secrets.yaml";
     #   restartUnits = ["home-assistant.service"];
     # };
-    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
-      {
-        directory = "/var/lib/hass";
-        user = "hass";
-        group = "hass";
-      }
-    ];
+    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable (lib.singleton {
+      directory = "/var/lib/hass";
+      user = "hass";
+      group = "hass";
+    });
   };
 }
