@@ -48,11 +48,10 @@ in {
           # backup every 1d
           OnUnitActiveSec = "1d";
         };
-        # keep 7 daily, 5 weekly, and 10 annual backups
         pruneOpts = [
-          "--keep-daily 7"
-          "--keep-weekly 5"
-          "--keep-yearly 10"
+          "--keep-daily 1"
+          "--keep-weekly 1"
+          "--keep-yearly 1"
         ];
       };
     };
