@@ -195,20 +195,18 @@ in {
 
         extraUserChrome = ''
           /* ArcWTF main files */
-          /* @import url("icons/icons.css"); */
           @import url("toolbar/tabbar.css");
           @import url("toolbar/navbar.css");
           @import url("toolbar/personalbar.css");
           @import url("toolbar/findbar.css");
           @import url("toolbar/urlbar.css");
           @import url("global/colors.css");
-          @import url("global/popup.css");
           @import url("global/browser.css");
           @import url("global/tree.css");
 
           /* Tweaks */
           @import url("global/tweaks.css");
-          @import url("tweaks/hide-tabs-bar.css");
+          /*@import url("tweaks/hide-tabs-bar.css");*/
           @import url("tweaks/extensions.css");
           /* @import url("tweaks/sidebar.css"); */
           @import url("tweaks/popup-search.css");
@@ -220,6 +218,18 @@ in {
 
           /* Disable tab bar when sidebery is active. the titlepreface is non width space. */
           #main-window[titlepreface*="​"] #TabsToolbar {
+            visibility: collapse !important;
+          }
+
+          /* Increase the address bar height */
+          #urlbar {
+            height: 30px !important;
+          }
+          #urlbar-input {
+            height: 30px !important;
+          }
+
+          #TabsToolbar .titlebar-buttonbox-container {
             visibility: collapse !important;
           }
 
