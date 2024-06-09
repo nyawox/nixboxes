@@ -1,8 +1,9 @@
 # https://couch.nixlap.top
 # https://github.com/vrtmrz/obsidian-livesync/blob/main/docs/setup_own_server.md
-# setup with uri doesn't work, use minimal setup
-# database name is obsidian
-# username and password, e2e passphrase is stored somewhere secure
+# Setting up with URI doesn't work, use minimal setup
+# Database name is obsidian
+# Username, password, and e2e passphrase are stored somewhere securely
+# Enable path obfuscation and select "livesync" as the preset
 {
   config,
   lib,
