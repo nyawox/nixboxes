@@ -23,6 +23,7 @@ in {
     desktop = {
       vivaldi.enable = true;
       zathura.enable = true;
+      obsidian.enable = true;
     };
     shell.yazi.enable = true;
   };

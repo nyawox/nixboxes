@@ -226,6 +226,7 @@
         ".config/lutris"
         ".config/remmina"
         ".config/Element"
+        ".config/obsidian"
         ".steam"
       ];
       files = [
