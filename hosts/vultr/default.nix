@@ -36,7 +36,7 @@ _: {
   systemd.network.networks."ens3" = {
     matchConfig.Name = "ens3";
     address = ["149.28.98.185/23"];
-    routes = [{routeConfig.Gateway = "149.28.98.1";}];
+    routes = [{Gateway = "149.28.98.1";}];
     # make the routes on this interface a dependency for network-online.target
     linkConfig.RequiredForOnline = "routable";
   };
