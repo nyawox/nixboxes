@@ -29,6 +29,7 @@
       vaultwarden.enable = true;
       node-red.enable = true;
       redis.enable = true;
+      couchdb.enable = true;
     };
   };
   services.switch-boot.enable = true;

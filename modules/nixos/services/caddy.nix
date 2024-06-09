@@ -66,6 +66,16 @@ in {
             ''
           ];
         };
+        "couch.nixlap.top" = {
+          useACMEHost = "nixlap.top";
+          extraConfig = lib.strings.concatStrings [
+            expire-header
+            encode
+            ''
+              reverse_proxy http://nixpro64.nyaa.nixlap.top:5914
+            ''
+          ];
+        };
         "linkding.nixlap.top" = {
           useACMEHost = "nixlap.top";
           extraConfig = lib.strings.concatStrings [
