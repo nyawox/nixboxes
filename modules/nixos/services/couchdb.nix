@@ -1,6 +1,8 @@
 # https://couch.nixlap.top
 # https://github.com/vrtmrz/obsidian-livesync/blob/main/docs/setup_own_server.md
 # setup with uri doesn't work, use minimal setup
+# database name is obsidian
+# username and password, e2e passphrase is stored somewhere secure
 {
   config,
   lib,
@@ -53,19 +55,20 @@ in {
         ];
       };
     };
-    sops.secrets.couchdb-admin = {
-      sopsFile = ../../../secrets/couchdb-admin.psk;
-      format = "binary";
+    sops.secrets = {
+      couchdb-admin = {
+        sopsFile = ../../../secrets/couchdb-admin.psk;
+        format = "binary";
+      };
+      restic-couchdb-pw = {
+        sopsFile = ../../../secrets/restic-couchdb.psk;
+        format = "binary";
+      };
+      restic-couchdb-env = {
+        sopsFile = ../../../secrets/restic-couchdb.env;
+        format = "dotenv";
+      };
     };
-    sops.secrets.restic-couchdb-pw = {
-      sopsFile = ../../../secrets/restic-couchdb.psk;
-      format = "binary";
-    };
-    sops.secrets.restic-couchdb-env = {
-      sopsFile = ../../../secrets/restic-couchdb.env;
-      format = "dotenv";
-    };
-    #
     systemd.services.couchdb-init = {
       wantedBy = ["couchdb.service"];
       before = ["couchdb.service"];
