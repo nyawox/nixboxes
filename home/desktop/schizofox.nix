@@ -96,6 +96,7 @@ in {
           "firefox-addon@pronoundb.org".install_url = "${exturl}/pronoundb/latest.xpi";
           "{a218c3db-51ef-4170-804b-eb053fc9a2cd}".install_url = "${exturl}/qr-code-address-bar/latest.xpi";
           "searxng-favicons@micahmo.com".install_url = "${exturl}/searxng-favicons/latest.xpi";
+          "{46e5cbb1-2128-4001-9397-a941b8017863}".install_url = "${exturl}/nook/latest.xpi";
           # "userchrome-toggle@joolee.nl".install_url = "${exturl}/userchrome-toggle/latest.xpi";
           # "ATBC@EasonWong".install_url = "${exturl}/adaptive-tab-bar-colour/latest.xpi";
         };
