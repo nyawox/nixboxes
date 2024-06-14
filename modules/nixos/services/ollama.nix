@@ -22,6 +22,7 @@ in {
       host = "0.0.0.0";
       port = 11451;
     };
+    nixpkgs.config.rocmSupport = true;
     environment.persistence."/persist" = mkIf config.modules.sysconf.impermanence.enable {
       users."${username}" = {
         directories = [
