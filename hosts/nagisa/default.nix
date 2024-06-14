@@ -17,6 +17,10 @@
       };
       avahi.enable = true;
       nfs-client.nixboxes = true;
+      flatpak = {
+        enable = true;
+        fonts = true;
+      };
     };
     desktop = {
       cosmic.enable = true;

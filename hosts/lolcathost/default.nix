@@ -23,7 +23,10 @@
       nfs-server.enable = true;
       sunshine.enable = true;
       minecraft-server.enable = true;
-      flatpak.enable = true;
+      flatpak = {
+        enable = true;
+        fonts = true;
+      };
       influxdb.enable = true;
       windows.enable = true;
       airplay.enable = true;

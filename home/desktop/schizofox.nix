@@ -3,6 +3,7 @@
   config,
   pkgs,
   inputs,
+  username,
   ...
 }:
 with lib; let
@@ -54,10 +55,13 @@ in {
 
       security = {
         sanitizeOnShutdown = false;
-        sandbox = false;
-        # extraSandboxBinds = [
-        #   "/home/${username}/.config/tridactyl"
-        # ];
+        sandbox = true;
+        extraSandboxBinds = [
+          "/home/${username}/.config/tridactyl"
+          "/home/${username}/.local/share/fonts"
+          "/home/${username}/.icons"
+          "/nix/store"
+        ];
         userAgent = "Mozilla/5.0 (Windows NT 10.0; rv:109.0) Gecko/20100101 Firefox/115.0";
       };
 

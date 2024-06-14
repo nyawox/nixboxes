@@ -2,6 +2,7 @@
   config,
   lib,
   inputs,
+  username,
   ...
 }:
 with lib; let
@@ -14,10 +15,14 @@ in {
         type = types.bool;
         default = false;
       };
+      fonts = mkOption {
+        type = types.bool;
+        default = false;
+      };
     };
   };
-  config = mkIf cfg.enable {
-    services.flatpak = {
+  config = {
+    services.flatpak = mkIf cfg.enable {
       enable = true;
       overrides = {
         global = {
@@ -34,7 +39,11 @@ in {
         };
       };
     };
-    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
+    # symlink fonts to user directory
+    systemd.tmpfiles.rules = mkIf cfg.fonts [
+      "L+ /home/${username}/.local/share/fonts - - - - /run/current-system/sw/share/X11/fonts"
+    ];
+    environment.persistence."/persist".directories = mkIf (config.modules.sysconf.impermanence.enable && cfg.enable) [
       "/var/lib/flatpak"
     ];
   };
