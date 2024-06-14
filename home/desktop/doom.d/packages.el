@@ -1,6 +1,1 @@
-(package! beacon)
-(package! volatile-highlights)
-(package! yuck-mode)
-(package! treemacs :pin "7c6628a241845cd8f626d2603f747f777de4eefb")
-(package! autothemer)
-(package! vimrc-mode)
+

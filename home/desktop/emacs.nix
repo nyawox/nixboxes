@@ -20,7 +20,6 @@ in {
     programs.emacs = {
       enable = true;
       package = pkgs.emacs29-pgtk;
-      extraPackages = epkgs: [epkgs.vterm];
     };
     services.emacs.enable = true;
     home = {
@@ -31,25 +30,11 @@ in {
         };
         ".doom.d/themes/catppuccin-theme.el".source =
           inputs.catppuccin-emacs.outPath + "/catppuccin-theme.el";
-        ".doom.d/splash.png".source = inputs.doom-banners.outPath + "/splashes/emacs/emacs-e-logo.png";
       };
-
-      packages = with pkgs; [
-        python3
-        ripgrep
-        # formatter
-        alejandra
-        # Language servers
-        nil
-        emmet-ls
-        nodePackages.typescript-language-server
-        haskell-language-server
-        yaml-language-server
-        nodePackages.bash-language-server
-      ];
     };
     programs.fish.shellAliases = mkIf config.modules.shell.fish.enable {
       magit = "TERM=xterm-direct emacsclient -nw --eval '(magit-status)'";
+      mg = "magit";
     };
   };
 }
