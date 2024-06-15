@@ -27,7 +27,6 @@
         enable = true;
         fonts = true;
       };
-      influxdb.enable = true;
       windows.enable = true;
       airplay.enable = true;
       ollama.enable = true;
