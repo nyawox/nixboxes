@@ -27,8 +27,10 @@ in {
         SCARF_NO_ANALYTICS = "True";
       };
     };
-    environment.persistence."/persist".directories =
-      lib.mkIf config.modules.sysconf.impermanence.enable
-      ["/var/lib/open-webui"];
+    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable (lib.singleton {
+      directory = "/var/lib/open-webui";
+      user = "open-webui";
+      group = "open-webui";
+    });
   };
 }
