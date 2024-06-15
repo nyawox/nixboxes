@@ -19,6 +19,8 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       markdown-oxide # markdown language server
+      alejandra
+      nil
     ];
     programs.helix = {
       enable = true;
