@@ -67,6 +67,7 @@ in {
               domain = [
                 "netdata.nixlap.top"
                 "search.nixlap.top"
+                "ai.nixlap.top"
               ];
               policy = "two_factor";
             }
