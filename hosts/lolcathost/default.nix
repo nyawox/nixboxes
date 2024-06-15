@@ -128,7 +128,7 @@
 
   boot = {
     supportedFilesystems = ["ntfs"];
-    kernelPackages = pkgs.linuxPackages_cachyos;
+    kernelPackages = pkgs.linuxPackages_latest;
     extraModprobeConfig = ''
       options usbhid quirks=0x046D:0x0A38:0x0004
       options kvm_intel nested=1
