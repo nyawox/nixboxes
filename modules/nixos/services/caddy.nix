@@ -117,6 +117,17 @@ in {
             ''
           ];
         };
+        "ai.nixlap.top" = {
+          useACMEHost = "nixlap.top";
+          extraConfig = lib.strings.concatStrings [
+            expire-header
+            encode
+            auth
+            ''
+              reverse_proxy http://tomoyo.nyaa.nixlap.top:11454
+            ''
+          ];
+        };
       };
     };
   };
