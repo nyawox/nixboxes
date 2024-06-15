@@ -241,6 +241,12 @@ in {
                 icon = "https://dev-to-uploads.s3.amazonaws.com/uploads/organization/profile_image/3293/0fc83944-0e3d-438e-bc6f-7d187e7562d7.png";
               };
             }
+            {
+              open-webui = {
+                href = "https://ai.nixlap.top/";
+                icon = "https://avatars.githubusercontent.com/u/158137808?s=200&v=4";
+              };
+            }
           ];
         }
       ];
