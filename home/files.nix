@@ -19,8 +19,8 @@ in {
   config = mkIf cfg.enable {
     home.file = {
       ".wallpaper.jpg".source = pkgs.fetchurl {
-        url = "https://i.pinimg.com/originals/24/ca/db/24cadbfc4de7599a86ef5e8bc238853e.jpg";
-        sha256 = "1fraqngiw0l164i1ar7i3bzq0bz7zdcvydqgxrr0rqqq3y4rq6sv";
+        url = "https://w.wallhaven.cc/full/ex/wallhaven-exo2gr.jpg";
+        sha256 = "0ki8im2907yzzjbk60cxq8lg2vrjzbs3qlg7jf6vsry9x20n4rz1";
       };
     };
     xdg.configFile = {
