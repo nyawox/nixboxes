@@ -75,6 +75,7 @@
     inputs.nixpkgs-yuzu.legacyPackages.${pkgs.system}.citra
     remmina
     onlyoffice-bin
+    obs-studio
   ];
   # services.flatpak.packages = [
   #   "org.telegram.desktop"
