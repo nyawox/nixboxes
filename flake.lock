@@ -1868,15 +1868,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1718209970,
-        "narHash": "sha256-FtEHEYnzJQaEzT0fZWEq0MKyyF9I0OnHXfL7kQUdn8E=",
+        "lastModified": 1718701905,
+        "narHash": "sha256-0IuyWwtTz0/lFHrEUXU8PiqpIyIHM4KFKhKHCgqjr5A=",
         "owner": "nyawox",
         "repo": "psilocybin",
-        "rev": "f1c5eefd1b731b8ab195b9ca8d7b5c19962e28f2",
+        "rev": "dc48203860ed0fa7c2d482075a73d0863f5a0c25",
         "type": "github"
       },
       "original": {
         "owner": "nyawox",
+        "ref": "playground",
         "repo": "psilocybin",
         "type": "github"
       }

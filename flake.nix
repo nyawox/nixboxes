@@ -105,8 +105,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     psilocybin = {
-      url = "github:nyawox/psilocybin";
-      # url = "github:nyawox/psilocybin/playground";
+      # url = "github:nyawox/psilocybin";
+      url = "github:nyawox/psilocybin/playground";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin-starship = {
