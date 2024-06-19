@@ -30,6 +30,7 @@
       node-red.enable = true;
       redis.enable = true;
       couchdb.enable = true;
+      ollama.enable = true;
     };
   };
   services.switch-boot.enable = true;
