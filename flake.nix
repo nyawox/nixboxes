@@ -149,6 +149,10 @@
       url = "github:catppuccin/fish";
       flake = false;
     };
+    catpuccin-home-assistant = {
+      url = "github:catppuccin/home-assistant";
+      flake = false;
+    };
     fish-autopair = {
       url = "github:jorgebucaran/autopair.fish";
       flake = false;
@@ -163,6 +167,10 @@
     };
     doom-banners = {
       url = "github:jeetelongname/doom-banners";
+      flake = false;
+    };
+    nature-remo = {
+      url = "github:Haoyu-UT/HomeAssistantNatureRemo";
       flake = false;
     };
     impermanence.url = "github:nix-community/impermanence";

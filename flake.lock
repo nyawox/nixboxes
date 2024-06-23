@@ -357,6 +357,22 @@
         "type": "github"
       }
     },
+    "catpuccin-home-assistant": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710951839,
+        "narHash": "sha256-eUqYlaXNLPfaKn3xcRm5AQwTOKf70JF8cepibBb9KXc=",
+        "owner": "catppuccin",
+        "repo": "home-assistant",
+        "rev": "e877188ca467e7bbe8991440f6b5f6b3d30347fc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "home-assistant",
+        "type": "github"
+      }
+    },
     "chaotic": {
       "inputs": {
         "compare-to": "compare-to",
@@ -1336,6 +1352,22 @@
         "type": "github"
       }
     },
+    "nature-remo": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1715446073,
+        "narHash": "sha256-UEoqfV9od9GZU6HunjTl1k4caBEJFMkUl/HVJWfz5xo=",
+        "owner": "Haoyu-UT",
+        "repo": "HomeAssistantNatureRemo",
+        "rev": "b705a1db3164440f6797e4a94da3c23dd69cec52",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Haoyu-UT",
+        "repo": "HomeAssistantNatureRemo",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -1868,11 +1900,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1718771071,
-        "narHash": "sha256-Jei4Juzwoeo4U0XeQE1fJDxFD05RN5Dj3DdFwq1ljcw=",
+        "lastModified": 1719138744,
+        "narHash": "sha256-YLHqo5lsA6CvQMz0WTsuSUmrLeoTOY4IDMat2HBNigY=",
         "owner": "nyawox",
         "repo": "psilocybin",
-        "rev": "8ce696d922d36354540f90efa4cacd4578ed4131",
+        "rev": "22973707e929eaddf0e6f729811a8d3d06eebfd3",
         "type": "github"
       },
       "original": {
@@ -1898,6 +1930,7 @@
         "catppuccin-starship": "catppuccin-starship",
         "catppuccin-tridactyl": "catppuccin-tridactyl",
         "catppuccin-zathura": "catppuccin-zathura",
+        "catpuccin-home-assistant": "catpuccin-home-assistant",
         "chaotic": "chaotic",
         "deploy-rs": "deploy-rs",
         "devshell": "devshell",
@@ -1912,6 +1945,7 @@
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
         "latest": "latest",
+        "nature-remo": "nature-remo",
         "nix-darwin": "nix-darwin",
         "nix-flatpak": "nix-flatpak",
         "nix-minecraft": "nix-minecraft",
