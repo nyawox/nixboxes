@@ -8,7 +8,7 @@
 
   modules = {
     sysconf = {
-      bluetooth.enable = false;
+      bluetooth.enable = true;
       sshluks.enable = true;
     };
     desktop = {
