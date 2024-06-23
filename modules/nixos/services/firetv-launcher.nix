@@ -28,6 +28,7 @@ in {
       description = "Override Amazon Home Screen";
       after = ["network-online.target"];
       wants = ["network-online.target"];
+      wantedBy = ["multi-user.target"];
       serviceConfig = {
         Type = "simple";
         ExecStartPre = "${pkgs.android-tools}/bin/adb connect ${cfg.ip}";
