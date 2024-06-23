@@ -29,6 +29,7 @@ in {
         "radio_browser"
         "switchbot"
         "mobile_app"
+        "broadlink"
       ];
       extraPackages = ps:
         with ps; [
@@ -66,12 +67,12 @@ in {
           ];
         };
         bluetooth = {};
-        mobile_app = {};
         "automation ui" = "!include automations.yaml";
         "scene ui" = "!include scenes.yaml";
         frontend = {
           themes = "!include_dir_merge_named themes";
         };
+        mobile_app = {};
       };
     };
     # multi-line yaml values
