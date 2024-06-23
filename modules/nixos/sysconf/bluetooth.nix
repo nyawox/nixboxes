@@ -21,18 +21,22 @@ in {
   };
   config = mkIf cfg.enable {
     services.blueman.enable = mkIf cfg.blueman true;
-    hardware.bluetooth.enable = true;
-    hardware.bluetooth.settings = {
-      General = {
-        # uncomment this to allow pairing Airpods then restart the bluetooth stack sudo systemctl restart bluetooth
-        # only required at initial pairing
-        # ControllerMode = "bredr";
-        #
-        # Speaker icon
-        Class = "0x040414";
-        Name = hostname;
-        DiscoverableTimeout = 0;
-        PairableTimeout = 0;
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings = {
+        General = {
+          Experimental = true;
+          # uncomment this to allow pairing Airpods then restart the bluetooth stack sudo systemctl restart bluetooth
+          # only required at initial pairing
+          # ControllerMode = "bredr";
+          #
+          # Speaker icon
+          Class = "0x040414";
+          Name = hostname;
+          DiscoverableTimeout = 0;
+          PairableTimeout = 0;
+        };
       };
     };
     # Make sure to trust the device immediately when using pipewire as bluetooth speaker
