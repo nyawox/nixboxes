@@ -13,7 +13,7 @@
     '';
     matchBlocks = {
       "phone" = {
-        hostname = "192.168.0.128";
+        hostname = "192.168.0.129";
         user = "root";
       };
       "vultrluks" = {
