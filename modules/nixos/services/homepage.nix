@@ -203,7 +203,7 @@ in {
           Home = [
             {
               "Home Assistant" = {
-                href = "http://nixpro64.nyaa.nixlap.top:8123/";
+                href = "http://hass.nixlap.top/";
                 icon = "https://cdn.icon-icons.com/icons2/2107/PNG/512/file_type_homeassistant_icon_130543.png";
               };
             }

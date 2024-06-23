@@ -128,6 +128,16 @@ in {
             ''
           ];
         };
+        "hass.nixlap.top" = {
+          useACMEHost = "nixlap.top";
+          extraConfig = lib.strings.concatStrings [
+            expire-header
+            encode
+            ''
+              reverse_proxy http://nixpro64.nyaa.nixlap.top:8123
+            ''
+          ];
+        };
       };
     };
   };
