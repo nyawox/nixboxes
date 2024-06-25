@@ -1,4 +1,4 @@
-# https://nixpro64.nyaa.nixlap.top:11451
+# http://nixpro64.nyaa.nixlap.top:11451
 {
   config,
   lib,
