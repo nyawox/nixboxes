@@ -35,7 +35,6 @@ in {
         "accuweather"
         "ollama"
         "androidtv"
-        "emulated_hue"
       ];
       extraPackages = ps:
         with ps; [
