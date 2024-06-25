@@ -57,7 +57,7 @@ in {
         sanitizeOnShutdown = false;
         sandbox = true;
         extraSandboxBinds = [
-          "/home/${username}/.config/tridactyl"
+          # "/home/${username}/.config/tridactyl"
           "/home/${username}/.local/share/fonts"
           "/home/${username}/.icons"
           "/nix/store"
@@ -79,7 +79,7 @@ in {
         extraExtensions = {
           "webextension@metamask.io".install_url = "${exturl}/ether-metamask/latest.xpi";
           "languagetool-webextension@languagetool.org".install_url = "${exturl}/languagetool/latest.xpi";
-          "tridactyl.vim@cmcaine.co.uk".install_url = "${exturl}/tridactyl-vim/latest.xpi";
+          # "tridactyl.vim@cmcaine.co.uk".install_url = "${exturl}/tridactyl-vim/latest.xpi";
           "admin@2fas.com".install_url = "${exturl}/2fas-two-factor-authentication/latest.xpi";
           "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}".install_url = "${exturl}/styl-us/latest.xpi";
           "{9a41dee2-b924-4161-a971-7fb35c053a4a}".install_url = "${exturl}/enhanced-h264ify/latest.xpi";
@@ -102,6 +102,7 @@ in {
           "searxng-favicons@micahmo.com".install_url = "${exturl}/searxng-favicons/latest.xpi";
           "{46e5cbb1-2128-4001-9397-a941b8017863}".install_url = "${exturl}/nook/latest.xpi";
           "{93f81583-1fd4-45cc-bff4-abba952167bb}".install_url = "${exturl}/jiffy-reader/latest.xpi";
+          "{a8332c60-5b6d-41ee-bfc8-e9bb331d34ad}".install_url = "${exturl}/surfingkeys_ff/latest.xpi";
           # "userchrome-toggle@joolee.nl".install_url = "${exturl}/userchrome-toggle/latest.xpi";
           # "ATBC@EasonWong".install_url = "${exturl}/adaptive-tab-bar-colour/latest.xpi";
         };
@@ -249,7 +250,7 @@ in {
     };
     home.packages = with pkgs; [
       uget-integrator
-      tridactyl-native
+      # tridactyl-native
     ];
     home.file = {
       ".mozilla/firefox/schizo.default/chrome/content/".source = inputs.arcwtf.outPath + "/content";
@@ -258,12 +259,12 @@ in {
       ".mozilla/firefox/schizo.default/chrome/toolbar/".source = inputs.arcwtf.outPath + "/toolbar";
       ".mozilla/firefox/schizo.default/chrome/tweaks/".source = inputs.arcwtf.outPath + "/tweaks";
       ".mozilla/native-messaging-hosts/com.ugetdm.firefox.json".source = "${pkgs.uget-integrator}/lib/mozilla/native-messaging-hosts/com.ugetdm.firefox.json";
-      ".mozilla/native-messaging-hosts/tridactyl.json".source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
+      # ".mozilla/native-messaging-hosts/tridactyl.json".source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
     };
     xdg = {
       configFile = {
-        "tridactyl/tridactylrc".source = ./tridactylrc;
-        "tridactyl/themes/catppuccin.css".source = inputs.catppuccin-tridactyl.outPath + "/catppuccin.css";
+        # "tridactyl/tridactylrc".source = ./tridactylrc;
+        # "tridactyl/themes/catppuccin.css".source = inputs.catppuccin-tridactyl.outPath + "/catppuccin.css";
       };
       mimeApps.defaultApplications = {
         "text/html" = "Schizofox.desktop";
