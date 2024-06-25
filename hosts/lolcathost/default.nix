@@ -92,7 +92,7 @@
   disk.device = "/dev/nvme0n1";
 
   fileSystems."/mnt/hdd" = {
-    device = "/dev/sdb1";
+    device = "/dev/sda1";
     fsType = "btrfs";
     noCheck = true;
     options = [
