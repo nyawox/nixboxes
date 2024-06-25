@@ -18,7 +18,7 @@
     };
     buildMachines = [
       {
-        hostName = "192.168.0.129";
+        hostName = "192.168.0.128";
         sshUser = "root";
         system = "aarch64-linux";
         maxJobs = 1;
