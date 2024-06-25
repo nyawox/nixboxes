@@ -36,21 +36,17 @@
   };
   services.switch-boot.enable = true;
 
-  disk.device = "/dev/mmcblk1";
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  disk.device = "/dev/sdb";
 
   boot = {
     # Use the systemd-boot EFI boot loader.
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = false;
 
-    initrd.availableKernelModules = ["usbhid"];
-    # This list of modules is not entirely minified, but represents
-    # a set of modules that is required for the display to work in stage-1.
-    # Further minification can be done, but requires trial-and-error mainly.
+    initrd.availableKernelModules = [
+      "usbhid"
+      # "sr_mod" # sd card and internal emmc storage
+    ];
     initrd.kernelModules = [
       # Rockchip modules
       "rockchip_rga"
@@ -75,6 +71,14 @@
       "fusb302"
       "tcpm"
       "typec"
+      "xhci_pci"
+
+      # PCIE/NVMe/SATA
+      "pcie_rockchip_host"
+      "phy_rockchip_pcie"
+      # "nvme"
+      "ahci" # sata devices on modern ahci controllers
+      "sd_mod" # scsi, sata and pata devices
 
       # Misc. modules
       "cw2015_battery"
