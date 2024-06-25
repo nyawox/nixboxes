@@ -169,8 +169,16 @@
       url = "github:jeetelongname/doom-banners";
       flake = false;
     };
-    nature-remo = {
+    hass-nature-remo = {
       url = "github:Haoyu-UT/HomeAssistantNatureRemo";
+      flake = false;
+    };
+    hass-smartir = {
+      url = "github:smartHomeHub/smartir";
+      flake = false;
+    };
+    hass-kiosk-mode = {
+      url = "github:NemesisRE/kiosk-mode";
       flake = false;
     };
     impermanence.url = "github:nix-community/impermanence";

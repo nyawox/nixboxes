@@ -1141,6 +1141,54 @@
         "type": "github"
       }
     },
+    "hass-kiosk-mode": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1718174022,
+        "narHash": "sha256-kk99CxPyzR9G566OrzCDSn+vT8a1dzDuBzpj6RVRBeI=",
+        "owner": "NemesisRE",
+        "repo": "kiosk-mode",
+        "rev": "e1ac2b7df325a670775bf905d6b46c9d325dbb8d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NemesisRE",
+        "repo": "kiosk-mode",
+        "type": "github"
+      }
+    },
+    "hass-nature-remo": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1715446073,
+        "narHash": "sha256-UEoqfV9od9GZU6HunjTl1k4caBEJFMkUl/HVJWfz5xo=",
+        "owner": "Haoyu-UT",
+        "repo": "HomeAssistantNatureRemo",
+        "rev": "b705a1db3164440f6797e4a94da3c23dd69cec52",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Haoyu-UT",
+        "repo": "HomeAssistantNatureRemo",
+        "type": "github"
+      }
+    },
+    "hass-smartir": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1712083950,
+        "narHash": "sha256-6Qc/xeLBgpdSk4HU4nW7cy0tHIR85fZZN8vKGQBjtRE=",
+        "owner": "smartHomeHub",
+        "repo": "smartir",
+        "rev": "217dfd0e7a6d3a751802931fb85add8e4ccad2ef",
+        "type": "github"
+      },
+      "original": {
+        "owner": "smartHomeHub",
+        "repo": "smartir",
+        "type": "github"
+      }
+    },
     "helix": {
       "inputs": {
         "crane": "crane",
@@ -1349,22 +1397,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "lib-aggregate",
-        "type": "github"
-      }
-    },
-    "nature-remo": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1715446073,
-        "narHash": "sha256-UEoqfV9od9GZU6HunjTl1k4caBEJFMkUl/HVJWfz5xo=",
-        "owner": "Haoyu-UT",
-        "repo": "HomeAssistantNatureRemo",
-        "rev": "b705a1db3164440f6797e4a94da3c23dd69cec52",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Haoyu-UT",
-        "repo": "HomeAssistantNatureRemo",
         "type": "github"
       }
     },
@@ -1940,12 +1972,14 @@
         "fish-abbreviation-tips": "fish-abbreviation-tips",
         "fish-autopair": "fish-autopair",
         "flake-parts": "flake-parts_3",
+        "hass-kiosk-mode": "hass-kiosk-mode",
+        "hass-nature-remo": "hass-nature-remo",
+        "hass-smartir": "hass-smartir",
         "helix": "helix",
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
         "latest": "latest",
-        "nature-remo": "nature-remo",
         "nix-darwin": "nix-darwin",
         "nix-flatpak": "nix-flatpak",
         "nix-minecraft": "nix-minecraft",
