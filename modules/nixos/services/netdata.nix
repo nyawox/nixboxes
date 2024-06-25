@@ -74,7 +74,7 @@ in {
             # generate apikey with `uuidgen`
             # the ips are taken from `tailscale status`
             # nixpro64
-            ${mkChildNode "a73b169d-3a46-46d1-b8d5-48bd53933f9a" "100.64.0.4"}
+            ${mkChildNode "a73b169d-3a46-46d1-b8d5-48bd53933f9a" "100.64.0.1"}
             # vultr
             ${mkChildNode "85abac58-b907-45ed-be65-c52856a2d4c8" "100.64.0.2"}
             # tomoyo
