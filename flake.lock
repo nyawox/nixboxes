@@ -21,22 +21,6 @@
         "type": "github"
       }
     },
-    "arcwtf": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1710730149,
-        "narHash": "sha256-gyJiIVnyZOYVX6G3m4SSbsb7K9g4zKZWlrHphEIQwsY=",
-        "owner": "kikaraage",
-        "repo": "arcwtf",
-        "rev": "bb6f2b7ef7e3d201e23d86bf8636e5d0ea4bd68b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kikaraage",
-        "repo": "arcwtf",
-        "type": "github"
-      }
-    },
     "arion": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -1965,7 +1949,6 @@
     "root": {
       "inputs": {
         "aagl": "aagl",
-        "arcwtf": "arcwtf",
         "arion": "arion",
         "berberman": "berberman",
         "catppuccin-alacritty": "catppuccin-alacritty",
@@ -2011,6 +1994,7 @@
         "programsdb": "programsdb",
         "psilocybin": "psilocybin",
         "schizofox": "schizofox",
+        "shyfox": "shyfox",
         "sops-nix": "sops-nix",
         "srvos": "srvos",
         "stylix": "stylix",
@@ -2115,6 +2099,22 @@
       "original": {
         "owner": "schizofox",
         "repo": "searx-randomizer",
+        "type": "github"
+      }
+    },
+    "shyfox": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1719307453,
+        "narHash": "sha256-pLDq14UEeKJZFmepjJUGXIMMDd8+GgNSdXFiqzzfrQI=",
+        "owner": "naezr",
+        "repo": "shyfox",
+        "rev": "0eca354a368a04c7b87bd847aa7c22485d4a3f7b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "naezr",
+        "repo": "shyfox",
         "type": "github"
       }
     },

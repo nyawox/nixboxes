@@ -21,6 +21,7 @@ in {
   config = mkIf cfg.enable {
     programs.schizofox = {
       enable = true;
+      package = pkgs.firefox-unwrapped;
 
       search = {
         defaultSearchEngine = "searx";
@@ -69,7 +70,7 @@ in {
         drm.enable = true;
         disableWebgl = false;
         firefoxSync = true;
-        startPageURL = "https://homepage.nixlap.top";
+        # startPageURL = "https://homepage.nixlap.top";
       };
 
       extensions = {
@@ -103,7 +104,7 @@ in {
           "{46e5cbb1-2128-4001-9397-a941b8017863}".install_url = "${exturl}/nook/latest.xpi";
           "{93f81583-1fd4-45cc-bff4-abba952167bb}".install_url = "${exturl}/jiffy-reader/latest.xpi";
           "{a8332c60-5b6d-41ee-bfc8-e9bb331d34ad}".install_url = "${exturl}/surfingkeys_ff/latest.xpi";
-          # "userchrome-toggle@joolee.nl".install_url = "${exturl}/userchrome-toggle/latest.xpi";
+          "userchrome-toggle-extended@n2ezr.ru".install_url = "${exturl}/userchrome-toggle-extended/latest.xpi";
           # "ATBC@EasonWong".install_url = "${exturl}/adaptive-tab-bar-colour/latest.xpi";
         };
       };
@@ -167,12 +168,28 @@ in {
         "browser.display.use_document_fonts" = true;
         #Enable extensions on mozilla sites
         "extensions.quarantinedDomains.enabled" = false;
-        #enable userchrome
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-        "svg.context-properties.content.enabled" = true;
         ##### User chrome
-        "uc.tweak.floating-tabs" = true;
-        "uc.tweak.rounded-corners" = true;
+        # userchrome.css usercontent.css activate
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
+        # Fill SVG Color
+        "svg.context-properties.content.enabled" = true;
+
+        # CSS's `:has()` selector
+        "layout.css.has-selector.enabled" = true;
+
+        # Integrated calculator at urlbar
+        "browser.urlbar.suggest.calculator" = true;
+
+        # Integrated unit convertor at urlbar
+        "browser.urlbar.unitConversion.enabled" = true;
+
+        # Trim  URL
+        "browser.urlbar.trimHttps" = true;
+        "browser.urlbar.trimURLs" = true;
+
+        # GTK rounded corners
+        "widget.gtk.rounded-bottom-corners.enabled" = true;
         #####
         # Downloading random files from http website is super annoing with this.
         "dom.block_download_insecure" = false;
@@ -198,53 +215,31 @@ in {
         font = config.stylix.fonts.serif.name;
 
         defaultUserChrome.enable = false;
-        defaultUserContent.enable = true;
+        defaultUserContent.enable = false;
 
         extraUserChrome = ''
-          /* ArcWTF main files */
-          @import url("toolbar/tabbar.css");
-          @import url("toolbar/navbar.css");
-          @import url("toolbar/personalbar.css");
-          @import url("toolbar/findbar.css");
-          @import url("toolbar/urlbar.css");
-          @import url("global/colors.css");
-          @import url("global/browser.css");
-          @import url("global/tree.css");
+          /* base */
+          @import url("ShyFox/shy-variables.css");
+          @import url("ShyFox/shy-global.css");
 
-          /* Tweaks */
-          @import url("global/tweaks.css");
-          /*@import url("tweaks/hide-tabs-bar.css");*/
-          @import url("tweaks/extensions.css");
-          /* @import url("tweaks/sidebar.css"); */
-          @import url("tweaks/popup-search.css");
+          /* main elements */
+          @import url("ShyFox/shy-sidebar.css");
+          @import url("ShyFox/shy-toolbar.css");
+          @import url("ShyFox/shy-navbar.css");
+          @import url("ShyFox/shy-findbar.css");
+          @import url("ShyFox/shy-controls.css");
 
-          /* Replacing Userchrome Toggle icon with Arc sidebar icon */
-          :is(.webextension-browser-action, .eom-addon-button)[data-extensionid="userchrome-toggle@joolee.nl"] .toolbarbutton-icon { list-style-image: url(./icons/userchrome-toggle.svg); }
-
-          * {font-family: "Poppins" !important;}
-
-          /* Disable tab bar when sidebery is active. the titlepreface is non width space. */
-          #main-window[titlepreface*="​"] #TabsToolbar {
-            visibility: collapse !important;
-          }
-
-          /* Increase the address bar height */
-          #urlbar {
-            height: 30px !important;
-          }
-          #urlbar-input {
-            height: 30px !important;
-          }
-
-          #TabsToolbar .titlebar-buttonbox-container {
-            visibility: collapse !important;
-          }
-
-          /* hide sidebar header */
-          #sidebar-header {
-            visibility: collapse !important;
-          }
-
+          /* addons */
+          @import url("ShyFox/shy-compact.css");
+          @import url("ShyFox/shy-icons.css");
+          @import url("ShyFox/shy-floating-search.css");
+        '';
+        extraUserContent = ''
+          /* imports */
+          @import url("ShyFox/content/shy-new-tab.css");
+          @import url("ShyFox/content/shy-about.css");
+          @import url("ShyFox/content/shy-global-content.css");
+          @import url("ShyFox/shy-variables.css");
         '';
       };
     };
@@ -253,11 +248,8 @@ in {
       # tridactyl-native
     ];
     home.file = {
-      ".mozilla/firefox/schizo.default/chrome/content/".source = inputs.arcwtf.outPath + "/content";
-      ".mozilla/firefox/schizo.default/chrome/global/".source = inputs.arcwtf.outPath + "/global";
-      ".mozilla/firefox/schizo.default/chrome/icons/".source = inputs.arcwtf.outPath + "/icons";
-      ".mozilla/firefox/schizo.default/chrome/toolbar/".source = inputs.arcwtf.outPath + "/toolbar";
-      ".mozilla/firefox/schizo.default/chrome/tweaks/".source = inputs.arcwtf.outPath + "/tweaks";
+      ".mozilla/firefox/schizo.default/chrome/ShyFox/".source = inputs.shyfox.outPath + "/chrome/ShyFox";
+      ".mozilla/firefox/schizo.default/chrome/Icons".source = inputs.shyfox.outPath + "/chrome/Icons";
       ".mozilla/native-messaging-hosts/com.ugetdm.firefox.json".source = "${pkgs.uget-integrator}/lib/mozilla/native-messaging-hosts/com.ugetdm.firefox.json";
       # ".mozilla/native-messaging-hosts/tridactyl.json".source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
     };

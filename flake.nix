@@ -161,8 +161,8 @@
       url = "github:gazorby/fish-abbreviation-tips";
       flake = false;
     };
-    arcwtf = {
-      url = "github:kikaraage/arcwtf";
+    shyfox = {
+      url = "github:naezr/shyfox";
       flake = false;
     };
     doom-banners = {
