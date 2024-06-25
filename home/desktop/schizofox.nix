@@ -190,6 +190,8 @@ in {
 
         # GTK rounded corners
         "widget.gtk.rounded-bottom-corners.enabled" = true;
+        # force apple emoji
+        "font.name-list.emoji" = "Apple Color Emoji";
         #####
         # Downloading random files from http website is super annoing with this.
         "dom.block_download_insecure" = false;
@@ -233,6 +235,8 @@ in {
           @import url("ShyFox/shy-compact.css");
           @import url("ShyFox/shy-icons.css");
           @import url("ShyFox/shy-floating-search.css");
+
+          * {font-famil: "Poppins" !important;}
         '';
         extraUserContent = ''
           /* imports */

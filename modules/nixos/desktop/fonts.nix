@@ -16,8 +16,11 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    fonts.fontconfig.enable = true;
-    home.packages = with pkgs; [
+    fonts.fontDir = {
+      enable = true;
+      decompressFonts = true;
+    };
+    fonts.packages = with pkgs; [
       corefonts
       spleen
       apple-emoji
@@ -26,5 +29,10 @@ in {
       font-awesome
       (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
+    fonts.fontconfig.defaultFonts = {
+      emoji = [
+        "Apple Color Emoji"
+      ];
+    };
   };
 }
