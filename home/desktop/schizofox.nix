@@ -106,6 +106,9 @@ in {
           "{a8332c60-5b6d-41ee-bfc8-e9bb331d34ad}".install_url = "${exturl}/surfingkeys_ff/latest.xpi";
           "userchrome-toggle-extended@n2ezr.ru".install_url = "${exturl}/userchrome-toggle-extended/latest.xpi";
           # "ATBC@EasonWong".install_url = "${exturl}/adaptive-tab-bar-colour/latest.xpi";
+          ### supposed to fix netflix resolution, but netflix itself doesn't work due to privacy related settings
+          # "{f18f0257-10ad-4ff7-b51e-6895edeccfc8}".install_url = "https://github.com/vladikoff/netflix-1080p-firefox/files/10981084/f18f0257-10ad-4ff7-b51e-6895edeccfc8.zip";
+          # "{5bcc8564-a38f-49b3-b23a-e8ba2fb5a70e}".install_url = "https://github.com/DavidBuchanan314/Turbo-Recadmiumator/files/15094237/Turbo-Recadmiumator-firefox-default-f8c32ea7f3e3423d9ac1-0.0.1.xpi.zip";
         };
       };
 
@@ -157,6 +160,13 @@ in {
             "overrides" = "-AllTargets";
             "firstPartyDomain" = "*.twitch.tv";
             "thirdPartyDomain" = "*.twitch.tv";
+          }
+          {
+            "id" = 1;
+            "last_modified" = 1713820945000;
+            "overrides" = "-AllTargets";
+            "firstPartyDomain" = "*.netflix.com";
+            "thirdPartyDomain" = "*.netflix.com";
           }
         ];
         "layout.css.font-visibility.private" = 1;
