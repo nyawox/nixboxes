@@ -229,6 +229,7 @@
         ".config/remmina"
         ".config/Element"
         ".config/obsidian"
+        ".config/vivaldi"
         ".steam"
       ];
       files = [

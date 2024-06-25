@@ -21,7 +21,6 @@
     youtube-music
     cider
     transmission-gtk
-    vivaldi
     samba
     unzip
     unrar
