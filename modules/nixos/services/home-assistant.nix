@@ -35,6 +35,7 @@ in {
         "accuweather"
         "ollama"
         "androidtv"
+        "emulated_hue"
       ];
       extraPackages = ps:
         with ps; [
@@ -53,7 +54,7 @@ in {
       customComponents = [
         (
           pkgs.buildHomeAssistantComponent {
-            owner = "@Haoyu-UT";
+            owner = "Haoyu-UT";
             domain = "nature_remo";
             version = "1.0.5";
             src = inputs.hass-nature-remo;
@@ -83,6 +84,17 @@ in {
             postInstall = ''
               cp -r codes $out/custom_components/smartir/
             '';
+          }
+        )
+        (
+          pkgs.buildHomeAssistantComponent {
+            owner = "petretiandrea";
+            domain = "tapo";
+            version = "git";
+            src = inputs.hass-tapo;
+            propagatedBuildInputs = with pkgs.python312Packages; [
+              plugp100
+            ];
           }
         )
       ];

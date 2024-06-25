@@ -1189,6 +1189,22 @@
         "type": "github"
       }
     },
+    "hass-tapo": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1713211120,
+        "narHash": "sha256-XySjBQ+x8wjhLxhOQO87ywE2jS52Hvou7W/FcxUmYgA=",
+        "owner": "petretiandrea",
+        "repo": "home-assistant-tapo-p100",
+        "rev": "bcab34730a7802283c15bed1a90462cfe240bdad",
+        "type": "github"
+      },
+      "original": {
+        "owner": "petretiandrea",
+        "repo": "home-assistant-tapo-p100",
+        "type": "github"
+      }
+    },
     "helix": {
       "inputs": {
         "crane": "crane",
@@ -1975,6 +1991,7 @@
         "hass-kiosk-mode": "hass-kiosk-mode",
         "hass-nature-remo": "hass-nature-remo",
         "hass-smartir": "hass-smartir",
+        "hass-tapo": "hass-tapo",
         "helix": "helix",
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",

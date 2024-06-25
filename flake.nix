@@ -181,6 +181,10 @@
       url = "github:NemesisRE/kiosk-mode";
       flake = false;
     };
+    hass-tapo = {
+      url = "github:petretiandrea/home-assistant-tapo-p100";
+      flake = false;
+    };
     impermanence.url = "github:nix-community/impermanence";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nur.url = "github:nix-community/nur";
