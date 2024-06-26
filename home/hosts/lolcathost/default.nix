@@ -25,7 +25,6 @@ in {
       zathura.enable = true;
       obsidian.enable = true;
     };
-    shell.yazi.enable = true;
   };
   home.file.".local/share/PrismLauncher/themes/Catppuccin-Mocha".source = let
     zip = pkgs.fetchurl {

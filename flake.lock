@@ -197,6 +197,22 @@
         "type": "github"
       }
     },
+    "catppuccin-bat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1714038927,
+        "narHash": "sha256-Q5B4NDrfCIK3UAMs94vdXnR42k4AXCqZz6sRn8bzmf4=",
+        "owner": "catppuccin",
+        "repo": "bat",
+        "rev": "d714cc1d358ea51bfc02550dabab693f70cccea0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "bat",
+        "type": "github"
+      }
+    },
     "catppuccin-cava": {
       "flake": false,
       "locked": {
@@ -322,6 +338,22 @@
       "original": {
         "owner": "lonepie",
         "repo": "catppuccin-tridactyl",
+        "type": "github"
+      }
+    },
+    "catppuccin-yazi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1718591879,
+        "narHash": "sha256-a2X9WToZmctD1HZVqN9A512iPd+3dtjRloBEifgteF4=",
+        "owner": "catppuccin",
+        "repo": "yazi",
+        "rev": "9bfdccc2b78d7493fa5c5983bc176a0bc5fef164",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "yazi",
         "type": "github"
       }
     },
@@ -1952,6 +1984,7 @@
         "arion": "arion",
         "berberman": "berberman",
         "catppuccin-alacritty": "catppuccin-alacritty",
+        "catppuccin-bat": "catppuccin-bat",
         "catppuccin-cava": "catppuccin-cava",
         "catppuccin-element": "catppuccin-element",
         "catppuccin-emacs": "catppuccin-emacs",
@@ -1960,6 +1993,7 @@
         "catppuccin-gitui": "catppuccin-gitui",
         "catppuccin-starship": "catppuccin-starship",
         "catppuccin-tridactyl": "catppuccin-tridactyl",
+        "catppuccin-yazi": "catppuccin-yazi",
         "catppuccin-zathura": "catppuccin-zathura",
         "catpuccin-home-assistant": "catpuccin-home-assistant",
         "chaotic": "chaotic",
@@ -1998,6 +2032,7 @@
         "sops-nix": "sops-nix",
         "srvos": "srvos",
         "stylix": "stylix",
+        "tree-sitter-kdl": "tree-sitter-kdl",
         "treefmt-nix": "treefmt-nix_2"
       }
     },
@@ -2338,6 +2373,22 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tree-sitter-kdl": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1717886919,
+        "narHash": "sha256-irx8aMEdZG2WcQVE2c7ahwLjqEoUAOOjvhDDk69a6lE=",
+        "owner": "tree-sitter-grammars",
+        "repo": "tree-sitter-kdl",
+        "rev": "b37e3d58e5c5cf8d739b315d6114e02d42e66664",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tree-sitter-grammars",
+        "repo": "tree-sitter-kdl",
         "type": "github"
       }
     },

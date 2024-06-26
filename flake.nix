@@ -153,6 +153,14 @@
       url = "github:catppuccin/home-assistant";
       flake = false;
     };
+    catppuccin-yazi = {
+      url = "github:catppuccin/yazi";
+      flake = false;
+    };
+    catppuccin-bat = {
+      url = "github:catppuccin/bat";
+      flake = false;
+    };
     fish-autopair = {
       url = "github:jorgebucaran/autopair.fish";
       flake = false;
@@ -167,6 +175,10 @@
     };
     doom-banners = {
       url = "github:jeetelongname/doom-banners";
+      flake = false;
+    };
+    tree-sitter-kdl = {
+      url = "github:tree-sitter-grammars/tree-sitter-kdl";
       flake = false;
     };
     hass-nature-remo = {

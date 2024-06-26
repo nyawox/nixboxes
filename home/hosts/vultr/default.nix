@@ -5,5 +5,4 @@
   imports = lib.mapAttrsToList toImport (lib.filterAttrs filterCaches (builtins.readDir folder));
 in {
   inherit imports;
-  modules.shell.yazi.enable = false;
 }

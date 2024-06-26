@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  inputs,
   ...
 }:
 with lib; let
@@ -18,6 +19,10 @@ in {
     programs.yazi = {
       enable = true;
       enableFishIntegration = true;
+    };
+    xdg.configFile = {
+      "yazi/theme.toml".source = inputs.catppuccin-yazi.outPath + "/themes/mocha.toml";
+      "yazi/Catppuccin-mocha.tmTheme".source = inputs.catppuccin-bat.outPath + "/themes/Catppuccin Mocha.tmTheme";
     };
   };
 }
