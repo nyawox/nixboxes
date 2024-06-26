@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  inputs,
   ...
 }:
 with lib; let
@@ -19,8 +20,16 @@ in {
       enable = true;
       config = {
         pager = "less -FR";
+        theme = "Catppuccin Mocha";
       };
     };
+    xdg.configFile = {
+      "bat/themes/Catppuccin Mocha.tmTheme".source = inputs.catppuccin-bat.outPath + "/themes/Catppuccin Mocha.tmTheme";
+    };
     programs.fish.shellAliases = mkIf config.modules.shell.fish.enable {cat = "bat";};
+    home.sessionVariables = {
+      MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+      MANROFFOPT = "-c";
+    };
   };
 }
