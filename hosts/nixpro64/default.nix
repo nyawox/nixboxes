@@ -80,6 +80,10 @@
       "ahci" # sata devices on modern ahci controllers
       "sd_mod" # scsi, sata and pata devices
 
+      # ethernet, required for luks ssh
+      "stmmac"
+      "dwmac_rk"
+
       # Misc. modules
       "cw2015_battery"
       "gpio_charger"
