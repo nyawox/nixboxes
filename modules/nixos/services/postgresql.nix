@@ -23,6 +23,7 @@ in {
         ensureDatabases = [
           "hass"
           "vaultwarden"
+          "farfalle"
         ];
         ensureUsers = [
           {
@@ -31,6 +32,10 @@ in {
           }
           {
             name = "vaultwarden";
+            ensureDBOwnership = true;
+          }
+          {
+            name = "farfalle";
             ensureDBOwnership = true;
           }
         ];
