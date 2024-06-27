@@ -59,12 +59,10 @@ in {
             render = true;
           };
           statusline = {
-            left = [
-              "mode"
-              "spinner"
-              "version-control"
-              "file-name"
-            ];
+            left = ["mode" "spinner" "selections" "register" "position"];
+            center = ["read-only-indicator" "file-name" "file-modification-indicator"];
+            right = ["diagnostics" "file-encoding" "version-control"];
+            separator = "│";
           };
         };
         keys.normal = {
