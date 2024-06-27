@@ -6,18 +6,14 @@
 with lib; let
   cfg = config.modules.services.morphic;
   ollama-url = "http://nixpro64.nyaa.nixlap.top:11451";
-  ollama-model = "mistral:7b";
-  ollama-sub-model = "phi3";
+  ollama-model = "mistral";
+  ollama-sub-model = "llama3";
 in {
   options = {
     modules.services.morphic = {
       enable = mkOption {
         type = types.bool;
         default = false;
-      };
-      port = mkOption {
-        type = types.int;
-        default = 3150;
       };
     };
   };
