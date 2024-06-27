@@ -68,6 +68,7 @@ in {
                 "netdata.nixlap.top"
                 "search.nixlap.top"
                 "ai.nixlap.top"
+                "aisearch.nixlap.top"
               ];
               policy = "two_factor";
             }
