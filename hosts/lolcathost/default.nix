@@ -230,6 +230,7 @@
         ".config/Element"
         ".config/obsidian"
         ".config/vivaldi"
+        ".android"
         ".steam"
       ];
       files = [
