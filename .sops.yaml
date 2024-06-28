@@ -5,7 +5,7 @@
 keys:
   - &admin_nyaa age1v9shz9z63yv0fh95fsulu4t55ul09t7upgsmgmljsqsefcs6pemqdc8nr4
 creation_rules:
-  - path_regex: secrets/[^/]+\.(yaml|json|env|ini|psk)$
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini|psk|conf)$
     key_groups:
     - age:
       - *admin_nyaa
