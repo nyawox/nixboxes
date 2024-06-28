@@ -59,7 +59,7 @@ in {
         ports = ["${builtins.toString cfg.port}:3000"];
         environment = {
           NEXT_PUBLIC_API_URL = "http://nixpro64.nyaa.nixlap.top:8000";
-          NEXT_PUBLIC_LOCAL_MODE_ENABLED = "false";
+          NEXT_PUBLIC_LOCAL_MODE_ENABLED = "true";
         };
         restart = "unless-stopped";
         depends_on = ["farfalle-backend"];
