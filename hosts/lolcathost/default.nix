@@ -91,15 +91,6 @@
 
   disk.device = "/dev/nvme0n1";
 
-  fileSystems."/mnt/hdd" = {
-    device = "/dev/sda1";
-    fsType = "btrfs";
-    noCheck = true;
-    options = [
-      "nofail"
-      "compress=zstd"
-    ];
-  };
   psilocybin.devices = ["/dev/input/by-id/usb-Topre_Corporation_HHKB_Professional-event-kbd"];
 
   gtk.iconCache.enable = true;
