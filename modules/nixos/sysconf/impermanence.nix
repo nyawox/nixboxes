@@ -69,7 +69,6 @@ in {
           ".cache"
           ".config/vesktop"
           ".config/uGet"
-          ".config/emacs"
           ".config/transmission-remote-gtk"
           ".config/Youtube Music"
           ".config/Cider"

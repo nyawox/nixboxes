@@ -28,6 +28,7 @@ in {
   config = mkIf cfg.enable {
     modules.shell.zellij.enable = mkIf cfg.ide true;
     modules.shell.yazi.enable = mkIf cfg.ide true;
+    modules.shell.emacs.enable = mkIf cfg.ide true;
     programs.helix = {
       enable = true;
       extraPackages = with pkgs; [

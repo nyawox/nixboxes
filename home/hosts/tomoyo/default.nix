@@ -5,4 +5,5 @@
   imports = lib.mapAttrsToList toImport (lib.filterAttrs filterCaches (builtins.readDir folder));
 in {
   inherit imports;
+  modules.shell.helix.ide = false;
 }

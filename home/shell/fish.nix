@@ -23,13 +23,6 @@ in {
         set fish_greeting
         fish_config theme choose "Catppuccin Mocha"
         fish_vi_key_bindings
-        # doom emacs path
-        fish_add_path ~/.config/emacs/bin
-        # FIXME: remove once https://github.com/helix-editor/helix/issues/10089 is fixed
-        function hx
-            command hx $argv
-            printf '\033[0 q'
-        end
       '';
       interactiveShellInit = ''
         # bind -M insert \b backward-kill-word # ctrl-backspace
