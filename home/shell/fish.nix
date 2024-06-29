@@ -62,9 +62,6 @@ in {
         # lix
         lix = "nix";
 
-        # run balena etcher
-        etcher = "NIXPKGS_ALLOW_INSECURE=1 nix run nixpkgs#etcher --impure";
-
         writeusb = "sudo dd bs=4M oflag=sync status=progress";
       };
     };
