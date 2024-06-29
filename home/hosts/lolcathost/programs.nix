@@ -20,7 +20,7 @@
     telegram-desktop
     youtube-music
     cider
-    transmission-gtk
+    transmission_4-gtk
     samba
     unzip
     unrar

@@ -55,7 +55,7 @@
     VDPAU_DRIVER = lib.mkIf config.hardware.opengl.enable (lib.mkDefault "va_gl");
   };
 
-  hardware.opengl.extraPackages = with pkgs; [
+  hardware.graphics.extraPackages = with pkgs; [
     (
       if (lib.versionOlder (lib.versions.majorMinor lib.version) "23.11")
       then vaapiIntel
