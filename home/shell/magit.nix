@@ -6,10 +6,10 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.shell.emacs;
+  cfg = config.modules.shell.magit;
 in {
   options = {
-    modules.shell.emacs = {
+    modules.shell.magit = {
       enable = mkOption {
         type = types.bool;
         default = false;
