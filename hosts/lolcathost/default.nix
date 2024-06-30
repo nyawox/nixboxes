@@ -194,7 +194,7 @@
       group = "users";
       mode = "757";
     });
-    users."${username}" = {
+    users."${username}" = lib.mkIf config.modules.sysconf.impermanence.enable {
       directories = [
         "Games"
         "PopTracker"
@@ -221,6 +221,7 @@
         ".config/Element"
         ".config/obsidian"
         ".config/vivaldi"
+        ".config/onlyoffice"
         ".android"
         ".steam"
       ];

@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  username,
   ...
 }: {
   modules = {
@@ -66,4 +67,8 @@
   ];
 
   programs.gnome-disks.enable = true;
+
+  environment.persistence."/persist".users."${username}".directories = lib.mkIf config.modules.sysconf.impermanence.enable [
+    ".config/vivaldi"
+  ];
 }
