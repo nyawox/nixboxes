@@ -1,4 +1,7 @@
 " -*- mode: vimrc -*-
+" fix search bar and command bar behaviour
+unbind --mode=ex <Space>
+bind --mode=ex <A-Space> ex.insert_space_or_completion
 " disable autofocus
 set allowautofocus false
 " allow autofocus in certain sites
