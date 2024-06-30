@@ -59,8 +59,8 @@ in {
         sandbox = true;
         extraSandboxBinds = [
           # "/home/${username}/.config/tridactyl"
-          "/home/${username}/.local/share/fonts"
-          "/home/${username}/.icons"
+          "/home/${username}/.local/share/fonts" # home-manager fonts
+          "/etc/profiles/per-user/${username}/share/icons" # home-manager cursor and icon themes
           "/nix/store"
         ];
         userAgent = "Mozilla/5.0 (Windows NT 10.0; rv:109.0) Gecko/20100101 Firefox/115.0";
