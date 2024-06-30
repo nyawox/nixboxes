@@ -91,6 +91,7 @@ in {
       input = {
         keyboard.xkb.layout = "us";
         focus-follows-mouse = true;
+        warp-mouse-to-focus = true;
         mouse.accel-speed = 1.0;
         touchpad = {
           tap = true;
