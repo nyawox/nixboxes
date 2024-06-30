@@ -98,9 +98,8 @@ in {
           natural-scroll = true;
         };
       };
-      # no support for rounded corners
       layout = {
-        gaps = 10;
+        gaps = 14;
         struts.left = 10;
         struts.right = 10;
         border.enable = false;
@@ -135,6 +134,16 @@ in {
       };
       prefer-no-csd = true;
       window-rules = [
+        {
+          # rounded corners
+          geometry-corner-radius = {
+            bottom-left = 18.0;
+            bottom-right = 18.0;
+            top-left = 18.0;
+            top-right = 18.0;
+          };
+          clip-to-geometry = true;
+        }
         {
           matches = [
             {
