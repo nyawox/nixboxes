@@ -55,7 +55,7 @@ in {
             // "margin-right":25,
             "margin-bottom":-11,
             //"margin-top":5,
-            "modules-left": ["custom/workspaces-text"],
+            "modules-left": ["custom/workspaces-ind"],
             "modules-center": ["custom/window"],
             "modules-right": ["tray","cpu","memory","battery","pulseaudio","clock"],
             // Modules configuration

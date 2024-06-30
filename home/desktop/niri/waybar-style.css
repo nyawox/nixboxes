@@ -13,7 +13,7 @@ window#waybar {
   background-color: transparent;
 }
 
-#custom-workspaces-text {
+#custom-workspaces-ind {
   box-shadow: rgba(205, 214, 444, 0.116) 3px 3px 7px 3px;
   background-color: #181825;
   font-size: 20px;
