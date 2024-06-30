@@ -70,7 +70,7 @@ in {
         drm.enable = true;
         disableWebgl = false;
         firefoxSync = true;
-        # startPageURL = "https://homepage.nixlap.top";
+        startPageURL = "https://homepage.nixlap.top";
       };
 
       extensions = {
