@@ -19,8 +19,8 @@ in {
   config = mkIf cfg.enable {
     home.file = {
       ".wallpaper.jpg".source = pkgs.fetchurl {
-        url = "https://w.wallhaven.cc/full/ex/wallhaven-exo2gr.jpg";
-        sha256 = "0ki8im2907yzzjbk60cxq8lg2vrjzbs3qlg7jf6vsry9x20n4rz1";
+        url = "https://images.hdqwalls.com/download/train-of-outrun-world-t9-3840x2400.jpg";
+        sha256 = "0ax48hjpf48zg9j7b51c7j1cdy4vr3a6r8k2jgzckdn30f3hq94b";
       };
     };
     xdg.configFile = {
