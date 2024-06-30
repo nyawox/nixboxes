@@ -273,7 +273,7 @@ in {
     ];
     home.file = {
       ".mozilla/firefox/schizo.default/chrome/ShyFox/".source = inputs.shyfox.outPath + "/chrome/ShyFox";
-      ".mozilla/firefox/schizo.default/chrome/Icons".source = inputs.shyfox.outPath + "/chrome/Icons";
+      ".mozilla/firefox/schizo.default/chrome/icons/".source = inputs.shyfox.outPath + "/chrome/icons";
       ".mozilla/native-messaging-hosts/com.ugetdm.firefox.json".source = "${pkgs.uget-integrator}/lib/mozilla/native-messaging-hosts/com.ugetdm.firefox.json";
       # ".mozilla/native-messaging-hosts/tridactyl.json".source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
     };
