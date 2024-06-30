@@ -50,7 +50,7 @@ with lib; let
       export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
       gnome_schema=org.gnome.desktop.interface
       gsettings set $gnome_schema icon-theme 'WhiteSur-dark'
-      gsettings set $gnome_schema cursor-theme 'Catppuccin-Mocha-Pink-Cursors'
+      gsettings set $gnome_schema cursor-theme 'catppuccin-mocha-pink-cursors'
       gsettings set $gnome_schema font-name 'Poppins 9'
       gsettings set $gnome_schema color-scheme prefer-dark
     '';
