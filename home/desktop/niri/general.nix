@@ -133,7 +133,6 @@ in {
         window-open = smooth;
         window-close = smooth;
       };
-      prefer-no-csd = true;
       window-rules = [
         {
           # rounded corners
@@ -194,6 +193,8 @@ in {
         GDK_BACKEND = "wayland,x11";
         GTK_THEME = config.gtk.theme.name;
       };
+      prefer-no-csd = true;
+      hotkey-overlay.skip-at-startup = true;
       screenshot-path = "/home/${username}/Pictures/screenshot-%Y-%m-%d-%H-%M-%S.png";
       spawn-at-startup = [
         {command = ["${configure-gtk}/bin/configure-gtk"];}
