@@ -56,7 +56,7 @@ in {
       cursor = {
         package = pkgs.catppuccin-cursors.mochaPink;
         name = "catppuccin-mocha-pink-cursors";
-        size = 16;
+        size = 24;
       };
       opacity = {
         applications = 0.75;

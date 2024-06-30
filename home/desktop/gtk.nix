@@ -40,7 +40,7 @@ in {
       cursorTheme = {
         name = "catppuccin-mocha-pink-cursors";
         package = pkgs.catppuccin-cursors.mochaPink;
-        size = 16;
+        size = 24;
       };
     };
     home.packages = with pkgs; [glib];

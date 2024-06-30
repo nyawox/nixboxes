@@ -86,7 +86,7 @@ in {
     programs.niri.settings = {
       cursor = {
         theme = "catppuccin-mocha-pink-cursors";
-        size = 16;
+        size = 24;
       };
       input = {
         keyboard.xkb.layout = "us";
