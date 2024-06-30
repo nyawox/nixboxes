@@ -231,32 +231,40 @@ in {
         defaultUserChrome.enable = false;
         defaultUserContent.enable = false;
 
-        extraUserChrome = ''
-          /* base */
-          @import url("ShyFox/shy-variables.css");
-          @import url("ShyFox/shy-global.css");
+        extraUserChrome =
+          /*
+          css
+          */
+          ''
+            /* base */
+            @import url("ShyFox/shy-variables.css");
+            @import url("ShyFox/shy-global.css");
 
-          /* main elements */
-          @import url("ShyFox/shy-sidebar.css");
-          @import url("ShyFox/shy-toolbar.css");
-          @import url("ShyFox/shy-navbar.css");
-          @import url("ShyFox/shy-findbar.css");
-          @import url("ShyFox/shy-controls.css");
+            /* main elements */
+            @import url("ShyFox/shy-sidebar.css");
+            @import url("ShyFox/shy-toolbar.css");
+            @import url("ShyFox/shy-navbar.css");
+            @import url("ShyFox/shy-findbar.css");
+            @import url("ShyFox/shy-controls.css");
 
-          /* addons */
-          @import url("ShyFox/shy-compact.css");
-          @import url("ShyFox/shy-icons.css");
-          @import url("ShyFox/shy-floating-search.css");
+            /* addons */
+            @import url("ShyFox/shy-compact.css");
+            @import url("ShyFox/shy-icons.css");
+            @import url("ShyFox/shy-floating-search.css");
 
-          * {font-famil: "Poppins" !important;}
-        '';
-        extraUserContent = ''
-          /* imports */
-          @import url("ShyFox/content/shy-new-tab.css");
-          @import url("ShyFox/content/shy-about.css");
-          @import url("ShyFox/content/shy-global-content.css");
-          @import url("ShyFox/shy-variables.css");
-        '';
+            * {font-famil: "Poppins" !important;}
+          '';
+        extraUserContent =
+          /*
+          css
+          */
+          ''
+            /* imports */
+            @import url("ShyFox/content/shy-new-tab.css");
+            @import url("ShyFox/content/shy-about.css");
+            @import url("ShyFox/content/shy-global-content.css");
+            @import url("ShyFox/shy-variables.css");
+          '';
       };
     };
     home.packages = with pkgs; [

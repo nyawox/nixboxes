@@ -9,10 +9,14 @@ stdenv.mkDerivation {
   dontBuild = true;
   dontConfigure = true;
 
-  installPhase = ''
-    install -d $out/share/fcitx5/themes/
-    cp -r ./src/* $out/share/fcitx5/themes/
-  '';
+  installPhase =
+    /*
+    bash
+    */
+    ''
+      install -d $out/share/fcitx5/themes/
+      cp -r ./src/* $out/share/fcitx5/themes/
+    '';
 
   meta = with lib; {
     homepage = "https://github.com/catppuccin/fcitx5";

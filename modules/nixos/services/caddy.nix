@@ -5,22 +5,34 @@
 }:
 with lib; let
   cfg = config.modules.services.caddy;
-  expire-header = ''
-    @static {
-      file
-      path *.ico *.css *.js *.gif *.jpg *.jpeg *.png *.svg *.woff
-    }
-    header @static Cache-Control max-age=5184000
-  '';
-  encode = ''
-    encode gzip zstd
-  '';
-  auth = ''
-    forward_auth nixpro64.nyaa.nixlap.top:9150 {
-    	uri /api/verify?rd=https://auth.nixlap.top
-    	copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
-    }
-  '';
+  expire-header =
+    /*
+    conf
+    */
+    ''
+      @static {
+        file
+        path *.ico *.css *.js *.gif *.jpg *.jpeg *.png *.svg *.woff
+      }
+      header @static Cache-Control max-age=5184000
+    '';
+  encode =
+    /*
+    conf
+    */
+    ''
+      encode gzip zstd
+    '';
+  auth =
+    /*
+    conf
+    */
+    ''
+      forward_auth nixpro64.nyaa.nixlap.top:9150 {
+      	uri /api/verify?rd=https://auth.nixlap.top
+      	copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
+      }
+    '';
 in {
   options = {
     modules.services.caddy = {

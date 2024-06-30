@@ -60,9 +60,13 @@
     tumbler.enable = true;
     ratbagd.enable = true;
     # sysdvr
-    udev.extraRules = ''
-      SUBSYSTEM=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="4ee0", MODE="0666"
-    '';
+    udev.extraRules =
+      /*
+      rules
+      */
+      ''
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="4ee0", MODE="0666"
+      '';
     pipewire.extraConfig.pipewire."10-loopback-line_in" = {
       "context.modules" = lib.singleton {
         name = "libpipewire-module-loopback";

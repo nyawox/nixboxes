@@ -58,9 +58,13 @@ in {
 
     # Requires to simulate input
     boot.kernelModules = ["uinput"];
-    services.udev.extraRules = ''
-      KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
-    '';
+    services.udev.extraRules =
+      /*
+      rules
+      */
+      ''
+        KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
+      '';
 
     environment.systemPackages = with pkgs; [sunshine];
     networking.firewall.allowedTCPPortRanges = lib.singleton {

@@ -46,7 +46,11 @@ in {
       enable = true;
       configDir."health_alarm_notify.conf" = mkIf cfg.receiver config.sops.secrets.netdata-ntfy.path;
       configDir."stream.conf" = let
-        mkChildNode = apiKey: allowFrom: ''
+        mkChildNode = apiKey: allowFrom:
+        /*
+        conf
+        */
+        ''
           [${apiKey}]
             enabled = yes
             default history = 604800

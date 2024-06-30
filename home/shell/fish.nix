@@ -19,15 +19,23 @@ in {
   config = mkIf cfg.enable {
     programs.fish = {
       enable = true;
-      shellInit = ''
-        set fish_greeting
-        fish_config theme choose "Catppuccin Mocha"
-        fish_vi_key_bindings
-      '';
-      interactiveShellInit = ''
-        # bind -M insert \b backward-kill-word # ctrl-backspace
-        # bind -M insert \ch backward-kill-word
-      '';
+      shellInit =
+        /*
+        fish
+        */
+        ''
+          set fish_greeting
+          fish_config theme choose "Catppuccin Mocha"
+          fish_vi_key_bindings
+        '';
+      interactiveShellInit =
+        /*
+        fish
+        */
+        ''
+          # bind -M insert \b backward-kill-word # ctrl-backspace
+          # bind -M insert \ch backward-kill-word
+        '';
       plugins = [
         {
           name = "autopair";

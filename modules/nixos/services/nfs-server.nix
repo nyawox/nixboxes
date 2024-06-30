@@ -16,8 +16,12 @@ in {
   };
   config = mkIf cfg.enable {
     services.nfs.server.enable = true;
-    services.nfs.server.exports = ''
-      /nixboxes *(rw,async,no_subtree_check)
-    '';
+    services.nfs.server.exports =
+      /*
+      exports
+      */
+      ''
+        /nixboxes *(rw,async,no_subtree_check)
+      '';
   };
 }

@@ -39,12 +39,16 @@
     distributedBuilds = true;
     # Automatically run GC whenever there is not enough space left
     # Bytes
-    extraOptions = ''
-      min-free = ${toString (100 * 1024 * 1024)}
-      max-free = ${toString (1024 * 1024 * 1024)}
-      builders-use-substitutes = true
-      !include ${toString config.sops.secrets.nix-access-tokens.path}
-    '';
+    extraOptions =
+      /*
+      conf
+      */
+      ''
+        min-free = ${toString (100 * 1024 * 1024)}
+        max-free = ${toString (1024 * 1024 * 1024)}
+        builders-use-substitutes = true
+        !include ${toString config.sops.secrets.nix-access-tokens.path}
+      '';
   };
   sops.secrets."nix-access-tokens" = {
     sopsFile = ../../secrets/nix-access-tokens.conf;

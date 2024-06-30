@@ -32,9 +32,13 @@ in {
       serviceConfig = {
         Type = "simple";
         ExecStartPre = "${pkgs.android-tools}/bin/adb connect ${cfg.ip}";
-        ExecStart = ''
-          ${pkgs.bash}/bin/bash -c "${pkgs.android-tools}/bin/adb -s ${cfg.ip} logcat -T 1 '*:I' | ${pkgs.gnugrep}/bin/grep --line-buffered 'com.amazon.tv.launcher/.ui.HomeActivity_vNext' | ${pkgs.findutils}/bin/xargs -I {} ${pkgs.android-tools}/bin/adb -s ${cfg.ip} shell am start -n ${cfg.launcher}"
-        '';
+        ExecStart =
+          /*
+          bash
+          */
+          ''
+            ${pkgs.bash}/bin/bash -c "${pkgs.android-tools}/bin/adb -s ${cfg.ip} logcat -T 1 '*:I' | ${pkgs.gnugrep}/bin/grep --line-buffered 'com.amazon.tv.launcher/.ui.HomeActivity_vNext' | ${pkgs.findutils}/bin/xargs -I {} ${pkgs.android-tools}/bin/adb -s ${cfg.ip} shell am start -n ${cfg.launcher}"
+          '';
         Restart = "always";
         RestartSec = 5;
       };

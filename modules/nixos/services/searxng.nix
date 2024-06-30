@@ -27,6 +27,9 @@ in {
         in {
           postInstall = lib.strings.concatStrings [
             oldAttrs.postInstall
+            /*
+            bash
+            */
             ''
               # Replace logo
               cp ${logo} $out/${pkgs.python3.sitePackages}/searx/static/themes/simple/img/searxng.png

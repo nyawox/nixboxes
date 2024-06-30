@@ -52,12 +52,16 @@ in {
       persistence."/persist".users."${username}".files = mkIf config.modules.sysconf.impermanence.enable [
         ".config/.uxplay.register"
       ];
-      etc."uxplayrc".text = ''
-        p 15244
-        nh
-        pin
-        fs
-      '';
+      etc."uxplayrc".text =
+        /*
+        conf
+        */
+        ''
+          p 15244
+          nh
+          pin
+          fs
+        '';
     };
   };
 }

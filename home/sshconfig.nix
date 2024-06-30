@@ -3,14 +3,18 @@
     enable = true;
     compression = true;
     controlMaster = "auto";
-    extraConfig = ''
-      ServerAliveInterval 15
-      ServerAliveCountMax 3
-      ConnectionAttempts 3
-      RekeyLimit default 600
-      VisualHostKey yes
-      UpdateHostKeys yes
-    '';
+    extraConfig =
+      /*
+      sshclientconfig
+      */
+      ''
+        ServerAliveInterval 15
+        ServerAliveCountMax 3
+        ConnectionAttempts 3
+        RekeyLimit default 600
+        VisualHostKey yes
+        UpdateHostKeys yes
+      '';
     matchBlocks = {
       "phone" = {
         hostname = "192.168.0.128";

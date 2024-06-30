@@ -24,17 +24,21 @@ in {
         KbdInteractiveAuthentication = false;
         X11Forwarding = false;
       };
-      extraConfig = ''
-        AllowTcpForwarding yes
-        AllowAgentForwarding no
-        AllowStreamLocalForwarding no
-        AllowUsers nyaa
-        AuthenticationMethods publickey
-        # Listen to all ipv4 adderss
-        ListenAddress 0.0.0.0
-        # Listen to all ipv6 address
-        ListenAddress ::
-      '';
+      extraConfig =
+        /*
+        conf
+        */
+        ''
+          AllowTcpForwarding yes
+          AllowAgentForwarding no
+          AllowStreamLocalForwarding no
+          AllowUsers nyaa
+          AuthenticationMethods publickey
+          # Listen to all ipv4 adderss
+          ListenAddress 0.0.0.0
+          # Listen to all ipv6 address
+          ListenAddress ::
+        '';
       ports = [22420];
       hostKeys = lib.singleton {
         path = "/etc/ssh/ssh_host_ed25519_key";
