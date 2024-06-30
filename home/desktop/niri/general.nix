@@ -161,7 +161,7 @@ in {
               title = "Media viewer";
             }
           ];
-          opacity = 0.9;
+          opacity = 0.98;
           draw-border-with-background = false;
         }
       ];
