@@ -6,7 +6,7 @@
     Roboto,
     Arial,
     sans-serif;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 window#waybar {
@@ -15,28 +15,29 @@ window#waybar {
 
 #taskbar {
   background-color: transparent;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  margin-right: 8px;
-  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 26px;
 }
+
 #taskbar button {
-  box-shadow: rgba(205, 214, 444, 0.116) 2 2 5 2px;
+  box-shadow: rgba(205, 214, 444, 0.116) 3px 3px 7px 3px;
   background-color: #181825;
-  border-radius: 8px;
-  margin-right: 8px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-right: 8px;
-  font-size: 12px;
+  border-radius: 10px;
+  margin-right: 10px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-right: 10px;
+  font-size: 16px;
   color: #a6adc8;
 }
 
 #taskbar button.active {
-  box-shadow: rgba(0, 0, 0, 0.288) 2 2 5 2px;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
-  padding-left: 20px;
-  padding-right: 20px;
+  box-shadow: rgba(0, 0, 0, 0.288) 3px 3px 7px 3px;
+  text-shadow: 0 0 7px rgba(0, 0, 0, 0.377);
+  padding-left: 26px;
+  padding-right: 26px;
   background: linear-gradient(
     45deg,
     rgba(203, 166, 247, 1) 0%,
@@ -68,12 +69,12 @@ window#waybar {
 #pulseaudio,
 #tray,
 #custom-window {
-  padding: 0 10px;
-  border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.116) 2 2 5 2px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  margin-right: 8px;
+  padding: 0 13px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.116) 3px 3px 7px 3px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
 }
 
 #custom-window {
@@ -86,9 +87,9 @@ window#waybar {
   );
   background-size: 300% 300%;
   animation: gradient 2s ease infinite;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
+  text-shadow: 0 0 7px rgba(0, 0, 0, 0.377);
   font-weight: 500;
-  font-size: 12px;
+  font-size: 16px;
   color: #181825;
 }
 
@@ -100,15 +101,15 @@ window#waybar {
     rgba(180, 190, 254, 1) 100%
   );
   animation: gradient 4s ease infinite;
-  margin-right: 20px;
+  margin-right: 26px;
   color: #181825;
   background-size: 300% 300%;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
-  font-size: 12px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
+  text-shadow: 0 0 7px rgba(0, 0, 0, 0.377);
+  font-size: 16px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 20px;
+  padding-right: 20px;
   font-weight: 500;
 }
 
@@ -116,9 +117,9 @@ window#waybar {
   background-color: #fff;
   color: #a6e3a1;
   font-weight: 500;
-  font-size: 12px;
-  padding-left: 12px;
-  padding-right: 12px;
+  font-size: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 #battery.charging,
@@ -147,7 +148,7 @@ label:focus {
   );
   background-size: 300% 300%;
   animation: gradient 4s ease infinite;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
+  text-shadow: 0 0 7px rgba(0, 0, 0, 0.377);
   color: #181825;
 }
 
@@ -161,11 +162,11 @@ label:focus {
   );
   color: #181825;
   animation: gradient 4s ease infinite;
-  font-size: 12px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
+  font-size: 16px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 20px;
+  padding-right: 20px;
   font-weight: 500;
 }
 
@@ -177,20 +178,20 @@ label:focus {
   );
   animation: gradient 4s ease infinite;
   color: #181825;
-  font-size: 12px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
+  font-size: 16px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 20px;
+  padding-right: 20px;
   font-weight: 500;
 }
 
 #pulseaudio.muted {
   background-color: #90b1b1;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 20px;
+  padding-right: 20px;
   font-weight: 500;
 }
 
