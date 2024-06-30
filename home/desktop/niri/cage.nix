@@ -1,3 +1,5 @@
+# Using this until xwayland-satellite https://github.com/NixOS/nixpkgs/pull/322396 gets merged
+# Clipboard doesn't work
 # Check desktop entries in /run/current-system/sw/share/applications
 # or /etc/profiles/per-user/nyaa/share/applications/
 {
