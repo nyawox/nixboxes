@@ -31,10 +31,7 @@
       airplay.enable = true;
     };
     desktop = {
-      # niri.enable = true;
-      # swaylock.enable = true;
-      # greetd.enable = true;
-      # polkit.enable = true;
+      niri.enable = true;
       cosmic.enable = true;
     };
     virtualisation.waydroid.enable = true;

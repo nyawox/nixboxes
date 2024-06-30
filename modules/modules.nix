@@ -41,6 +41,7 @@
         imports = [
           ../home/desktop
           ../home/desktop/cosmic
+          ../home/desktop/niri
           ../home/files.nix
           ../home/xdg.nix
           inputs.schizofox.homeManagerModule

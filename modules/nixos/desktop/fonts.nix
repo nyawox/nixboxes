@@ -27,6 +27,7 @@ in {
       liberation_ttf
       wqy_zenhei
       font-awesome
+      poppins
       (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     ];
     fonts.fontconfig.defaultFonts = {

@@ -252,7 +252,7 @@ in {
             @import url("ShyFox/shy-icons.css");
             @import url("ShyFox/shy-floating-search.css");
 
-            * {font-famil: "Poppins" !important;}
+            * {font-family: "Poppins" !important;}
           '';
         extraUserContent =
           /*

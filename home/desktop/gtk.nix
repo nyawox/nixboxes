@@ -19,7 +19,7 @@ in {
     gtk = {
       enable = true;
       theme = lib.mkForce {
-        name = "Catppuccin-Mocha-Standard-Pink-Dark";
+        name = "catppuccin-mocha-pink-standard+rimless";
         package = pkgs.catppuccin-gtk.override {
           accents = [
             "blue"
