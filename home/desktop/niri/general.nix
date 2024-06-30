@@ -70,6 +70,7 @@ in {
   config = mkIf cfg.enable {
     modules.desktop = {
       swayidle.enable = true;
+      swaync.enable = true;
       waybar.enable = true;
       fuzzel.enable = true;
       cage.enable = true;
