@@ -77,7 +77,7 @@ in {
           "/var/lib/minecraft/wanwan/world_the_end"
         ];
         passwordFile = config.sops.secrets.restic-minecraft-pw.path;
-        repository = "/mnt/hdd/backups/minecraft";
+        repository = "/var/backup/minecraft";
         timerConfig = {
           # backup every 1d
           OnUnitActiveSec = "1d";
