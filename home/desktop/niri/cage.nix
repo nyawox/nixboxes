@@ -21,7 +21,7 @@ in {
     home.packages = [pkgs.cage];
     xdg.desktopEntries = let
       capitalize = s: "${toUpper (substring 0 1 s)}${substring 1 (-1) s}";
-      makeEntry = program: args: optionalName: {
+      mkEntryWithName = program: args: optionalName: {
         name =
           if optionalName == null
           then capitalize program
@@ -29,12 +29,19 @@ in {
         icon = program;
         exec = "${pkgs.cage}/bin/cage ${pkgs.${program}}/bin/${program} ${args}";
       };
+
+      mkEntry = program: args: mkEntryWithName program args null;
     in {
       netflix.exec = lib.mkForce "${pkgs.cage}/bin/cage ${pkgs.vivaldi}/bin/vivaldi -- --ozone-platform=x11 --app=https://www.netflix.com --no-first-run --no-default-browser-check --no-crash-upload";
-      vesktop = makeEntry "vesktop" "-- --ozone-platform=x11 %u" null;
-      cider = makeEntry "cider" "-- --ozone-platform=x11 %u" null;
-      obsidian = makeEntry "obsidian" "-- --ozone-platform=x11 %u" null;
-      youtube-music = makeEntry "youtube-music" "-- --ozone-platform=x11 %u" "Youtube Music";
+      vesktop = mkEntry "vesktop" "-- --ozone-platform=x11 %u";
+      cider = mkEntry "cider" "-- --ozone-platform=x11 %u";
+      obsidian = mkEntry "obsidian" "-- --ozone-platform=x11 %u";
+      youtube-music = mkEntryWithName "youtube-music" "-- --ozone-platform=x11 %u" "Youtube Music";
+      "org.telegram.desktop" = {
+        name = "Telegram Desktop";
+        icon = "telegram";
+        exec = "${pkgs.cage}/bin/cage ${pkgs.telegram-desktop}/bin/telegram-desktop -- -- %u";
+      };
       vivaldi-stable = {
         name = "Vivaldi";
         icon = "vivaldi";
