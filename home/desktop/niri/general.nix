@@ -137,7 +137,8 @@ in {
           ];
           min-width = 400;
         }
-        # note that blur isn't supported yet
+        # TODO figure out a way to match specific program with wlroots app-id(cage)
+        # The window title changes few seconds after launching the program
         {
           matches = [
             {app-id = "firefox";}
