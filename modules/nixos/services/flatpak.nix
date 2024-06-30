@@ -32,10 +32,6 @@ in {
             "!x11"
             "!fallback-x11"
           ];
-
-          Environment = {
-            XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
-          };
         };
       };
     };
