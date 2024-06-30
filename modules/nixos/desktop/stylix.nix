@@ -76,6 +76,7 @@ in {
         helix.enable = false;
         zellij.enable = false;
         fzf.enable = false;
+        fuzzel.enable = false;
       };
     };
   };
