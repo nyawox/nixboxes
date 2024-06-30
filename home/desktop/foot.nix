@@ -26,9 +26,9 @@ in {
         main = {
           term = "xterm-256color";
           pad = "5x2";
-          font = "Spleen:size=9";
-          line-height = "16px";
-          dpi-aware = "yes";
+          font = "Spleen:size=12";
+          line-height = "20px";
+          dpi-aware = "no";
         };
         cursor.style = "beam";
         text-bindings = {
