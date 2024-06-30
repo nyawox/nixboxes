@@ -9,6 +9,18 @@ with lib; let
   focusedwindow = pkgs.writeShellScript "focusedwindow" ''
     niri msg focused-window | grep Title | sed "s# Title: \"\(.*\)\"#\1#"
   '';
+  # The workspace module code is based on https://github.com/hallettj/home.nix/blob/main/home-manager/features/niri/waybar.nix,
+  # distributed under the Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0).
+  jq-filter = ''
+    {
+      text: map(if .is_active then "  " else "  " end) | join(""),
+      alt: .[] | select(.is_active) | (.name // .idx),
+      class: ["workspaces"]
+    }
+  '';
+  workspaces-script = pkgs.writeShellScript "workspaces" ''
+    ${pkgs.niri}/bin/niri msg --json workspaces | ${pkgs.jq}/bin/jq --unbuffered --compact-output '${jq-filter}'
+  '';
 in {
   options = {
     modules.desktop.waybar = {
@@ -43,10 +55,17 @@ in {
             // "margin-right":25,
             "margin-bottom":-11,
             //"margin-top":5,
-            "modules-left": ["wlr/taskbar"],
-            "modules-right": ["tray","cpu","memory","battery","pulseaudio","clock"],
+            "modules-left": ["custom/workspaces-text"],
             "modules-center": ["custom/window"],
+            "modules-right": ["tray","cpu","memory","battery","pulseaudio","clock"],
             // Modules configuration
+
+            "custom/workspaces-ind": {
+              "exec": "${workspaces-script}",
+              "interval": 1,
+              "return-type": "json",
+              "tooltip": false
+            },
 
             "custom/window": {
               "exec": "${focusedwindow}",

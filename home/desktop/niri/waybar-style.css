@@ -13,7 +13,22 @@ window#waybar {
   background-color: transparent;
 }
 
-#taskbar {
+#custom-workspaces-text {
+  box-shadow: rgba(205, 214, 444, 0.116) 3px 3px 7px 3px;
+  background-color: #181825;
+  font-size: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 26px;
+  padding-left: 8px;
+  padding-right: 8px;
+  color: #a6adc8;
+}
+
+/* Don't remove this, I will use for interactive workspaces module */
+#custom-workspaces {
   background-color: transparent;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -21,7 +36,7 @@ window#waybar {
   margin-left: 26px;
 }
 
-#taskbar button {
+#custom-workspaces button.workspace {
   box-shadow: rgba(205, 214, 444, 0.116) 3px 3px 7px 3px;
   background-color: #181825;
   border-radius: 10px;
@@ -33,7 +48,7 @@ window#waybar {
   color: #a6adc8;
 }
 
-#taskbar button.active {
+#custom-workspaces button.workspace.active {
   box-shadow: rgba(0, 0, 0, 0.288) 3px 3px 7px 3px;
   text-shadow: 0 0 7px rgba(0, 0, 0, 0.377);
   padding-left: 26px;
