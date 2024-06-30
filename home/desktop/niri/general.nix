@@ -84,8 +84,13 @@ in {
       swaybg
     ];
     programs.niri.settings = {
+      cursor = {
+        theme = "catppuccin-mocha-pink-cursors";
+        size = 16;
+      };
       input = {
         keyboard.xkb.layout = "us";
+        focus-follows-mouse = true;
         mouse.accel-speed = 1.0;
         touchpad = {
           tap = true;
