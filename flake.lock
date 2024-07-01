@@ -1617,6 +1617,22 @@
         "type": "github"
       }
     },
+    "kanata": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1719118165,
+        "narHash": "sha256-DienE4An34F+/tR5LxP346ACU5GsP3PSOvl0w6o450Q=",
+        "owner": "jtroo",
+        "repo": "kanata",
+        "rev": "60ce29a23c217fb31729945f850b505a7a9e0273",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jtroo",
+        "repo": "kanata",
+        "type": "github"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane_2",
@@ -2396,16 +2412,17 @@
     "psilocybin": {
       "inputs": {
         "flake-parts": "flake-parts_9",
+        "kanata": "kanata",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1719621767,
-        "narHash": "sha256-GvTPQZlIFbXQTxV5F/K5g5B8MGR08zNfZOEpjOpW1/0=",
+        "lastModified": 1719835319,
+        "narHash": "sha256-teW3HdBZAhXBB1Zc77YRCa7j/wRQpCO/29Pqw+eMeRA=",
         "owner": "nyawox",
         "repo": "psilocybin",
-        "rev": "ad5bcb7f9372f2fe1de3da1fdfeb3b453b2604ea",
+        "rev": "8c1d820fb96f04ee85d995085475c2220553611b",
         "type": "github"
       },
       "original": {
