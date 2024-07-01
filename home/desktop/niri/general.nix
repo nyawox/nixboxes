@@ -241,10 +241,12 @@ in {
               "Mod+Ctrl" = "focus-monitor";
               "Mod+Ctrl+Shift" = "move-window-to-monitor";
             };
-            substitutions."monitor-column" = "monitor";
-            substitutions."monitor-window-or-workspace" = "monitor";
-            substitutions."move-window-or-workspace-down" = "move-window-down-or-to-workspace-down";
-            substitutions."move-window-or-workspace-up" = "move-window-up-or-to-workspace-up";
+            substitutions = {
+              "monitor-column" = "monitor";
+              "monitor-window-or-workspace" = "monitor";
+              "move-window-or-workspace-down" = "move-window-down-or-to-workspace-down";
+              "move-window-or-workspace-up" = "move-window-up-or-to-workspace-up";
+            };
           })
           (binds {
             suffixes."Home" = "first";

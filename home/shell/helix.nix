@@ -26,9 +26,11 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    modules.shell.zellij.enable = mkIf cfg.ide true;
-    modules.shell.yazi.enable = mkIf cfg.ide true;
-    modules.shell.magit.enable = mkIf cfg.ide true;
+    modules.shell = {
+      zellij.enable = mkIf cfg.ide true;
+      yazi.enable = mkIf cfg.ide true;
+      magit.enable = mkIf cfg.ide true;
+    };
     programs.helix = {
       enable = true;
       extraPackages = with pkgs; [

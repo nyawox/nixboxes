@@ -16,24 +16,26 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    fonts.fontDir = {
-      enable = true;
-      decompressFonts = true;
-    };
-    fonts.packages = with pkgs; [
-      corefonts
-      spleen
-      apple-emoji
-      liberation_ttf
-      wqy_zenhei
-      font-awesome
-      poppins
-      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
-    ];
-    fonts.fontconfig.defaultFonts = {
-      emoji = [
-        "Apple Color Emoji"
+    fonts = {
+      fontDir = {
+        enable = true;
+        decompressFonts = true;
+      };
+      packages = with pkgs; [
+        corefonts
+        spleen
+        apple-emoji
+        liberation_ttf
+        wqy_zenhei
+        font-awesome
+        poppins
+        (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
       ];
+      fontconfig.defaultFonts = {
+        emoji = [
+          "Apple Color Emoji"
+        ];
+      };
     };
   };
 }
