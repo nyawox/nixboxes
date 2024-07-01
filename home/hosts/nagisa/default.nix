@@ -5,5 +5,5 @@
   imports = lib.mapAttrsToList toImport (lib.filterAttrs filterCaches (builtins.readDir folder));
 in {
   inherit imports;
-  desktop.vivaldi.enable = true;
+  modules.desktop.vivaldi.enable = true;
 }
