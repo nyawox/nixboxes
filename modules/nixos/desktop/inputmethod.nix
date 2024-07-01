@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  username,
   ...
 }:
 with lib; let
@@ -28,5 +29,8 @@ in {
         waylandFrontend = true;
       };
     };
+    environment.persistence."/persist".users."${username}".directories =
+      mkIf config.modules.sysconf.impermanence.enable
+      [".config/fcitx5" ".config/fcitx"];
   };
 }

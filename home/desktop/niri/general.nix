@@ -200,6 +200,8 @@ in {
         {command = ["${pkgs.pulseaudio}/bin/paplay" "/home/${username}/sounds/logon.wav"];}
         {command = ["${pkgs.swaybg}/bin/swaybg" "-i" "/home/${username}/.wallpaper.jpg"];}
         {command = ["${pkgs.swaynotificationcenter}/bin/swaync"];}
+        # Only fcitx5 installed via the NixOS module contains mozc, it must be in the PATH.
+        {command = ["fcitx5" "-r" "-d"];} # -r replaces current instance
       ];
       outputs = {
         "DP-1".scale = 0.75;
