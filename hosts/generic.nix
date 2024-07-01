@@ -132,13 +132,13 @@
 
   services = {
     # Use kmscon as virtual console instead of gettys
-    kmscon = {
-      enable = true;
-      fonts = lib.singleton {
-        name = "Spleen";
-        package = pkgs.spleen;
-      };
-    };
+    # kmscon = {
+    #   enable = true;
+    #   fonts = lib.singleton {
+    #     name = "Spleen";
+    #     package = pkgs.spleen;
+    #   };
+    # };
     dbus = {
       enable = true;
       implementation = "broker";
