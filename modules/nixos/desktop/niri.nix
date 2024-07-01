@@ -22,7 +22,8 @@ in {
     programs.niri.enable = true;
     nixpkgs.overlays = [inputs.niri.overlays.niri];
     programs.niri.package = pkgs.niri-unstable;
-    environment.variables.NIXOS_OZONE_WL = "1";
+    # Keep chromium wayland disabled because it has issues with japanese ime and scaling
+    # environment.variables.NIXOS_OZONE_WL = "1";
     environment.systemPackages = with pkgs; [
       wl-clipboard
       wayland-utils

@@ -73,7 +73,7 @@ in {
       swaync.enable = true;
       waybar.enable = true;
       fuzzel.enable = true;
-      cage.enable = true;
+      xwayland.enable = true;
     };
     home.packages = with pkgs; [
       qt5.qtwayland
@@ -161,14 +161,13 @@ in {
             {app-id = "org.gnome.Nautilus";}
             {app-id = "org.telegram.desktop";}
             {app-id = "Cider";}
-            {app-id = "Zathura";}
             {app-id = "xdg-desktop-portal-gtk";}
             {app-id = "gpu-screen-recorder-gtk";}
             {app-id = "uget-gtk";}
             {app-id = "pavucontrol";}
             {app-id = "lutris";}
             {app-id = ".blueman-manager-wrapped";}
-            {app-id = "wlroots";}
+            {app-id = "obsidian";}
           ];
           excludes = [
             {
