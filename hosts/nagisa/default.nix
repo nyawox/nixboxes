@@ -24,8 +24,8 @@
       };
     };
     desktop = {
-      cosmic.enable = true;
-      polkit.enable = true;
+      niri.enable = true;
+      greetd.enable = true;
     };
   };
 

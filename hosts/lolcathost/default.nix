@@ -32,7 +32,7 @@
     };
     desktop = {
       niri.enable = true;
-      cosmic.enable = true;
+      greetd.enable = true;
     };
     virtualisation.waydroid.enable = true;
     virtualisation.waydroid.rdp = true;
