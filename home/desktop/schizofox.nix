@@ -107,6 +107,7 @@ in {
           "userchrome-toggle-extended@n2ezr.ru".install_url = "${exturl}/userchrome-toggle-extended/latest.xpi";
           "{bbb880ce-43c9-47ae-b746-c3e0096c5b76}".install_url = "${exturl}/catppuccin-gh-file-explorer/latest.xpi";
           "tridactyl.vim@cmcaine.co.uk".install_url = "${exturl}/tridactyl-vim/latest.xpi";
+          "shinigamieyes@shinigamieyes".install_url = "${exturl}/shinigami-eyes/latest.xpi";
           # "ATBC@EasonWong".install_url = "${exturl}/adaptive-tab-bar-colour/latest.xpi";
           ### supposed to fix netflix resolution, but netflix itself doesn't work due to privacy related settings
           # "{f18f0257-10ad-4ff7-b51e-6895edeccfc8}".install_url = "https://github.com/vladikoff/netflix-1080p-firefox/files/10981084/f18f0257-10ad-4ff7-b51e-6895edeccfc8.zip";
