@@ -131,6 +131,7 @@
   psilocybin.enable = lib.mkDefault true;
 
   services = {
+    # temporarily disabled because it isn't working in nixos-unstable-small
     # Use kmscon as virtual console instead of gettys
     # kmscon = {
     #   enable = true;
