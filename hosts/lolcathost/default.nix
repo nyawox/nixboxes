@@ -30,6 +30,7 @@
       windows.enable = true;
       airplay.enable = true;
       tor.enable = true;
+      v2ray.enable = true;
     };
     desktop = {
       niri.enable = true;
