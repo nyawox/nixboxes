@@ -24,7 +24,8 @@ in {
     };
     environment = {
       systemPackages = with pkgs; [arion];
-      persistence."/persist" = {
+      # prevent specfiying two times
+      persistence."/persist" = mkIf (!config.modules.virtualisation.podman.enable) {
         directories = mkIf config.modules.sysconf.impermanence.enable ["/var/lib/containers"];
         users."${username}" = {
           directories = mkIf config.modules.sysconf.impermanence.enable [".local/share/containers"];

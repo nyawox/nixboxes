@@ -35,8 +35,11 @@
       niri.enable = true;
       greetd.enable = true;
     };
-    virtualisation.waydroid.enable = true;
-    virtualisation.waydroid.rdp = true;
+    virtualisation = {
+      waydroid.enable = true;
+      waydroid.rdp = true;
+      podman.enable = true;
+    };
   };
 
   sops.secrets."switch" = {
