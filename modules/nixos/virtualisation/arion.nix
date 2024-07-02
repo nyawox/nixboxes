@@ -3,7 +3,6 @@
   lib,
   inputs,
   pkgs,
-  username,
   ...
 }:
 with lib; let
@@ -19,18 +18,10 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    modules.virtualisation.podman.enable = mkForce true;
     virtualisation.arion = {
       backend = "podman-socket";
     };
-    environment = {
-      systemPackages = with pkgs; [arion];
-      # prevent specfiying two times
-      persistence."/persist" = mkIf (!config.modules.virtualisation.podman.enable) {
-        directories = mkIf config.modules.sysconf.impermanence.enable ["/var/lib/containers"];
-        users."${username}" = {
-          directories = mkIf config.modules.sysconf.impermanence.enable [".local/share/containers"];
-        };
-      };
-    };
+    environment.systemPackages = with pkgs; [arion docker-client];
   };
 }

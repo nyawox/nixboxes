@@ -38,7 +38,7 @@
     virtualisation = {
       waydroid.enable = true;
       waydroid.rdp = true;
-      podman.enable = true;
+      arion.enable = true;
     };
   };
 
