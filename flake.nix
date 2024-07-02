@@ -182,6 +182,10 @@
       url = "github:naezr/shyfox";
       flake = false;
     };
+    aria-onion = {
+      url = "github:sn0b4ll/aria2-onion-downloader";
+      flake = false;
+    };
     doom-banners = {
       url = "github:jeetelongname/doom-banners";
       flake = false;

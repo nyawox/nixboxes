@@ -21,6 +21,22 @@
         "type": "github"
       }
     },
+    "aria-onion": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711230229,
+        "narHash": "sha256-mZW6/wCQioDMX3VvRxuavK3dDIGTWm4qVJ6CZ68D3gM=",
+        "owner": "sn0b4ll",
+        "repo": "aria2-onion-downloader",
+        "rev": "5a47d7b0edeaf597a4c9c81870313fabc24dab27",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sn0b4ll",
+        "repo": "aria2-onion-downloader",
+        "type": "github"
+      }
+    },
     "arion": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -2916,11 +2932,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1719835319,
-        "narHash": "sha256-teW3HdBZAhXBB1Zc77YRCa7j/wRQpCO/29Pqw+eMeRA=",
+        "lastModified": 1719864467,
+        "narHash": "sha256-eI8XfULxA2Pt+XvdVTRRxA10Q6BFygJZ+457lel3zuc=",
         "owner": "nyawox",
         "repo": "psilocybin",
-        "rev": "8c1d820fb96f04ee85d995085475c2220553611b",
+        "rev": "93247c707e351c631bb4ca7ea34186a3f6fd29c8",
         "type": "github"
       },
       "original": {
@@ -2933,6 +2949,7 @@
     "root": {
       "inputs": {
         "aagl": "aagl",
+        "aria-onion": "aria-onion",
         "arion": "arion",
         "berberman": "berberman",
         "catppuccin-alacritty": "catppuccin-alacritty",
