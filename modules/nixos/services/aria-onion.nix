@@ -1,3 +1,5 @@
+# you must copy stuff such as www directory and nginx conf to /var/lib/aria-onion/
+# sudo mount --bind "/mnt/hdd/whatever/directory" /var/lib/aria-onion/downloader/data
 {
   config,
   lib,
@@ -28,6 +30,7 @@ in {
     modules.virtualisation.arion.enable = lib.mkForce true;
     virtualisation.arion.projects.aria-onion-downloader.settings = {
       project.name = "aria-onion-downloader";
+      network_mode = "host";
       networks = {
         default = {
           name = "aria-onion-downloader";
