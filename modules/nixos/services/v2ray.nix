@@ -7,8 +7,8 @@ with lib; let
   cfg = config.modules.services.v2ray;
   generateOutbound = tag: sendThrough: {
     protocol = "socks";
-    sendThrough = sendThrough;
-    tag = tag;
+    inherit sendThrough;
+    inherit tag;
     settings = {
       servers = [
         {
@@ -38,7 +38,7 @@ with lib; let
       }
     ];
 
-    outbounds = outbounds;
+    inherit outbounds;
 
     routing = {
       rules = [

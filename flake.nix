@@ -1,7 +1,7 @@
 # Inputs must be defined here because they must be a static set. No calculations are allowed, meaning they can't be stored in other files.
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     latest.url = "github:nixos/nixpkgs";
     nixpkgs-yuzu.url = "github:nixos/nixpkgs/95002f7";
     # Make sure to follow nixpkgs to unclutter lock file
@@ -84,7 +84,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri = {
-      url = "github:sodiboo/niri-flake/203bce5"; # latest commit not working
+      url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
