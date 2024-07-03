@@ -5,6 +5,7 @@
 }:
 with lib; let
   cfg = config.modules.services.v2ray;
+  tor-circuit-number = 255; # 255 is the maximum ipv4 range
   generateOutbound = tag: sendThrough: {
     protocol = "socks";
     inherit sendThrough;
@@ -19,7 +20,7 @@ with lib; let
     };
   };
 
-  outbounds = lib.genList (i: generateOutbound "tor-${toString (i + 1)}" "127.0.0.${toString (i + 1)}") 50;
+  outbounds = lib.genList (i: generateOutbound "tor-${toString (i + 1)}" "127.0.0.${toString (i + 1)}") tor-circuit-number;
 
   v2rayConfig = {
     log = {
