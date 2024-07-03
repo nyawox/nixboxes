@@ -103,15 +103,9 @@ in {
           "{a218c3db-51ef-4170-804b-eb053fc9a2cd}".install_url = "${exturl}/qr-code-address-bar/latest.xpi";
           "searxng-favicons@micahmo.com".install_url = "${exturl}/searxng-favicons/latest.xpi";
           "{93f81583-1fd4-45cc-bff4-abba952167bb}".install_url = "${exturl}/jiffy-reader/latest.xpi";
-          # "{a8332c60-5b6d-41ee-bfc8-e9bb331d34ad}".install_url = "${exturl}/surfingkeys_ff/latest.xpi";
           "userchrome-toggle-extended@n2ezr.ru".install_url = "${exturl}/userchrome-toggle-extended/latest.xpi";
-          "{bbb880ce-43c9-47ae-b746-c3e0096c5b76}".install_url = "${exturl}/catppuccin-gh-file-explorer/latest.xpi";
           "tridactyl.vim@cmcaine.co.uk".install_url = "${exturl}/tridactyl-vim/latest.xpi";
           "shinigamieyes@shinigamieyes".install_url = "${exturl}/shinigami-eyes/latest.xpi";
-          # "ATBC@EasonWong".install_url = "${exturl}/adaptive-tab-bar-colour/latest.xpi";
-          ### supposed to fix netflix resolution, but netflix itself doesn't work due to privacy related settings
-          # "{f18f0257-10ad-4ff7-b51e-6895edeccfc8}".install_url = "https://github.com/vladikoff/netflix-1080p-firefox/files/10981084/f18f0257-10ad-4ff7-b51e-6895edeccfc8.zip";
-          # "{5bcc8564-a38f-49b3-b23a-e8ba2fb5a70e}".install_url = "https://github.com/DavidBuchanan314/Turbo-Recadmiumator/files/15094237/Turbo-Recadmiumator-firefox-default-f8c32ea7f3e3423d9ac1-0.0.1.xpi.zip";
         };
       };
 
