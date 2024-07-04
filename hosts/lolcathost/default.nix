@@ -188,8 +188,7 @@
         libvdpau-va-gl
       ];
     };
-    xpadneo.enable = true;
-    # xone.enable = true;
+    xone.enable = true;
   };
 
   environment.persistence."/persist" = {
