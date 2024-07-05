@@ -6,8 +6,9 @@
 with lib; let
   cfg = config.modules.services.morphic;
   ollama-url = "http://nixpro64.nyaa.nixlap.top:11451";
-  ollama-model = "mistral";
-  ollama-sub-model = "llama3";
+  # only >v0.3 mistral supports tool usage
+  ollama-model = "mistral:7b-instruct-v0.3-q5_K_M";
+  ollama-sub-model = "gemma2:9b-instruct-q5_K_M";
 in {
   options = {
     modules.services.morphic = {
@@ -39,6 +40,7 @@ in {
           config.sops.secrets.morphic.path
         ];
         restart = "unless-stopped";
+        labels."io.containers.autoupdate" = "registry";
       };
     };
     systemd.services.arion-morphic = {
