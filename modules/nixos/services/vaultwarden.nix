@@ -65,20 +65,20 @@ in {
     };
     modules.services.fail2ban.enable = mkForce true;
     services.fail2ban.jails = {
-      vaultwarden = ''
-        enabled = true
-        filter = vaultwarden
-        port = 3011
-        maxretry = 5
-      '';
-      vaultwarden-admin = ''
-        enabled = true
-        port = 3011
-        filter = vaultwarden-admin
-        maxretry = 3
-        bantime = 14400
-        findtime = 14400
-      '';
+      vaultwarden.settings = {
+        enabled = true;
+        filter = "vaultwarden";
+        port = 3011;
+        maxretry = 5;
+      };
+      vaultwarden-admin.settings = {
+        enabled = true;
+        port = 3011;
+        filter = "vaultwarden-admin";
+        maxretry = 3;
+        bantime = 14400;
+        findtime = 14400;
+      };
     };
 
     environment.etc = {

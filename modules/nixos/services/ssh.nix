@@ -40,7 +40,7 @@ in {
           ListenAddress ::
         '';
       ports = [22420];
-      hostKeys = lib.singleton {
+      hostKeys = singleton {
         path = "/etc/ssh/ssh_host_ed25519_key";
         type = "ed25519";
       };
@@ -58,10 +58,17 @@ in {
         "/etc/ssh/ssh_host_ed25519_key"
         "/etc/ssh/ssh_host_ed25519_key.pub"
       ];
-      users."${username}".directories = lib.singleton {
+      users."${username}".directories = singleton {
         directory = ".ssh";
         mode = "704";
       };
+    };
+    modules.services.fail2ban.enable = mkForce true;
+    services.fail2ban.jails.sshd.settings = {
+      enabled = true;
+      port = concatStringsSep "," (map toString config.services.openssh.ports);
+      action = "endlessh";
+      mode = "aggressive";
     };
   };
 }
