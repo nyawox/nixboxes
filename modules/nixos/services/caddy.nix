@@ -74,7 +74,9 @@ in {
             expire-header
             encode
             ''
-              reverse_proxy http://nixpro64.nyaa.nixlap.top:3011
+              reverse_proxy http://nixpro64.nyaa.nixlap.top:3011 {
+                header_up X-Real-IP {http.request.header.Cf-Connecting-Ip}
+              }
             ''
           ];
         };
