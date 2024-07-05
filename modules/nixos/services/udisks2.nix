@@ -18,10 +18,13 @@ in {
     services.udisks2 = {
       enable = true;
       settings = {
-        "udisks2.conf" = {
+        "mount_options.conf" = {
           defaults = {
             # no need to default to lower compression levels unless it's a fast SSD
-            btrfs_defaults = "compress-force=zstd:3";
+            btrfs_defaults = [
+              "noatime"
+              "compress-force=zstd:3"
+            ];
           };
         };
       };
