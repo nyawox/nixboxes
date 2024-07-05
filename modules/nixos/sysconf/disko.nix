@@ -126,7 +126,7 @@ in {
                       mountpoint = "/nix";
                       mountOptions = [
                         "subvol=nix"
-                        "compress=zstd:1"
+                        "compress-force=zstd:1"
                         "space_cache=v2"
                         "noatime"
                       ];
@@ -135,7 +135,7 @@ in {
                       mountpoint = "/persist";
                       mountOptions = [
                         "subvol=persist"
-                        "compress=zstd:1"
+                        "compress-force=zstd:1"
                         "space_cache=v2"
                       ];
                     };
@@ -143,7 +143,7 @@ in {
                       mountpoint = "/";
                       mountOptions = [
                         "subvol=rootfs"
-                        "compress=zstd:1"
+                        "compress-force=zstd:1"
                         "space_cache=v2"
                       ];
                     };
@@ -167,7 +167,7 @@ in {
                     mountpoint = "/nix";
                     mountOptions = [
                       "subvol=nix"
-                      "compress=zstd:1"
+                      "compress-force=zstd:1"
                       "noatime"
                       "space_cache=v2"
                     ];
@@ -176,7 +176,7 @@ in {
                     mountpoint = "/persist";
                     mountOptions = [
                       "subvol=persist"
-                      "compress=zstd:1"
+                      "compress-force=zstd:1"
                       "space_cache=v2"
                     ];
                   };
@@ -184,7 +184,7 @@ in {
                     mountpoint = "/";
                     mountOptions = [
                       "subvol=rootfs"
-                      "compress=zstd:1"
+                      "compress-force=zstd:1"
                       "space_cache=v2"
                     ];
                   };
