@@ -64,9 +64,9 @@ in {
       };
     };
     modules.services.fail2ban.enable = mkForce true;
+    # nixos comes with default sshd jail, no need to set port manually
     services.fail2ban.jails.sshd.settings = {
       enabled = true;
-      port = concatStringsSep "," (map toString config.services.openssh.ports);
       action = "endlessh";
       mode = "aggressive";
     };
