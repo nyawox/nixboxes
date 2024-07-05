@@ -106,7 +106,6 @@
     adb.enable = true;
     ns-usbloader.enable = true;
     honkers-railway-launcher.enable = true;
-    anime-game-launcher.enable = true;
     kdeconnect = {
       enable = true;
       package = pkgs.valent;
