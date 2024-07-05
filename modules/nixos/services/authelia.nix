@@ -69,6 +69,7 @@ in {
                 "search.nixlap.top"
                 "ai.nixlap.top"
                 "aisearch.nixlap.top"
+                "farfalle-backend.nixlap.top"
               ];
               policy = "two_factor";
             }

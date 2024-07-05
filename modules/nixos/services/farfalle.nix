@@ -60,7 +60,7 @@ in {
         image = "hajowieland/farfalle-frontend:0.0.1";
         ports = ["${builtins.toString cfg.port}:3000"];
         environment = {
-          NEXT_PUBLIC_API_URL = "http://nixpro64.nyaa.nixlap.top:8000";
+          NEXT_PUBLIC_API_URL = "https://farfalle-backend.nixlap.top";
           NEXT_PUBLIC_LOCAL_MODE_ENABLED = "true";
         };
         restart = "unless-stopped";

@@ -31,6 +31,8 @@ with lib; let
       forward_auth nixpro64.nyaa.nixlap.top:9150 {
       	uri /api/verify?rd=https://auth.nixlap.top
       	copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
+        header_up X-Real-IP {http.request.header.CF-Connecting-IP}
+        header_up X-Forwarded-For {http.request.header.CF-Connecting-IP}
       }
     '';
 in {
@@ -131,6 +133,17 @@ in {
             ''
           ];
         };
+        "aisearch.nixlap.top" = {
+          useACMEHost = "nixlap.top";
+          extraConfig = lib.strings.concatStrings [
+            expire-header
+            encode
+            auth
+            ''
+              reverse_proxy http://nixpro64.nyaa.nixlap.top:3150
+            ''
+          ];
+        };
         "ai.nixlap.top" = {
           useACMEHost = "nixlap.top";
           extraConfig = lib.strings.concatStrings [
@@ -149,6 +162,17 @@ in {
             encode
             ''
               reverse_proxy http://nixpro64.nyaa.nixlap.top:8123
+            ''
+          ];
+        };
+        "farfalle-backend.nixlap.top" = {
+          useACMEHost = "nixlap.top";
+          extraConfig = lib.strings.concatStrings [
+            expire-header
+            encode
+            auth
+            ''
+              reverse_proxy http://nixpro64.nyaa.nixlap.top:8000
             ''
           ];
         };
