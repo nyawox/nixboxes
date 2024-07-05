@@ -31,7 +31,7 @@
       redis.enable = true;
       couchdb.enable = true;
       ollama.enable = true;
-      morphic.enable = true;
+      farfalle.enable = true;
       firetv-launcher.enable = true;
     };
   };

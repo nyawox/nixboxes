@@ -47,12 +47,14 @@ in {
           ENABLE_LOCAL_MODELS = "True";
           OLLAMA_HOST = ollama-url;
           OLLAMA_API_BASE = ollama-url;
+          CUSTOM_MODEL = "ollama_chat/gemma2:9b-instruct-q5_K_M";
           POSTGRES_HOST = "nixpro64.nyaa.nixlap.top";
         };
         env_file = [
           config.sops.secrets.farfalle.path
         ];
         restart = "unless-stopped";
+        labels."io.containers.autoupdate" = "registry";
       };
       services.farfalle-frontend.service = {
         image = "hajowieland/farfalle-frontend:0.0.1";
@@ -63,6 +65,7 @@ in {
         };
         restart = "unless-stopped";
         depends_on = ["farfalle-backend"];
+        labels."io.containers.autoupdate" = "registry";
       };
     };
     systemd.services.arion-farfalle = {
