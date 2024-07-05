@@ -26,7 +26,7 @@ in {
       sopsFile = ../../../secrets/farfalle.env;
       format = "dotenv";
     };
-    modules.virtualisation.arion.enable = lib.mkForce true;
+    modules.virtualisation.arion.enable = mkForce true;
     virtualisation.arion.projects.farfalle.settings = {
       project.name = "farfalle";
       networks = {
@@ -70,7 +70,7 @@ in {
       after = ["network-online.target"];
     };
     networking = {
-      nftables.enable = lib.mkForce false;
+      nftables.enable = mkForce false;
       firewall.extraCommands =
         /*
         bash

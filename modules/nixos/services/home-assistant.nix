@@ -161,7 +161,7 @@ in {
         };
         mobile_app = {};
         smartir = {};
-        climate = lib.singleton {
+        climate = singleton {
           platform = "smartir";
           name = "Neko AC";
           device_code = 1129;
@@ -216,7 +216,7 @@ in {
       "f ${config.services.home-assistant.configDir}/scenes.yaml 0755 hass hass"
       "C ${config.services.home-assistant.configDir}/themes 0755 hass hass - ${catppuccin}"
     ];
-    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable (lib.singleton {
+    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable (singleton {
       directory = "/var/lib/hass";
       user = "hass";
       group = "hass";

@@ -43,7 +43,7 @@ in {
     #
     # Save bluetooth settings
     environment.persistence."/persist".directories =
-      lib.mkIf config.modules.sysconf.impermanence.enable
+      mkIf config.modules.sysconf.impermanence.enable
       ["/var/lib/bluetooth"];
   };
 }

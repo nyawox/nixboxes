@@ -20,7 +20,7 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    modules.virtualisation.arion.enable = lib.mkForce true;
+    modules.virtualisation.arion.enable = mkForce true;
     virtualisation.arion.projects.linkding.settings = {
       project.name = "linkding";
       networks = {
@@ -43,7 +43,7 @@ in {
       };
     };
     networking = {
-      nftables.enable = lib.mkForce false;
+      nftables.enable = mkForce false;
       firewall.extraCommands =
         /*
         bash

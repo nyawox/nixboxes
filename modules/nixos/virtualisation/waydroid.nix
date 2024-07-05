@@ -23,7 +23,7 @@ in {
         pkgs.wl-clipboard # clipboard sharing
       ];
 
-      etc."gbinder.d/waydroid.conf".source = lib.mkForce (
+      etc."gbinder.d/waydroid.conf".source = mkForce (
         pkgs.writeText "waydroid.conf" ''
           [Protocol]
           /dev/binder = aidl3
@@ -39,7 +39,7 @@ in {
           ApiLevel = 30
         ''
       );
-      persistence."/persist".directories = lib.mkIf config.modules.sysconf.impermanence.enable [
+      persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
         "/var/lib/waydroid"
         {
           directory = "/var/lib/lxc";

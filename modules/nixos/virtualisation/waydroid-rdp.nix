@@ -22,7 +22,7 @@ in {
     };
   };
   config = mkIf cfg.rdp {
-    modules.virtualisation.waydroid.enable = lib.mkForce true;
+    modules.virtualisation.waydroid.enable = mkForce true;
     systemd = {
       user.services.waydroid-rdp = {
         enable = true;

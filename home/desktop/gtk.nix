@@ -18,7 +18,7 @@ in {
   config = mkIf cfg.enable {
     gtk = {
       enable = true;
-      theme = lib.mkForce {
+      theme = mkForce {
         name = "catppuccin-mocha-pink-standard+rimless";
         package = pkgs.catppuccin-gtk.override {
           accents = [

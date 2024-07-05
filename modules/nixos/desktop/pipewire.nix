@@ -26,7 +26,7 @@ in {
       pulse.enable = true;
       wireplumber = {
         enable = true;
-        configPackages = lib.singleton (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/10-bluez.conf"
+        configPackages = singleton (pkgs.writeTextDir "share/wireplumber/wireplumber.conf.d/10-bluez.conf"
           /*
           conf
           */

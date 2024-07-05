@@ -20,7 +20,7 @@ in {
       client.enable = true;
       torsocks.enable = true;
       settings = {
-        ControlPort = lib.singleton {
+        ControlPort = singleton {
           port = 9051;
         };
         CookieAuthentication = true;

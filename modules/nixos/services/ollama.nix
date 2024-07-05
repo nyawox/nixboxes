@@ -88,7 +88,7 @@ in {
     #   after = ["network-online.target"];
     # };
     # networking = {
-    #   nftables.enable = lib.mkForce false;
+    #   nftables.enable = mkForce false;
     #   firewall.extraCommands = /* bash */ ''
     #     iptables -A INPUT -p tcp --destination-port 53 -s ${ipSubnet} -j ACCEPT
     #     iptables -A INPUT -p udp --destination-port 53 -s ${ipSubnet} -j ACCEPT

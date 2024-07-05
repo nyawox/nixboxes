@@ -25,7 +25,7 @@ in {
       };
     };
 
-    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable (lib.singleton {
+    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable (singleton {
       directory = "/var/db/influxdb";
       user = "influxdb";
       group = "influxdb";

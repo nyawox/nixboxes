@@ -22,7 +22,7 @@ in {
       sopsFile = ../../../secrets/morphic.env;
       format = "dotenv";
     };
-    modules.virtualisation.arion.enable = lib.mkForce true;
+    modules.virtualisation.arion.enable = mkForce true;
     virtualisation.arion.projects.morphic.settings = {
       project.name = "morphic";
       services.morphic.service = {

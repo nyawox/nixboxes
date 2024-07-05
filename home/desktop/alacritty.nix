@@ -20,12 +20,12 @@ in {
       enable = true;
       settings = {
         font = {
-          normal = lib.mkForce {
+          normal = mkForce {
             family = "Spleen";
             style = "Regular";
           };
-          bold = lib.mkForce {family = "Spleen";};
-          italic = lib.mkForce {family = "Spleen";};
+          bold = mkForce {family = "Spleen";};
+          italic = mkForce {family = "Spleen";};
           # size in pt
           size = 9;
         };
@@ -42,7 +42,7 @@ in {
         import = ["~/.config/alacritty/catppuccin/catppuccin-mocha.yml"];
       };
     };
-    xdg.configFile."alacritty/catppuccin" = lib.mkIf config.programs.alacritty.enable {
+    xdg.configFile."alacritty/catppuccin" = mkIf config.programs.alacritty.enable {
       source = inputs.catppuccin-alacritty.outPath;
     };
   };

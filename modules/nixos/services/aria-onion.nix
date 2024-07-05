@@ -26,7 +26,7 @@ in {
       sopsFile = ../../../secrets/aria-onion.env;
       format = "dotenv";
     };
-    modules.virtualisation.arion.enable = lib.mkForce true;
+    modules.virtualisation.arion.enable = mkForce true;
     virtualisation.arion.projects.aria-onion-downloader.settings = {
       project.name = "aria-onion-downloader";
       networks = {
@@ -70,7 +70,7 @@ in {
       };
     };
     networking = {
-      nftables.enable = lib.mkForce false;
+      nftables.enable = mkForce false;
       firewall.extraCommands =
         /*
         bash

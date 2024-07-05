@@ -55,7 +55,7 @@ in {
       after = ["network-online.target"];
     };
     networking = {
-      nftables.enable = lib.mkForce false;
+      nftables.enable = mkForce false;
       firewall.extraCommands =
         /*
         bash

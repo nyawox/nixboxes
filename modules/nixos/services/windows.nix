@@ -18,7 +18,7 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    modules.virtualisation.arion.enable = lib.mkForce true;
+    modules.virtualisation.arion.enable = mkForce true;
     virtualisation.arion.projects.windows.settings = {
       project.name = "windows";
       networks = {
@@ -65,10 +65,10 @@ in {
         stop_grace_period = "2m";
       };
     };
-    systemd.services.arion-windows.wantedBy = lib.mkForce []; # Don't autostart
+    systemd.services.arion-windows.wantedBy = mkForce []; # Don't autostart
     systemd.tmpfiles.rules = ["d /var/lib/windows ' 0700 root root - -"];
     networking = {
-      nftables.enable = lib.mkForce false;
+      nftables.enable = mkForce false;
       firewall.extraCommands =
         /*
         bash

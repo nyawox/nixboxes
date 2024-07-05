@@ -67,11 +67,11 @@ in {
       '';
 
     environment.systemPackages = with pkgs; [sunshine];
-    networking.firewall.allowedTCPPortRanges = lib.singleton {
+    networking.firewall.allowedTCPPortRanges = singleton {
       from = 47984;
       to = 48010;
     };
-    networking.firewall.allowedUDPPortRanges = lib.singleton {
+    networking.firewall.allowedUDPPortRanges = singleton {
       from = 47998;
       to = 48010;
     };

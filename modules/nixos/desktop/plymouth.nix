@@ -15,6 +15,6 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    boot.plymouth.enable = lib.mkDefault true;
+    boot.plymouth.enable = mkDefault true;
   };
 }

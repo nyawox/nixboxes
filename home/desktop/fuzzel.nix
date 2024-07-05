@@ -21,7 +21,7 @@ in {
       settings = {
         main = {
           terminal = "${pkgs.foot}/bin/foot";
-          font = lib.mkForce "Poppins:size=20";
+          font = mkForce "Poppins:size=20";
           layer = "overlay";
         };
         colors = {

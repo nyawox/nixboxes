@@ -30,8 +30,8 @@ in {
     };
     # Don't wait for network startup
     # https://old.reddit.com/r/NixOS/comments/vdz86j/how_to_remove_boot_dependency_on_network_for_a
-    systemd.targets.network-online.wantedBy = lib.mkForce []; # Normally ["multi-user.target"]
-    systemd.services.NetworkManager-wait-online.wantedBy = lib.mkForce []; # Normally ["network-online.target"]
+    systemd.targets.network-online.wantedBy = mkForce []; # Normally ["multi-user.target"]
+    systemd.services.NetworkManager-wait-online.wantedBy = mkForce []; # Normally ["network-online.target"]
     environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
       "/etc/NetworkManager/system-connections"
     ];

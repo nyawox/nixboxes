@@ -23,7 +23,7 @@ in {
         cpu = true;
         opencl = false;
         cuda = false;
-        pools = lib.singleton {
+        pools = singleton {
           url = "kr.zephyr.herominers.com:1123";
           user = "ZEPHYR3CscuZdJv2BMKuqzYNPq4iNcvKZexWb3UA1yx2X4fR4sFGT113bxNdPuMqy1EupxgYjX1QBMe9nzUA3uxd95KNd7DJkR14k";
           pass = hostname;
@@ -34,6 +34,6 @@ in {
       };
     };
     # Don't automatically start xmrig
-    systemd.services."xmrig".wantedBy = lib.mkForce [];
+    systemd.services."xmrig".wantedBy = mkForce [];
   };
 }

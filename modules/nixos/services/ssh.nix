@@ -54,7 +54,7 @@ in {
 
     environment.persistence."/persist" = {
       directories = mkIf config.modules.sysconf.impermanence.enable ["/root/.ssh"];
-      files = lib.mkIf config.modules.sysconf.impermanence.enable [
+      files = mkIf config.modules.sysconf.impermanence.enable [
         "/etc/ssh/ssh_host_ed25519_key"
         "/etc/ssh/ssh_host_ed25519_key.pub"
       ];
