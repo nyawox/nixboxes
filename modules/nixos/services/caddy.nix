@@ -23,7 +23,7 @@ with lib; let
     ''
       encode gzip zstd
     '';
-  auth =
+  auth-config =
     /*
     conf
     */
@@ -31,10 +31,40 @@ with lib; let
       forward_auth nixpro64.nyaa.nixlap.top:9150 {
       	uri /api/verify?rd=https://auth.nixlap.top
       	copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
-        header_up X-Real-IP {http.request.header.CF-Connecting-IP}
-        header_up X-Forwarded-For {http.request.header.CF-Connecting-IP}
       }
     '';
+  block-external-ips =
+    /*
+    conf
+    */
+    ''
+      import ${config.sops.secrets.caddy-internal-ips.path}
+      respond @blocked "Access denied" 403
+    '';
+  mkProxy = {
+    url,
+    auth ? false,
+    internal ? false,
+  }: {
+    useACMEHost = "nixlap.top";
+    extraConfig = lib.strings.concatStrings [
+      expire-header
+      encode
+      (
+        if auth
+        then auth-config
+        else ""
+      )
+      (
+        if internal
+        then block-external-ips
+        else ""
+      )
+      ''
+        reverse_proxy ${url}
+      ''
+    ];
+  };
 in {
   options = {
     modules.services.caddy = {
@@ -45,136 +75,55 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    sops.secrets.caddy-internal-ips = {
+      sopsFile = ../../../secrets/caddy-internal-ips.conf;
+      owner = config.systemd.services.caddy.serviceConfig.User;
+      format = "binary";
+    };
     services.caddy = {
       enable = true;
       globalConfig = '''';
       virtualHosts = {
-        "homepage.nixlap.top" = {
-          useACMEHost = "nixlap.top";
-          extraConfig = lib.strings.concatStrings [
-            expire-header
-            encode
-            ''
-              reverse_proxy http://tomoyo.nyaa.nixlap.top:8082
-            ''
-          ];
+        "homepage.nixlap.top" = mkProxy {
+          url = "http://tomoyo.nyaa.nixlap.top:8082";
         };
-        "search.nixlap.top" = {
-          useACMEHost = "nixlap.top";
-          extraConfig = lib.strings.concatStrings [
-            expire-header
-            encode
-            auth
-            ''
-              reverse_proxy http://vultr.nyaa.nixlap.top:8420
-            ''
-          ];
+        "search.nixlap.top" = mkProxy {
+          url = "http://vultr.nyaa.nixlap.top:8420";
+          auth = true;
         };
-        "vault.nixlap.top" = {
-          useACMEHost = "nixlap.top";
-          extraConfig = lib.strings.concatStrings [
-            expire-header
-            encode
-            ''
-              reverse_proxy http://nixpro64.nyaa.nixlap.top:3011 {
-                header_up X-Real-IP {http.request.header.Cf-Connecting-Ip}
-              }
-            ''
-          ];
+        "vault.nixlap.top" = mkProxy {
+          url = "http://nixpro64.nyaa.nixlap.top:3011";
         };
-        "couch.nixlap.top" = {
-          useACMEHost = "nixlap.top";
-          extraConfig = lib.strings.concatStrings [
-            expire-header
-            encode
-            ''
-              reverse_proxy http://nixpro64.nyaa.nixlap.top:5914
-            ''
-          ];
+        "couch.nixlap.top" = mkProxy {
+          url = "http://nixpro64.nyaa.nixlap.top:5914";
         };
-        "linkding.nixlap.top" = {
-          useACMEHost = "nixlap.top";
-          extraConfig = lib.strings.concatStrings [
-            expire-header
-            encode
-            ''
-              reverse_proxy http://tomoyo.nyaa.nixlap.top:9090
-            ''
-          ];
+        "linkding.nixlap.top" = mkProxy {
+          url = "http://tomoyo.nyaa.nixlap.top:9090";
         };
-        "auth.nixlap.top" = {
-          useACMEHost = "nixlap.top";
-          extraConfig = lib.strings.concatStrings [
-            expire-header
-            encode
-            ''
-              reverse_proxy http://nixpro64.nyaa.nixlap.top:9150
-            ''
-          ];
+        "auth.nixlap.top" = mkProxy {
+          url = "http://nixpro64.nyaa.nixlap.top:9150";
         };
-        "netdata.nixlap.top" = {
-          useACMEHost = "nixlap.top";
-          extraConfig = lib.strings.concatStrings [
-            expire-header
-            encode
-            auth
-            ''
-              reverse_proxy http://tomoyo.nyaa.nixlap.top:19999
-            ''
-          ];
+        "netdata.nixlap.top" = mkProxy {
+          url = "http://tomoyo.nyaa.nixlap.top:19999";
+          auth = true;
         };
-        "ntfy.nixlap.top" = {
-          useACMEHost = "nixlap.top";
-          extraConfig = lib.strings.concatStrings [
-            expire-header
-            encode
-            ''
-              reverse_proxy http://nixpro64.nyaa.nixlap.top:2521
-            ''
-          ];
+        "ntfy.nixlap.top" = mkProxy {
+          url = "http://nixpro64.nyaa.nixlap.top:2521";
         };
-        "aisearch.nixlap.top" = {
-          useACMEHost = "nixlap.top";
-          extraConfig = lib.strings.concatStrings [
-            expire-header
-            encode
-            auth
-            ''
-              reverse_proxy http://nixpro64.nyaa.nixlap.top:3150
-            ''
-          ];
+        "aisearch.nixlap.top" = mkProxy {
+          url = "http://nixpro64.nyaa.nixlap.top:3150";
+          auth = true;
         };
-        "ai.nixlap.top" = {
-          useACMEHost = "nixlap.top";
-          extraConfig = lib.strings.concatStrings [
-            expire-header
-            encode
-            auth
-            ''
-              reverse_proxy http://tomoyo.nyaa.nixlap.top:11454
-            ''
-          ];
+        "ai.nixlap.top" = mkProxy {
+          url = "http://tomoyo.nyaa.nixlap.top:11454";
+          auth = true;
         };
-        "hass.nixlap.top" = {
-          useACMEHost = "nixlap.top";
-          extraConfig = lib.strings.concatStrings [
-            expire-header
-            encode
-            ''
-              reverse_proxy http://nixpro64.nyaa.nixlap.top:8123
-            ''
-          ];
+        "hass.nixlap.top" = mkProxy {
+          url = "http://nixpro64.nyaa.nixlap.top:8123";
         };
-        "farfalle-backend.nixlap.top" = {
-          useACMEHost = "nixlap.top";
-          extraConfig = lib.strings.concatStrings [
-            expire-header
-            encode
-            auth
-            ''
-              reverse_proxy http://nixpro64.nyaa.nixlap.top:8000
-            ''
-          ];
+        "farfalle-backend.nixlap.top" = mkProxy {
+          url = "http://nixpro64.nyaa.nixlap.top:8000";
+          internal = true;
         };
       };
     };
