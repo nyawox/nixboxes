@@ -36,6 +36,7 @@
       niri.enable = true;
       greetd.enable = true;
       piper.enable = true;
+      headsetcontrol.enable = true;
     };
     virtualisation = {
       waydroid.enable = true;
