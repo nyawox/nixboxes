@@ -96,7 +96,11 @@ in {
         touchpad = {
           tap = true;
           dwt = true;
+          accel-profile = "adaptive";
+          accel-speed = 0.9;
+          click-method = "clickfinger";
           natural-scroll = true;
+          scroll-method = "two-finger";
         };
       };
       layout = {
