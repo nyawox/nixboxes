@@ -40,7 +40,7 @@ in {
           {
             Name = "searx";
             Description = "selfhosted searxng";
-            Alias = "!sx";
+            Alias = "sx";
             Method = "GET";
             URLTemplate = "https://search.nixlap.top/search?q={searchTerms}";
           }
@@ -50,6 +50,13 @@ in {
             Alias = "pp";
             Method = "GET";
             URLTemplate = "https://www.perplexity.ai/search?q={searchTerms}";
+          }
+          {
+            Name = "fr";
+            Description = "Farfalle";
+            Alias = "fr";
+            Method = "GET";
+            URLTemplate = "https://aisearch.nixlap.top/?q={searchTerms}";
           }
         ];
       };
