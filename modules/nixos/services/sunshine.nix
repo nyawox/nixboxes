@@ -39,7 +39,7 @@ in {
       description = "sunshine";
       wantedBy = ["graphical-session.target"];
       serviceConfig = {
-        ExecStart = "${pkgs.gamescope}/bin/gamescope -e -w 1920 -W 1920 -H 1080 -h 1080 -r 60 -- ${pkgs.bash}/bin/bash -c '${config.security.wrapperDir}/sunshine'";
+        ExecStart = "${pkgs.gamescope}/bin/gamescope -e -w 2560 -W 1440 -H 2560 -h 1440 -r 60 -- ${pkgs.bash}/bin/bash -c '${config.security.wrapperDir}/sunshine'";
         Environment = "PATH=/run/wrappers/bin:/home/${username}/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin:/home/${username}/.nix-profile/bin:/etc/profiles/per-user/${username}/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
         Restart = "on-failure";
         RestartSec = "5s";
@@ -50,7 +50,7 @@ in {
       enable = true;
       description = "Steam game launcher";
       serviceConfig = {
-        ExecStart = "${pkgs.gamescope}/bin/gamescope -e -w 1920 -h 1080 -- ${steam}/bin/steam -steamos -gamepadui -nointro";
+        ExecStart = "${pkgs.gamescope}/bin/gamescope -e -w 2560 -h 1440 -- ${steam}/bin/steam -steamos -gamepadui -nointro";
         Restart = "on-failure";
         RestartSec = "5s";
       };
