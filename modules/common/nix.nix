@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  username,
   ...
 }: {
   nix = {
@@ -53,5 +54,6 @@
   sops.secrets."nix-access-tokens" = {
     sopsFile = ../../secrets/nix-access-tokens.conf;
     format = "binary";
+    owner = username;
   };
 }
