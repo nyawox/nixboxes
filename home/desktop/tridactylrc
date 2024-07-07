@@ -4,7 +4,7 @@ unbind --mode=ex <Space>
 bind --mode=ex <A-Space> ex.insert_space_or_completion
 " set hint chars to prioritize comfy keys
 unset hintchars
-set hintchars eainrstgbfuoyxlcmjwpdqvh;''kz
+set hintchars eainrstgbfuoyxlcmjwpdqvh;'kz
 " disable autofocus
 set allowautofocus false
 " allow autofocus in certain sites
