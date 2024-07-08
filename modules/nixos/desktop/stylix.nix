@@ -22,8 +22,8 @@ in {
     stylix = {
       polarity = "dark";
       image = pkgs.fetchurl {
-        url = "https://i.pinimg.com/originals/24/ca/db/24cadbfc4de7599a86ef5e8bc238853e.jpg";
-        sha256 = "1fraqngiw0l164i1ar7i3bzq0bz7zdcvydqgxrr0rqqq3y4rq6sv";
+        url = "https://raw.githubusercontent.com/Keyitdev/sddm-astronaut-theme/master/background.png";
+        sha256 = "1bvfc33gw6hj7s6dk6hzsn4aq2ymmjvyx4qgwnnl4k9gg29g12im";
       };
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
       fonts = {

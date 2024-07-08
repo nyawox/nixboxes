@@ -202,7 +202,7 @@ in {
       spawn-at-startup = [
         {command = ["${configure-gtk}/bin/configure-gtk"];}
         {command = ["${pkgs.pulseaudio}/bin/paplay" "/home/${username}/sounds/logon.wav"];}
-        {command = ["${pkgs.swaybg}/bin/swaybg" "-i" "/home/${username}/.wallpaper.jpg"];}
+        {command = ["${pkgs.swaybg}/bin/swaybg" "-i" "/home/${username}/.wallpaper.png"];}
         {command = ["${pkgs.swaynotificationcenter}/bin/swaync"];}
         # Only fcitx5 installed via the NixOS module contains mozc, it must be in the PATH.
         {command = ["fcitx5" "-r" "-d"];} # -r replaces current instance
