@@ -90,14 +90,14 @@ in {
       };
       input = {
         keyboard.xkb.layout = "us";
-        focus-follows-mouse = true;
+        focus-follows-mouse = false;
         warp-mouse-to-focus = true;
         mouse.accel-speed = 1.0;
         touchpad = {
           tap = true;
           dwt = true;
           accel-profile = "adaptive";
-          accel-speed = 0.9;
+          accel-speed = 0.8;
           click-method = "clickfinger";
           natural-scroll = true;
           scroll-method = "two-finger";
