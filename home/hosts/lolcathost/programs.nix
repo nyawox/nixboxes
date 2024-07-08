@@ -75,6 +75,7 @@
     remmina
     onlyoffice-bin
     obs-studio
+    nexusmods-app-unfree
   ];
   # services.flatpak.packages = [
   #   "org.telegram.desktop"

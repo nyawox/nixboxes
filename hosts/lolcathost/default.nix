@@ -219,6 +219,8 @@
         ".local/share/PrismLauncher/translations"
         ".local/share/PrismLauncher/meta"
         ".local/share/TelegramDesktop"
+        ".local/share/NexusMods.App"
+        ".local/share/StardewValley"
         ".config/rpcs3"
         ".config/heroic"
         ".config/lutris"
@@ -227,6 +229,7 @@
         ".config/obsidian"
         ".config/vivaldi"
         ".config/onlyoffice"
+        ".config/StardewValley"
         ".android"
         ".steam"
       ];
