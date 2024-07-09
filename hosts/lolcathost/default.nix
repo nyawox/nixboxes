@@ -41,7 +41,6 @@
     };
     virtualisation = {
       waydroid.enable = true;
-      waydroid.rdp = true;
       arion.enable = true;
     };
   };
