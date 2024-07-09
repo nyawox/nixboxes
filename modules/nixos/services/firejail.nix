@@ -26,7 +26,7 @@ in {
         };
         vesktop = {
           executable = "${pkgs.vesktop}/bin/vesktop";
-          profile = "${./firejail/vesktop.profile}";
+          profile = "${pkgs.firejail}/etc/firejail/discord.profile";
           desktop = "${pkgs.vesktop}/share/applications/vesktop.desktop";
         };
       };
@@ -56,5 +56,19 @@ in {
           ''
       )
     ];
+    environment.etc = {
+      "firejail/tor-browser.local".text = ''
+        # fix fcitx5
+        dbus-user filter
+        dbus-user.talk org.freedesktop.portal.Fcitx
+        ignore dbus-user none
+      '';
+      "firejail/discord.local".text = ''
+        noblacklist ''${HOME}/.config/vesktop
+
+        mkdir ''${HOME}/.config/vesktop
+        whitelist ''${HOME}/.config/vesktop
+      '';
+    };
   };
 }
