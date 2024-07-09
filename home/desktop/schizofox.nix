@@ -208,7 +208,6 @@ in {
         "font.name-list.emoji" = "Apple Color Emoji";
         #####
         #Smoother scroll
-        "mousewheel.default.delta_multiplier_y" = 25; # Slow down scroll, keep this at least until touchpad scroll amount customization is implemented
         "general.smoothScroll.msdPhysics.enabled" = true;
         "general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS" = 250;
         "general.smoothScroll.msdPhysics.motionBeginSpringConstant" = 450;
