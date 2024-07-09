@@ -171,7 +171,7 @@ in {
             {app-id = "lutris";}
             {app-id = ".blueman-manager-wrapped";}
             {app-id = "obsidian";}
-            {title = "beta.music.apple.com";}
+            # {title = "beta.music.apple.com";}
           ];
           excludes = [
             {

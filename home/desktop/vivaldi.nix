@@ -37,19 +37,19 @@ in {
         type = "Application";
         categories = ["TV" "AudioVideo" "Network"];
       };
-      applemusic = {
-        name = "Apple Music";
-        comment = "Open Apple Music in Vivaldi Browser";
-        exec = "${pkgs.vivaldi}/bin/vivaldi --app=https://beta.music.apple.com --no-first-run --no-default-browser-check --no-crash-upload";
-        icon = pkgs.fetchurl {
-          name = "apple-music-icon.png";
-          url = "https://music.apple.com/assets/favicon/favicon-180.png";
-          sha256 = "sha256-lZXt+kbYCBTLzK1S9QcxVwIhin2x8iNUAcrSHtmWmOY=";
-          meta.license = lib.licenses.unfree;
-        };
-        type = "Application";
-        categories = ["AudioVideo"];
-      };
+      # applemusic = {
+      #   name = "Apple Music";
+      #   comment = "Open Apple Music in Vivaldi Browser";
+      #   exec = "${pkgs.vivaldi}/bin/vivaldi --app=https://beta.music.apple.com --no-first-run --no-default-browser-check --no-crash-upload";
+      #   icon = pkgs.fetchurl {
+      #     name = "apple-music-icon.png";
+      #     url = "https://music.apple.com/assets/favicon/favicon-180.png";
+      #     sha256 = "sha256-lZXt+kbYCBTLzK1S9QcxVwIhin2x8iNUAcrSHtmWmOY=";
+      #     meta.license = lib.licenses.unfree;
+      #   };
+      #   type = "Application";
+      #   categories = ["AudioVideo"];
+      # };
     };
   };
 }
