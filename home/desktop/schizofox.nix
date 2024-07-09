@@ -207,6 +207,21 @@ in {
         # force apple emoji
         "font.name-list.emoji" = "Apple Color Emoji";
         #####
+        #Smoother scroll
+        "mousewheel.default.delta_multiplier_y" = 25; # Slow down scroll, keep this at least until touchpad scroll amount customization is implemented
+        "general.smoothScroll.msdPhysics.enabled" = true;
+        "general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS" = 250;
+        "general.smoothScroll.msdPhysics.motionBeginSpringConstant" = 450;
+        "general.smoothScroll.msdPhysics.regularSpringConstant" = 450;
+        "general.smoothScroll.msdPhysics.slowdownMinDeltaMS" = 50;
+        "general.smoothScroll.msdPhysics.slowdownMinDeltaRatio" = 0.4;
+        "general.smoothScroll.msdPhysics.slowdownSpringConstant" = 5000;
+        "general.smoothScroll.currentVelocityWeighting" = 0;
+        "general.smoothScroll.mouseWheel.durationMaxMS" = 250;
+        "general.smoothScroll.stopDecelerationWeighting" = 0.82;
+        "mousewheel.min_line_scroll_amount" = 30;
+        "toolkit.scrollbox.verticalScrollDistance" = 5;
+        "toolkit.scrollbox.horizontalScrollDistance" = 4;
         # Downloading random files from http website is super annoing with this.
         "dom.block_download_insecure" = false;
 
