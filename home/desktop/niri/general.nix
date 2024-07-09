@@ -164,7 +164,6 @@ in {
             {app-id = "vesktop";}
             {app-id = "org.gnome.Nautilus";}
             {app-id = "org.telegram.desktop";}
-            {app-id = "Cider";}
             {app-id = "xdg-desktop-portal-gtk";}
             {app-id = "gpu-screen-recorder-gtk";}
             {app-id = "uget-gtk";}
@@ -172,6 +171,7 @@ in {
             {app-id = "lutris";}
             {app-id = ".blueman-manager-wrapped";}
             {app-id = "obsidian";}
+            {title = "beta.music.apple.com";}
           ];
           excludes = [
             {

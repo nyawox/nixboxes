@@ -18,7 +18,6 @@
     element-desktop
     telegram-desktop
     youtube-music
-    cider
     transmission_4-gtk
     samba
     unzip

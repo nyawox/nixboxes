@@ -71,7 +71,6 @@ in {
           ".config/uGet"
           ".config/transmission-remote-gtk"
           ".config/Youtube Music"
-          ".config/Cider"
           ".mozilla"
         ];
       };
