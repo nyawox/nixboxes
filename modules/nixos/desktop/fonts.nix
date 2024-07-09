@@ -29,6 +29,7 @@ in {
         wqy_zenhei
         font-awesome
         poppins
+        noto-fonts-cjk
         (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
       ];
       fontconfig.defaultFonts = {
