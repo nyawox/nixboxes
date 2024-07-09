@@ -15,7 +15,6 @@
     lutris
     heroic
     wineWowPackages.waylandFull
-    vesktop
     element-desktop
     telegram-desktop
     youtube-music

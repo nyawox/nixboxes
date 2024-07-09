@@ -2,7 +2,6 @@
   home.packages = with pkgs; [
     pciutils
     steam-run
-    vesktop
     mangohud
     gimp
     pavucontrol

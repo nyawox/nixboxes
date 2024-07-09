@@ -22,6 +22,7 @@
         enable = true;
         fonts = true;
       };
+      firejail.enable = true;
     };
     desktop = {
       niri.enable = true;

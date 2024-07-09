@@ -27,6 +27,7 @@
         enable = true;
         fonts = true;
       };
+      firejail.enable = true;
       windows.enable = true;
       airplay.enable = true;
       tor.enable = true;
