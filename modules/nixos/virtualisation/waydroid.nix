@@ -1,3 +1,13 @@
+# Add the following code to /var/lib/waydroid/waydroid.cfg
+# ro.adb.secure=1
+# ro.debuggable=0
+# ro.build.selinux=1
+# ro.build.tags=release-keys
+# ro.product.build.tags=release-keys
+# ro.vendor.build.tags=release-keys
+# ro.odm.build.tags=release-keys
+# then, run waydroid upgrade --offline  to regenerate waydroid_base.prop
+# also make sure to chmod g-w o-w -R /var/lib/waydroid/overlay for good measure if you installed an overlay such as Widevine or Houdini.
 {
   config,
   lib,
