@@ -38,12 +38,16 @@ in {
         alejandra
         nil
         tree-sitter-kdl
+        lsp-ai
+        python3Packages.python-lsp-server
+        rust-analyzer
       ];
       package = inputs.helix.packages.${pkgs.system}.helix;
       defaultEditor = true;
       settings = {
         theme = "catppuccin_mocha_transparent";
         editor = {
+          auto-completion = true;
           bufferline = "multiple"; # Show currently open buffers when multiple exists
           true-color = true;
           color-modes = true;
@@ -54,7 +58,7 @@ in {
             select = "underline";
           };
           lsp = {
-            auto-signature-help = false;
+            auto-signature-help = true;
             display-messages = true;
           };
           indent-guides = {
@@ -81,14 +85,34 @@ in {
         };
         keys.insert = {
           # "C-h" = "delete_word_backward"; # Ctrl-bspc
+          "C-x" = "no_op";
+          "C-l" = "completion"; # mnemonic for lsp
         };
       };
       languages = {
         language = [
           {
+            name = "python";
+            language-servers = ["pylsp" "lsp-ai"];
+          }
+          {
             name = "nix";
             auto-format = true;
             formatter.command = "${pkgs.alejandra}/bin/alejandra";
+          }
+          {
+            name = "typescript";
+            language-servers = ["typescript" "lsp-ai"];
+          }
+          {
+            name = "javascript";
+            language-servers = ["typescript" "lsp-ai"];
+          }
+          {
+            name = "rust";
+            auto-format = true;
+            language-servers = ["rust-analyzer" "lsp-ai"];
+            formatter.command = "rustfmt";
           }
           {
             name = "kdl";
@@ -103,6 +127,36 @@ in {
             };
           }
         ];
+        language-server.lsp-ai = {
+          command = "${pkgs.lsp-ai}/bin/lsp-ai";
+          config = {
+            memory = {
+              file_store = {};
+            };
+            models = {
+              deepseek = {
+                type = "ollama";
+                chat_endpoint = "http://nixpro64.nyaa.nixlap.top:11451/api/chat";
+                generate_endpoint = "http://nixpro64.nyaa.nixlap.top:11451/api/generate";
+                model = "deepseek-coder-v2:16b-lite-base-q4_K_M";
+              };
+            };
+            completion = {
+              model = "deepseek";
+              parameters = {
+                max_context = 2000;
+                options = {
+                  num_predict = 32;
+                };
+                fim = {
+                  start = "<｜fim▁begin｜>";
+                  middle = "<｜fim▁hole｜>";
+                  end = "<｜fim▁end｜>";
+                };
+              };
+            };
+          };
+        };
       };
       themes = {
         catppuccin_mocha_transparent = {
