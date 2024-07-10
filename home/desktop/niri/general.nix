@@ -81,7 +81,6 @@ in {
       qt6ct
       xdg-user-dirs
       pamixer
-      swaybg
     ];
     programs.niri.settings = {
       cursor = {
@@ -110,7 +109,7 @@ in {
         border.enable = false;
         focus-ring = {
           enable = true;
-          active.color = "rgb(245 194 231)";
+          active.color = "rgb(243 139 168)";
           inactive.color = "rgb(24 24 37)";
         };
       };
@@ -179,7 +178,7 @@ in {
               title = "Media viewer";
             }
           ];
-          opacity = 0.98;
+          opacity = 0.93;
           draw-border-with-background = false;
         }
       ];
@@ -202,7 +201,7 @@ in {
       spawn-at-startup = [
         {command = ["${configure-gtk}/bin/configure-gtk"];}
         {command = ["${pkgs.pulseaudio}/bin/paplay" "/home/${username}/sounds/logon.wav"];}
-        {command = ["${pkgs.swaybg}/bin/swaybg" "-i" "/home/${username}/.wallpaper.png"];}
+        {command = ["${pkgs.swaybg}/bin/swaybg" "-m" "tile" "-i" "/home/${username}/.wallpaper.png"];}
         {command = ["${pkgs.swaynotificationcenter}/bin/swaync"];}
         # Only fcitx5 installed via the NixOS module contains mozc, it must be in the PATH.
         {command = ["fcitx5" "-r" "-d"];} # -r replaces current instance

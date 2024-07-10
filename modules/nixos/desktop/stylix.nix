@@ -22,8 +22,8 @@ in {
     stylix = {
       polarity = "dark";
       image = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/Keyitdev/sddm-astronaut-theme/master/background.png";
-        sha256 = "1bvfc33gw6hj7s6dk6hzsn4aq2ymmjvyx4qgwnnl4k9gg29g12im";
+        url = "https://raw.githubusercontent.com/nyawox/store/main/pink_tile.png";
+        sha256 = "0pp98mq6gblja9x44whgndq072rckw11iz1iml3j564b6jap6sp6";
       };
       base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
       fonts = {
