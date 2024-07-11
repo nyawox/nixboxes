@@ -8,10 +8,10 @@
       (final: prev: {
         deploy-rs = {
           inherit (prev) deploy-rs;
-          lib = (inputs.deploy-rs.overlay final prev).deploy-rs.lib;
+          inherit ((inputs.deploy-rs.overlay final prev).deploy-rs) lib;
         };
         # until miniupnpc gets reverted to a working version in nixos-unstable
-        miniupnpc = inputs.latest.legacyPackages.${prev.system}.miniupnpc;
+        inherit (inputs.latest.legacyPackages.${prev.system}) miniupnpc;
       })
       (final: prev: import ../../pkgs final prev)
     ];
