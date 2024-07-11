@@ -99,6 +99,7 @@ in {
         };
         "minio.nixlap.top" = mkProxy {
           url = "http://nixpro64.nyaa.nixlap.top:9315";
+          auth = true;
         };
         "linkding.nixlap.top" = mkProxy {
           url = "http://tomoyo.nyaa.nixlap.top:9090";
