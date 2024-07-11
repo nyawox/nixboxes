@@ -60,7 +60,7 @@
     xarchiver
     p7zip
     breeze-icons
-    gnome.nautilus
+    nautilus
     openjdk
     gradience
     iwgtk
