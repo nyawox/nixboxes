@@ -94,8 +94,11 @@ in {
         "vault.nixlap.top" = mkProxy {
           url = "http://nixpro64.nyaa.nixlap.top:3011";
         };
-        "couch.nixlap.top" = mkProxy {
-          url = "http://nixpro64.nyaa.nixlap.top:5914";
+        "s3.nixlap.top" = mkProxy {
+          url = "http://nixpro64.nyaa.nixlap.top:9314";
+        };
+        "minio.nixlap.top" = mkProxy {
+          url = "http://nixpro64.nyaa.nixlap.top:9315";
         };
         "linkding.nixlap.top" = mkProxy {
           url = "http://tomoyo.nyaa.nixlap.top:9090";
