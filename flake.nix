@@ -3,6 +3,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     latest.url = "github:nixos/nixpkgs";
+    vaultwarden-notbroken.url = "github:nixos/nixpkgs/8c457ff"; # webvault broken since f18e4f9
     nixpkgs-yuzu.url = "github:nixos/nixpkgs/95002f7";
     # Make sure to follow nixpkgs to unclutter lock file
     nix-darwin = {

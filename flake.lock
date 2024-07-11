@@ -2952,7 +2952,8 @@
         "srvos": "srvos",
         "stylix": "stylix",
         "tree-sitter-kdl": "tree-sitter-kdl",
-        "treefmt-nix": "treefmt-nix_2"
+        "treefmt-nix": "treefmt-nix_2",
+        "vaultwarden-notbroken": "vaultwarden-notbroken"
       }
     },
     "rust-overlay": {
@@ -3473,6 +3474,22 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "vaultwarden-notbroken": {
+      "locked": {
+        "lastModified": 1718893381,
+        "narHash": "sha256-Ll7IerHqod0LZqwvnKgr/lrnNrrMcbP0lQdkz6K+ouM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "8c457ff332d3c2ef6a69fe702b7f23833098d868",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "8c457ff",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
