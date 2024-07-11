@@ -32,6 +32,7 @@
       airplay.enable = true;
       tor.enable = true;
       v2ray.enable = true;
+      open-webui.enable = true;
     };
     desktop = {
       niri.enable = true;
