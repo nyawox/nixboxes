@@ -67,10 +67,17 @@ in {
               domain = [
                 "netdata.nixlap.top"
                 "search.nixlap.top"
-                "ai.nixlap.top"
                 "aisearch.nixlap.top"
               ];
               policy = "two_factor";
+              subject = "group:admins";
+            }
+            {
+              domain = [
+                "ai.nixlap.top"
+              ];
+              policy = "two_factor";
+              subject = "group:users";
             }
             {
               domain = ["*.nixlap.top"];

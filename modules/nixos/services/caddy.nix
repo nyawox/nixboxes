@@ -115,7 +115,7 @@ in {
           auth = true;
         };
         "ai.nixlap.top" = mkProxy {
-          url = "http://lolcathost.nyaa.nixlap.top:11454";
+          url = "http://tomoyo.nyaa.nixlap.top:11454";
           auth = true;
         };
         "hass.nixlap.top" = mkProxy {
