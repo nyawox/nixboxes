@@ -35,7 +35,7 @@
     };
     desktop = {
       niri.enable = true;
-      greetd.enable = true;
+      sddm.enable = true;
       piper.enable = true;
       headsetcontrol.enable = true;
     };

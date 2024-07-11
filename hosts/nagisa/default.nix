@@ -26,7 +26,7 @@
     };
     desktop = {
       niri.enable = true;
-      greetd.enable = true;
+      sddm.enable = true;
     };
   };
 
