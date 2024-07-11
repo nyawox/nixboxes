@@ -30,6 +30,8 @@ in {
           models:
           - name: gemma2:9b-instruct-q5_K_M
             max_input_tokens: 8192
+          - name: deepseek-coder-v2:16b-lite-base-q4_K_M
+            max_input_tokens: 8192
       '';
   };
 }
