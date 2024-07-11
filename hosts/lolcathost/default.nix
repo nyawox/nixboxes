@@ -21,7 +21,7 @@
       };
       avahi.enable = true;
       nfs-server.enable = true;
-      # sunshine.enable = true;
+      sunshine.enable = true;
       minecraft-server.enable = true;
       flatpak = {
         enable = true;
