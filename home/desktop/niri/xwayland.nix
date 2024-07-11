@@ -22,7 +22,7 @@ in {
     ];
     programs.niri.settings = {
       spawn-at-startup = [
-        {command = ["${pkgs.xwayland-satellite}/bin/xwayland-satellite" ":25"];}
+        {command = ["${lib.getExe pkgs.xwayland-satellite}" ":25"];}
       ];
       environment = {
         DISPLAY = ":25";

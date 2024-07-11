@@ -20,12 +20,12 @@ in {
       enable = true;
       wrappedBinaries = {
         tor-browser = {
-          executable = "${pkgs.tor-browser}/bin/tor-browser";
+          executable = "${lib.getExe pkgs.tor-browser}";
           profile = "${pkgs.firejail}/etc/firejail/tor-browser.profile";
           desktop = "${pkgs.tor-browser}/share/applications/torbrowser.desktop";
         };
         vesktop = {
-          executable = "${pkgs.vesktop}/bin/vesktop";
+          executable = "${lib.getExe pkgs.vesktop}";
           profile = "${pkgs.firejail}/etc/firejail/discord.profile";
           desktop = "${pkgs.vesktop}/share/applications/vesktop.desktop";
         };

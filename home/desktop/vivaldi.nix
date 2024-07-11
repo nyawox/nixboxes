@@ -28,7 +28,7 @@ in {
       netflix = {
         name = "Netflix";
         comment = "Open Netflix in Vivaldi Browser";
-        exec = "${pkgs.vivaldi}/bin/vivaldi --app=https://www.netflix.com --no-first-run --no-default-browser-check --no-crash-upload";
+        exec = "${lib.getExe pkgs.vivaldi} --app=https://www.netflix.com --no-first-run --no-default-browser-check --no-crash-upload";
         icon = pkgs.fetchurl {
           name = "netflix-icon-2016.png";
           url = "https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.png";
@@ -40,7 +40,7 @@ in {
       # applemusic = {
       #   name = "Apple Music";
       #   comment = "Open Apple Music in Vivaldi Browser";
-      #   exec = "${pkgs.vivaldi}/bin/vivaldi --app=https://beta.music.apple.com --no-first-run --no-default-browser-check --no-crash-upload";
+      #   exec = "${lib.getExe pkgs.vivaldi} --app=https://beta.music.apple.com --no-first-run --no-default-browser-check --no-crash-upload";
       #   icon = pkgs.fetchurl {
       #     name = "apple-music-icon.png";
       #     url = "https://music.apple.com/assets/favicon/favicon-180.png";
