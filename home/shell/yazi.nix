@@ -18,7 +18,7 @@ in {
   config = mkIf cfg.enable {
     programs.yazi = {
       enable = true;
-      enableFishIntegration = true;
+      enableNushellIntegration = true;
     };
     xdg.configFile = {
       "yazi/theme.toml".source = inputs.catppuccin-yazi.outPath + "/themes/mocha.toml";

@@ -154,10 +154,6 @@
       url = "github:catppuccin/fcitx5";
       flake = false;
     };
-    catppuccin-fish = {
-      url = "github:catppuccin/fish";
-      flake = false;
-    };
     catpuccin-home-assistant = {
       url = "github:catppuccin/home-assistant";
       flake = false;
@@ -168,14 +164,6 @@
     };
     catppuccin-bat = {
       url = "github:catppuccin/bat";
-      flake = false;
-    };
-    fish-autopair = {
-      url = "github:jorgebucaran/autopair.fish";
-      flake = false;
-    };
-    fish-abbreviation-tips = {
-      url = "github:gazorby/fish-abbreviation-tips";
       flake = false;
     };
     shyfox = {
