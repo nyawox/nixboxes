@@ -18,7 +18,6 @@
     element-desktop
     telegram-desktop
     youtube-music
-    transmission_4-gtk
     samba
     unzip
     unrar
@@ -28,7 +27,6 @@
     smartmontools
     imagemagick
     fd
-    transmission-remote-gtk
     ffmpegthumbnailer
     mediainfo
     weston
