@@ -98,6 +98,7 @@ in {
           {
             name = "nix";
             auto-format = true;
+            language-servers = ["nil" "lsp-ai"];
             formatter.command = "${pkgs.alejandra}/bin/alejandra";
           }
           {
