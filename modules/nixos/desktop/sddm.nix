@@ -24,5 +24,8 @@ in {
       extraPackages = [inputs.latest.legacyPackages.${pkgs.system}.sddm-astronaut];
       wayland.enable = true;
     };
+    # You need to globally install it because the sddm module sets the ThemeDir to `/run/current-system/sw/share/sddm/themes`
+    # Packages in `sddm.extraPackages` won't end up there.
+    environment.systemPackages = [inputs.latest.legacyPackages.${pkgs.system}.sddm-astronaut];
   };
 }
