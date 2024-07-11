@@ -21,15 +21,10 @@
         statix.enable = true;
         prettier.enable = true;
         beautysh.enable = true;
-        shellcheck.enable = true;
         yamlfmt.enable = true;
       };
       settings.formatter = {
         beautysh.includes = [
-          "remoteinstall"
-          "localinstall"
-        ];
-        shellcheck.includes = [
           "remoteinstall"
           "localinstall"
         ];
