@@ -145,7 +145,7 @@ in {
             completion = {
               model = "deepseek";
               parameters = {
-                max_context = 8000;
+                max_context = 8192;
                 options = {
                   temperature = -1;
                   num_predict = 2048;
