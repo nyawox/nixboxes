@@ -26,8 +26,8 @@ in {
       doomDir = ./doom.d;
     };
     services.emacs.enable = true;
-    programs.fish.shellAliases = mkIf config.modules.shell.fish.enable {
-      magit = "TERM=xterm-direct emacsclient -nw --eval '(magit-status)'";
+    programs.nushell.shellAliases = {
+      magit = "with-env { TERM: xterm-direct} {emacsclient -nw --eval '(magit-status)'}";
       mg = "magit";
     };
   };

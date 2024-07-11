@@ -42,11 +42,9 @@
       packages = with pkgs; [
         config.treefmt.build.wrapper
         deploy-rs
-        fish
         nvfetcher
         ssh-to-age
         alejandra
-
         deadnix
         statix
       ];

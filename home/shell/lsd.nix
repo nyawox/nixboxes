@@ -10,7 +10,7 @@ in {
     modules.shell.lsd = {
       enable = mkOption {
         type = types.bool;
-        default = true;
+        default = false;
       };
     };
   };

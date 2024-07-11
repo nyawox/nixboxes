@@ -1,8 +1,8 @@
 {
   lib,
   config,
-  username,
   inputs,
+  username,
   ...
 }:
 with lib; let
@@ -23,9 +23,8 @@ in {
       enableFishIntegration = false;
       enableZshIntegration = false;
     };
-    home.shellAliases = {
-      # comfy roll on my keyboard layout
-      he = "zellij -s $(basename \"$PWD\")-$(date +\"%Y-%m-%d-%H:%M:%S\") -l /home/${username}/.config/zellij/layouts/helix.kdl";
+    programs.nushell.shellAliases = {
+      he = "zellij -s $'($env.PWD | path basename)-(random int)' -l /home/${username}/.config/zellij/layouts/helix.kdl";
     };
 
     xdg.configFile = {

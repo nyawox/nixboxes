@@ -4,10 +4,10 @@
   ...
 }:
 with lib; let
-  cfg = config.modules.shell.git;
+  cfg = config.modules.shell.carapace;
 in {
   options = {
-    modules.shell.git = {
+    modules.shell.carapace = {
       enable = mkOption {
         type = types.bool;
         default = true;
@@ -15,13 +15,9 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    programs.git = {
+    programs.carapace = {
       enable = true;
-
-      extraConfig.pull.rebase = false;
-
-      userEmail = "nyawox.git@gmail.com";
-      userName = "nyawox";
+      enableNushellIntegration = true;
     };
   };
 }

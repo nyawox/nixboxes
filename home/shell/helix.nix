@@ -79,7 +79,7 @@ in {
             n = mkIf cfg.ide ":sh zellij action focus-next-pane"; # focus in file tree
             o = mkIf cfg.ide {
               g = ":sh zellij run --name Git -fc -- bash -c \"TERM=xterm-direct emacsclient -nw --eval '(magit-status)'\""; # open magit in floating pane
-              t = ":sh zellij action new-pane -c -d down -- bash -c \"for _ in {1..6}; do zellij action resize decrease up; done; fish\"";
+              t = ":sh zellij action new-pane -c -d down -- bash -c \"for _ in {1..6}; do zellij action resize decrease up; done; nu\"";
             };
           };
         };

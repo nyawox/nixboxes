@@ -17,7 +17,7 @@ in {
   };
   config = mkIf cfg.enable {
     home.packages = [pkgs.fastfetch];
-    programs.fish.shellAliases = mkIf config.modules.shell.fish.enable {fetch = "fastfetch";};
+    programs.nushell.shellAliases.fetch = "fastfetch";
     xdg.configFile."fastfetch/nixos.sixel".source = ../nixos.sixel;
     xdg.configFile."fastfetch/config.jsonc".text =
       /*
