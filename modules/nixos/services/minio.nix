@@ -36,8 +36,11 @@ in {
         format = "dotenv";
       };
     };
-    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
-      "/var/lib/minio"
-    ];
+    environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable (singleton {
+      directory = "/var/lib/minio";
+      user = "minio";
+      group = "minio";
+      mode = "750";
+    });
   };
 }
