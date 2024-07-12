@@ -26,39 +26,39 @@ inputs.flake-parts.lib.mkFlake {inherit inputs;} {
         ;
     };
   in {
-    nixosConfigurations = {
-      lolcathost = myLib.mkLinux {
+    nixosConfigurations = with myLib; {
+      lolcathost = mkLinux {
         hostname = "lolcathost";
         secrets = true;
       };
-      nagisa = myLib.mkLinux {
+      nagisa = mkLinux {
         hostname = "nagisa";
         secrets = true;
       };
-      nixpro64 = myLib.mkLinux {
+      nixpro64 = mkLinux {
         hostname = "nixpro64";
         platform = "aarch64-linux";
         desktop = false;
         secrets = true;
       };
-      vultr = myLib.mkLinux {
+      vultr = mkLinux {
         hostname = "vultr";
         desktop = false;
         secrets = true;
       };
-      tomoyo = myLib.mkLinux {
+      tomoyo = mkLinux {
         hostname = "tomoyo";
         desktop = false;
         secrets = true;
       };
-      ghostcity = myLib.mkLinux {
+      ghostcity = mkLinux {
         hostname = "ghostcity";
         desktop = false;
         secrets = true;
         deploy = false;
       };
-      iso = myLib.mkISO {platform = "x86_64-linux";};
-      isoarm = myLib.mkISO {platform = "aarch64-linux";};
+      iso = mkISO {platform = "x86_64-linux";};
+      isoarm = mkISO {platform = "aarch64-linux";};
     };
   };
 }
