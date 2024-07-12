@@ -33,7 +33,7 @@ in {
           min-free = ${toString (100 * 1024 * 1024)}
           max-free = ${toString (1024 * 1024 * 1024)}
           builders-use-substitutes = true
-          !include ${toString osConfig.sops.secrets.nix-access-tokens.path}
+          !include ${optionalString osConfig.secrets.enable (toString osConfig.sops.secrets.nix-access-tokens.path)}
         '';
     };
   };

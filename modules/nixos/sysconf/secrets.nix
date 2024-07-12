@@ -36,6 +36,11 @@ with lib; {
         neededForUsers = true;
         sopsFile = ../../../secrets/userpassword.yaml;
       };
+      secrets."nix-access-tokens" = {
+        sopsFile = ../../secrets/nix-access-tokens.conf;
+        format = "binary";
+        owner = username;
+      };
     };
     users.users."${
       config.var.username

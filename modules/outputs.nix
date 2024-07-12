@@ -57,25 +57,40 @@ inputs.flake-parts.lib.mkFlake {inherit inputs;} {
         secrets = true;
         deploy = false;
       };
-      #I'm tired of this causing issue when deploying
-      # Just uncomment when using it
-      # iso = inputs.nixpkgs.lib.nixosSystem {
-      #   modules = [
-      #     "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-      #     self.nixosModules.common
-      #     ({pkgs, ...}: {
-      #       # nixpkgs.hostPlatform = "x86_64-linux";
-      #       nixpkgs.hostPlatform = "aarch64-linux";
-      #       users.users.nixos.openssh.authorizedKeys.keys = [
-      #         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ+HhlLh3dtTBvWN6WO8gHma2BoGupqhjVuy2raQ+JS2 nyawox.git@gmail.com"
-      #       ];
-      #       environment.systemPackages = with pkgs; [
-      #         rsync
-      #       ];
-      #     })
-      #     ./nixos/sysconf/zram.nix
-      #   ];
-      # };
+      iso = let
+        username = "nixos";
+        hostname = "nixos-installer";
+        platform = "x86_64-linux";
+        # platform = "aarch64-linux";
+        deploy = false;
+      in
+        inputs.nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit
+              self
+              inputs
+              hostname
+              username
+              deploy
+              platform
+              stateVersion
+              ;
+          };
+          modules = [
+            "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            self.nixosModules.common
+            ({pkgs, ...}: {
+              nixpkgs.hostPlatform = platform;
+              users.users.nixos.openssh.authorizedKeys.keys = [
+                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ+HhlLh3dtTBvWN6WO8gHma2BoGupqhjVuy2raQ+JS2 nyawox.git@gmail.com"
+              ];
+              environment.systemPackages = with pkgs; [
+                rsync
+              ];
+            })
+            ./nixos/sysconf/zram.nix
+          ];
+        };
     };
   };
 }
