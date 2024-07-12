@@ -76,7 +76,7 @@
             rsync
           ];
         })
-        ./nixos/sysconf/zram.nix
+        ../modules/nixos/sysconf/zram.nix
       ];
     };
 }
