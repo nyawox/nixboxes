@@ -18,7 +18,6 @@ in {
   config = mkIf cfg.enable {
     services.swayidle = {
       enable = true;
-      systemdTarget = "niri.service";
       events =
         singleton
         {
@@ -36,5 +35,6 @@ in {
         }
       ];
     };
+    systemd.user.services.swayidle.Unit.After = "niri.service";
   };
 }
