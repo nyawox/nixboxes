@@ -26,7 +26,9 @@ in {
         enable = true;
         address = "0.0.0.0";
         port = 8085;
-        settings = {
+        settings = let
+          certDir = config.security.acme.certs."nixlap.top".directory;
+        in {
           dns_config = {
             magic_dns = true;
             base_domain = "nixlap.top";
@@ -37,6 +39,8 @@ in {
             # Magic DNS not working without this
             # https://github.com/juanfont/headscale/issues/660
             override_local_dns = true;
+            tls_key_path = "${certDir}/key.pem";
+            tls_cert_path = "${certDir}/cert.pem";
           };
           logtail.enabled = false;
           server_url = "https://${domain}";
