@@ -44,6 +44,14 @@ in {
             v6 = "fd7a:115c:a1e0::/48";
             v4 = "100.64.0.0/10";
           };
+          database = {
+            type = "sqlite3";
+            sqlite = {
+              path = "/var/lib/headscale/db.sqlite";
+              write_ahead_log = true;
+            };
+          };
+
           derp.server = {
             enable = true;
             region_id = 999;
