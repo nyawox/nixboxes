@@ -30,7 +30,7 @@ in {
             let _prev = (commandline)
             if ($_prev != "") {
               print '⌛'
-              commandline edit -r (aichat -m ollama:deepseek-coder-v2:16b-lite-base-q4_K_M -e $_prev)
+              commandline edit -r (aichat -m ollama:gemma2:9b-instruct-q5_K_M -e $_prev)
             }
           }
 
