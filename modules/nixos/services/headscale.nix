@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  inputs,
   ...
 }:
 with lib; let
@@ -17,6 +18,7 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    nixpkgs.overlays = [inputs.headscale.overlay];
     services = {
       headscale = {
         enable = true;

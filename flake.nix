@@ -51,6 +51,10 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    headscale = {
+      url = "github:juanfont/headscale";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     arion = {
       url = "github:hercules-ci/arion";
       inputs.nixpkgs.follows = "nixpkgs";
