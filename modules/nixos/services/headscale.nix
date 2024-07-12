@@ -38,6 +38,10 @@ in {
           };
           logtail.enabled = false;
           server_url = "https://${domain}";
+          prefixes = {
+            v6 = "fd7a:115c:a1e0::/48";
+            v4 = "100.64.0.0/10";
+          };
           derp.server = {
             enable = true;
             region_id = 999;
