@@ -85,12 +85,12 @@
         }
         {
           name = "iso";
-          help = "Build NixOS minimal install ISO";
+          help = "Build NixOS minimal install ISO for amd64";
           command = "nix build .#nixosConfigurations.iso.config.system.build.isoImage";
         }
         {
           name = "isoarm";
-          help = "Build NixOS minimal install ISO";
+          help = "Build NixOS minimal install ISO for aarch64";
           command = "nix build .#nixosConfigurations.isoarm.config.system.build.isoImage";
         }
       ];
