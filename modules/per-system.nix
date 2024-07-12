@@ -83,6 +83,11 @@
           help = "Rebuild current system and make it the boot default without activating";
           command = "sudo nixos-rebuild boot --flake .#";
         }
+        {
+          name = "buildiso";
+          help = "Build NixOS minimal install ISO";
+          command = "nix build .#nixosConfigurations.iso.config.system.build.isoImage";
+        }
       ];
     };
   };
