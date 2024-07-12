@@ -84,9 +84,14 @@
           command = "sudo nixos-rebuild boot --flake .#";
         }
         {
-          name = "buildiso";
+          name = "iso";
           help = "Build NixOS minimal install ISO";
           command = "nix build .#nixosConfigurations.iso.config.system.build.isoImage";
+        }
+        {
+          name = "isoarm";
+          help = "Build NixOS minimal install ISO";
+          command = "nix build .#nixosConfigurations.isoarm.config.system.build.isoImage";
         }
       ];
     };
