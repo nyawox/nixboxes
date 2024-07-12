@@ -70,7 +70,7 @@ in {
 
 
           ${optionalString cfg.sender ''
-            destination = tomoyo.nyaa.nixlap.top:19999
+            destination = tomoyo.nixlap.top:19999
             api key = ${cfg.apikey}
           ''}
           ${optionalString cfg.receiver ''

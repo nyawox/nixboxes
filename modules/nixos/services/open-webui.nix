@@ -36,7 +36,7 @@ in {
           image = "ghcr.io/open-webui/open-webui:main";
           container_name = "open-webui";
           environment = {
-            OLLAMA_BASE_URL = "http://nixpro64.nyaa.nixlap.top:11451";
+            OLLAMA_BASE_URL = "http://nixpro64.nixlap.top:11451";
             ANONYMIZED_TELEMETRY = "False";
             DO_NOT_TRACK = "True";
             SCARF_NO_ANALYTICS = "True";

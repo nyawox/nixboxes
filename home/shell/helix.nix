@@ -137,8 +137,8 @@ in {
             models = {
               deepseek = {
                 type = "ollama";
-                chat_endpoint = "http://nixpro64.nyaa.nixlap.top:11451/api/chat";
-                generate_endpoint = "http://nixpro64.nyaa.nixlap.top:11451/api/generate";
+                chat_endpoint = "http://nixpro64.nixlap.top:11451/api/chat";
+                generate_endpoint = "http://nixpro64.nixlap.top:11451/api/generate";
                 model = "deepseek-coder-v2:16b-lite-base-q4_K_M";
               };
             };

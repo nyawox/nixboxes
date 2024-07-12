@@ -5,7 +5,7 @@
 }:
 with lib; let
   cfg = config.modules.services.morphic;
-  ollama-url = "http://nixpro64.nyaa.nixlap.top:11451";
+  ollama-url = "http://nixpro64.nixlap.top:11451";
   # only >v0.3 mistral supports tool usage
   ollama-model = "mistral:7b-instruct-v0.3-q5_K_M";
   ollama-sub-model = "gemma2:9b-instruct-q5_K_M";
