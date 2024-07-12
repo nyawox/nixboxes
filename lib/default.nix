@@ -15,4 +15,5 @@
   };
 in {
   inherit (gen) mkLinux;
+  inherit (gen) mkISO;
 }
