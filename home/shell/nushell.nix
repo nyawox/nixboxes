@@ -103,7 +103,7 @@ in {
               mode: rounded
             }
           }
-          $env.LS_COLORS = (${lib.getExe pkgs.vivid} generate catppuccin-mocha)
+          $env.LS_COLORS = (${getExe pkgs.vivid} generate catppuccin-mocha)
         '';
       shellAliases = {
         vi = "hx";

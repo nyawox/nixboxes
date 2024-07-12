@@ -21,7 +21,7 @@ in {
       enable = true;
       settings = {
         default_session = {
-          command = "${lib.getExe pkgs.greetd.tuigreet} --time --cmd ${pkgs.niri-unstable}/bin/niri-session";
+          command = "${getExe pkgs.greetd.tuigreet} --time --cmd ${pkgs.niri-unstable}/bin/niri-session";
           user = "${username}";
         };
         intial_session = {

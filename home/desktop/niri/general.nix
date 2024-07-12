@@ -201,8 +201,8 @@ in {
       spawn-at-startup = [
         {command = ["${configure-gtk}/bin/configure-gtk"];}
         {command = ["${pkgs.pulseaudio}/bin/paplay" "/home/${username}/sounds/logon.wav"];}
-        {command = ["${lib.getExe pkgs.swaybg}" "-m" "tile" "-i" "/home/${username}/.wallpaper.png"];}
-        {command = ["${lib.getExe pkgs.swaynotificationcenter}"];}
+        {command = ["${getExe pkgs.swaybg}" "-m" "tile" "-i" "/home/${username}/.wallpaper.png"];}
+        {command = ["${getExe pkgs.swaynotificationcenter}"];}
         # Only fcitx5 installed via the NixOS module contains mozc, it must be in the PATH.
         {command = ["fcitx5" "-r" "-d"];} # -r replaces current instance
       ];
@@ -215,12 +215,12 @@ in {
       in
         lib.attrsets.mergeAttrsList [
           {
-            "Mod+E".action = spawn "${lib.getExe pkgs.foot}";
-            "Mod+I".action = spawn "${lib.getExe pkgs.fuzzel}";
-            "Mod+A".action = sh "${lib.getExe pkgs.nautilus} --new-window";
-            "Mod+Y".action = sh "${lib.getExe pkgs.swaynotificationcenter}-client -t -sw";
+            "Mod+E".action = spawn "${getExe pkgs.foot}";
+            "Mod+I".action = spawn "${getExe pkgs.fuzzel}";
+            "Mod+A".action = sh "${getExe pkgs.nautilus} --new-window";
+            "Mod+Y".action = sh "${getExe pkgs.swaynotificationcenter}-client -t -sw";
             "Mod+W".action = sh "systemctl --user restart waybar.service";
-            "Mod+Escape".action = sh "${lib.getExe pkgs.swaylock-effects} --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color f5c2e7 --text-color cdd6f4 --key-hl-color fab387 --line-color 00000000 --inside-color 1e1e2e88 --separator-color 00000000 --grace 2 --fade-in 0.2";
+            "Mod+Escape".action = sh "${getExe pkgs.swaylock-effects} --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color f5c2e7 --text-color cdd6f4 --key-hl-color fab387 --line-color 00000000 --inside-color 1e1e2e88 --separator-color 00000000 --grace 2 --fade-in 0.2";
 
             "XF86AudioRaiseVolume".action = sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+";
             "XF86AudioLowerVolume".action = sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";

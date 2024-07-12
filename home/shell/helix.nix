@@ -99,7 +99,7 @@ in {
             name = "nix";
             auto-format = true;
             language-servers = ["nil" "lsp-ai"];
-            formatter.command = "${lib.getExe pkgs.alejandra}";
+            formatter.command = "${getExe pkgs.alejandra}";
           }
           {
             name = "typescript";
@@ -129,7 +129,7 @@ in {
           }
         ];
         language-server.lsp-ai = {
-          command = "${lib.getExe pkgs.lsp-ai}";
+          command = "${getExe pkgs.lsp-ai}";
           config = {
             memory = {
               file_store = {};

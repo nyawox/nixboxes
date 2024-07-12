@@ -27,7 +27,7 @@ in {
       wantedBy = ["graphical-session.target"];
       serviceConfig = {
         # without unbuffer the logs are only printed when stopping service
-        ExecStart = "${pkgs.expect}/bin/unbuffer ${lib.getExe pkgs.uxplay} -n ${config.networking.hostName} -reg /home/${username}/.config/.uxplay.register -fps ${builtins.toString cfg.framerate}";
+        ExecStart = "${pkgs.expect}/bin/unbuffer ${getExe pkgs.uxplay} -n ${config.networking.hostName} -reg /home/${username}/.config/.uxplay.register -fps ${builtins.toString cfg.framerate}";
         Environment = "UXPLAYRC=/etc/uxplayrc";
         Restart = "on-failure";
         RestartSec = "5s";

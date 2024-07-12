@@ -10,7 +10,7 @@ with lib; let
   cfg = config.modules.virtualisation.waydroid;
   waydroid-launch = pkgs.writeShellScript "waydroid-launch" ''
     sleep 3
-    ${lib.getExe pkgs.waydroid} show-full-ui
+    ${getExe pkgs.waydroid} show-full-ui
   '';
 in {
   options = {
@@ -30,7 +30,7 @@ in {
         wantedBy = ["graphical-session.target"];
         serviceConfig = {
           ExecStart = ''
-            ${lib.getExe pkgs.weston} --config=/etc/waydroid-cloud.ini --shell=kiosk --backend=rdp --rdp-tls-cert=/var/lib/waydroid/waydroid-rdp.crt --rdp-tls-key=/var/lib/waydroid/waydroid-rdp.key --height=953 --width=496 --port=3150 --no-clients-resize
+            ${getExe pkgs.weston} --config=/etc/waydroid-cloud.ini --shell=kiosk --backend=rdp --rdp-tls-cert=/var/lib/waydroid/waydroid-rdp.crt --rdp-tls-key=/var/lib/waydroid/waydroid-rdp.key --height=953 --width=496 --port=3150 --no-clients-resize
           '';
           Restart = "on-failure";
           RestartSec = "5s";

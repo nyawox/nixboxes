@@ -19,7 +19,7 @@ with lib; let
     }
   '';
   workspaces-script = pkgs.writeShellScript "workspaces" ''
-    ${pkgs.niri-unstable}/bin/niri msg --json workspaces | ${lib.getExe pkgs.jq} --unbuffered --compact-output '${jq-filter}'
+    ${pkgs.niri-unstable}/bin/niri msg --json workspaces | ${getExe pkgs.jq} --unbuffered --compact-output '${jq-filter}'
   '';
 in {
   options = {

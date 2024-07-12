@@ -20,7 +20,7 @@ in {
       enable = true;
       settings = {
         main = {
-          terminal = "${lib.getExe pkgs.foot}";
+          terminal = "${getExe pkgs.foot}";
           font = mkForce "Poppins:size=20";
           layer = "overlay";
         };
