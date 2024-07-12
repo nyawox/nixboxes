@@ -37,7 +37,7 @@ with lib; {
         sopsFile = ../../../secrets/userpassword.yaml;
       };
       secrets."nix-access-tokens" = {
-        sopsFile = ../../secrets/nix-access-tokens.conf;
+        sopsFile = ../../../secrets/nix-access-tokens.conf;
         format = "binary";
         owner = username;
       };
