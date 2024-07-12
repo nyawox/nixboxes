@@ -1,3 +1,5 @@
+# currently running non-stable revision,
+# see the changelog here: https://github.com/juanfont/headscale/blob/main/CHANGELOG.md
 {
   config,
   lib,
