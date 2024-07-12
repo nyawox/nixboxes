@@ -6,7 +6,7 @@
 }:
 with lib; let
   cfg = config.modules.services.headscale;
-  domain = "headscale.nixlap.top";
+  domain = "hs.nixlap.top";
   derpPort = 3478;
 in {
   options = {

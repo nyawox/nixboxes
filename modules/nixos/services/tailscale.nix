@@ -7,7 +7,7 @@
 }:
 with lib; let
   cfg = config.modules.services.tailscale;
-  loginserver = "https://headscale.nixlap.top";
+  loginserver = "https://hs.nixlap.top";
 in {
   options = {
     modules.services.tailscale = {
