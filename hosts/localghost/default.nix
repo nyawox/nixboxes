@@ -12,12 +12,11 @@ _: {
       caddy.enable = true;
       headscale.enable = true;
       searxng.enable = true;
+      open-webui.enable = true;
       netdata = {
         enable = true;
-        receiver = true;
         apikey = "c96533b8-4709-48ea-862e-cca0871b72a4";
       };
-      open-webui.enable = true;
       frp.enable = true;
     };
     desktop = {

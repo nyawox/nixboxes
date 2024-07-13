@@ -70,7 +70,7 @@ in {
 
 
           ${optionalString cfg.sender ''
-            destination = localghost.nixlap.top:19999
+            destination = nixpro64.nixlap.top:19999
             api key = ${cfg.apikey}
           ''}
           ${optionalString cfg.receiver ''

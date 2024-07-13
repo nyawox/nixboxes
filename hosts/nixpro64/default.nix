@@ -19,6 +19,7 @@
       tailscale.enable = true;
       netdata = {
         enable = true;
+        receiver = true;
         apikey = "a73b169d-3a46-46d1-b8d5-48bd53933f9a";
       };
       ntfy-sh.enable = true;

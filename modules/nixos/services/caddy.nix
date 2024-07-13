@@ -108,7 +108,7 @@ in {
           url = "http://nixpro64.nyaa.nixlap.top:9150";
         };
         "netdata.nixlap.top" = mkProxy {
-          url = "http://localghost.nyaa.nixlap.top:19999";
+          url = "http://nixpro64.nyaa.nixlap.top:19999";
           auth = true;
         };
         "ntfy.nixlap.top" = mkProxy {
