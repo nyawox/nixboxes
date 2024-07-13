@@ -25,12 +25,12 @@ in {
       certs."nixlap.top" = {
         domain = "nixlap.top";
         extraDomainNames = ["*.nixlap.top"];
-        dnsProvider = "desec";
-        credentialsFile = config.sops.secrets.desec.path;
+        dnsProvider = "cloudflare";
+        credentialsFile = config.sops.secrets.cloudflare.path;
       };
     };
-    sops.secrets.desec = {
-      sopsFile = ../../../secrets/desec.env;
+    sops.secrets.cloudflare = {
+      sopsFile = ../../../secrets/cloudflare.env;
       format = "dotenv";
     };
 
