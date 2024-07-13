@@ -17,7 +17,7 @@ in {
   config = {
     fileSystems = {
       "/nixboxes" = mkIf cfg.nixboxes {
-        device = "lolcathost.nixlap.top:/nixboxes";
+        device = "lolcathost.nyaa.nixlap.top:/nixboxes";
         fsType = "nfs";
         options = [
           "nfsvers=4.2"
