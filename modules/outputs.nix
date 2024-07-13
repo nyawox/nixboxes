@@ -58,8 +58,8 @@ inputs.flake-parts.lib.mkFlake {inherit inputs;} {
         secrets = true;
         deploy = false;
       };
-      iso = mkISO {platform = "x86_64-linux";};
-      isoarm = mkISO {platform = "aarch64-linux";};
+      # iso = mkISO {platform = "x86_64-linux";};
+      # isoarm = mkISO {platform = "aarch64-linux";};
     };
   };
 }
