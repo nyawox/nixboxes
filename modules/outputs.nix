@@ -45,9 +45,10 @@ inputs.flake-parts.lib.mkFlake {inherit inputs;} {
         hostname = "vultr";
         desktop = false;
         secrets = true;
+        deploy = false;
       };
-      tomoyo = mkLinux {
-        hostname = "tomoyo";
+      localghost = mkLinux {
+        hostname = "localghost";
         desktop = false;
         secrets = true;
       };

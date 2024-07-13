@@ -8,6 +8,10 @@ _: {
       tailscale.enable = true;
       homepage.enable = true;
       linkding.enable = true;
+      acme.enable = true;
+      caddy.enable = true;
+      headscale.enable = true;
+      searxng.enable = true;
       netdata = {
         enable = true;
         receiver = true;

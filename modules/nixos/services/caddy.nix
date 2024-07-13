@@ -85,10 +85,10 @@ in {
       globalConfig = '''';
       virtualHosts = {
         "homepage.nixlap.top" = mkProxy {
-          url = "http://tomoyo.nixlap.top:8082";
+          url = "http://localghost.nixlap.top:8082";
         };
         "search.nixlap.top" = mkProxy {
-          url = "http://vultr.nixlap.top:8420";
+          url = "http://localghost.nixlap.top:8420";
           auth = true;
         };
         "vault.nixlap.top" = mkProxy {
@@ -102,13 +102,13 @@ in {
           auth = true;
         };
         "linkding.nixlap.top" = mkProxy {
-          url = "http://tomoyo.nixlap.top:9090";
+          url = "http://localghost.nixlap.top:9090";
         };
         "auth.nixlap.top" = mkProxy {
           url = "http://nixpro64.nixlap.top:9150";
         };
         "netdata.nixlap.top" = mkProxy {
-          url = "http://tomoyo.nixlap.top:19999";
+          url = "http://localghost.nixlap.top:19999";
           auth = true;
         };
         "ntfy.nixlap.top" = mkProxy {
@@ -119,7 +119,7 @@ in {
           auth = true;
         };
         "ai.nixlap.top" = mkProxy {
-          url = "http://tomoyo.nixlap.top:11454";
+          url = "http://localghost.nixlap.top:11454";
           auth = true;
         };
         "hass.nixlap.top" = mkProxy {

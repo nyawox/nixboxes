@@ -70,7 +70,7 @@ in {
 
 
           ${optionalString cfg.sender ''
-            destination = tomoyo.nixlap.top:19999
+            destination = localghost.nixlap.top:19999
             api key = ${cfg.apikey}
           ''}
           ${optionalString cfg.receiver ''
@@ -81,7 +81,7 @@ in {
             ${mkChildNode "a73b169d-3a46-46d1-b8d5-48bd53933f9a" "100.64.0.1"}
             # vultr
             ${mkChildNode "85abac58-b907-45ed-be65-c52856a2d4c8" "100.64.0.2"}
-            # tomoyo
+            # localghost
             ${mkChildNode "c96533b8-4709-48ea-862e-cca0871b72a4" "100.64.0.3"}
             # lolcathost
             ${mkChildNode "2e117745-b8b7-4f7b-8b50-e4df187e36ea" "100.64.0.7"}

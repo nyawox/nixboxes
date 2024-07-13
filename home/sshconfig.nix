@@ -30,7 +30,7 @@
           RemoteCommand = "systemctl default";
         };
       };
-      "tomoyoluks" = {
+      "localghostluks" = {
         hostname = "64.112.124.245";
         user = "root";
         port = 42420;
