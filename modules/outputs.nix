@@ -31,8 +31,8 @@ inputs.flake-parts.lib.mkFlake {inherit inputs;} {
         hostname = "lolcathost";
         secrets = true;
       };
-      nagisa = mkLinux {
-        hostname = "nagisa";
+      localtoast = mkLinux {
+        hostname = "localtoast";
         secrets = true;
       };
       nixpro64 = mkLinux {

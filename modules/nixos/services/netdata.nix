@@ -83,8 +83,8 @@ in {
             ${mkChildNode "c96533b8-4709-48ea-862e-cca0871b72a4" "100.64.0.2"}
             # lolcathost
             ${mkChildNode "2e117745-b8b7-4f7b-8b50-e4df187e36ea" "100.64.0.1"}
-            # nagisa
-            ${mkChildNode "f17bc57e-969e-488c-ae8a-2ea69e319b35" "100.64.0.3"}
+            # localtoast
+            ${mkChildNode "f17bc57e-969e-488c-ae8a-2ea69e319b35" "100.64.0.7"}
           ''}
         '';
       config = mkIf (!cfg.webui) {
