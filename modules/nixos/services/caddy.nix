@@ -28,7 +28,7 @@ with lib; let
     conf
     */
     ''
-      forward_auth nixpro64.nixlap.top:9150 {
+      forward_auth nixpro64.nyaa.nixlap.top:9150 {
       	uri /api/verify?rd=https://auth.nixlap.top
       	copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
       }
@@ -85,48 +85,48 @@ in {
       globalConfig = '''';
       virtualHosts = {
         "homepage.nixlap.top" = mkProxy {
-          url = "http://localghost.nixlap.top:8082";
+          url = "http://localghost.nyaa.nixlap.top:8082";
         };
         "search.nixlap.top" = mkProxy {
-          url = "http://localghost.nixlap.top:8420";
+          url = "http://localghost.nyaa.nixlap.top:8420";
           auth = true;
         };
         "vault.nixlap.top" = mkProxy {
-          url = "http://nixpro64.nixlap.top:3011";
+          url = "http://nixpro64.nyaa.nixlap.top:3011";
         };
         "s3.nixlap.top" = mkProxy {
-          url = "http://nixpro64.nixlap.top:9314";
+          url = "http://nixpro64.nyaa.nixlap.top:9314";
         };
         "minio.nixlap.top" = mkProxy {
-          url = "http://nixpro64.nixlap.top:9315";
+          url = "http://nixpro64.nyaa.nixlap.top:9315";
           auth = true;
         };
         "linkding.nixlap.top" = mkProxy {
-          url = "http://localghost.nixlap.top:9090";
+          url = "http://localghost.nyaa.nixlap.top:9090";
         };
         "auth.nixlap.top" = mkProxy {
-          url = "http://nixpro64.nixlap.top:9150";
+          url = "http://nixpro64.nyaa.nixlap.top:9150";
         };
         "netdata.nixlap.top" = mkProxy {
-          url = "http://localghost.nixlap.top:19999";
+          url = "http://localghost.nyaa.nixlap.top:19999";
           auth = true;
         };
         "ntfy.nixlap.top" = mkProxy {
-          url = "http://nixpro64.nixlap.top:2521";
+          url = "http://nixpro64.nyaa.nixlap.top:2521";
         };
         "aisearch.nixlap.top" = mkProxy {
-          url = "http://nixpro64.nixlap.top:3150";
+          url = "http://nixpro64.nyaa.nixlap.top:3150";
           auth = true;
         };
         "ai.nixlap.top" = mkProxy {
-          url = "http://localghost.nixlap.top:11454";
+          url = "http://localghost.nyaa.nixlap.top:11454";
           auth = true;
         };
         "hass.nixlap.top" = mkProxy {
-          url = "http://nixpro64.nixlap.top:8123";
+          url = "http://nixpro64.nyaa.nixlap.top:8123";
         };
         "farfalle-backend.nixlap.top" = mkProxy {
-          url = "http://nixpro64.nixlap.top:8000";
+          url = "http://nixpro64.nyaa.nixlap.top:8000";
           internal = true;
         };
       };
