@@ -69,7 +69,7 @@ in {
         if [ $status = "Running" ]; then # if so, then do nothing
           exit 0
         fi
-        tailscale up --login-server ${loginserver} --auth-key $(cat /run/secrets/tailscale_preauthkey)
+        tailscale up --operator ${username} --login-server ${loginserver} --auth-key $(cat /run/secrets/tailscale_preauthkey)
       '';
     };
   };
