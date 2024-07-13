@@ -33,8 +33,8 @@ in {
             magic_dns = true;
             base_domain = "nixlap.top";
             nameservers = [
-              "2620:fe::fe"
-              "2620:fe::9"
+              "9.9.9.9"
+              "149.112.112.112"
             ];
             # Magic DNS not working without this
             # https://github.com/juanfont/headscale/issues/660
