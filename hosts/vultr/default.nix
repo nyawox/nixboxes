@@ -14,7 +14,7 @@ _: {
       # caddy.enable = true;
       # headscale.enable = true;
       # searxng.enable = true;
-      frp.enable = true;
+      # frp.enable = true;
     };
     desktop = {
       pipewire.enable = false;

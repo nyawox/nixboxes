@@ -18,6 +18,7 @@ _: {
         apikey = "c96533b8-4709-48ea-862e-cca0871b72a4";
       };
       open-webui.enable = true;
+      frp.enable = true;
     };
     desktop = {
       pipewire.enable = false;
