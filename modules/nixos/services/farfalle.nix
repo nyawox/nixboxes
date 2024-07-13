@@ -6,7 +6,7 @@
 with lib; let
   cfg = config.modules.services.farfalle;
   ipSubnet = "172.31.0.0/16";
-  searxng-url = "http://vultr.nixlap.top:8420";
+  searxng-url = "http://localghost.nixlap.top:8420";
   ollama-url = "http://nixpro64.nixlap.top:11451";
 in {
   options = {
