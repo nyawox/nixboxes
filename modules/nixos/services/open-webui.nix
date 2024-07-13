@@ -44,7 +44,7 @@ in {
           volumes = ["/var/lib/open-webui:/app/backend/data"];
           restart = "unless-stopped";
           ports = [
-            "${builtins.toString cfg.port}:8080"
+            "127.0.0.1:${builtins.toString cfg.port}:8080"
           ];
           labels."io.containers.autoupdate" = "registry";
         };

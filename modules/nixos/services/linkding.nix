@@ -34,7 +34,7 @@ in {
       services.linkding.service = {
         image = "docker.io/sissbruecker/linkding:latest";
         volumes = ["/var/lib/linkding:/etc/linkding/data"];
-        ports = ["${builtins.toString cfg.port}:9090"];
+        ports = ["127.0.0.1:${builtins.toString cfg.port}:9090"];
         environment = {
           LD_SUPERUSER_NAME = "nyaa";
           LD_SUPERUSER_PASSWORD = "alpinerickroll"; # Change this
