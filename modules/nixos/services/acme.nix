@@ -19,7 +19,7 @@ in {
       acceptTerms = true;
       defaults = {
         email = "nyawox.git@gmail.com";
-        # server = "https://acme-staging-v02.api.letsencrypt.org/directory";
+        server = "https://acme-staging-v02.api.letsencrypt.org/directory";
       };
 
       certs."nixlap.top" = {
