@@ -81,6 +81,7 @@ in {
       qt6ct
       xdg-user-dirs
       pamixer
+      trayscale
     ];
     programs.niri.settings = {
       cursor = {
@@ -205,6 +206,7 @@ in {
         {command = ["${getExe pkgs.swaynotificationcenter}"];}
         # Only fcitx5 installed via the NixOS module contains mozc, it must be in the PATH.
         {command = ["fcitx5" "-r" "-d"];} # -r replaces current instance
+        {command = ["${getExe pkgs.trayscale}" "--hide-window"];}
       ];
       outputs = {
         "DP-1".scale = 0.75;
