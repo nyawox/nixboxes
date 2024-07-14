@@ -210,6 +210,7 @@ in {
       ];
       outputs = {
         "DP-1".scale = 0.75;
+        "eDP-1".scale = 0.75;
         "HDMI-A-1".scale = 0.75;
       };
       binds = with config.lib.niri.actions; let
