@@ -20,16 +20,6 @@
         hostname = "192.168.0.128";
         user = "root";
       };
-      "vultrluks" = {
-        hostname = "149.28.98.185";
-        user = "root";
-        port = 42420;
-        checkHostIP = false;
-        extraOptions = {
-          RequestTTY = "force";
-          RemoteCommand = "systemctl default";
-        };
-      };
       "ghostluks" = {
         hostname = "64.112.124.245";
         user = "root";
@@ -40,7 +30,7 @@
           RemoteCommand = "systemctl default";
         };
       };
-      "rockluks" = {
+      "postluks" = {
         hostname = "192.168.0.185";
         user = "root";
         port = 42420;

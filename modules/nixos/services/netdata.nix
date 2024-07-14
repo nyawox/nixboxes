@@ -70,14 +70,14 @@ in {
 
 
           ${optionalString cfg.sender ''
-            destination = nixpro64.nixlap.top:19999
+            destination = localpost.nyaa.nixlap.top:19999
             api key = ${cfg.apikey}
           ''}
           ${optionalString cfg.receiver ''
             # Allowed sender nodes
             # generate apikey with `uuidgen`
             # the ips are taken from `tailscale status`
-            # nixpro64
+            # localpost
             ${mkChildNode "a73b169d-3a46-46d1-b8d5-48bd53933f9a" "100.64.0.5"}
             # localghost
             ${mkChildNode "c96533b8-4709-48ea-862e-cca0871b72a4" "100.64.0.2"}

@@ -155,7 +155,7 @@ in {
           image_proxy = false;
         };
         redis = {
-          url = "redis://:searxng@nixpro64.nixlap.top:6420";
+          url = "redis://:searxng@localpost.nyaa.nixlap.top:6420";
         };
       };
     };

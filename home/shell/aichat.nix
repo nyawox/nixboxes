@@ -25,7 +25,7 @@ in {
         model: ollama
         clients:
         - type: ollama
-          api_base: http://nixpro64.nyaa.nixlap.top:11451
+          api_base: http://localpost.nyaa.nixlap.top:11451
           api_auth: null
           models:
           - name: gemma2:9b-instruct-q5_K_M

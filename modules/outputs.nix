@@ -35,8 +35,8 @@ inputs.flake-parts.lib.mkFlake {inherit inputs;} {
         hostname = "localtoast";
         secrets = true;
       };
-      nixpro64 = mkLinux {
-        hostname = "nixpro64";
+      localpost = mkLinux {
+        hostname = "localpost";
         platform = "aarch64-linux";
         desktop = false;
         secrets = true;
