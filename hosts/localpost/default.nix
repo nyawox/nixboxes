@@ -38,7 +38,7 @@
   };
   services.switch-boot.enable = true;
 
-  disk.device = "/dev/sdb";
+  disk.device = "/dev/sda";
 
   boot = {
     # Use the systemd-boot EFI boot loader.
