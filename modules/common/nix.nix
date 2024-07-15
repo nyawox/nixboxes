@@ -19,7 +19,7 @@
       };
       buildMachines = [
         {
-          hostName = "192.168.0.128";
+          hostName = "localmost.guest.nixlap.top";
           sshUser = "root";
           system = "aarch64-linux";
           maxJobs = 1;
