@@ -24,7 +24,7 @@ in {
       package = pkgs.firefox-unwrapped;
 
       search = {
-        defaultSearchEngine = "searx";
+        defaultSearchEngine = "sx";
         removeEngines = [
           "Brave"
           "Bing"
@@ -38,7 +38,7 @@ in {
         ];
         addEngines = [
           {
-            Name = "searx";
+            Name = "sx";
             Description = "selfhosted searxng";
             Alias = "sx";
             Method = "GET";
@@ -50,13 +50,6 @@ in {
             Alias = "pp";
             Method = "GET";
             URLTemplate = "https://www.perplexity.ai/search?q={searchTerms}";
-          }
-          {
-            Name = "fr";
-            Description = "Farfalle";
-            Alias = "fr";
-            Method = "GET";
-            URLTemplate = "https://aisearch.nixlap.top/?q={searchTerms}";
           }
         ];
       };

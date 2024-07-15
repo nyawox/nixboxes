@@ -12,10 +12,9 @@ seturl https://play.rust-lang.org/ allowautofocus true
 seturl https://monkeytype.com/ allowautofocus true
 seturl https://hs.nixlap.top/ allowautofocus true
 " init searchurls
-setnull searchurls.fr
 setnull searchurls.pp
 setnull searchurls.searx
-set searchurls {"fr":"https://aisearch.nixlap.top/?q=","pp":"https://www.perplexity.ai/search?q=","sx":"https://search.nixlap.top/search?q="}
+set searchurls {"sx":"https://search.nixlap.top/search?q=","pp":"https://www.perplexity.ai/search?q="}
 setnull searchurls.googlelucky
 setnull searchurls.scholar
 setnull searchurls.googleuk

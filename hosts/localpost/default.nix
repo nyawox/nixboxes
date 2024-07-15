@@ -32,7 +32,6 @@
       redis.enable = true;
       minio.enable = true;
       ollama.enable = true;
-      farfalle.enable = true;
       firetv-launcher.enable = true;
     };
   };
