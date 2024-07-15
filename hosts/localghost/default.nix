@@ -44,7 +44,15 @@ _: {
   # messes up with vnc
   psilocybin.enable = false;
 
+  # allow ip forwarding for tailscale
+  networking.firewall.extraCommands = ''
+    iptables -P FORWARD ACCEPT
+  '';
   boot = {
+    # allow ip forwarding for tailscale
+    kernel.sysctl = {
+      "net.ipv4.ip_forward" = 1;
+    };
     kernelParams = ["ip=64.112.124.245"];
     # Kernel modules required to boot on virtual machine
     # Make sure to include ethernet module to remote unlock luks
