@@ -72,6 +72,7 @@
     onlyoffice-bin
     obs-studio
     nexusmods-app-unfree
+    trayscale
   ];
   # services.flatpak.packages = [
   #   "org.telegram.desktop"

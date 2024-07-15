@@ -13,6 +13,7 @@
     nix-prefetch-git
     cava
     nautilus
+    trayscale
   ];
   # services.flatpak.packages = [
   #   "org.telegram.desktop"
