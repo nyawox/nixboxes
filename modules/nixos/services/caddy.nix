@@ -102,7 +102,7 @@ in {
           auth = true;
         };
         "linkding.nixlap.top" = mkProxy {
-          url = "http://localghost.nyaa.nixlap.top:9090";
+          url = "http://127.0.0.1:9090";
         };
         "auth.nixlap.top" = mkProxy {
           url = "http://localpost.nyaa.nixlap.top:9150";
@@ -119,7 +119,11 @@ in {
           auth = true;
         };
         "ai.nixlap.top" = mkProxy {
-          url = "http://localghost.nyaa.nixlap.top:11454";
+          url = "http://127.0.0.1:11454";
+          auth = true;
+        };
+        "hs.nixlap.top/admin" = mkProxy {
+          url = "http://127.0.0.1:9191";
           auth = true;
         };
         "hass.nixlap.top" = mkProxy {

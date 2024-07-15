@@ -43,6 +43,7 @@ in {
             tls_cert_path = "${certDir}/cert.pem";
           };
           logtail.enabled = false;
+          acl_policy_path = "/var/lib/headscale/acl_policy.json";
           server_url = "https://${domain}";
           prefixes = {
             v6 = "fd7a:115c:a1e0::/48";
@@ -67,7 +68,8 @@ in {
       caddy.virtualHosts.${domain} = {
         useACMEHost = "nixlap.top";
         extraConfig = ''
-          reverse_proxy http://[::1]:8085
+          reverse_proxy /admin* http://127.0.0.1:9191
+          reverse_proxy * http://[::1]:8085
         '';
       };
     };

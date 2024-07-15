@@ -10,6 +10,7 @@ set allowautofocus false
 " allow autofocus in certain sites
 seturl https://play.rust-lang.org/ allowautofocus true
 seturl https://monkeytype.com/ allowautofocus true
+seturl https://hs.nixlap.top/ allowautofocus true
 " init searchurls
 setnull searchurls.fr
 setnull searchurls.pp
