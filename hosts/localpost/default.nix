@@ -32,6 +32,10 @@
       redis.enable = true;
       minio.enable = true;
       ollama.enable = true;
+      adguardhome = {
+        enable = true;
+        openFirewall = true;
+      };
       firetv-launcher.enable = true;
     };
   };

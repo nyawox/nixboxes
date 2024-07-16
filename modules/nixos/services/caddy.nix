@@ -129,9 +129,13 @@ in {
         "hass.nixlap.top" = mkProxy {
           url = "http://localpost.nyaa.nixlap.top:8123";
         };
-        "farfalle-backend.nixlap.top" = mkProxy {
-          url = "http://localpost.nyaa.nixlap.top:8000";
-          internal = true;
+        "adguard1.nixlap.top" = mkProxy {
+          url = "http://localpost.nyaa.nixlap.top:3380";
+          auth = true;
+        };
+        "adguard2.nixlap.top" = mkProxy {
+          url = "http://localghost.nyaa.nixlap.top:3380";
+          auth = true;
         };
       };
     };

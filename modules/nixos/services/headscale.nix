@@ -33,8 +33,12 @@ in {
             magic_dns = true;
             base_domain = "nixlap.top";
             nameservers = [
-              "9.9.9.9"
-              "149.112.112.112"
+              # AdGuard Home
+              "100.64.0.9" # localpost
+              "100.64.0.2" # localghost
+              # Add quad9 back when adguard home is down(e.g. reinstalling headscale)
+              # "9.9.9.9"
+              # "149.112.112.112"
             ];
             # Magic DNS not working without this
             # https://github.com/juanfont/headscale/issues/660

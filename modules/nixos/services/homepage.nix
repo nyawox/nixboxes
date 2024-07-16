@@ -247,6 +247,18 @@ in {
                 icon = "https://avatars.githubusercontent.com/u/158137808?s=200&v=4";
               };
             }
+            {
+              "AdGuard Home (localpost)" = {
+                href = "https://adguard1.nixlap.top";
+                icon = "https://st.agrd.eu/favicons/adguard/apple-touch-icon.png";
+              };
+            }
+            {
+              "AdGuard Home (localghost)" = {
+                href = "https://adguard2.nixlap.top";
+                icon = "https://st.agrd.eu/favicons/adguard/apple-touch-icon.png";
+              };
+            }
           ];
         }
       ];
