@@ -17,7 +17,7 @@
       '';
     matchBlocks = {
       "phone" = {
-        hostname = "localmost.guest.nixlap.top";
+        hostname = "localmost";
         user = "root";
       };
       "ghostluks" = {
