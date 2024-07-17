@@ -8,6 +8,7 @@
 with lib; let
   cfg = config.modules.services.tailscale;
   loginserver = "https://hs.nixlap.top";
+  taildrop-dir = "/home/${username}/Downloads";
 in {
   options = {
     modules.services.tailscale = {
@@ -21,6 +22,16 @@ in {
     services.tailscale = {
       enable = true;
       permitCertUid = username;
+      extraSetFlags = [
+        "--operator=${username}"
+      ];
+    };
+    systemd.user.services.taildrop = {
+      enable = true;
+      description = "Automatically save TailDrop files, just like AirDrop";
+      after = ["network.target"];
+      wantedBy = ["default.target"];
+      script = "${getExe pkgs.tailscale} file get --conflict rename --loop --verbose ${taildrop-dir}";
     };
     networking.firewall = {
       checkReversePath = "loose";
