@@ -114,12 +114,8 @@ in {
         "ntfy.nixlap.top" = mkProxy {
           url = "http://localpost.nyaa.nixlap.top:2521";
         };
-        "aisearch.nixlap.top" = mkProxy {
-          url = "http://localpost.nyaa.nixlap.top:3150";
-          auth = true;
-        };
         "ai.nixlap.top" = mkProxy {
-          url = "http://127.0.0.1:11454";
+          url = "http://localghost.nyaa.nixlap.top:11454";
           auth = true;
         };
         "hs.nixlap.top/admin" = mkProxy {
