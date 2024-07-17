@@ -7,7 +7,7 @@
 }:
 with lib; let
   cfg = config.modules.services.home-assistant;
-  proxyIP = "100.64.0.2";
+  proxyIP = "100.64.0.1";
   catppuccin = inputs.catpuccin-home-assistant.outPath + "/themes";
 in {
   options = {
