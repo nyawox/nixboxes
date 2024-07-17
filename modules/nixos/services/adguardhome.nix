@@ -45,6 +45,7 @@ in {
         tls.enabled = true;
         user_rules = [
           "@@||*nixlap.top^"
+          "@@||*tailscale.com"
         ];
         filters =
           imap (index: elem: {
