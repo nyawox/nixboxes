@@ -22,7 +22,7 @@ in {
     services.open-webui = {
       enable = true;
       host = "0.0.0.0";
-      port = cfg.port;
+      inherit (cfg) port;
       environment = {
         ENV = "prod";
         OLLAMA_BASE_URL = "http://localpost.nyaa.nixlap.top:11451";
