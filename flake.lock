@@ -1816,16 +1816,15 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1714398374,
-        "narHash": "sha256-Lvqi5hyykOrd+gBa9HqbzccAjvrSE+owSY3KBb3y75Q=",
+        "lastModified": 1721201761,
+        "narHash": "sha256-qdJ6lkMNnoTK9280GFvjiM4tD/Rz3ihACwyiJGeSz3o=",
         "owner": "helix-editor",
         "repo": "helix",
-        "rev": "e298b3c9c3283da2f1dfe4c8a2b73a2d7a6eca3e",
+        "rev": "bd5e8931499dc6d4294d825697b9996946045502",
         "type": "github"
       },
       "original": {
         "owner": "helix-editor",
-        "ref": "pickers-v2",
         "repo": "helix",
         "type": "github"
       }

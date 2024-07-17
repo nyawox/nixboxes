@@ -28,7 +28,7 @@
       inputs.emacs-overlay.follows = "emacs-overlay";
     };
     helix = {
-      url = "github:helix-editor/helix/pickers-v2";
+      url = "github:helix-editor/helix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
