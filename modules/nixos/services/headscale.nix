@@ -21,6 +21,12 @@ in {
   };
   config = mkIf cfg.enable {
     nixpkgs.overlays = [inputs.headscale.overlay];
+    sops.secrets.headscale_acls = {
+      sopsFile = ../../../secrets/headscale_acls.yaml;
+      owner = "headscale";
+      group = "headscale";
+      format = "yaml";
+    };
     services = {
       headscale = {
         enable = true;
@@ -47,7 +53,7 @@ in {
             tls_cert_path = "${certDir}/cert.pem";
           };
           logtail.enabled = false;
-          acl_policy_path = "/var/lib/headscale/acl_policy.json";
+          acl_policy_path = config.sops.secrets.headscale_acls.path;
           server_url = "https://${domain}";
           prefixes = {
             v6 = "fd7a:115c:a1e0::/48";
