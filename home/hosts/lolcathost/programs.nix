@@ -11,6 +11,7 @@
     pciutils
     steam-run
     steam
+    vesktop
     dmidecode
     lutris
     heroic
