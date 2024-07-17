@@ -145,7 +145,7 @@ in {
         };
         outgoing = {
           # request_timeout = 5.0;       # default timeout in seconds, can be override by engine
-          max_request_timeout = 1.2; # the maximum timeout in seconds
+          max_request_timeout = 2.0; # the maximum timeout in seconds
           pool_connections = 100; # Maximum number of allowable connections, or null
           pool_maxsize = 10; # Number of allowable keep-alive connections, or null
           enable_http2 = true; # See https://www.python-httpx.org/http2/
