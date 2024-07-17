@@ -57,7 +57,7 @@ in {
         role = "client";
         settings = {
           common = {
-            server_addr = "vultr.nixlap.top";
+            server_addr = "localghost.nyaa.nixlap.top";
             server_port = 7034;
           };
           proxies = {
