@@ -60,6 +60,10 @@ in {
         search = {
           safe_search = 0;
           autocomplete = "google";
+          formats = [
+            "html"
+            "json"
+          ];
         };
         engines = lib.mapAttrsToList (name: value: {inherit name;} // value) {
           "duckduckgo".disabled = true;
