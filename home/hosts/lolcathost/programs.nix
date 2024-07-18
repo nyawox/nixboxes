@@ -74,6 +74,7 @@
     obs-studio
     nexusmods-app-unfree
     trayscale
+    inputs.nixtendo-switch.packages.${pkgs.system}.uscreen
   ];
   # services.flatpak.packages = [
   #   "org.telegram.desktop"
