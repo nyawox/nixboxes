@@ -52,7 +52,7 @@ in {
         paths = ["/var/backup/postgresql"];
         passwordFile = config.sops.secrets.restic-postgresql-pw.path;
         environmentFile = config.sops.secrets.restic-postgresql-env.path;
-        repository = "b2:postgresql-nyan";
+        repository = "b2:postgresql-nyaa";
         timerConfig = {
           # backup every 1d
           OnUnitActiveSec = "1d";

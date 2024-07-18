@@ -42,7 +42,7 @@ in {
         paths = ["/var/lib/bitwarden_rs"];
         passwordFile = config.sops.secrets.restic-vaultwarden-pw.path;
         environmentFile = config.sops.secrets.restic-vaultwarden-env.path;
-        repository = "b2:vaultwarden-nyan";
+        repository = "b2:vaultwarden-nyaa";
         timerConfig = {
           # backup every 1d
           OnUnitActiveSec = "1d";
