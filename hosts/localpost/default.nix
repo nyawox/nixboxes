@@ -32,6 +32,7 @@
       redis.enable = true;
       minio.enable = true;
       ollama.enable = true;
+      calibre.enable = true;
       adguardhome = {
         enable = true;
         openFirewall = true;
