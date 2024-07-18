@@ -47,6 +47,7 @@ in {
           "@@||*nixlap.top^"
           "@@||*tailscale.com"
           "@@||*instagram.com"
+          "@@||*z-lib*"
         ];
         filters =
           imap (index: elem: {
