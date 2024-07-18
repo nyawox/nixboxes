@@ -21,7 +21,7 @@ in {
       settings = {
         main = {
           terminal = "${getExe pkgs.foot}";
-          font = mkForce "Poppins:size=20";
+          font = mkForce "Poppins:size=16";
           layer = "overlay";
         };
         colors = {
