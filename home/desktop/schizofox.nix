@@ -143,29 +143,6 @@ in {
 
         "layout.css.backdrop-filter.enabled" = true;
         "layers.acceleration.force-enabled" = true;
-        #Disable resistFingerprinting and override with much more customizable fingerprintingProtection
-        "privacy.resistFingerprinting" = false;
-        "privacy.resistFingerprinting.pbmode" = false;
-        "privacy.fingerprintingProtection" = true;
-        "privacy.fingerprintingProtection.pbmode" = true;
-        "privacy.fingerprintingProtection.overrides" = "+AllTargets,-CSSPrefersColorScheme"; # Add ,-JSDateTimeUTC to prevent forcing the time zone to UTC
-        "network.http.referer.XOriginPolicy" = 0;
-        "privacy.fingerprintingProtection.granularOverrides" = [
-          {
-            "id" = 1;
-            "last_modified" = 1713820945000;
-            "overrides" = "-AllTargets";
-            "firstPartyDomain" = "*.twitch.tv";
-            "thirdPartyDomain" = "*.twitch.tv";
-          }
-          {
-            "id" = 1;
-            "last_modified" = 1713820945000;
-            "overrides" = "-AllTargets";
-            "firstPartyDomain" = "*.netflix.com";
-            "thirdPartyDomain" = "*.netflix.com";
-          }
-        ];
         "layout.css.font-visibility.private" = 1;
         "layout.css.font-visibility.standard" = 1;
         "layout.css.font-visibility.trackingprotection" = 1;
