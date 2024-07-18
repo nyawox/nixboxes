@@ -30,6 +30,7 @@ in {
         font-awesome
         poppins
         noto-fonts-cjk
+        fast-font
         (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
       ];
       fontconfig.defaultFonts = {

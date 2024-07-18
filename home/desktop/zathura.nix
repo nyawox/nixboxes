@@ -23,6 +23,7 @@ in {
         set selection-clipboard clipboard
         set default-bg rgba(30,30,46,0.98)
         set recolor-lightcolor rgba(0,0,0,0)
+        set font "Fast_Serif 16"
       '';
     };
 
