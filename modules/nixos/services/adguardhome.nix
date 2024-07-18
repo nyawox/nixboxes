@@ -46,6 +46,7 @@ in {
         user_rules = [
           "@@||*nixlap.top^"
           "@@||*tailscale.com"
+          "@@||*instagram.com"
         ];
         filters =
           imap (index: elem: {
