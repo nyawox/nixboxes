@@ -68,6 +68,10 @@ in {
                 "netdata.nixlap.top"
                 "search.nixlap.top"
                 "aisearch.nixlap.top"
+                "minio.nixlap.top"
+                "adguard1.nixlap.top"
+                "adguard2.nixlap.top"
+                "hs.nixlap.top/admin"
               ];
               policy = "two_factor";
               subject = "group:admins";
@@ -75,6 +79,7 @@ in {
             {
               domain = [
                 "ai.nixlap.top"
+                "calibre.nixlap.top"
               ];
               policy = "two_factor";
               subject = "group:users";
