@@ -135,7 +135,6 @@ in {
         };
         "calibre.nixlap.top" = mkProxy {
           url = "http://localpost.nyaa.nixlap.top:8095";
-          auth = true;
         };
       };
     };

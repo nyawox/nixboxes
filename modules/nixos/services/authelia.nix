@@ -79,7 +79,6 @@ in {
             {
               domain = [
                 "ai.nixlap.top"
-                "calibre.nixlap.top"
               ];
               policy = "two_factor";
               subject = "group:users";
