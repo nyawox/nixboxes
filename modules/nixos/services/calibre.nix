@@ -47,6 +47,7 @@ in {
           enableBookConversion = true;
           enableBookUploading = true;
           calibreLibrary = cfg.library;
+          reverseProxyAuth.enable = true;
         };
         inherit user group;
       };
