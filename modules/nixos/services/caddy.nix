@@ -33,6 +33,16 @@ with lib; let
       	copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
       }
     '';
+  basic-auth-config =
+    /*
+    conf
+    */
+    ''
+      forward_auth localpost.nyaa.nixlap.top:9150 {
+      	uri /api/verify?auth=basic
+      	copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
+      }
+    '';
   block-external-ips =
     /*
     conf
@@ -44,6 +54,7 @@ with lib; let
   mkProxy = {
     url,
     auth ? false,
+    basicAuth ? false,
     internal ? false,
   }: {
     useACMEHost = "nixlap.top";
@@ -53,6 +64,11 @@ with lib; let
       (
         if auth
         then auth-config
+        else ""
+      )
+      (
+        if basicAuth
+        then basic-auth-config
         else ""
       )
       (
