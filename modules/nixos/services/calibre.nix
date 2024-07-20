@@ -34,7 +34,7 @@ in {
     services = {
       calibre-server = {
         enable = true;
-        port = cfg.port;
+        inherit (cfg) port;
         libraries = [cfg.library];
         inherit user group;
       };
