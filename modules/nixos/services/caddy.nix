@@ -149,7 +149,7 @@ in {
           url = "http://localghost.nyaa.nixlap.top:3380";
           auth = true;
         };
-        "calibre.nixlap.top" = mkProxy {
+        "books.nixlap.top" = mkProxy {
           url = "http://localpost.nyaa.nixlap.top:8095";
         };
       };

@@ -1,3 +1,4 @@
+# Do not enable anonymous browsing
 {
   config,
   lib,

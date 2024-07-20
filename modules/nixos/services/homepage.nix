@@ -241,7 +241,7 @@ in {
           Media = [
             {
               "Calibre Web" = {
-                href = "https://calibre.nixlap.top";
+                href = "https://books.nixlap.top";
                 icon = "https://hosting.photobucket.com/albums/c155/davidosus/apple-touch-icon.png";
               };
             }
