@@ -110,6 +110,8 @@ in {
       };
 
       settings = {
+        # Disable Privacy-Preserving Attribution
+        "dom.private-attribution.submission.enabled" = false;
         # smoothfox stuff
         "nglayout.initialpaint.delay" = 0;
         "nglayout.initialpaint.delay_in_oopif" = 0;
