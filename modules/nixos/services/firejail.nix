@@ -24,6 +24,11 @@ in {
           profile = "${pkgs.firejail}/etc/firejail/tor-browser.profile";
           desktop = "${pkgs.tor-browser}/share/applications/torbrowser.desktop";
         };
+        signal-desktop = {
+          executable = "${getExe pkgs.signal-desktop}";
+          profile = "${pkgs.firejail}/etc/firejail/signal-desktop.profile";
+          desktop = "${pkgs.signal-desktop}/share/applications/signal-desktop.desktop";
+        };
       };
     };
     environment = {

@@ -71,5 +71,6 @@
 
   environment.persistence."/persist".users."${username}".directories = lib.mkIf config.modules.sysconf.impermanence.enable [
     ".config/vivaldi"
+    ".config/Signal"
   ];
 }
