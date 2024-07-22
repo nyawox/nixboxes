@@ -36,6 +36,10 @@ in {
 
           def lsd [] { ls | sort-by type name -i | grid -c }
 
+          def psn [name] {
+            ps | where name =~ $name
+          }
+
           ${mkCompletions [
             "git"
             "adb"
