@@ -33,7 +33,7 @@ in {
         image = "dockurr/windows:3.06";
         environment = {
           # iPhone
-          # ARGUMENTS = "-device usb-host,vendorid=0x05ac,productid=0x12a8";
+          ARGUMENTS = "-device usb-host,vendorid=0x05ac,productid=0x12a8";
           # ARGUMENTS = "-device usb-host,hostbus=1,hostport=4";
           VERSION = "win11";
           RAM_SIZE = "8G";
@@ -55,6 +55,9 @@ in {
         capabilities = {
           NET_ADMIN = true;
           NET_RAW = true;
+        };
+        sysctls = {
+          "net.ipv4.ip_forward" = 1;
         };
         volumes = [
           "/var/lib/windows:/storage"
