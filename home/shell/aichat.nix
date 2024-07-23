@@ -28,7 +28,7 @@ in {
           api_base: http://localpost.nyaa.nixlap.top:11451
           api_auth: null
           models:
-          - name: gemma2:9b-instruct-q5_K_M
+          - name: llama3.1:8b-instruct-q8_0
             max_input_tokens: 8192
           - name: deepseek-coder-v2:16b-lite-base-q4_K_M
             max_input_tokens: 8192

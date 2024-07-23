@@ -6,9 +6,8 @@
 with lib; let
   cfg = config.modules.services.morphic;
   ollama-url = "http://localpost.nyaa.nixlap.top:11451";
-  # only >v0.3 mistral supports tool usage
-  ollama-model = "mistral:7b-instruct-v0.3-q5_K_M";
-  ollama-sub-model = "gemma2:9b-instruct-q5_K_M";
+  ollama-model = "llama3.1:8b-instruct-q8_0";
+  ollama-sub-model = "llama3.1:8b-instruct-q8_0";
 in {
   options = {
     modules.services.morphic = {

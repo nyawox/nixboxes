@@ -47,7 +47,7 @@ in {
           ENABLE_LOCAL_MODELS = "True";
           OLLAMA_HOST = ollama-url;
           OLLAMA_API_BASE = ollama-url;
-          CUSTOM_MODEL = "ollama_chat/gemma2:9b-instruct-q5_K_M";
+          CUSTOM_MODEL = "ollama_chat/llama3.1:8b-instruct-q8_0";
           POSTGRES_HOST = "localpost.nyaa.nixlap.top";
         };
         env_file = [
