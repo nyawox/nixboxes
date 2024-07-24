@@ -15,7 +15,7 @@ inputs.flake-parts.lib.mkFlake {inherit inputs;} {
 
   flake = let
     inherit (self) outputs;
-    # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
+    # https://wiki.nixos.org/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "23.11";
     myLib = import ../lib {
       inherit
