@@ -24,7 +24,7 @@ in {
       package = pkgs.firefox-unwrapped;
 
       search = {
-        defaultSearchEngine = "sx";
+        defaultSearchEngine = "LibRedirect";
         removeEngines = [
           "Brave"
           "Bing"
@@ -34,7 +34,6 @@ in {
           "Wikipedia (en)"
           "Google"
           "DuckDuckGo"
-          "LibRedirect"
         ];
         addEngines = [
           {
