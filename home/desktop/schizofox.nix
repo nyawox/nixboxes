@@ -23,35 +23,36 @@ in {
       enable = true;
       package = pkgs.firefox-unwrapped;
 
-      search = {
-        defaultSearchEngine = "LibRedirect";
-        removeEngines = [
-          "Brave"
-          "Bing"
-          "Amazon.com"
-          "eBay"
-          "Twitter"
-          "Wikipedia (en)"
-          "Google"
-          "DuckDuckGo"
-        ];
-        addEngines = [
-          {
-            Name = "sx";
-            Description = "selfhosted searxng";
-            Alias = "sx";
-            Method = "GET";
-            URLTemplate = "https://search.nixlap.top/search?q={searchTerms}";
-          }
-          {
-            Name = "pp";
-            Description = "Perplexity";
-            Alias = "pp";
-            Method = "GET";
-            URLTemplate = "https://www.perplexity.ai/search?q={searchTerms}";
-          }
-        ];
-      };
+      # Search engine policies requires ESR
+      # search = {
+      #   defaultSearchEngine = "LibRedirect";
+      #   removeEngines = [
+      #     "Brave"
+      #     "Bing"
+      #     "Amazon.com"
+      #     "eBay"
+      #     "Twitter"
+      #     "Wikipedia (en)"
+      #     "Google"
+      #     "DuckDuckGo"
+      #   ];
+      #   addEngines = [
+      #     {
+      #       Name = "sx";
+      #       Description = "selfhosted searxng";
+      #       Alias = "sx";
+      #       Method = "GET";
+      #       URLTemplate = "https://search.nixlap.top/search?q={searchTerms}";
+      #     }
+      #     {
+      #       Name = "pp";
+      #       Description = "Perplexity";
+      #       Alias = "pp";
+      #       Method = "GET";
+      #       URLTemplate = "https://www.perplexity.ai/search?q={searchTerms}";
+      #     }
+      #   ];
+      # };
 
       security = {
         sanitizeOnShutdown = false;
