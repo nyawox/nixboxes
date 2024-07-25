@@ -117,9 +117,6 @@ in {
           url = "http://localpost.nyaa.nixlap.top:9315";
           auth = true;
         };
-        "linkding.nixlap.top" = mkProxy {
-          url = "http://127.0.0.1:9090";
-        };
         "auth.nixlap.top" = mkProxy {
           url = "http://localpost.nyaa.nixlap.top:9150";
         };

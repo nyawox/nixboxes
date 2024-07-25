@@ -7,7 +7,6 @@ _: {
     services = {
       tailscale.enable = true;
       homepage.enable = true;
-      linkding.enable = true;
       acme.enable = true;
       caddy.enable = true;
       headscale.enable = true;
