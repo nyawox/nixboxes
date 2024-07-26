@@ -104,6 +104,7 @@ in {
           "userchrome-toggle-extended@n2ezr.ru".install_url = "${exturl}/userchrome-toggle-extended/latest.xpi";
           "tridactyl.vim@cmcaine.co.uk".install_url = "${exturl}/tridactyl-vim/latest.xpi";
           "shinigamieyes@shinigamieyes".install_url = "${exturl}/shinigami-eyes/latest.xpi";
+          "{f49ffbc5-1437-4a40-827d-3f0caf7b5254}".install_url = "${exturl}/chameleon-ext/latest.xpi";
         };
       };
 
