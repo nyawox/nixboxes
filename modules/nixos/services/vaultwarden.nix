@@ -1,8 +1,6 @@
 {
   config,
   lib,
-  inputs,
-  pkgs,
   ...
 }:
 with lib; let
@@ -24,7 +22,6 @@ in {
     services = {
       vaultwarden = mkIf cfg.enable {
         enable = true;
-        webVaultPackage = inputs.vaultwarden-notbroken.legacyPackages.${pkgs.system}.vaultwarden.webvault;
         dbBackend = "postgresql";
         config = {
           rocketAddress = "0.0.0.0";
