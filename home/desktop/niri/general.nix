@@ -89,7 +89,7 @@ in {
       };
       input = {
         keyboard.xkb.layout = "us";
-        focus-follows-mouse = false;
+        focus-follows-mouse.enable = false;
         warp-mouse-to-focus = true;
         mouse.accel-speed = 0.0;
         touchpad = {
@@ -135,6 +135,7 @@ in {
         workspace-switch = butter;
         window-open = smooth;
         window-close = smooth;
+        screenshot-ui-open = smooth;
       };
       window-rules = [
         {

@@ -44,10 +44,7 @@ in {
       settings = {
         theme = "auto";
 
-        server = {
-          host = "0.0.0.0";
-          port = 9150;
-        };
+        server.address = "0.0.0.0:9150";
 
         log = {
           level = "debug";
