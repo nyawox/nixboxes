@@ -62,6 +62,12 @@ in {
         dbus-user.talk org.freedesktop.portal.Fcitx
         ignore dbus-user none
       '';
+      etc."firejail/signal-desktop.local".text = ''
+        # fix fcitx5
+        dbus-user filter
+        dbus-user.talk org.freedesktop.portal.Fcitx
+        ignore dbus-user none
+      '';
     };
   };
 }
