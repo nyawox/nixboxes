@@ -155,8 +155,6 @@ in {
           ];
           min-width = 400;
         }
-        # TODO figure out a way to match specific program with wlroots app-id(cage)
-        # The window title changes few seconds after launching the program
         {
           matches = [
             {app-id = "firefox";}
