@@ -46,7 +46,6 @@ in {
           aiohttp-isal
           pyqrcode # 2fa depends
           ibeacon-ble # silence error
-          pyicloud
           adb-shell
           speedtest-cli
         ];
@@ -101,17 +100,6 @@ in {
         mushroom
         card-mod
         button-card
-        # (
-        #   pkgs.stdenv.mkDerivation rec {
-        #     pname = "kiosk-mode";
-        #     version = "git";
-        #     src = inputs.hass-kiosk-mode;
-        #     installPhase = ''
-        #       mkdir -p $out
-        #       cp ${pname}.js $out/${pname}.js
-        #     '';
-        #   }
-        # )
         (
           pkgs.mkYarnPackage {
             pname = "kiosk-mode";
@@ -175,6 +163,78 @@ in {
             icon = "mdi:toggle-switch";
           };
         };
+        ios.actions = [
+          {
+            name = "Lock Front Door";
+            label.text = "Lock front door";
+            icon = {
+              icon = "door_closed_lock";
+              color = "#ffffff";
+            };
+            show_in_carplay = false;
+            show_in_watch = true;
+          }
+          {
+            name = "Unlock Front Door";
+            label.text = "Unlock front door";
+            icon = {
+              icon = "door_open";
+              color = "#ffffff";
+            };
+            show_in_carplay = false;
+            show_in_watch = true;
+          }
+          {
+            name = "Meow: Nightlight";
+            label.text = "Night";
+            icon = {
+              icon = "weather_night";
+              color = "#ffffff";
+            };
+            show_in_carplay = false;
+            show_in_watch = true;
+          }
+          {
+            name = "Meow: Daylight";
+            label.text = "Day";
+            icon = {
+              icon = "lightbulb_on";
+              color = "#ffffff";
+            };
+            show_in_carplay = false;
+            show_in_watch = true;
+          }
+          {
+            name = "Meow: Turn Off Light";
+            label.text = "Off";
+            icon = {
+              icon = "lightbulb_off";
+              color = "#ffffff";
+            };
+            show_in_carplay = false;
+            show_in_watch = true;
+          }
+          {
+            name = "Meow: 60 sec timer";
+            label.text = "Turn off after 60 sec";
+            icon = {
+              icon = "timer_settings";
+              color = "#ffffff";
+            };
+            show_in_carplay = false;
+            show_in_watch = true;
+          }
+          {
+            name = "Meow AC: Instant Cooling";
+            label.text = "Instant Cooling";
+            icon = {
+              icon = "snowflake";
+              color = "#ffffff";
+            };
+            show_in_carplay = false;
+            show_in_watch = true;
+          }
+        ];
         "automation manual" = [
           {
             alias = "Automatically send signal when light select state changes";
@@ -193,6 +253,288 @@ in {
                 data = {};
                 target = {
                   entity_id = "button.send_signal_light";
+                };
+              }
+            ];
+          }
+          {
+            alias = "Lock Front Door";
+            trigger = {
+              platform = "event";
+              event_type = "ios.action_fired";
+              event_data = {
+                actionName = "Lock Front Door";
+              };
+            };
+            action = [
+              {
+                device_id = "d1bc02d79eb3af192fdb98799e160ddb";
+                domain = "lock";
+                entity_id = "c537fbbb20ffca87a458354ff063b961";
+                type = "lock";
+              }
+              {
+                device_id = "37b4107bf9588392012d15546937342d";
+                domain = "mobile_app";
+                type = "notify";
+                message = "Front door has been locked";
+              }
+            ];
+          }
+          {
+            alias = "Unlock Front Door";
+            trigger = {
+              platform = "event";
+              event_type = "ios.action_fired";
+              event_data = {
+                actionName = "Unlock Front Door";
+              };
+            };
+            action = [
+              {
+                device_id = "d1bc02d79eb3af192fdb98799e160ddb";
+                domain = "lock";
+                entity_id = "c537fbbb20ffca87a458354ff063b961";
+                type = "unlock";
+              }
+              {
+                device_id = "37b4107bf9588392012d15546937342d";
+                domain = "mobile_app";
+                type = "notify";
+                message = "Front door has been unlocked";
+                data = {
+                  sound = "US-EN-Alexa-Front-Door-Unlocked.wav";
+                };
+              }
+            ];
+          }
+          {
+            alias = "Nightlight";
+            trigger = [
+              {
+                event_type = "ios.action_fired";
+                event_data = {
+                  actionName = "Meow: Nightlight";
+                };
+                platform = "event";
+              }
+            ];
+            action = [
+              {
+                service = "select.select_option";
+                metadata = {};
+                data = {
+                  option = "1. On";
+                };
+                target = {
+                  entity_id = "select.signals_light";
+                };
+                enabled = true;
+              }
+              {
+                service = "button.press";
+                metadata = {};
+                data = {};
+                target = {
+                  entity_id = "button.send_signal_light";
+                };
+                enabled = true;
+              }
+              {
+                service = "select.select_option";
+                metadata = {};
+                data = {
+                  option = "8. Night";
+                };
+                target = {
+                  entity_id = "select.signals_light";
+                };
+              }
+              {
+                service = "button.press";
+                metadata = {};
+                data = {};
+                target = {
+                  entity_id = "button.send_signal_light";
+                };
+              }
+            ];
+          }
+          {
+            alias = "Daylight";
+            trigger = [
+              {
+                event_data = {
+                  actionName = "Meow: Daylight";
+                };
+                event_type = "ios.action_fired";
+                platform = "event";
+              }
+            ];
+            action = [
+              {
+                service = "select.select_option";
+                metadata = {};
+                data = {
+                  option = "1. On";
+                };
+                target = {
+                  entity_id = "select.signals_light";
+                };
+                enabled = true;
+              }
+              {
+                service = "button.press";
+                metadata = {};
+                data = {};
+                target = {
+                  entity_id = "button.send_signal_light";
+                };
+                enabled = true;
+              }
+              {
+                service = "select.select_option";
+                metadata = {};
+                data = {
+                  option = "6. Daylight";
+                };
+                target = {
+                  entity_id = "select.signals_light";
+                };
+              }
+              {
+                service = "button.press";
+                metadata = {};
+                data = {};
+                target = {
+                  entity_id = "button.send_signal_light";
+                };
+              }
+              {
+                service = "select.select_option";
+                metadata = {};
+                data = {
+                  option = "5. Max";
+                };
+                target = {
+                  entity_id = "select.signals_light";
+                };
+              }
+              {
+                service = "button.press";
+                metadata = {};
+                data = {};
+                target = {
+                  entity_id = "button.send_signal_light";
+                };
+              }
+            ];
+          }
+          {
+            alias = "Turn off light";
+            trigger = [
+              {
+                event_data = {
+                  actionName = "Meow: Turn Off Light";
+                };
+                event_type = "ios.action_fired";
+                platform = "event";
+              }
+            ];
+            action = [
+              {
+                service = "select.select_option";
+                metadata = {};
+                data = {
+                  option = "2. Off";
+                };
+                target = {
+                  entity_id = "select.signals_light";
+                };
+              }
+            ];
+          }
+          {
+            alias = "Turn off light after 60 seconds";
+            trigger = [
+              {
+                event_type = "ios.action_fired";
+                event_data = {
+                  actionName = "Meow: 60 sec timer";
+                };
+                platform = "event";
+              }
+            ];
+            action = [
+              {
+                service = "select.select_option";
+                metadata = {};
+                data = {
+                  option = "10. 60Min Auto-Off";
+                };
+                target = {
+                  entity_id = "select.signals_light";
+                };
+              }
+              {
+                service = "button.press";
+                metadata = {};
+                data = {};
+                target = {
+                  entity_id = "button.send_signal_light";
+                };
+              }
+            ];
+          }
+          {
+            alias = "Meow AC: Instant Cool";
+            trigger = [
+              {
+                event_data = {
+                  actionName = "Meow AC: Instant Cooling";
+                };
+                event_type = "ios.action_fired";
+                platform = "event";
+              }
+            ];
+            action = [
+              {
+                service = "climate.turn_on";
+                metadata = {};
+                data = {};
+                target = {
+                  entity_id = "climate.ac_remo_mini";
+                };
+              }
+              {
+                service = "climate.set_temperature";
+                metadata = {};
+                data = {
+                  temperature = 16;
+                  hvac_mode = "cool";
+                };
+                target = {
+                  entity_id = "climate.ac_remo_mini";
+                };
+              }
+              {
+                service = "climate.set_swing_mode";
+                metadata = {};
+                data = {
+                  swing_mode = "⥮5";
+                };
+                target = {
+                  entity_id = "climate.ac_remo_mini";
+                };
+              }
+              {
+                service = "climate.set_fan_mode";
+                metadata = {};
+                data = {
+                  fan_mode = "4";
+                };
+                target = {
+                  entity_id = "climate.ac_remo_mini";
                 };
               }
             ];
