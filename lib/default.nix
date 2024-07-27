@@ -14,6 +14,6 @@
       ;
   };
 in {
-  inherit (gen) mkLinux;
+  inherit (gen) mkNixos;
   inherit (gen) mkISO;
 }

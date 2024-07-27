@@ -5,7 +5,7 @@
   ...
 }: {
   # Function for generating host configs
-  mkLinux = {
+  mkNixos = {
     hostname,
     username ? "nyaa",
     desktop ? true,
