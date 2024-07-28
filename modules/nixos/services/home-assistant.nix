@@ -25,7 +25,7 @@ with lib; let
       color = "#ffffff";
     };
     inherit show_in_carplay show_in_watch;
-    data = optionalAttrs (sound != null) {sound = sound;};
+    data = optionalAttrs (sound != null) {inherit sound;};
   };
 
   mkIosAutomation = {
