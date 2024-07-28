@@ -42,6 +42,7 @@
         alejandra
         deadnix
         statix
+        github-cli
       ];
       #TODO Make a better interface, preferably TUI to manage systems
       commands = [
