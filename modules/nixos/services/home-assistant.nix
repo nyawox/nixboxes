@@ -16,7 +16,6 @@ with lib; let
     icon,
     show_in_carplay ? false,
     show_in_watch ? true,
-    sound ? null,
   }: {
     inherit name;
     label = {text = label;};
@@ -25,7 +24,6 @@ with lib; let
       color = "#ffffff";
     };
     inherit show_in_carplay show_in_watch;
-    data = optionalAttrs (sound != null) {inherit sound;};
   };
 
   mkIosAutomation = {
@@ -203,7 +201,6 @@ in {
             name = "Unlock Front Door";
             label = "Unlock front door";
             icon = "door_open";
-            sound = "US-EN-Alexa-Front-Door-Unlocked.wav";
           })
           (mkIosAction {
             name = "Meow: Nightlight";
@@ -278,6 +275,7 @@ in {
                 domain = "mobile_app";
                 type = "notify";
                 message = "Front door has been unlocked";
+                data.sound = "US-EN-Alexa-Front-Door-Unlocked.wav";
               }
             ];
           })
