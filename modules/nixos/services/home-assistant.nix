@@ -193,37 +193,37 @@ in {
         };
         ios.actions = [
           (mkIosAction {
-            name = "Lock Front Door";
+            name = "lock-front-door";
             label = "Lock front door";
             icon = "door_closed_lock";
           })
           (mkIosAction {
-            name = "Unlock Front Door";
+            name = "unlock-front-door";
             label = "Unlock front door";
             icon = "door_open";
           })
           (mkIosAction {
-            name = "Meow: Nightlight";
+            name = "meow-nightlight";
             label = "Night";
             icon = "weather_night";
           })
           (mkIosAction {
-            name = "Meow: Daylight";
+            name = "meow-daylight";
             label = "Day";
             icon = "lightbulb_on";
           })
           (mkIosAction {
-            name = "Meow: Turn Off Light";
+            name = "meow-turn-off-light";
             label = "Off";
             icon = "lightbulb_off";
           })
           (mkIosAction {
-            name = "Meow: 60 sec timer";
+            name = "meow-60-sec-timer";
             label = "Turn off after 60 sec";
             icon = "timer_settings";
           })
           (mkIosAction {
-            name = "Meow AC: Instant Cooling";
+            name = "meow-ac-instant-cooling";
             label = "Instant Cooling";
             icon = "snowflake";
           })
@@ -245,7 +245,7 @@ in {
             ];
           }
           (mkIosAutomation {
-            name = "Lock Front Door";
+            name = "lock-front-door";
             action = [
               {
                 device_id = "d1bc02d79eb3af192fdb98799e160ddb";
@@ -262,7 +262,7 @@ in {
             ];
           })
           (mkIosAutomation {
-            name = "Unlock Front Door";
+            name = "unlock-front-door";
             action = [
               {
                 device_id = "d1bc02d79eb3af192fdb98799e160ddb";
@@ -280,7 +280,7 @@ in {
             ];
           })
           (mkIosAutomation {
-            name = "Meow: Nightlight";
+            name = "meow-nightlight";
             action = [
               {
                 service = "select.select_option";
@@ -303,7 +303,7 @@ in {
             ];
           })
           (mkIosAutomation {
-            name = "Meow: Daylight";
+            name = "meow-daylight";
             action = [
               {
                 service = "select.select_option";
@@ -335,12 +335,39 @@ in {
             ];
           })
           (mkIosAutomation {
-            name = "Meow: Turn Off Light";
+            name = "meow-turn-off-light";
             action = [
               {
                 service = "select.select_option";
                 data = {option = "2. Off";};
                 target = {entity_id = "select.signals_light";};
+              }
+            ];
+          })
+          (mkIosAutomation {
+            name = "meow-ac-instant-cooling";
+            action = [
+              {
+                service = "climate.turn_on";
+                target = {entity_id = "climate.ac_remo_mini";};
+              }
+              {
+                service = "climate.set_temperature";
+                data = {
+                  temperature = 16;
+                  hvac_mode = "cool";
+                };
+                target = {entity_id = "climate.ac_remo_mini";};
+              }
+              {
+                service = "climate.set_swing_mode";
+                data = {swing_mode = "⥮5";};
+                target = {entity_id = "climate.ac_remo_mini";};
+              }
+              {
+                service = "climate.set_fan_mode";
+                data = {fan_mode = "4";};
+                target = {entity_id = "climate.ac_remo_mini";};
               }
             ];
           })
