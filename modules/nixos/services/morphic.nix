@@ -6,8 +6,8 @@
 with lib; let
   cfg = config.modules.services.morphic;
   ollama-url = "http://localpost.nyaa.nixlap.top:11451";
-  ollama-model = "llama3.1:8b-instruct-q8_0";
-  ollama-sub-model = "llama3.1:8b-instruct-q8_0";
+  ollama-model = "mistral-nemo:12b-instruct-2407-q4_K_M";
+  ollama-sub-model = "mistral-nemo:12b-instruct-2407-q4_K_M";
 in {
   options = {
     modules.services.morphic = {
