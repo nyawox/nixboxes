@@ -1941,11 +1941,11 @@
     "kanata": {
       "flake": false,
       "locked": {
-        "lastModified": 1721960805,
-        "narHash": "sha256-xwH66JIql4/ksrtvPffNCs0oLx4hv4Q43wH1ZXFVZSA=",
+        "lastModified": 1722322152,
+        "narHash": "sha256-9ClLhp5tropLxTrCEo+hMVR+T1NUkV4StkJxMTUe6P0=",
         "owner": "jtroo",
         "repo": "kanata",
-        "rev": "620d82fa04255b34750e9b6b1459381bcec0dd1d",
+        "rev": "4a8268fe4f484b3036c2f2e1d388da8151d33659",
         "type": "github"
       },
       "original": {
@@ -2903,11 +2903,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1721666019,
-        "narHash": "sha256-3/drKzs+kKObWg2rxsjg6pcLLIDuJonEhtwSV9r6B9g=",
+        "lastModified": 1722328889,
+        "narHash": "sha256-EhHLgvTvFrnHqHxYY61p4NJWZNJA6VAYQbLrQAuO5Fw=",
         "owner": "nyawox",
         "repo": "psilocybin",
-        "rev": "262d41c58e1efb35b28afd5b19f65bf8f364dd85",
+        "rev": "d12e2cd90de1d0596711d8806759d2aa1e7b288a",
         "type": "github"
       },
       "original": {
