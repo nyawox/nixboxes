@@ -38,7 +38,6 @@ in {
       services.headplane.service = {
         image = "ghcr.io/tale/headplane:edge";
         volumes = [
-          "/var/lib/headscale/acl_policy.json:/etc/headscale/acl_policy.json"
           "/proc:/proc"
         ];
         ports = ["127.0.0.1:${builtins.toString cfg.port}:3000"];

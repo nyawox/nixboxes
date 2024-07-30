@@ -11,7 +11,10 @@
       laptop.enable = true;
     };
     services = {
-      tailscale.enable = true;
+      tailscale = {
+        enable = true;
+        upFlags = ["--advertise-tags=tag:nyaa-laptops"];
+      };
       netdata = {
         enable = true;
         apikey = "f17bc57e-969e-488c-ae8a-2ea69e319b35";

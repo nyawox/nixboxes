@@ -16,15 +16,26 @@ in {
         type = types.bool;
         default = false;
       };
+      setFlags = mkOption {
+        type = types.listOf types.str;
+        default = [];
+      };
+      upFlags = mkOption {
+        type = types.listOf types.str;
+        default = [];
+      };
     };
   };
   config = mkIf cfg.enable {
     services.tailscale = {
       enable = true;
       permitCertUid = username;
-      extraSetFlags = [
-        "--operator=${username}"
-      ];
+      extraSetFlags =
+        [
+          "--operator=${username}"
+        ]
+        ++ cfg.setFlags;
+      extraUpFlags = cfg.upFlags;
     };
     systemd.user.services.taildrop = {
       enable = true;
