@@ -47,7 +47,7 @@ in {
           ENABLE_LOCAL_MODELS = "True";
           OLLAMA_HOST = ollama-url;
           OLLAMA_API_BASE = ollama-url;
-          CUSTOM_MODEL = "ollama_chat/mistral-nemo:12b-instruct-2407-q4_K_M";
+          CUSTOM_MODEL = "ollama_chat/mistral-nemo:12b-instruct-2407-q4_K_S";
           POSTGRES_HOST = "localpost.nyaa.nixlap.top";
         };
         env_file = [

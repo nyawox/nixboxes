@@ -28,7 +28,7 @@ in {
           api_base: http://localpost.nyaa.nixlap.top:11451
           api_auth: null
           models:
-          - name: mistral-nemo:12b-instruct-2407-q4_K_M
+          - name: mistral-nemo:12b-instruct-2407-q4_K_S
             max_input_tokens: 128000
           - name: deepseek-coder-v2:16b-lite-base-q4_K_M
             max_input_tokens: 8192
