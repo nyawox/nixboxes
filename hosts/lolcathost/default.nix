@@ -48,11 +48,14 @@
     };
   };
 
-  sops.secrets."switch" = {
-    sopsFile = ../../secrets/switch.env;
-    format = "dotenv";
-    owner = config.users.users.${username}.name;
-    inherit (config.users.users.${username}) group;
+  sops.secrets = {
+    "switch" = {
+      sopsFile = ../../secrets/switch.env;
+      format = "dotenv";
+      owner = config.users.users.${username}.name;
+      inherit (config.users.users.${username}) group;
+    };
+    hdd-crypto.sopsFile = ../../secrets/hdd-crypto.yaml;
   };
   services = {
     # github:nyawox/nixtendo-switch
@@ -194,6 +197,12 @@
     };
     xone.enable = true;
   };
+
+  # use crypttab for non boot required luks devices
+  environment.etc."crypttab".text = ''
+    hdd /dev/disk/by-uuid/b347d514-3e34-4bb1-8a72-630176f48783 ${config.sops.secrets.hdd-crypto.path}
+  '';
+  fileSystems."/mnt/hdd".device = "/dev/mapper/hdd";
 
   environment.persistence."/persist" = {
     directories = lib.mkIf config.modules.sysconf.impermanence.enable (lib.singleton {
