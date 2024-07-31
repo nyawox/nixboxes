@@ -34,7 +34,7 @@
       node-red.enable = true;
       redis.enable = true;
       minio.enable = true;
-      ollama.enable = true;
+      ollama-passthrough.enable = true;
       calibre.enable = true;
       adguardhome = {
         enable = true;
