@@ -35,6 +35,7 @@
       airplay.enable = true;
       tor.enable = true;
       v2ray.enable = true;
+      redroid.enable = true;
     };
     desktop = {
       niri.enable = true;
