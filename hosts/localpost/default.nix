@@ -16,10 +16,7 @@
       plymouth.enable = false;
     };
     services = {
-      tailscale = {
-        enable = true;
-        upFlags = ["--advertise-tags=tag:nyaa-servers"];
-      };
+      tailscale.enable = true;
       netdata = {
         enable = true;
         receiver = true;

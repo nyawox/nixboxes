@@ -8,7 +8,6 @@ _: {
       tailscale = {
         enable = true;
         setFlags = ["--advertise-exit-node"];
-        upFlags = ["--advertise-tags=tag:nyaa-servers"];
       };
       homepage.enable = true;
       acme.enable = true;

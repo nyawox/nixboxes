@@ -14,10 +14,7 @@
       sshluks.enable = true;
     };
     services = {
-      tailscale = {
-        enable = true;
-        upFlags = ["--advertise-tags=tag:nyaa-desktops"];
-      };
+      tailscale.enable = true;
       netdata = {
         enable = true;
         apikey = "2e117745-b8b7-4f7b-8b50-e4df187e36ea";
