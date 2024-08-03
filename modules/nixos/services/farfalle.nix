@@ -6,8 +6,8 @@
 with lib; let
   cfg = config.modules.services.farfalle;
   ipSubnet = "172.31.0.0/16";
-  searxng-url = "http://localghost.nyaa.nixlap.top:8420";
-  ollama-url = "http://localpost.nyaa.nixlap.top:11451";
+  searxng-url = "http://localghost.hsnet.nixlap.top:8420";
+  ollama-url = "http://localpost.hsnet.nixlap.top:11451";
 in {
   options = {
     modules.services.farfalle = {
@@ -48,7 +48,7 @@ in {
           OLLAMA_HOST = ollama-url;
           OLLAMA_API_BASE = ollama-url;
           CUSTOM_MODEL = "ollama_chat/mistral-nemo:12b-instruct-2407-q4_K_S";
-          POSTGRES_HOST = "localpost.nyaa.nixlap.top";
+          POSTGRES_HOST = "localpost.hsnet.nixlap.top";
         };
         env_file = [
           config.sops.secrets.farfalle.path

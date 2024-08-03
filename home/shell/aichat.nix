@@ -25,7 +25,7 @@ in {
         model: ollama
         clients:
         - type: ollama
-          api_base: http://localpost.nyaa.nixlap.top:11451
+          api_base: http://localpost.hsnet.nixlap.top:11451
           api_auth: null
           models:
           - name: mistral-nemo:12b-instruct-2407-q4_K_S

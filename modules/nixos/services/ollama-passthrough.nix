@@ -1,4 +1,4 @@
-# http://localpost.nyaa.nixlap.top:11451
+# http://localpost.hsnet.nixlap.top:11451
 {
   config,
   lib,

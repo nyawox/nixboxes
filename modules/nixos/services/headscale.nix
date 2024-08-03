@@ -37,11 +37,12 @@ in {
         in {
           dns_config = {
             magic_dns = true;
-            base_domain = "nixlap.top";
+            base_domain = "hsnet.nixlap.top";
             nameservers = [
               # AdGuard Home
-              "100.64.0.2" # localpost
-              "127.0.0.1" # localghost
+              "100.64.0.3" # localpost
+              "100.64.0.1" # localghost
+              "127.0.0.1" # keep localhost, otherwise sometimes it fails to connect
               # Add quad9 back when adguard home is down(e.g. reinstalling headscale)
               # "9.9.9.9"
               # "149.112.112.112"
@@ -53,7 +54,7 @@ in {
             tls_cert_path = "${certDir}/cert.pem";
           };
           logtail.enabled = false;
-          acl_policy_path = config.sops.secrets.headscale_acls.path;
+          acl_policy_path = config.sops.secrets.headscale_acls.path; # ignore the warning, new policy.path config currently doesn't work
           server_url = "https://${domain}";
           prefixes = {
             v6 = "fd7a:115c:a1e0::/48";

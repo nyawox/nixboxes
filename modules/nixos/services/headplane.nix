@@ -36,7 +36,7 @@ in {
         };
       };
       services.headplane.service = {
-        image = "ghcr.io/tale/headplane:edge";
+        image = "ghcr.io/tale/headplane:latest";
         volumes = [
           "/proc:/proc"
         ];

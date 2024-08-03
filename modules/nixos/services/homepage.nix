@@ -209,7 +209,7 @@ in {
             }
             {
               "Node-RED" = {
-                href = "http://localpost.nyaa.nixlap.top:1880/";
+                href = "http://localpost.hsnet.nixlap.top:1880/";
                 icon = "https://nodered.org/about/resources/media/node-red-icon.svg";
               };
             }
@@ -251,7 +251,7 @@ in {
           Tools = [
             {
               Sunshine = {
-                href = "https://lolcathost.nyaa.nixlap.top:47990/";
+                href = "https://lolcathost.hsnet.nixlap.top:47990/";
                 icon = "https://raw.githubusercontent.com/LizardByte/Sunshine/nightly/src_assets/common/assets/web/public/images/logo-sunshine-45.png";
               };
             }
