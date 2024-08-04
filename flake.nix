@@ -5,10 +5,6 @@
     latest.url = "github:nixos/nixpkgs";
     nixpkgs-yuzu.url = "github:nixos/nixpkgs/95002f7";
     # Make sure to follow nixpkgs to unclutter lock file
-    nix-darwin = {
-      url = "github:lnl7/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
