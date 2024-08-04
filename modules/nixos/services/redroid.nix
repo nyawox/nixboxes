@@ -32,9 +32,7 @@ in {
         restart = "unless-stopped";
         privileged = true;
         ports = ["0.0.0.0:5555:5555"]; # adb
-        volumes = [
-          "/var/lib/redroid:/data"
-        ];
+        volumes = ["/var/lib/redroid:/data"];
         devices = ["/dev/dri/renderD128"];
         command = [
           "androidboot.use_memfd=true"
