@@ -36,7 +36,6 @@ in {
       extraPackages = with pkgs; [
         markdown-oxide # markdown language server
         alejandra
-        nil
         tree-sitter-kdl
         lsp-ai
         python3Packages.python-lsp-server
@@ -98,7 +97,7 @@ in {
           {
             name = "nix";
             auto-format = true;
-            language-servers = ["nil" "lsp-ai"];
+            language-servers = ["nixd" "lsp-ai"];
             formatter.command = "${getExe pkgs.alejandra}";
           }
           {
@@ -128,6 +127,7 @@ in {
             };
           }
         ];
+        language-server.nixd.command = "${getExe pkgs.nixd}";
         language-server.lsp-ai = {
           command = "${getExe pkgs.lsp-ai}";
           config = {
