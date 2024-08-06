@@ -245,6 +245,7 @@
         ".config/vivaldi"
         ".config/onlyoffice"
         ".config/StardewValley"
+        ".config/calibre"
         ".android"
         ".steam"
       ];

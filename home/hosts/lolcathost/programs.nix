@@ -75,6 +75,7 @@
     nexusmods-app-unfree
     trayscale
     inputs.nixtendo-switch.packages.${pkgs.system}.uscreen
+    calibre
   ];
   # services.flatpak.packages = [
   #   "org.telegram.desktop"
