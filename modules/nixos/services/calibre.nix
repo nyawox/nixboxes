@@ -31,12 +31,23 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    sops.secrets.calibre-userdb = {
+      owner = user;
+      inherit group;
+      format = "binary";
+      sopsFile = ../../../secrets/calibre-users.sqlite;
+    };
     services = {
       calibre-server = {
         enable = true;
         inherit (cfg) port;
         libraries = [cfg.library];
         inherit user group;
+        auth = {
+          enable = true;
+          mode = "basic";
+          userDb = config.sops.secrets.calibre-userdb.path;
+        };
       };
       calibre-web = {
         enable = true;
