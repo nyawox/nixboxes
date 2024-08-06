@@ -12,16 +12,21 @@ in {
         type = types.bool;
         default = false;
       };
+      nixboxes = mkOption {
+        type = types.bool;
+        default = false;
+      };
+      calibre = mkOption {
+        type = types.bool;
+        default = false;
+      };
     };
   };
   config = mkIf cfg.enable {
     services.nfs.server.enable = true;
-    services.nfs.server.exports =
-      /*
-      exports
-      */
-      ''
-        /nixboxes *(rw,async,no_subtree_check)
-      '';
+    services.nfs.server.exports = concatStringsSep "\n" [
+      (optionalString (cfg.nixboxes) "/nixboxes *(rw,async,no_subtree_check)")
+      (optionalString (cfg.calibre) "/var/lib/calibre-server *(rw,async,no_subtree_check)")
+    ];
   };
 }

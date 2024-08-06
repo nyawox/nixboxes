@@ -25,6 +25,10 @@
       ntfy-sh.enable = true;
       authelia.enable = true;
       avahi.enable = true;
+      nfs-server = {
+        enable = true;
+        calibre = true;
+      };
       home-assistant.enable = true;
       postgresql.enable = true;
       vaultwarden.enable = true;
