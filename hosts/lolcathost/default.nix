@@ -125,7 +125,7 @@
   };
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [9090];
   # networking.firewall.allowedUDPPorts = [ ... ];
 
   security.lockKernelModules = false;
