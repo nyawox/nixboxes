@@ -149,6 +149,9 @@ in {
         "books.nixlap.top" = mkProxy {
           url = "http://localpost.hsnet.nixlap.top:8095";
         };
+        "git.nixlap.top" = mkProxy {
+          url = "http://localpost.hsnet.nixlap.top:3145";
+        };
       };
     };
   };

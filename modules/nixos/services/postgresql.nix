@@ -24,6 +24,7 @@ in {
           "hass"
           "vaultwarden"
           "farfalle"
+          "git"
         ];
         ensureUsers = [
           {
@@ -36,6 +37,10 @@ in {
           }
           {
             name = "farfalle";
+            ensureDBOwnership = true;
+          }
+          {
+            name = "git";
             ensureDBOwnership = true;
           }
         ];

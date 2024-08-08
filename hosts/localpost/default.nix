@@ -25,6 +25,7 @@
       ntfy-sh.enable = true;
       authelia.enable = true;
       avahi.enable = true;
+      forgejo.enable = true;
       nfs-server = {
         enable = true;
         calibre = true;
