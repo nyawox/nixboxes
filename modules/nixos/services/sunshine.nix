@@ -19,11 +19,35 @@ in {
   config = mkIf cfg.enable {
     services.sunshine = {
       enable = true;
+      package = pkgs.sunshine.overrideAttrs (prev: {
+        version = "git-2024-08-10";
+        src = pkgs.fetchFromGitHub {
+          owner = "LizardByte";
+          repo = "Sunshine";
+          rev = "f9c885a414f92d8277337e2fd1283110a0e376bb";
+          hash = "sha256-gsuhRk2gBLg+6VQzK3eW4xTroMSGR4MUgpyw4xFLb3g=";
+          fetchSubmodules = true;
+        };
+        patches = [];
+        cmakeFlags =
+          prev.cmakeFlags
+          ++ [
+            (cmakeFeature "BOOST_USE_STATIC" "OFF")
+            (cmakeFeature "BUILD_DOCS" "OFF")
+          ];
+        buildInputs = lists.remove pkgs.boost prev.buildInputs ++ [pkgs.boost185];
+        nativeBuildInputs = prev.nativeBuildInputs ++ [pkgs.nodejs];
+      });
       capSysAdmin = true;
       openFirewall = true;
       settings = {
         min_log_level = "info";
         output_name = "1";
+        encoder = "vaapi";
+        controller = "enabled";
+        gamepad = "ds5";
+        lan_encryption_mode = "2";
+        wan_encryption_mode = "2";
       };
       applications = {
         env = {
@@ -48,20 +72,22 @@ in {
       };
     };
 
-    # Requires to simulate input
-    boot.kernelModules = ["uinput"];
     services.udev.extraRules =
       /*
       rules
       */
       ''
         KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
+        KERNEL=="uhid", TAG+="uaccess"
       '';
-    # dummy monitor
-    boot.kernelParams = [
-      "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
-      "video=HDMI-A-1:e"
-    ];
+    boot = {
+      kernelModules = ["uinput" "uhid"];
+      # dummy monitor
+      kernelParams = [
+        "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
+        "video=HDMI-A-1:e"
+      ];
+    };
     hardware.firmware = let
       q800t = pkgs.fetchurl {
         url = "https://git.linuxtv.org/edid-decode.git/plain/data/samsung-q800t-hdmi2.1";
