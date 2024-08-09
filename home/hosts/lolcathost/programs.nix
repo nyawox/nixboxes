@@ -10,7 +10,6 @@
     genymotion
     pciutils
     steam-run
-    steam
     vesktop
     dmidecode
     lutris
@@ -46,7 +45,6 @@
     progress
     parted
     glxinfo
-    gamescope
     nix-prefetch-github
     nix-prefetch-git
     cava
@@ -77,7 +75,7 @@
     inputs.nixtendo-switch.packages.${pkgs.system}.uscreen
     calibre
   ];
-  # services.flatpak.packages = [
-  #   "org.telegram.desktop"
-  # ];
+  services.flatpak.packages = [
+    "com.steamgriddb.SGDBoop"
+  ];
 }

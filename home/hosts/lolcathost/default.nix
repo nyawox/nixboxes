@@ -9,14 +9,6 @@
   toImport = name: _value: folder + ("/" + name);
   filterCaches = key: value: value == "regular" && lib.hasSuffix ".nix" key && key != "default.nix";
   imports = lib.mapAttrsToList toImport (lib.filterAttrs filterCaches (builtins.readDir folder));
-
-  apps = {
-    env = "/run/current-system/sw/bin:/run/wrappers/bin:/home/${username}/.nix-profile/bin:/etc/profiles/per-user/${username}/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin";
-    apps = lib.singleton {
-      name = "Desktop";
-      image-path = "desktop.png";
-    };
-  };
 in {
   inherit imports;
   modules = {
@@ -45,9 +37,5 @@ in {
         cp -R Catppuccin-Mocha/* $out/
       '';
     };
-  xdg.configFile = {
-    "sunshine/sunshine.conf".source = ./sunshine.conf;
-    "sunshine/apps.json".text = builtins.toJSON apps;
-    "Element/config.json".source = inputs.catppuccin-element.outPath + "/config.json";
-  };
+  xdg.configFile."Element/config.json".source = inputs.catppuccin-element.outPath + "/config.json";
 }

@@ -29,7 +29,6 @@ in {
       wl-clipboard
       wayland-utils
       libsecret
-      gamescope
     ];
   };
 }

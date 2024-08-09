@@ -8,7 +8,6 @@
     btrfs-progs
     parted
     glxinfo
-    gamescope
     nix-prefetch-github
     nix-prefetch-git
     cava

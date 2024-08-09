@@ -43,6 +43,7 @@
       sddm.enable = true;
       piper.enable = true;
       headsetcontrol.enable = true;
+      gaming.enable = true;
     };
     virtualisation = {
       waydroid.enable = true;
