@@ -89,7 +89,10 @@ in {
       };
       input = {
         keyboard.xkb.layout = "us";
-        focus-follows-mouse.enable = false;
+        focus-follows-mouse = {
+          enable = true;
+          max-scroll-amount = "0%";
+        };
         warp-mouse-to-focus = true;
         mouse.accel-speed = 0.0;
         touchpad = {
