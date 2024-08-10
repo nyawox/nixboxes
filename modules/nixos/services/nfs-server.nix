@@ -25,8 +25,8 @@ in {
   config = mkIf cfg.enable {
     services.nfs.server.enable = true;
     services.nfs.server.exports = concatStringsSep "\n" [
-      (optionalString (cfg.nixboxes) "/nixboxes *(rw,async,no_subtree_check)")
-      (optionalString (cfg.calibre) "/var/lib/calibre-server *(rw,async,no_subtree_check,all_squash,anonuid=986,anongid=983)")
+      (optionalString cfg.nixboxes "/nixboxes *(rw,async,no_subtree_check)")
+      (optionalString cfg.calibre "/var/lib/calibre-server *(rw,async,no_subtree_check,all_squash,anonuid=986,anongid=983)")
     ];
   };
 }
