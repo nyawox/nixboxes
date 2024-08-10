@@ -18,7 +18,6 @@ in {
     };
   };
   config = mkIf cfg.enable {
-    modules.desktop.polkit.enable = true;
     modules.sysconf.bluetooth.blueman = true;
     programs.niri.enable = true;
     nixpkgs.overlays = [inputs.niri.overlays.niri];
