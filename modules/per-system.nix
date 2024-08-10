@@ -23,12 +23,11 @@
         beautysh.enable = true;
         yamlfmt.enable = true;
       };
-      settings.formatter = {
-        beautysh.includes = [
-          "remoteinstall"
-          "localinstall"
-        ];
-      };
+      settings.global.excludes = [
+        "secrets/*"
+        "remoteinstall"
+        "localinstall"
+      ];
       flakeFormatter = true;
       projectRootFile = "flake.nix";
     };
