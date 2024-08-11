@@ -36,8 +36,7 @@ in {
         fsType = "nfs";
         options = [
           "nfsvers=4.2"
-          "x-systemd.automount"
-          "noauto"
+          "nofail"
           "async"
         ];
       };
