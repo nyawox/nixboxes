@@ -19,6 +19,7 @@ in {
   config = mkIf cfg.enable {
     services.sunshine = {
       enable = true;
+      # comment this to pair new devices
       package = pkgs.sunshine.overrideAttrs (prev: {
         version = "git-2024-08-10";
         src = pkgs.fetchFromGitHub {
