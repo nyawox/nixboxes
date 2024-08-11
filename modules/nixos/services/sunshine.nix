@@ -19,35 +19,35 @@ in {
   config = mkIf cfg.enable {
     services.sunshine = {
       enable = true;
-      # comment this to pair new devices
-      package = pkgs.sunshine.overrideAttrs (prev: {
-        version = "git-2024-08-10";
-        src = pkgs.fetchFromGitHub {
-          owner = "LizardByte";
-          repo = "Sunshine";
-          rev = "f9c885a414f92d8277337e2fd1283110a0e376bb";
-          hash = "sha256-gsuhRk2gBLg+6VQzK3eW4xTroMSGR4MUgpyw4xFLb3g=";
-          fetchSubmodules = true;
-        };
-        patches = [];
-        cmakeFlags =
-          prev.cmakeFlags
-          ++ [
-            (cmakeFeature "BOOST_USE_STATIC" "OFF")
-            (cmakeFeature "BUILD_DOCS" "OFF")
-          ];
-        buildInputs = lists.remove pkgs.boost prev.buildInputs ++ [pkgs.boost185];
-        nativeBuildInputs = prev.nativeBuildInputs ++ [pkgs.nodejs];
-      });
+      # device pairing and vaapi not working on nightly
+      # package = pkgs.sunshine.overrideAttrs (prev: {
+      #   version = "git-2024-08-10";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "LizardByte";
+      #     repo = "Sunshine";
+      #     rev = "f9c885a414f92d8277337e2fd1283110a0e376bb";
+      #     hash = "sha256-gsuhRk2gBLg+6VQzK3eW4xTroMSGR4MUgpyw4xFLb3g=";
+      #     fetchSubmodules = true;
+      #   };
+      #   patches = [];
+      #   cmakeFlags =
+      #     prev.cmakeFlags
+      #     ++ [
+      #       (cmakeFeature "BOOST_USE_STATIC" "OFF")
+      #       (cmakeFeature "BUILD_DOCS" "OFF")
+      #     ];
+      #   buildInputs = lists.remove pkgs.boost prev.buildInputs ++ [pkgs.boost185];
+      #   nativeBuildInputs = prev.nativeBuildInputs ++ [pkgs.nodejs];
+      # });
       capSysAdmin = true;
       openFirewall = true;
       settings = {
         min_log_level = "info";
         output_name = "1";
-        encoder = "software";
-        controller = "enabled";
-        gamepad = "ds5";
+        encoder = "vaapi";
         address_family = "both";
+        controller = "enabled";
+        gamepad = "x360";
       };
       applications = {
         env = {
