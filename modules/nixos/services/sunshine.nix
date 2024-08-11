@@ -84,19 +84,19 @@ in {
       kernelModules = ["uinput" "uhid"];
       # dummy monitor
       kernelParams = [
-        "drm.edid_firmware=HDMI-A-1:edid/samsung-q800t-hdmi2.1"
-        "video=HDMI-A-1:e"
+        "drm.edid_firmware=DP-2:edid/aoc-c24g1-dp"
+        "video=DP-2:e"
       ];
     };
     hardware.firmware = let
-      q800t = pkgs.fetchurl {
-        url = "https://git.linuxtv.org/edid-decode.git/plain/data/samsung-q800t-hdmi2.1";
-        sha256 = "0r3v1mzpkalgdhnnjfq8vbg4ian3pwziv0klb80zw89w1msfm9nh";
+      c24g1 = pkgs.fetchurl {
+        url = "https://git.linuxtv.org/edid-decode.git/plain/data/aoc-c24g1-dp";
+        sha256 = "14kz8hy8lqfqmmyac78j1y4jxlpabsc6k23s9688k8vbf3rq4125";
       };
     in [
       (pkgs.runCommandNoCC "dummymonitor" {} ''
         mkdir -p $out/lib/firmware/edid/
-        cp "${q800t}" $out/lib/firmware/edid/samsung-q800t-hdmi2.1
+        cp "${c24g1}" $out/lib/firmware/edid/aoc-c24g1-dp
       '')
     ];
 
