@@ -7,7 +7,7 @@
 }:
 with lib; let
   cfg = config.modules.services.home-assistant;
-  proxyIP = "100.64.0.1";
+  proxyIP = "100.64.0.9";
   catppuccin = "${inputs.catpuccin-home-assistant.outPath}/themes";
 
   mkIosAction = {

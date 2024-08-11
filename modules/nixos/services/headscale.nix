@@ -41,7 +41,6 @@ in {
             nameservers = [
               # AdGuard Home
               "100.64.0.3" # localpost
-              "100.64.0.1" # localghost
               "127.0.0.1" # keep localhost, otherwise sometimes it fails to connect
               # Add quad9 back when adguard home is down(e.g. reinstalling headscale)
               # "9.9.9.9"

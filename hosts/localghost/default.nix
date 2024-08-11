@@ -1,4 +1,7 @@
-_: {
+{lib, ...}: {
+  # uncomment this in reinstallation
+  # services.openssh.openFirewall = lib.mkForce true;
+
   modules = {
     sysconf = {
       sshluks.enable = true;
@@ -16,7 +19,6 @@ _: {
       searxng.enable = true;
       open-webui.enable = true;
       headplane.enable = true;
-      adguardhome.enable = true;
       netdata = {
         enable = true;
         apikey = "c96533b8-4709-48ea-862e-cca0871b72a4";

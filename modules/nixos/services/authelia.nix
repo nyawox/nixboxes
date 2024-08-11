@@ -66,8 +66,7 @@ in {
                 "search.nixlap.top"
                 "aisearch.nixlap.top"
                 "minio.nixlap.top"
-                "adguard1.nixlap.top"
-                "adguard2.nixlap.top"
+                "adguard.nixlap.top"
                 "hs.nixlap.top/admin"
               ];
               policy = "two_factor";

@@ -138,12 +138,8 @@ in {
         "hass.nixlap.top" = mkProxy {
           url = "http://localpost.hsnet.nixlap.top:8123";
         };
-        "adguard1.nixlap.top" = mkProxy {
+        "adguard.nixlap.top" = mkProxy {
           url = "http://localpost.hsnet.nixlap.top:3380";
-          auth = true;
-        };
-        "adguard2.nixlap.top" = mkProxy {
-          url = "http://localghost.hsnet.nixlap.top:3380";
           auth = true;
         };
         "books.nixlap.top" = mkProxy {
