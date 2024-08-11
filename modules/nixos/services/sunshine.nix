@@ -44,7 +44,7 @@ in {
       settings = {
         min_log_level = "info";
         output_name = "1";
-        encoder = "vaapi";
+        encoder = "software";
         controller = "enabled";
         gamepad = "ds5";
         address_family = "both";
