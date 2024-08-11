@@ -46,8 +46,7 @@ in {
         encoder = "vaapi";
         controller = "enabled";
         gamepad = "ds5";
-        lan_encryption_mode = "2";
-        wan_encryption_mode = "2";
+        address_family = "both";
       };
       applications = {
         env = {
