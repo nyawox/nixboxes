@@ -40,7 +40,7 @@
     };
     desktop = {
       niri.enable = true;
-      sddm.enable = true;
+      greetd.enable = true;
       piper.enable = true;
       headsetcontrol.enable = true;
       gaming.enable = true;
