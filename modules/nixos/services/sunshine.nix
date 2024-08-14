@@ -58,15 +58,24 @@ in {
             name = "Steam";
             output = "steam.txt";
             detached = [
-              "${getExe pkgs.gamescope} -f --force-grab-cursor -- steam-gamescope"
+              "${getExe pkgs.niri-unstable} msg action spawn -- steam-gamescope"
             ];
-            prep-cmd = [
-              {
-                do = "${getExe pkgs.niri-unstable} msg action focus-monitor-right";
-                undo = "${pkgs.procps}/bin/pkill steam";
-              }
-            ];
+            prep-cmd = singleton {
+              do = "${getExe pkgs.niri-unstable} msg action focus-monitor-right";
+              undo = "${pkgs.procps}/bin/pkill steam";
+            };
             image-path = "steam.png";
+          }
+          {
+            name = "Lutris";
+            output = "lutris.txt";
+            detached = [
+              "${getExe pkgs.niri-unstable} msg action spawn -- ${getExe pkgs.gamescope} -f --force-grab-cursor -W 1280 -H 720 -w 1280 -h 720 -- ${getExe pkgs.lutris}"
+            ];
+            prep-cmd = singleton {
+              do = "${getExe pkgs.niri-unstable} msg action focus-monitor-right";
+              undo = "${pkgs.procps}/bin/pkill lutris";
+            };
           }
         ];
       };

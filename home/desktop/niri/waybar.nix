@@ -45,6 +45,7 @@ in {
       */
       ''
         {
+            "output": ["DP-1", "eDP-1"],
             "layer": "top", // Waybar at top layer
             "position": "top", // Waybar position (top|bottom|left|right)
             "height": 46, // Waybar height (to be removed for auto height)

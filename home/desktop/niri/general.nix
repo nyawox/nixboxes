@@ -152,12 +152,17 @@ in {
           clip-to-geometry = true;
         }
         {
-          matches = [
-            {
-              app-id = "foot";
-            }
-          ];
+          matches = singleton {
+            app-id = "foot";
+          };
           min-width = 400;
+        }
+        {
+          matches = singleton {
+            app-id = "gamescope";
+          };
+          open-maximized = true;
+          open-fullscreen = true;
         }
         {
           matches = [
@@ -174,12 +179,10 @@ in {
             {app-id = "obsidian";}
             # {title = "beta.music.apple.com";}
           ];
-          excludes = [
-            {
-              app-id = "org.telegram.desktop";
-              title = "Media viewer";
-            }
-          ];
+          excludes = singleton {
+            app-id = "org.telegram.desktop";
+            title = "Media viewer";
+          };
           opacity = 0.93;
           draw-border-with-background = false;
         }
@@ -210,7 +213,11 @@ in {
       ];
       outputs = {
         "DP-1".scale = 0.75;
-        "DP-2".scale = 1.25;
+        "DP-2".mode = {
+          width = 1280;
+          height = 720;
+          refresh = 60.000;
+        };
         "eDP-1".scale = 0.75;
       };
       binds = with config.lib.niri.actions; let
