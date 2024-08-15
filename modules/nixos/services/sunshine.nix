@@ -7,6 +7,10 @@
 }:
 with lib; let
   cfg = config.modules.services.sunshine;
+  lutris-image = pkgs.fetchurl {
+    url = "https://cdn2.steamgriddb.com/grid/3b0d861c2cf5ed4d7b139ee277c8a04a.png";
+    sha256 = "1v36rsl4pr6x2q35az94yxdwsbazirn5z9vakms01g1myh9wbjmj";
+  };
 in {
   options = {
     modules.services.sunshine = {
@@ -70,12 +74,13 @@ in {
             name = "Lutris";
             output = "lutris.txt";
             detached = [
-              "${getExe pkgs.niri-unstable} msg action spawn -- ${getExe pkgs.gamescope} -f --force-grab-cursor -W 1280 -H 720 -w 1280 -h 720 -- ${getExe pkgs.lutris}"
+              "${getExe pkgs.niri-unstable} msg action spawn -- ${getExe pkgs.gamescope} -f --force-grab-cursor -- ${getExe pkgs.lutris}"
             ];
             prep-cmd = singleton {
               do = "${getExe pkgs.niri-unstable} msg action focus-monitor-right";
               undo = "${pkgs.procps}/bin/pkill lutris";
             };
+            image-path = lutris-image;
           }
         ];
       };
