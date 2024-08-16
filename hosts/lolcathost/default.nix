@@ -6,7 +6,10 @@
   inputs,
   ...
 }: {
-  imports = [inputs.aagl.nixosModules.default];
+  imports = [
+    inputs.aagl.nixosModules.default
+    inputs.madness.nixosModules.madness
+  ];
   modules = {
     sysconf = {
       wifi.enable = true;
@@ -60,6 +63,7 @@
     };
     hdd-crypto.sopsFile = ../../secrets/hdd-crypto.yaml;
   };
+  madness.enable = true;
   services = {
     # github:nyawox/nixtendo-switch
     switch-boot.enable = true;

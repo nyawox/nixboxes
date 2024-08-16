@@ -2017,6 +2017,21 @@
         "type": "github"
       }
     },
+    "madness": {
+      "locked": {
+        "lastModified": 1720637547,
+        "narHash": "sha256-5MGG0iRBvP35VlcHvxVrapuLygZwHwMB3g0M0fWxz58=",
+        "owner": "antithesishq",
+        "repo": "madness",
+        "rev": "c22c9c03579b7175d94f63e44ee0e518bb5ccdba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "antithesishq",
+        "repo": "madness",
+        "type": "github"
+      }
+    },
     "niri": {
       "inputs": {
         "crate2nix": "crate2nix",
@@ -2936,6 +2951,7 @@
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
         "latest": "latest",
+        "madness": "madness",
         "niri": "niri",
         "nix-doom-emacs-unstraightened": "nix-doom-emacs-unstraightened",
         "nix-flatpak": "nix-flatpak",

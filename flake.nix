@@ -202,6 +202,7 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nur.url = "github:nix-community/nur";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    madness.url = "github:antithesishq/madness";
   };
 
   outputs = args: import ./modules/outputs.nix args;
