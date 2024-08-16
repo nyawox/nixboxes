@@ -214,8 +214,8 @@ in {
       outputs = {
         "DP-1".scale = 0.75;
         "DP-2".mode = {
-          width = 1280;
-          height = 720;
+          width = 1920;
+          height = 1080;
           refresh = 60.000;
         };
         "eDP-1".scale = 0.75;

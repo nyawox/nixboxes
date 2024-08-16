@@ -74,7 +74,7 @@ in {
             name = "Lutris";
             output = "lutris.txt";
             detached = [
-              "${getExe pkgs.niri-unstable} msg action spawn -- ${getExe pkgs.gamescope} -f --force-grab-cursor -- ${getExe pkgs.lutris}"
+              "${getExe pkgs.niri-unstable} msg action spawn -- ${getExe pkgs.gamescope} -f --force-grab-cursor -W 1920 -H 1080 -w 1920 -h 1080 -- ${getExe pkgs.lutris}"
             ];
             prep-cmd = singleton {
               do = "${getExe pkgs.niri-unstable} msg action focus-monitor-right";
