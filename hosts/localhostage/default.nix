@@ -3,9 +3,17 @@ _: {
     sysconf = {
       wifi.enable = true;
       bluetooth.enable = true;
-      secureboot.enable = true;
+      sshluks.enable = true;
+      clevis.enable = true;
     };
-    services.tailscale.enable = true;
+    services = {
+      tailscale.enable = true;
+      adguardhome = {
+        enable = true;
+        openFirewall = true;
+        noLog = true;
+      };
+    };
     desktop = {
       pipewire.enable = false;
       plymouth.enable = false;
@@ -16,10 +24,8 @@ _: {
     enable = true;
     size = "256M";
   };
-  disk.encryption = {
-    enable = true;
-  };
-  disk.device = "/dev/sda";
+  disk.encryption.enable = true;
+  disk.device = "/dev/sdb";
   esp.size = "256M";
 
   boot.initrd.availableKernelModules = [

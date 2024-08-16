@@ -1,4 +1,4 @@
-{lib, ...}: {
+_: {
   # uncomment this in reinstallation
   # services.openssh.openFirewall = lib.mkForce true;
 

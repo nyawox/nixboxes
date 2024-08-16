@@ -12,6 +12,7 @@
     };
     services = {
       tailscale.enable = true;
+      tang.enable = true;
       netdata = {
         enable = true;
         apikey = "f17bc57e-969e-488c-ae8a-2ea69e319b35";

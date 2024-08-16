@@ -17,6 +17,10 @@ in {
         type = types.bool;
         default = false;
       };
+      noLog = mkOption {
+        type = types.bool;
+        default = false;
+      };
     };
   };
   config = mkIf cfg.enable {
@@ -40,8 +44,8 @@ in {
           protection_enabled = true;
           filtering_enabled = true;
         };
-        statistics.enabled = true;
-        querylog.enabled = true;
+        statistics.enabled = mkIf (!cfg.noLog) true;
+        querylog.enabled = mkIf (!cfg.noLog) true;
         tls.enabled = true;
         user_rules = [
           "@@||*nixlap.top^"

@@ -41,19 +41,13 @@ inputs.flake-parts.lib.mkFlake {inherit inputs;} {
         desktop = false;
         secrets = true;
       };
-      vultr = mkNixos {
-        hostname = "vultr";
-        desktop = false;
-        secrets = true;
-        deploy = false;
-      };
       localghost = mkNixos {
         hostname = "localghost";
         desktop = false;
         secrets = true;
       };
-      ghostcity = mkNixos {
-        hostname = "ghostcity";
+      localhostage = mkNixos {
+        hostname = "localhostage";
         desktop = false;
         secrets = true;
         deploy = false;
