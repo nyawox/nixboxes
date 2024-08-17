@@ -11,6 +11,10 @@ with lib; let
     url = "https://cdn2.steamgriddb.com/grid/3b0d861c2cf5ed4d7b139ee277c8a04a.png";
     sha256 = "1v36rsl4pr6x2q35az94yxdwsbazirn5z9vakms01g1myh9wbjmj";
   };
+  openrct2-image = pkgs.fetchurl {
+    url = "https://cdn2.steamgriddb.com/grid/17db034763c44c6c6ae0fbd504dbc96e.png";
+    sha256 = "17di6h1pql04alva3228zz0ckyr4n4dd81km3hkgw5dckdkp0b6j";
+  };
 in {
   options = {
     modules.services.sunshine = {
@@ -81,6 +85,18 @@ in {
               undo = "${pkgs.procps}/bin/pkill lutris";
             };
             image-path = lutris-image;
+          }
+          {
+            name = "OpenRCT2";
+            output = "openrct2.txt";
+            detached = [
+              "${getExe pkgs.niri-unstable} msg action spawn -- ${getExe pkgs.gamescope} -f --force-grab-cursor -W 1920 -H 1080 -w 1920 -h 1080 -- ${getExe pkgs.openrct2}"
+            ];
+            prep-cmd = singleton {
+              do = "${getExe pkgs.niri-unstable} msg action focus-monitor-right";
+              undo = "${pkgs.procps}/bin/pkill openrct2";
+            };
+            image-path = openrct2-image;
           }
         ];
       };

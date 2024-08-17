@@ -74,6 +74,7 @@
     trayscale
     inputs.nixtendo-switch.packages.${pkgs.system}.uscreen
     calibre
+    openrct2
   ];
   services.flatpak.packages = [
     "com.steamgriddb.SGDBoop"

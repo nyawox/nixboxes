@@ -252,6 +252,7 @@
         ".config/onlyoffice"
         ".config/StardewValley"
         ".config/calibre"
+        ".config/OpenRCT2"
         ".android"
         ".steam"
       ];
