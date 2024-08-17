@@ -81,17 +81,17 @@ in {
           iptables -A INPUT -p udp --destination-port 53 -s ${ipSubnet} -j ACCEPT
         '';
     };
+    home-manager.users."${username}".programs.nushell.shellAliases = {
+      winstart = "sudo systemctl start arion-windows";
+      winstop = "sudo systemctl stop arion-windows";
+      winrestart = "sudo systemctl restart arion-windows";
+      winstatus = "systemctl status arion-windows";
+      winlog = "journalctl -feu arion-windows";
+      winlogs = "journalctl -xeu arion-windows";
+      winview = "xdg-open http://127.0.0.1:8006/";
+      winrdp = "remmina -c rdp://docker@127.0.0.1:3389";
+    };
     environment = {
-      shellAliases = {
-        winstart = "sudo systemctl start arion-windows";
-        winstop = "sudo systemctl stop arion-windows";
-        winrestart = "sudo systemctl restart arion-windows";
-        winstatus = "systemctl status arion-windows";
-        winlog = "journalctl -feu arion-windows";
-        winlogs = "journalctl -xeu arion-windows";
-        winview = "xdg-open http://127.0.0.1:8006/";
-        winrdp = "remmina -c rdp://docker@127.0.0.1:3389";
-      };
       persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
         "/var/lib/windows"
       ];
