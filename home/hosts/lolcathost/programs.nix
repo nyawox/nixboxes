@@ -7,7 +7,6 @@
     nomacs
     piper
     prismlauncher
-    genymotion
     pciutils
     steam-run
     vesktop
@@ -35,7 +34,7 @@
     killall
     libimobiledevice
     ifuse
-    # cemu
+    cemu
     dolphin-emu
     efibootmgr
     gimp
@@ -63,8 +62,6 @@
     distrobox
     gpu-screen-recorder
     gpu-screen-recorder-gtk
-    scx
-    gex
     inputs.nixpkgs-yuzu.legacyPackages.${pkgs.system}.citra
     remmina
     onlyoffice-bin
