@@ -43,7 +43,7 @@ in {
           palette = "catppuccin_${flavour}";
         }
         // builtins.fromTOML (
-          builtins.readFile "${inputs.catppuccin-starship.outPath}/palettes/${flavour}.toml"
+          builtins.readFile "${inputs.catppuccin-starship.outPath}/themes/${flavour}.toml"
         );
     };
   };
