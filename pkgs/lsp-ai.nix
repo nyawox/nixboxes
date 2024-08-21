@@ -7,11 +7,11 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "lsp-ai";
-  version = "0.3.0";
+  version = "0.6.0";
 
   src = fetchCrate {
     inherit pname version;
-    hash = "sha256-zIZ1cGHZsiP54QylukmTOQWKNB4UE8vUEEGyfaeUq4M";
+    hash = "sha256-avc4QACAbb/JGdqLQ8WrB33B7m2XNrYKbEczgvMRmnE=";
   };
 
   OPENSSL_NO_VENDOR = 1;
@@ -19,7 +19,7 @@ rustPlatform.buildRustPackage rec {
   nativeBuildInputs = [pkg-config];
   buildInputs = [openssl];
 
-  cargoHash = "sha256-kItUKhf0k9Bwt5h7hSL1sMpvhwJyPe/9E3PjtKB/UpQ=";
+  cargoHash = "sha256-LjV8YkeSIzMYkAvhsjDJQxQWVgzUQLKl1daJ1cuU4OA=";
 
   doCheck = false;
 
