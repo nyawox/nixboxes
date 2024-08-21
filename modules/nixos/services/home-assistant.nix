@@ -86,7 +86,7 @@ in {
           pkgs.buildHomeAssistantComponent {
             owner = "Haoyu-UT";
             domain = "nature_remo";
-            version = "1.0.5";
+            version = "unstable";
             src = inputs.hass-nature-remo;
           }
         )
@@ -94,7 +94,7 @@ in {
           pkgs.buildHomeAssistantComponent {
             owner = "smartHomeHub";
             domain = "smartir";
-            version = "1.17.9";
+            version = "unstable";
             src = inputs.hass-smartir;
             # must use the same python version as buildHomeAssistantComponent
             propagatedBuildInputs = with pkgs.python312Packages; [
@@ -120,7 +120,7 @@ in {
           pkgs.buildHomeAssistantComponent {
             owner = "petretiandrea";
             domain = "tapo";
-            version = "git";
+            version = "unstable";
             src = inputs.hass-tapo;
             propagatedBuildInputs = with pkgs.python312Packages; [
               plugp100
