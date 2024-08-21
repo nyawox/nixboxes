@@ -30,12 +30,12 @@ in {
         };
       };
       services.windows.service = {
-        image = "dockurr/windows:3.06";
+        image = "ghcr.io/dockur/windows:3.13";
         environment = {
           # iPhone
           # ARGUMENTS = "-device usb-host,vendorid=0x05ac,productid=0x12a8 -device usb-host,vendorid=0x05ac,productid=0x1281";
           ARGUMENTS = "-device usb-host,hostbus=1,hostport=4";
-          VERSION = "win11";
+          VERSION = "core11";
           RAM_SIZE = "8G";
           CPU_CORES = "12";
           DISK_SIZE = "100G";
@@ -61,9 +61,9 @@ in {
         };
         volumes = [
           "/var/lib/windows:/storage"
-          "/home/${username}/winshare:/storage/shared"
+          "/home/${username}/winshare:/shared"
           # custom iso
-          "/home/${username}/Downloads/iso/tiny11.iso:/storage/custom.iso"
+          # "/home/${username}/Downloads/iso/tiny11.iso:/custom.iso"
         ];
         stop_grace_period = "2m";
       };
