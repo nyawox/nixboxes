@@ -32,9 +32,7 @@ in {
         enable = true;
         address = "0.0.0.0";
         port = 8085;
-        settings = let
-          certDir = config.security.acme.certs."nixlap.top".directory;
-        in {
+        settings = {
           dns = {
             magic_dns = true;
             base_domain = "hsnet.nixlap.top";
@@ -47,8 +45,6 @@ in {
               # "149.112.112.112"
             ];
           };
-          tls_key_path = "${certDir}/key.pem";
-          tls_cert_path = "${certDir}/cert.pem";
           logtail.enabled = false;
           policy.path = config.sops.secrets.headscale_acls.path;
           server_url = "https://${domain}";

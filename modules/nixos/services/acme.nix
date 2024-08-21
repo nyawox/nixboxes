@@ -35,7 +35,6 @@ in {
     };
 
     users.users.caddy.extraGroups = ["acme"];
-    users.users.headscale.extraGroups = ["acme" "caddy"]; # for some reason /var/lib/acme/<my-domain> is being assigned to the group caddy
     environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable [
       "/var/lib/acme"
     ];
