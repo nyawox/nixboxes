@@ -101,7 +101,6 @@ in {
           "{a218c3db-51ef-4170-804b-eb053fc9a2cd}".install_url = "${exturl}/qr-code-address-bar/latest.xpi";
           "searxng-favicons@micahmo.com".install_url = "${exturl}/searxng-favicons/latest.xpi";
           "{93f81583-1fd4-45cc-bff4-abba952167bb}".install_url = "${exturl}/jiffy-reader/latest.xpi";
-          "userchrome-toggle-extended@n2ezr.ru".install_url = "${exturl}/userchrome-toggle-extended/latest.xpi";
           "tridactyl.vim@cmcaine.co.uk".install_url = "${exturl}/tridactyl-vim/latest.xpi";
           "shinigamieyes@shinigamieyes".install_url = "${exturl}/shinigami-eyes/latest.xpi";
           "{f49ffbc5-1437-4a40-827d-3f0caf7b5254}".install_url = "${exturl}/chameleon-ext/latest.xpi";
