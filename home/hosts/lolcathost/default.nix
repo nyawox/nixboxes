@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  inputs,
   ...
 }: let
   folder = ./.;
@@ -36,5 +35,4 @@ in {
         cp -R Catppuccin-Mocha/* $out/
       '';
     };
-  xdg.configFile."Element/config.json".source = inputs.catppuccin-element.outPath + "/config.json";
 }

@@ -15,7 +15,6 @@
     lutris
     heroic
     wineWowPackages.waylandFull
-    element-desktop
     telegram-desktop
     youtube-music
     samba

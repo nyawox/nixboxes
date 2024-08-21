@@ -245,7 +245,6 @@
         ".config/heroic"
         ".config/lutris"
         ".config/remmina"
-        ".config/Element"
         ".config/Signal"
         ".config/obsidian"
         ".config/vivaldi"
