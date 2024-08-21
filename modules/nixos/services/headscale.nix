@@ -35,10 +35,10 @@ in {
         settings = let
           certDir = config.security.acme.certs."nixlap.top".directory;
         in {
-          dns_config = {
+          dns = {
             magic_dns = true;
             base_domain = "hsnet.nixlap.top";
-            nameservers = [
+            nameservers.global = [
               # AdGuard Home
               "100.64.0.3" # localpost
               "127.0.0.1" # keep localhost, otherwise sometimes it fails to connect
@@ -46,14 +46,11 @@ in {
               # "9.9.9.9"
               # "149.112.112.112"
             ];
-            # Magic DNS not working without this
-            # https://github.com/juanfont/headscale/issues/660
-            override_local_dns = true;
-            tls_key_path = "${certDir}/key.pem";
-            tls_cert_path = "${certDir}/cert.pem";
           };
+          tls_key_path = "${certDir}/key.pem";
+          tls_cert_path = "${certDir}/cert.pem";
           logtail.enabled = false;
-          acl_policy_path = config.sops.secrets.headscale_acls.path; # ignore the warning, new policy.path config currently doesn't work
+          policy.path = config.sops.secrets.headscale_acls.path;
           server_url = "https://${domain}";
           prefixes = {
             v6 = "fd7a:115c:a1e0::/48";

@@ -47,7 +47,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     headscale = {
-      url = "github:juanfont/headscale/v0.23.0-beta1";
+      url = "github:juanfont/headscale/v0.23.0-beta2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     arion = {
