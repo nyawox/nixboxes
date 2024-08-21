@@ -1,10 +1,18 @@
 {
   stdenv,
   lib,
-  sources,
+  fetchFromGitHub,
 }:
 stdenv.mkDerivation {
-  inherit (sources.catppuccin-fcitx5) pname version src;
+  pname = "catppuccin-fcitx5";
+  version = "ce244cfdf43a648d984719fdfd1d60aab09f5c97";
+  src = fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "fcitx5";
+    rev = "ce244cfdf43a648d984719fdfd1d60aab09f5c97";
+    fetchSubmodules = false;
+    sha256 = "sha256-uFaCbyrEjv4oiKUzLVFzw+UY54/h7wh2cntqeyYwGps=";
+  };
 
   dontBuild = true;
   dontConfigure = true;
