@@ -19,6 +19,10 @@ with lib; let
     url = "https://cdn2.steamgriddb.com/grid/636ff76014a7300ea3c2b260a2edd559-fakepng.png";
     sha256 = "0ir19w3m005zjxpkwya4g0zr8lvcp2f83lrwmzlr8cn139vxadhh";
   };
+  wiiu-image = pkgs.fetchurl {
+    url = "https://cdn2.steamgriddb.com/grid/47a0f2624ff00a6c0e8612c17fd9fbbe.png";
+    sha256 = "19n4a5qhi7zyiijfim4zncy6l15xbz880rfg87151rrr289zr0kz";
+  };
 in {
   options = {
     modules.services.sunshine = {
@@ -113,6 +117,18 @@ in {
               undo = "${pkgs.procps}/bin/pkill rpcs3";
             };
             image-path = ps3-image;
+          }
+          {
+            name = "Wii U";
+            output = "wiiu.txt";
+            detached = [
+              "${getExe pkgs.niri-unstable} msg action spawn -- ${getExe pkgs.gamescope} -f --force-grab-cursor -W 1920 -H 1080 -w 1920 -h 1080 -- ${getExe pkgs.cemu}"
+            ];
+            prep-cmd = singleton {
+              do = "${getExe pkgs.niri-unstable} msg action focus-monitor-right";
+              undo = "${pkgs.procps}/bin/pkill cemu";
+            };
+            image-path = wiiu-image;
           }
         ];
       };
