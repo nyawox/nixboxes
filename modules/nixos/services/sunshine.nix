@@ -15,6 +15,10 @@ with lib; let
     url = "https://cdn2.steamgriddb.com/grid/17db034763c44c6c6ae0fbd504dbc96e.png";
     sha256 = "17di6h1pql04alva3228zz0ckyr4n4dd81km3hkgw5dckdkp0b6j";
   };
+  ps3-image = pkgs.fetchurl {
+    url = "https://cdn2.steamgriddb.com/grid/636ff76014a7300ea3c2b260a2edd559-fakepng.png";
+    sha256 = "0ir19w3m005zjxpkwya4g0zr8lvcp2f83lrwmzlr8cn139vxadhh";
+  };
 in {
   options = {
     modules.services.sunshine = {
@@ -97,6 +101,18 @@ in {
               undo = "${pkgs.procps}/bin/pkill openrct2";
             };
             image-path = openrct2-image;
+          }
+          {
+            name = "PS3";
+            output = "ps3.txt";
+            detached = [
+              "${getExe pkgs.niri-unstable} msg action spawn -- ${getExe pkgs.gamescope} -f --force-grab-cursor -W 1920 -H 1080 -w 1920 -h 1080 -- ${getExe pkgs.rpcs3}"
+            ];
+            prep-cmd = singleton {
+              do = "${getExe pkgs.niri-unstable} msg action focus-monitor-right";
+              undo = "${pkgs.procps}/bin/pkill rpcs3";
+            };
+            image-path = ps3-image;
           }
         ];
       };

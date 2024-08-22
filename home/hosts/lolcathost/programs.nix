@@ -36,6 +36,7 @@
     ifuse
     cemu
     dolphin-emu
+    rpcs3
     efibootmgr
     gimp
     pavucontrol
