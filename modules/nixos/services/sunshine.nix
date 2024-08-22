@@ -114,7 +114,7 @@ in {
             ];
             prep-cmd = singleton {
               do = "${getExe pkgs.niri-unstable} msg action focus-monitor-right";
-              undo = "${pkgs.procps}/bin/pkill rpcs3";
+              undo = "${pkgs.procps}/bin/pkill gamescope";
             };
             image-path = ps3-image;
           }
