@@ -6,13 +6,12 @@
   inputs,
   ...
 }: {
-  imports = [
-    inputs.aagl.nixosModules.default
-    inputs.madness.nixosModules.madness
-  ];
+  imports = [inputs.madness.nixosModules.madness];
   modules = {
     sysconf = {
       wifi.enable = true;
+      networkd.enable = false;
+      networkmanager.enable = true;
       # secureboot.enable = true;
       sshluks.enable = true;
     };
@@ -121,13 +120,10 @@
     gnome-disks.enable = true;
     adb.enable = true;
     ns-usbloader.enable = true;
-    honkers-railway-launcher.enable = true;
     kdeconnect = {
       enable = true;
       package = pkgs.valent;
     };
-
-    gamemode.enable = true;
   };
 
   # Open ports in the firewall.
@@ -224,26 +220,12 @@
         "Games"
         "PopTracker"
         "invokeai"
-        ".local/share/honkers-railway-launcher"
-        ".local/share/anime-game-launcher"
-        ".local/share/Steam"
-        ".local/share/yuzu"
-        ".local/share/Cemu"
-        ".local/share/dolphin-emu"
-        ".config/dolphin-emu"
         ".local/share/zathura"
         ".local/share/remmina"
-        ".local/share/lutris"
-        ".local/share/PrismLauncher/instances"
-        ".local/share/PrismLauncher/logs"
-        ".local/share/PrismLauncher/translations"
-        ".local/share/PrismLauncher/meta"
         ".local/share/TelegramDesktop"
         ".local/share/NexusMods.App"
         ".local/share/StardewValley"
-        ".config/rpcs3"
         ".config/heroic"
-        ".config/lutris"
         ".config/remmina"
         ".config/Signal"
         ".config/obsidian"
@@ -251,14 +233,7 @@
         ".config/onlyoffice"
         ".config/StardewValley"
         ".config/calibre"
-        ".config/OpenRCT2"
         ".android"
-        ".steam"
-      ];
-      files = [
-        ".local/share/PrismLauncher/prismlauncher.cfg"
-        ".local/share/PrismLauncher/accounts.json"
-        ".local/share/PrismLauncher/metacache"
       ];
     };
   };

@@ -6,12 +6,10 @@
   home.packages = with pkgs; [
     nomacs
     piper
-    prismlauncher
     pciutils
     steam-run
     vesktop
     dmidecode
-    lutris
     heroic
     wineWowPackages.waylandFull
     telegram-desktop
@@ -20,7 +18,6 @@
     unzip
     unrar
     unar
-    mangohud
     nvme-cli
     smartmontools
     imagemagick
@@ -34,9 +31,6 @@
     killall
     libimobiledevice
     ifuse
-    cemu
-    dolphin-emu
-    rpcs3
     efibootmgr
     gimp
     pavucontrol
@@ -63,7 +57,6 @@
     distrobox
     gpu-screen-recorder
     gpu-screen-recorder-gtk
-    inputs.nixpkgs-yuzu.legacyPackages.${pkgs.system}.citra
     remmina
     onlyoffice-bin
     obs-studio
@@ -71,7 +64,6 @@
     trayscale
     inputs.nixtendo-switch.packages.${pkgs.system}.uscreen
     calibre
-    openrct2
   ];
   services.flatpak.packages = [
     "com.steamgriddb.SGDBoop"
