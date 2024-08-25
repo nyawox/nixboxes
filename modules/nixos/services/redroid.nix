@@ -45,6 +45,7 @@ in {
         ];
       };
     };
+    systemd.services.arion-redroid.wantedBy = mkForce []; # Don't autostart DE/WM becomes unable to launch
     networking = {
       nftables.enable = mkForce false;
       firewall.extraCommands =
