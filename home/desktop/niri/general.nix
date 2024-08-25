@@ -158,13 +158,6 @@ in {
           min-width = 400;
         }
         {
-          matches = singleton {
-            app-id = "gamescope";
-          };
-          open-maximized = true;
-          open-fullscreen = true;
-        }
-        {
           matches = [
             {app-id = "firefox";}
             {app-id = "vesktop";}
@@ -213,11 +206,6 @@ in {
       ];
       outputs = {
         "DP-1".scale = 0.75;
-        "DP-2".mode = {
-          width = 1920;
-          height = 1080;
-          refresh = 60.000;
-        };
         "eDP-1".scale = 0.75;
       };
       binds = with config.lib.niri.actions; let
