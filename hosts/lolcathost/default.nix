@@ -119,11 +119,6 @@
   programs = {
     gnome-disks.enable = true;
     adb.enable = true;
-    ns-usbloader.enable = true;
-    kdeconnect = {
-      enable = true;
-      package = pkgs.valent;
-    };
   };
 
   # Open ports in the firewall.
@@ -134,27 +129,7 @@
   security.protectKernelImage = false;
 
   boot = {
-    supportedFilesystems = ["ntfs"];
     kernelPackages = pkgs.linuxPackages_latest;
-    extraModprobeConfig = ''
-      options usbhid quirks=0x046D:0x0A38:0x0004
-      options kvm_intel nested=1
-      options kvm_intel emulate_invalid_guest_state=0
-      options kvm ignore_msrs=1
-    '';
-
-    # binfmt.emulatedSystems = ["aarch64-linux"];
-
-    kernelParams = [
-      "allow_discards"
-      "vt.global_cursor_default=0"
-      "amdgpu.ppfeaturemask=0xffffffff"
-      "amd_iommu=on"
-      "iommu=pt"
-      "pcie_acs_override=downstream,multifunction"
-      # "video=efifb:off,vesafb:off"
-      # "modeset=1"
-    ];
     loader.efi.canTouchEfiVariables = true;
     loader.efi.efiSysMountPoint = "/boot";
 
@@ -169,18 +144,6 @@
       ];
       kernelModules = ["amdgpu"];
     };
-    kernelModules = [
-      "kvm-amd"
-      "vfio"
-      "vfio-pci"
-      "vfio_iommu_type1"
-      "vfio_virqfd"
-      # "vendor-reset"
-      "uhid"
-    ];
-    # extraModulePackages = with config.boot.kernelPackages; [
-    # vendor-reset
-    # ];
   };
 
   systemd.extraConfig = ''
