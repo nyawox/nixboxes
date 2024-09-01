@@ -52,6 +52,7 @@ in {
           "@@||*tailscale.com"
           "@@||*instagram.com"
           "@@||*z-lib*"
+          "@@||*fmhy.net"
         ];
         filters =
           imap (index: elem: {
