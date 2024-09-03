@@ -79,6 +79,7 @@ in {
         settingsFormat = pkgs.formats.keyValue {};
         configFile = settingsFormat.generate "sunshine.conf" config.services.sunshine.settings;
       in ''
+        xwayland disable
         exec ${config.security.wrapperDir}/sunshine ${configFile}
         exec ${getExe pkgs.bash} -c "while true; do ${getExe pkgs.gamescope} -f -W 1920 -H 1080 -r 60 -- ${getExe inputs.jovian.legacyPackages.${pkgs.system}.gamescope-session}; done"
       '';
