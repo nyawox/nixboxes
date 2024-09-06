@@ -15,7 +15,7 @@ in {
       };
       ip = mkOption {
         type = types.str;
-        default = "192.168.0.161";
+        default = "192.168.0.110";
       };
       launcher = mkOption {
         type = types.str;
