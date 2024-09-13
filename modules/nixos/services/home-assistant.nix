@@ -75,7 +75,7 @@ in {
           pychromecast
           psycopg2
           aiohttp-zlib-ng
-          aiohttp-isal
+          aiohttp-fast-zlib
           pyqrcode # 2fa depends
           ibeacon-ble # silence error
           adb-shell

@@ -70,7 +70,6 @@ in {
           ".config/vesktop"
           ".config/uGet"
           ".config/transmission-remote-gtk"
-          ".config/Youtube Music"
           ".mozilla"
         ];
       };

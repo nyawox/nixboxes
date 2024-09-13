@@ -13,7 +13,6 @@
     heroic
     wineWowPackages.waylandFull
     telegram-desktop
-    youtube-music
     samba
     unzip
     unrar

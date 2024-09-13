@@ -9,7 +9,6 @@
       inherit system;
       overlays = [
         inputs.nur.overlay
-        inputs.emacs-overlay.overlay
         inputs.berberman.overlays.default
         (final: prev: import ../pkgs final prev)
       ];

@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   inputs,
   ...
 }:
@@ -22,7 +21,6 @@ in {
   config = mkIf cfg.enable {
     programs.doom-emacs = {
       enable = true;
-      emacs = pkgs.emacs-unstable-nox;
       doomDir = ./doom.d;
     };
     services.emacs.enable = true;
