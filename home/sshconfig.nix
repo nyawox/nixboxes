@@ -31,7 +31,7 @@
         };
       };
       "postluks" = {
-        hostname = "192.168.0.132";
+        hostname = "192.168.0.129";
         user = "root";
         port = 42420;
         checkHostIP = false;
