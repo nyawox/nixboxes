@@ -55,6 +55,8 @@ in {
         address_family = "both";
         controller = "enabled";
         gamepad = "x360";
+        lan_encryption_mode = "0";
+        wan_encryption_mode = "0";
       };
       applications = {
         env = {
