@@ -59,12 +59,8 @@
     remmina
     onlyoffice-bin
     obs-studio
-    nexusmods-app-unfree
     trayscale
     inputs.nixtendo-switch.packages.${pkgs.system}.uscreen
     calibre
-  ];
-  services.flatpak.packages = [
-    "com.steamgriddb.SGDBoop"
   ];
 }

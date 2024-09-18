@@ -30,6 +30,10 @@ in {
     };
   };
   config = mkIf cfg.enable {
+    services.flatpak.packages = [
+      "com.steamgriddb.SGDBoop"
+      "io.github.limo_app.limo"
+    ];
     jovian = {
       steam = {
         enable = true;
@@ -52,6 +56,7 @@ in {
       directories = ["/var/lib/decky-loader"];
       users."${username}" = {
         directories = [
+          "Mods"
           ".local/share/Steam"
           ".local/share/lutris"
           ".config/rpcs3"
