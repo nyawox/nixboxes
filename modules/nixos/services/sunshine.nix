@@ -89,7 +89,7 @@ in {
         for_window [title="Steam Big Picture Mode"] fullscreen enable
         for_window [class="gamescope"] fullscreen enable
         exec ${config.security.wrapperDir}/sunshine ${configFile}
-        exec ${getExe pkgs.bash} -c "while true; do ${getExe' inputs.jovian.legacyPackages.${pkgs.system}.gamescope-session "gamescope-session"}; done"
+        exec ${getExe pkgs.bash} -c "while true; do ${getExe pkgs.gamescope} -f -W 1920 -H 1080 -r 60 -- ${getExe' inputs.jovian.legacyPackages.${pkgs.system}.gamescope-session "gamescope-session"}; done"
       '';
 
       programs.niri.settings = {
