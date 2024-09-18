@@ -35,6 +35,7 @@ in {
         enable = true;
         environment.ENABLE_GAMESCOPE_WSI = "0"; # games fails to launch without this
       };
+      steamos.useSteamOSConfig = false;
       decky-loader.enable = true;
     };
     environment.systemPackages = gamePackages;
