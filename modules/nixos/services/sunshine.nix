@@ -86,6 +86,8 @@ in {
         xwayland disable
         default_border none
         default_floating_border none
+        for_window [title="Steam Big Picture Mode"] fullscreen enable
+        for_window [class="gamescope"] fullscreen enable
         exec ${config.security.wrapperDir}/sunshine ${configFile}
         exec ${getExe pkgs.bash} -c "while true; do ${getExe' inputs.jovian.legacyPackages.${pkgs.system}.gamescope-session "gamescope-session"}; done"
       '';
