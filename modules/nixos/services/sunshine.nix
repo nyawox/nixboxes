@@ -84,6 +84,8 @@ in {
         configFile = settingsFormat.generate "sunshine.conf" config.services.sunshine.settings;
       in ''
         xwayland disable
+        default_border none
+        default_floating_border none
         exec ${config.security.wrapperDir}/sunshine ${configFile}
         exec ${getExe pkgs.bash} -c "while true; do ${getExe' inputs.jovian.legacyPackages.${pkgs.system}.gamescope-session "gamescope-session"}; done"
       '';
