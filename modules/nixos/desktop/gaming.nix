@@ -33,7 +33,7 @@ in {
     jovian = {
       steam = {
         enable = true;
-        environment.ENABLE_GAMESCOPE_WSI = "0"; # games fails to launch without this
+        # environment.ENABLE_GAMESCOPE_WSI = "0"; # games fails to launch without this when SteamOSConfig option is enabled
       };
       steamos.useSteamOSConfig = false;
       decky-loader.enable = true;
