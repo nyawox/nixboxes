@@ -25,26 +25,29 @@ in {
   config = mkIf cfg.enable {
     services.sunshine = {
       enable = true;
-      # device pairing and vaapi not working on nightly
-      # package = pkgs.sunshine.overrideAttrs (prev: {
-      #   version = "git-2024-08-10";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "LizardByte";
-      #     repo = "Sunshine";
-      #     rev = "f9c885a414f92d8277337e2fd1283110a0e376bb";
-      #     hash = "sha256-gsuhRk2gBLg+6VQzK3eW4xTroMSGR4MUgpyw4xFLb3g=";
-      #     fetchSubmodules = true;
-      #   };
-      #   patches = [];
-      #   cmakeFlags =
-      #     prev.cmakeFlags
-      #     ++ [
-      #       (cmakeFeature "BOOST_USE_STATIC" "OFF")
-      #       (cmakeFeature "BUILD_DOCS" "OFF")
-      #     ];
-      #   buildInputs = lists.remove pkgs.boost prev.buildInputs ++ [pkgs.boost185];
-      #   nativeBuildInputs = prev.nativeBuildInputs ++ [pkgs.nodejs];
-      # });
+      # pairing not working on prerelease
+      package = pkgs.sunshine.overrideAttrs (prev: {
+        version = "v2024.916.233144";
+        src = pkgs.fetchFromGitHub {
+          owner = "LizardByte";
+          repo = "Sunshine";
+          rev = "v2024.916.233144";
+          hash = "sha256-jNs/rLBHLvWmpRns143wSbPhJQd5RdbLJI/xJV4NDrE=";
+          fetchSubmodules = true;
+        };
+        patches = [];
+        cmakeFlags =
+          prev.cmakeFlags
+          ++ [
+            (cmakeFeature "BOOST_USE_STATIC" "OFF")
+            (cmakeFeature "BUILD_DOCS" "OFF")
+            # workaround for issue 2778
+            (cmakeFeature "SUNSHINE_ENABLE_TRAY" "0")
+            (cmakeFeature "SUNSHINE_REQUIRE_TRAY" "0")
+          ];
+        buildInputs = lists.remove pkgs.boost prev.buildInputs ++ [pkgs.boost185];
+        nativeBuildInputs = prev.nativeBuildInputs ++ [pkgs.nodejs];
+      });
       autoStart = false; # let sway start it
       capSysAdmin = true;
       openFirewall = true;
@@ -54,7 +57,6 @@ in {
         encoder = "vaapi";
         address_family = "both";
         controller = "enabled";
-        gamepad = "x360";
         lan_encryption_mode = "0";
         wan_encryption_mode = "0";
       };
