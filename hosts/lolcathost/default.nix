@@ -130,6 +130,10 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelParams = [
+      "amdgpu.lockup_timeout=5000" # set timeout duration for detecting and handling gpu lockups
+      "amdgpu.ppfeaturemask=0xffffffff" # enable overclocking amdgpu
+    ];
     loader.efi.canTouchEfiVariables = true;
     loader.efi.efiSysMountPoint = "/boot";
 
@@ -146,10 +150,8 @@
     };
   };
 
-  systemd.extraConfig = ''
-    DefaultTimeoutStartSec=30s
-    DefaultTimeoutStopSec=10s
-  '';
+  environment.systemPackages = [pkgs.lact];
+  systemd.packages = [pkgs.lact];
 
   hardware = {
     cpu.amd.updateMicrocode = true;
@@ -172,12 +174,15 @@
   fileSystems."/mnt/hdd".device = "/dev/mapper/hdd";
 
   environment.persistence."/persist" = {
-    directories = lib.mkIf config.modules.sysconf.impermanence.enable (lib.singleton {
-      directory = "/nixboxes";
-      user = "${username}";
-      group = "users";
-      mode = "757";
-    });
+    directories = lib.mkIf config.modules.sysconf.impermanence.enable [
+      {
+        directory = "/nixboxes";
+        user = "${username}";
+        group = "users";
+        mode = "757";
+      }
+      "/etc/lact"
+    ];
     users."${username}" = lib.mkIf config.modules.sysconf.impermanence.enable {
       directories = [
         "Games"
