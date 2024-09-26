@@ -50,7 +50,7 @@ in {
       });
       autoStart = false; # let sway start it
       capSysAdmin = true;
-      openFirewall = true;
+      openFirewall = false; #let's keep it closed
       settings = {
         min_log_level = "info";
         capture = "wlr";
