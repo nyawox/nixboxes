@@ -133,6 +133,13 @@
     kernelParams = [
       "amdgpu.lockup_timeout=5000" # set timeout duration for detecting and handling gpu lockups
       "amdgpu.ppfeaturemask=0xffffffff" # enable overclocking amdgpu
+      # these options below vastly reduced freeze while gpu is under heavy load
+      "amdgpu.audio=0"
+      "amdgpu.sg_display=0"
+      "amdgpu.runpm=0"
+      "amdgpu.bapm=0"
+      "amdgpu.aspm=0"
+      "pcie_aspm=off"
     ];
     loader.efi.canTouchEfiVariables = true;
     loader.efi.efiSysMountPoint = "/boot";
