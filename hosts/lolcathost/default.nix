@@ -157,9 +157,6 @@
     };
   };
 
-  environment.systemPackages = [pkgs.lact];
-  systemd.packages = [pkgs.lact];
-
   hardware = {
     cpu.amd.updateMicrocode = true;
 
@@ -174,39 +171,43 @@
     xone.enable = true;
   };
 
-  # use crypttab for non boot required luks devices
-  environment.etc."crypttab".text = ''
-    hdd /dev/disk/by-uuid/b347d514-3e34-4bb1-8a72-630176f48783 ${config.sops.secrets.hdd-crypto.path}
-  '';
+  systemd.packages = [pkgs.lact];
   fileSystems."/mnt/hdd".device = "/dev/mapper/hdd";
+  environment = {
+    # use crypttab for non boot required luks devices
+    etc."crypttab".text = ''
+      hdd /dev/disk/by-uuid/b347d514-3e34-4bb1-8a72-630176f48783 ${config.sops.secrets.hdd-crypto.path}
+    '';
+    systemPackages = [pkgs.lact];
 
-  environment.persistence."/persist" = {
-    directories = lib.mkIf config.modules.sysconf.impermanence.enable [
-      {
-        directory = "/nixboxes";
-        user = "${username}";
-        group = "users";
-        mode = "757";
-      }
-      "/etc/lact"
-    ];
-    users."${username}" = lib.mkIf config.modules.sysconf.impermanence.enable {
-      directories = [
-        "Games"
-        "PopTracker"
-        "invokeai"
-        ".local/share/zathura"
-        ".local/share/remmina"
-        ".local/share/TelegramDesktop"
-        ".config/heroic"
-        ".config/remmina"
-        ".config/Signal"
-        ".config/obsidian"
-        ".config/vivaldi"
-        ".config/onlyoffice"
-        ".config/calibre"
-        ".android"
+    persistence."/persist" = {
+      directories = lib.mkIf config.modules.sysconf.impermanence.enable [
+        {
+          directory = "/nixboxes";
+          user = "${username}";
+          group = "users";
+          mode = "757";
+        }
+        "/etc/lact"
       ];
+      users."${username}" = lib.mkIf config.modules.sysconf.impermanence.enable {
+        directories = [
+          "Games"
+          "PopTracker"
+          "invokeai"
+          ".local/share/zathura"
+          ".local/share/remmina"
+          ".local/share/TelegramDesktop"
+          ".config/heroic"
+          ".config/remmina"
+          ".config/Signal"
+          ".config/obsidian"
+          ".config/vivaldi"
+          ".config/onlyoffice"
+          ".config/calibre"
+          ".android"
+        ];
+      };
     };
   };
 }
