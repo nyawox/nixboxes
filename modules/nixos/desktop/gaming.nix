@@ -12,6 +12,7 @@ with lib; let
     lutris
     prismlauncher
     inputs.nixpkgs-yuzu.legacyPackages.${pkgs.system}.citra
+    ryujinx
     cemu
     dolphin-emu
     rpcs3
@@ -69,6 +70,7 @@ in {
           ".local/share/PrismLauncher"
           ".steam"
           ".config/lutris"
+          ".config/Ryujinx"
         ];
       };
     };
