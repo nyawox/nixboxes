@@ -37,6 +37,7 @@
       firejail.enable = true;
       windows.enable = true;
       airplay.enable = true;
+      altserver.enable = true;
       tor.enable = true;
       v2ray.enable = true;
       redroid.enable = true;
@@ -72,7 +73,6 @@
       environmentFile = config.sops.secrets.switch.path;
     };
     irqbalance.enable = true;
-    usbmuxd.enable = true;
     gvfs.enable = true;
     tumbler.enable = true;
     ratbagd.enable = true;
