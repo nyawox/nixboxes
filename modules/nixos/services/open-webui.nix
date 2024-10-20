@@ -1,6 +1,8 @@
 {
   config,
   lib,
+  pkgs,
+  inputs,
   ...
 }:
 with lib; let
@@ -21,6 +23,7 @@ in {
   config = mkIf cfg.enable {
     services.open-webui = {
       enable = true;
+      package = inputs.staging.legacyPackages.${pkgs.system}.open-webui; # build failure has only been fixed in staging
       host = "0.0.0.0";
       inherit (cfg) port;
       environment = {

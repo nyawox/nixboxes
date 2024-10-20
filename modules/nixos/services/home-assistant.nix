@@ -133,16 +133,26 @@ in {
         card-mod
         button-card
         (
-          pkgs.mkYarnPackage {
+          pkgs.stdenv.mkDerivation rec {
             pname = "kiosk-mode";
             version = "git";
 
             src = inputs.hass-kiosk-mode;
 
+            nativeBuildInputs = with pkgs; [
+              nodejs
+              pnpm.configHook
+            ];
+
+            pnpmDeps = pkgs.pnpm.fetchDeps {
+              inherit pname version src;
+              hash = "sha256-yJpHkOXcVHJZUMq/ciIAC4eLw+ozuCexRq0vF80bdvE=";
+            };
+
             buildPhase = ''
               runHook preBuild
 
-              yarn build
+              ${getExe pkgs.pnpm} build
 
               runHook postBuild
             '';
@@ -150,7 +160,7 @@ in {
             installPhase = ''
               runHook preInstall
               mkdir $out
-              install -m0644 ./deps/kiosk-mode/dist/kiosk-mode.js $out
+              install -m0644 ./.hass/config/www/kiosk-mode.js $out
 
               runHook postInstall
             '';

@@ -25,29 +25,6 @@ in {
   config = mkIf cfg.enable {
     services.sunshine = {
       enable = true;
-      # pairing not working on prerelease
-      package = pkgs.sunshine.overrideAttrs (prev: {
-        version = "v2024.916.233144";
-        src = pkgs.fetchFromGitHub {
-          owner = "LizardByte";
-          repo = "Sunshine";
-          rev = "v2024.916.233144";
-          hash = "sha256-jNs/rLBHLvWmpRns143wSbPhJQd5RdbLJI/xJV4NDrE=";
-          fetchSubmodules = true;
-        };
-        patches = [];
-        cmakeFlags =
-          prev.cmakeFlags
-          ++ [
-            (cmakeFeature "BOOST_USE_STATIC" "OFF")
-            (cmakeFeature "BUILD_DOCS" "OFF")
-            # workaround for issue 2778
-            (cmakeFeature "SUNSHINE_ENABLE_TRAY" "0")
-            (cmakeFeature "SUNSHINE_REQUIRE_TRAY" "0")
-          ];
-        buildInputs = lists.remove pkgs.boost prev.buildInputs ++ [pkgs.boost185];
-        nativeBuildInputs = prev.nativeBuildInputs ++ [pkgs.nodejs];
-      });
       autoStart = false; # let sway start it
       capSysAdmin = true;
       openFirewall = false; #let's keep it closed
@@ -89,7 +66,7 @@ in {
         for_window [title="Steam Big Picture Mode"] fullscreen enable
         for_window [class="gamescope"] fullscreen enable
         exec ${config.security.wrapperDir}/sunshine ${configFile}
-        exec ${getExe pkgs.bash} -c "while true; do ${getExe pkgs.gamescope} -f -W 1920 -H 1080 -r 60 -- ${getExe' inputs.jovian.legacyPackages.${pkgs.system}.gamescope-session "gamescope-session"}; done"
+        exec ${getExe pkgs.bash} -c "while true; do ${getExe' inputs.jovian.legacyPackages.${pkgs.system}.gamescope "gamescope"} -f -W 1920 -H 1080 -r 60 -- ${getExe' inputs.jovian.legacyPackages.${pkgs.system}.gamescope-session "gamescope-session"}; done"
       '';
 
       programs.niri.settings = {

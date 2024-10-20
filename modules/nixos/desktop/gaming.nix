@@ -11,8 +11,6 @@ with lib; let
   gamePackages = with pkgs; [
     lutris
     prismlauncher
-    inputs.nixpkgs-yuzu.legacyPackages.${pkgs.system}.citra
-    ryujinx
     cemu
     dolphin-emu
     rpcs3
@@ -30,32 +28,29 @@ in {
       };
     };
   };
-  config = mkIf cfg.enable {
-    services.flatpak.packages = [
+  config = {
+    jovian.steamos.useSteamOSConfig = false; # for some reason this is enabled by default
+
+    services.flatpak.packages = mkIf cfg.enable [
       "com.steamgriddb.SGDBoop"
       "io.github.limo_app.limo"
     ];
-    jovian = {
-      steam = {
-        enable = true;
-        # environment.ENABLE_GAMESCOPE_WSI = "0"; # games fails to launch without this when SteamOSConfig option is enabled
-      };
-      steamos.useSteamOSConfig = false;
-      decky-loader.enable = true;
-    };
-    environment.systemPackages = gamePackages;
-    programs.steam = {
+    jovian.steam.enable = mkIf cfg.enable true;
+    # jovian.steamenvironment.ENABLE_GAMESCOPE_WSI = mkIf cfg.enable "0"; # games fails to launch without this when useSteamOSConfig option is enabled
+    jovian.decky-loader.enable = mkIf cfg.enable true;
+    environment.systemPackages = mkIf cfg.enable gamePackages;
+    programs.steam = mkIf cfg.enable {
       enable = true;
       extraCompatPackages = with pkgs; [
         proton-ge-bin
         steamtinkerlaunch
       ];
-      extraPackages = gamePackages;
+      # extraPackages = gamePackages; # temporarily disable since steam-run-usr-target build always fails with a lot of collision warning and reccursive pixman-1 error
       protontricks.enable = true;
     };
     environment.persistence."/persist" = mkIf config.modules.sysconf.impermanence.enable {
-      directories = ["/var/lib/decky-loader"];
-      users."${username}" = {
+      directories = mkIf cfg.enable ["/var/lib/decky-loader"];
+      users."${username}" = mkIf cfg.enable {
         directories = [
           "Mods"
           ".local/share/Steam"
