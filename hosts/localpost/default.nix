@@ -103,6 +103,7 @@
     kernelModules = [];
     extraModulePackages = [];
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = ["igb.EEE=0"];
 
     consoleLogLevel = 7;
   };
