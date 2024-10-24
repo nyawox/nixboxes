@@ -3,7 +3,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     latest.url = "github:nixos/nixpkgs";
-    staging.url = "github:nixos/nixpkgs/staging";
+    stable.url = "github:nixos/nixpkgs/nixos-24.05";
     # Make sure to follow nixpkgs to unclutter lock file
     home-manager = {
       url = "github:nix-community/home-manager";

@@ -23,7 +23,7 @@ in {
   config = mkIf cfg.enable {
     services.open-webui = {
       enable = true;
-      package = inputs.staging.legacyPackages.${pkgs.system}.open-webui; # build failure has only been fixed in staging
+      package = inputs.stable.legacyPackages.${pkgs.system}.open-webui; # build failure has only been fixed in staging. get from stable in the meantime (should take few weeks)
       host = "0.0.0.0";
       inherit (cfg) port;
       environment = {
