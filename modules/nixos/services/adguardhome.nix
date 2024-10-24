@@ -35,10 +35,23 @@ in {
       mutableSettings = false;
       settings = {
         dns = {
-          upstream_dns = ["9.9.9.9"];
-          bootstrap_dns = ["9.9.9.9"];
-          fallback_dns = ["149.112.112.112"];
+          upstream_code = "parallel";
+          upstream_dns = [
+            "https://dns.quad9.net/dns-query"
+            "https://doh.libredns.gr/dns-query"
+            "https://doh.dns.sb/dns-query"
+            "https://dns.mullvad.net/dns-query"
+            "https://freedns.controld.com/uncensored"
+          ];
+          bootstrap_dns = ["1.1.1.1" "1.0.0.1" "2606:4700:4700::1111" "2606:4700:4700::1001"];
+          use_http3_upstreams = true;
+          serve_http3 = true;
           enable_dnssec = true;
+
+          cache_optimistic = true;
+          cache_size = 500000000; # 500 megabytes in bytes
+          cache_ttl_min = 86400; # 24 hours in seconds
+          cache_ttl_max = 172800; # 48 hours in seconds
         };
         filtering = {
           protection_enabled = true;
@@ -53,6 +66,16 @@ in {
           "@@||*instagram.com"
           "@@||*z-lib*"
           "@@||*fmhy.net"
+          # "||ocsp.apple.com^"
+          # "||ocsp2.apple.com^"
+          # "||valid.apple.com^"
+          # "||crl.apple.com^"
+          # "||certs.apple.com^"
+          # "||appattest.apple.com^"
+          # "||vpp.itunes.apple.com^"
+          # "@@||app.localhost.direct^"
+          # "@@||api.palera.in^"
+          # "@@||register.appattest.apple.com^"
         ];
         filters =
           imap (index: elem: {
@@ -157,6 +180,10 @@ in {
           ];
       };
     };
+
+    systemd.services.adguardhome.serviceConfig.Nice = mkForce (-20);
+    systemd.services.adguardhome.serviceConfig.IOWeight = mkForce 10000;
+    systemd.services.adguardhome.serviceConfig.CPUWeight = mkForce 10000;
     environment.persistence."/persist".directories = mkIf config.modules.sysconf.impermanence.enable (singleton {
       directory = "/var/lib/private/AdGuardHome";
       user = "adguardhome";
