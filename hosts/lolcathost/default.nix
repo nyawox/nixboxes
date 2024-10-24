@@ -174,6 +174,8 @@
   systemd.packages = [pkgs.lact];
   fileSystems."/mnt/hdd".device = "/dev/mapper/hdd";
   environment = {
+    # ios tweak dev
+    variables.THEOS = "/home/${username}/theos";
     # use crypttab for non boot required luks devices
     etc."crypttab".text = ''
       hdd /dev/disk/by-uuid/b347d514-3e34-4bb1-8a72-630176f48783 ${config.sops.secrets.hdd-crypto.path}
@@ -192,6 +194,7 @@
       ];
       users."${username}" = lib.mkIf config.modules.sysconf.impermanence.enable {
         directories = [
+          "theos"
           "Games"
           "PopTracker"
           "invokeai"
