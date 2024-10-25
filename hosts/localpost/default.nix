@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{lib, ...}: {
   # Building man-cache on qemu is very slow.
   documentation.man.generateCaches = false;
 
