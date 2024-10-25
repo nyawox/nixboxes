@@ -29,7 +29,7 @@ in {
         wqy_zenhei
         font-awesome
         poppins
-        noto-fonts-cjk
+        noto-fonts-cjk-sans
         fast-font
         (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
       ];
