@@ -31,10 +31,6 @@
     };
   };
 
-  security.lockKernelModules = false;
-  security.protectKernelImage = false;
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
-
   services.switch-boot.enable = true;
 
   tmpfsroot = {

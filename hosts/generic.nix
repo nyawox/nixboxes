@@ -24,7 +24,7 @@
       timeout = lib.mkDefault 0;
     };
 
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_hardened;
+    kernelPackages = lib.mkDefault inputs.latest.legacyPackages.${pkgs.system}.linuxPackages_hardened;
     kernelModules = ["lkrg"];
     kernelParams = ["libahci.ignore_sss=1"];
 

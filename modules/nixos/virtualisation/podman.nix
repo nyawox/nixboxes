@@ -20,6 +20,7 @@ in {
     environment.systemPackages = with pkgs; [
       podman-compose
     ];
+    boot.kernelParams = ["kernel.unprivileged_userns_clone=1"];
     virtualisation = {
       podman = {
         enable = true;
