@@ -60,8 +60,13 @@ in
         sandbox = true;
         extraSandboxBinds = [
           "/home/${username}/.config/tridactyl"
-          "/home/${username}/.local/share/fonts" # home-manager fonts
+          "/home/${username}/.local/share/fonts"
+          "/home/${username}/.config/fontconfig"
+          "/etc/fonts"
           "/etc/profiles/per-user/${username}/share/icons" # home-manager cursor and icon themes
+          # xdg-open
+          "/etc/profiles/per-user/${username}/share/applications"
+          "/run/current-system/sw/share/applications"
           "/nix/store"
         ];
       };
