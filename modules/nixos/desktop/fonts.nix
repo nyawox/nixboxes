@@ -33,7 +33,7 @@ in
         poppins
         noto-fonts-cjk-sans
         fast-font
-        (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+        nerd-fonts.symbols-only
       ];
       fontconfig = {
         enable = true;
