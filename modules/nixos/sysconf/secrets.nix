@@ -54,6 +54,7 @@ with lib;
     # users.users."root".hashedPasswordFile = config.sops.secrets.rootpassword.path;
     # Disable root
     users.users."root".hashedPassword = mkIf config.secrets.enablePassword "*";
+    systemd.enableEmergencyMode = mkIf config.secrets.enablePassword false; # this makes no sense with root password disabled
     ignoredWarnings = [
       "The user '${username}' has multiple of the options\n`hashedPassword`, `password`, `hashedPasswordFile`, `initialPassword`\n& `initialHashedPassword` set to a non-null value.\nThe options silently discard others by the order of precedence\ngiven above which can lead to surprising results. To resolve this warning,\nset at most one of the options above to a non-`null` value.\n"
       "The user 'root' has multiple of the options\n`hashedPassword`, `password`, `hashedPasswordFile`, `initialPassword`\n& `initialHashedPassword` set to a non-null value.\nThe options silently discard others by the order of precedence\ngiven above which can lead to surprising results. To resolve this warning,\nset at most one of the options above to a non-`null` value.\n"
