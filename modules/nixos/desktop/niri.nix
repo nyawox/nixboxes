@@ -25,9 +25,7 @@ in
   };
   config = mkIf cfg.enable {
     modules.sysconf.bluetooth.blueman = true;
-    programs.niri.enable = true;
     nixpkgs.overlays = [ inputs.niri.overlays.niri ];
-    programs.niri.package = pkgs.niri-unstable;
     environment.variables.NIXOS_OZONE_WL = "1";
     environment.systemPackages = with pkgs; [
       wl-clipboard
@@ -35,8 +33,14 @@ in
       libsecret
     ];
     services.displayManager.defaultSession = mkIf cfg.default "niri";
-    # use seahorse for SSH_ASKPASS
-    programs.seahorse.enable = true;
-    programs.ssh.enableAskPassword = true;
+    programs = {
+      niri = {
+        enable = true;
+        package = pkgs.niri-unstable;
+      };
+      # use seahorse for SSH_ASKPASS
+      seahorse.enable = true;
+      ssh.enableAskPassword = true;
+    };
   };
 }
