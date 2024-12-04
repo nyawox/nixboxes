@@ -28,13 +28,15 @@ in
     programs.niri.enable = true;
     nixpkgs.overlays = [ inputs.niri.overlays.niri ];
     programs.niri.package = pkgs.niri-unstable;
-    # Keep chromium wayland disabled because it has issues with japanese ime and scaling
-    # environment.variables.NIXOS_OZONE_WL = "1";
+    environment.variables.NIXOS_OZONE_WL = "1";
     environment.systemPackages = with pkgs; [
       wl-clipboard
       wayland-utils
       libsecret
     ];
     services.displayManager.defaultSession = mkIf cfg.default "niri";
+    # use seahorse for SSH_ASKPASS
+    programs.seahorse.enable = true;
+    programs.ssh.enableAskPassword = true;
   };
 }
