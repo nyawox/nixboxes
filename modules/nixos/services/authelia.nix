@@ -71,6 +71,7 @@ in
                 "adguard.nixlap.top"
                 "adguard-2.nixlap.top"
                 "hs.nixlap.top/admin"
+                "git.nixlap.top"
               ];
               policy = "two_factor";
               subject = "group:admins";
