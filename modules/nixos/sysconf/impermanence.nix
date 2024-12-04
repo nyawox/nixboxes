@@ -68,9 +68,6 @@ in
           ".local/share/zoxide"
           ".wine"
           ".cache"
-          ".config/vesktop"
-          ".config/uGet"
-          ".config/transmission-remote-gtk"
           ".mozilla"
         ];
       };

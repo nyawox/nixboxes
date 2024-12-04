@@ -12,7 +12,6 @@
     nix-prefetch-git
     nautilus
     trayscale
-    vesktop
   ];
   # services.flatpak.packages = [
   #   "org.telegram.desktop"

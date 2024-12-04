@@ -9,7 +9,6 @@
     piper
     pciutils
     steam-run
-    vesktop
     dmidecode
     heroic
     wineWowPackages.waylandFull

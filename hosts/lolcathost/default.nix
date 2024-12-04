@@ -48,7 +48,16 @@
         enable = true;
         fonts = true;
       };
-      firejail.enable = true;
+      firejail = {
+        enable = true;
+        tor-browser = true;
+        signal-desktop = true;
+        obsidian = true;
+        vesktop = true;
+        vivaldi = true;
+        netflix = true;
+        uget = true;
+      };
       airplay.enable = true;
       altserver.enable = true;
       tor.enable = true;
@@ -120,9 +129,8 @@
       ''
         # sysdvr
         SUBSYSTEM=="usb", ATTRS{idVendor}=="18d1", ATTRS{idProduct}=="4ee0", MODE="0666"
-        # create a separate symlink for touchpad, so i can passthrough to vm (sadly the result wasn't great)
+        # create a separate symlink for touchpad, so i can passthrough to vm (sadly couldn't make work)
         SUBSYSTEM=="input", ATTRS{name}=="Wacom Bamboo 16FG 4x5 Finger", KERNEL=="event*", SYMLINK+="touchypaddy"
-
       '';
 
     # route from line in to line out, mainly for kvm switcher, and vm guests
@@ -255,9 +263,6 @@
           ".local/share/TelegramDesktop"
           ".config/heroic"
           ".config/remmina"
-          ".config/Signal"
-          ".config/obsidian"
-          ".config/vivaldi"
           ".config/onlyoffice"
           ".config/calibre"
           ".android"

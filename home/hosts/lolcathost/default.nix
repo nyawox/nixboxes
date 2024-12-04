@@ -13,9 +13,7 @@ in
   inherit imports;
   modules = {
     desktop = {
-      vivaldi.enable = true;
       zathura.enable = true;
-      obsidian.enable = true;
     };
   };
   home.file.".local/share/PrismLauncher/themes/Catppuccin-Mocha".source =

@@ -7,5 +7,4 @@ let
 in
 {
   inherit imports;
-  modules.desktop.vivaldi.enable = true;
 }

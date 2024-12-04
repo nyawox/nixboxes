@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  username,
   ...
 }:
 {
@@ -28,7 +27,12 @@
         enable = true;
         fonts = true;
       };
-      firejail.enable = true;
+      firejail = {
+        enable = true;
+        tor-browser = true;
+        signal-desktop = true;
+        netflix = true;
+      };
       adguardhome = {
         enable = true;
         openFirewall = true;
@@ -86,11 +90,4 @@
   ];
 
   programs.gnome-disks.enable = true;
-
-  environment.persistence."/persist".users."${username}".directories =
-    lib.mkIf config.modules.sysconf.impermanence.enable
-      [
-        ".config/vivaldi"
-        ".config/Signal"
-      ];
 }
