@@ -13,7 +13,6 @@
           inherit (prev) deploy-rs;
           inherit ((inputs.deploy-rs.overlay final prev).deploy-rs) lib;
         };
-        _7zz = prev._7zz.override { useUasm = true; }; # https://github.com/NixOS/nixpkgs/issues/353119
         # the release version is too old
         firejail = prev.firejail.overrideAttrs (_old: {
           src = prev.fetchFromGitHub {
