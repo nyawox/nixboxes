@@ -1,4 +1,6 @@
-# deploy with --auto-rollback, and reboot to make it work
+# forgejo@hostname:user/repo.git
+# after enabling this module the service may fail to start the first time
+# deploy with --auto-rollback=false and reboot
 {
   config,
   lib,
