@@ -198,6 +198,7 @@
       flake = false;
     };
     taildrop-notifier.url = "github:nyawox/taildrop-notifier";
+    niri-session-manager.url = "github:nyawox/niri-session-manager";
     impermanence.url = "github:nix-community/impermanence";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     nur.url = "github:nix-community/nur";

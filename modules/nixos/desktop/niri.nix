@@ -3,6 +3,7 @@
   config,
   inputs,
   pkgs,
+  username,
   ...
 }:
 with lib;
@@ -10,7 +11,10 @@ let
   cfg = config.modules.desktop.niri;
 in
 {
-  imports = [ inputs.niri.nixosModules.niri ];
+  imports = [
+    inputs.niri.nixosModules.niri
+    inputs.niri-session-manager.nixosModules.niri-session-manager
+  ];
   options = {
     modules.desktop.niri = {
       enable = mkOption {
@@ -33,6 +37,7 @@ in
       libsecret
     ];
     services.displayManager.defaultSession = mkIf cfg.default "niri";
+    services.niri-session-manager.enable = true;
     programs = {
       niri = {
         enable = true;
@@ -42,5 +47,8 @@ in
       seahorse.enable = true;
       ssh.enableAskPassword = true;
     };
+    environment.persistence."/persist".users."${username}".directories =
+      mkIf config.modules.sysconf.impermanence.enable
+        [ ".local/share/niri-session-manager" ];
   };
 }
