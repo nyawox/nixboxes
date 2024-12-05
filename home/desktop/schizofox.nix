@@ -95,7 +95,6 @@ in
           "{f209234a-76f0-4735-9920-eb62507a54cd}".install_url = "${exturl}/unpaywall/latest.xpi";
           "gdpr@cavi.au.dk".install_url = "${exturl}/consent-o-matic/latest.xpi";
           "{762f9885-5a13-4abd-9c77-433dcd38b8fd}".install_url = "${exturl}/return-youtube-dislikes/latest.xpi";
-          "uget-integration@slgobinath".install_url = "${exturl}/ugetintegration/latest.xpi";
           "CanvasBlocker@kkapsner.de".install_url = "${exturl}/canvasblocker/latest.xpi";
           "@contain-amzn".install_url = "${exturl}/contain-amazon/latest.xpi";
           "{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7}".install_url = "${exturl}/user-agent-string-switcher/latest.xpi";
@@ -228,13 +227,8 @@ in
           '';
       };
     };
-    home.packages = with pkgs; [
-      uget-integrator
-      # tridactyl-native
-    ];
     home.file = {
       ".mozilla/firefox/schizo.default/chrome/theme/".source = inputs.ff-ultima.outPath + "/theme/";
-      ".mozilla/native-messaging-hosts/com.ugetdm.firefox.json".source = "${pkgs.uget-integrator}/lib/mozilla/native-messaging-hosts/com.ugetdm.firefox.json";
       ".mozilla/native-messaging-hosts/tridactyl.json".source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
     };
     xdg = {
