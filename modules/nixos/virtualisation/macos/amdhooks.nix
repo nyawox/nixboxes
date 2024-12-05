@@ -1,3 +1,4 @@
+# TODO: find a way to determine if the vm has started successfully to start wayland compositor safely without relying on sleep command
 # Make sure to Disable Above 4G Decoding and ReBar on firmware settings. this gpu don't utilize the feature to its full potential anyway.
 {
   config,
@@ -94,6 +95,8 @@ in
                           # Check if graphical session is active
                           if ${getExe' pkgs.systemd "systemctl"} --user -M ${username}@ is-active --quiet graphical-session.target; then
                               echo "Stopping graphical session..."
+                              ${getExe' pkgs.systemd "systemctl"} stop greetd.service
+                              rm /run/greetd.run
                               ${getExe' pkgs.systemd "systemctl"} --user -M ${username}@ stop graphical-session.target
 
                               # Wait for graphical session to stop
@@ -146,6 +149,10 @@ in
                             fi
                           done < "$input"
                         fi
+
+                        # since i have dual gpu start greetd again
+                        sleep 5  # prevent race conditions. without this the compositor starts too soon and hangs.
+                        ${getExe' pkgs.systemd "systemctl"} start greetd.service
 
                         ;;
 

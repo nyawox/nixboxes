@@ -71,7 +71,10 @@
         enable = true;
         default = true;
       };
-      greetd.enable = true;
+      greetd = {
+        enable = true;
+        autoLogin = true;
+      };
       piper.enable = true;
       headsetcontrol.enable = true;
       gaming.enable = true;
