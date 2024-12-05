@@ -11,7 +11,6 @@
     glxinfo
     bc
     ripgrep
-    uget
     aria2
     e2fsprogs
   ];

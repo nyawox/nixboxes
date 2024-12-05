@@ -40,7 +40,6 @@
     nix-prefetch-git
     bc
     ripgrep
-    uget
     aria2
     ventoy
     e2fsprogs
