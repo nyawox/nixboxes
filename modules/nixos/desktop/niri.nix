@@ -30,12 +30,6 @@ in
   config = mkIf cfg.enable {
     modules.sysconf.bluetooth.blueman = true;
     nixpkgs.overlays = [ inputs.niri.overlays.niri ];
-    environment.variables.NIXOS_OZONE_WL = "1";
-    environment.systemPackages = with pkgs; [
-      wl-clipboard
-      wayland-utils
-      libsecret
-    ];
     services.displayManager.defaultSession = mkIf cfg.default "niri";
     services.niri-session-manager.enable = true;
     programs = {
@@ -47,8 +41,16 @@ in
       seahorse.enable = true;
       ssh.enableAskPassword = true;
     };
-    environment.persistence."/persist".users."${username}".directories =
-      mkIf config.modules.sysconf.impermanence.enable
-        [ ".local/share/niri-session-manager" ];
+    environment = {
+      variables.NIXOS_OZONE_WL = "1";
+      systemPackages = with pkgs; [
+        wl-clipboard
+        wayland-utils
+        libsecret
+      ];
+      persistence."/persist".users."${username}".directories =
+        mkIf config.modules.sysconf.impermanence.enable
+          [ ".local/share/niri-session-manager" ];
+    };
   };
 }
