@@ -39,7 +39,6 @@ in
         markdown-oxide # markdown language server
         inputs.latest.legacyPackages.${pkgs.system}.nixfmt-rfc-style
         tree-sitter-kdl
-        lsp-ai
         python3Packages.python-lsp-server
         rust-analyzer
       ];
@@ -110,7 +109,6 @@ in
             name = "python";
             language-servers = [
               "pylsp"
-              "lsp-ai"
             ];
           }
           {
@@ -118,7 +116,6 @@ in
             auto-format = true;
             language-servers = [
               "nixd"
-              "lsp-ai"
             ];
             formatter.command = "${getExe inputs.latest.legacyPackages.${pkgs.system}.nixfmt-rfc-style}";
           }
@@ -126,14 +123,12 @@ in
             name = "typescript";
             language-servers = [
               "typescript"
-              "lsp-ai"
             ];
           }
           {
             name = "javascript";
             language-servers = [
               "typescript"
-              "lsp-ai"
             ];
           }
           {
@@ -141,7 +136,6 @@ in
             auto-format = true;
             language-servers = [
               "rust-analyzer"
-              "lsp-ai"
             ];
             formatter.command = "rustfmt";
           }
@@ -159,37 +153,6 @@ in
           }
         ];
         language-server.nixd.command = "${getExe pkgs.nixd}";
-        language-server.lsp-ai = {
-          command = "${getExe pkgs.lsp-ai}";
-          config = {
-            memory = {
-              file_store = { };
-            };
-            models = {
-              qwen25coder = {
-                type = "ollama";
-                chat_endpoint = "http://lolcathost.hsnet.nixlap.top:11434/api/chat";
-                generate_endpoint = "http://lolcathost.hsnet.nixlap.top:11434/api/generate";
-                model = "qwen2.5-coder:14b-instruct-q4_K_M";
-              };
-            };
-            completion = {
-              model = "qwen25coder";
-              parameters = {
-                max_context = 8192;
-                options = {
-                  temperature = -1;
-                  num_predict = 2048;
-                };
-                fim = {
-                  start = "<｜fim▁begin｜>";
-                  middle = "<｜fim▁hole｜>";
-                  end = "<｜fim▁end｜>";
-                };
-              };
-            };
-          };
-        };
       };
       themes = {
         catppuccin_mocha_transparent = {

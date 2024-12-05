@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  osConfig,
   pkgs,
   ...
 }:
@@ -30,13 +29,6 @@ in
       extraConfig =
         # nu
         ''
-          def _aichat_nushell [] {
-            let _prev = (commandline)
-            if ($_prev != "") {
-              print '⌛'
-              commandline edit -r (aichat -m ollama:${osConfig.modules.services.ollama.codingModel} -e $_prev)
-            }
-          }
 
           def lsd [] { ls | sort-by type name -i | grid -c }
 
@@ -91,20 +83,6 @@ in
                 completer: $carapace_completer
               }
             },
-            keybindings: [
-              {
-                name: aichat_integration,
-                modifier: control,
-                keycode: char_l,
-                mode: [emacs, vi_insert],
-                event:[
-                  {
-                    send: executehostcommand,
-                    cmd: "_aichat_nushell"
-                  }
-                ]
-              }
-            ],
             table: {
               mode: rounded
             }
