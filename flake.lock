@@ -1531,11 +1531,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1733396072,
-        "narHash": "sha256-E1ztQA6mGCtj8xU27gHrhyEgXGuKnZVcy+R9T3rQMvE=",
+        "lastModified": 1733421634,
+        "narHash": "sha256-5rdCBIxPcYqdffQpKjWCj+ZU4pkw7rcGLVZ/79OkhFg=",
         "owner": "nyawox",
         "repo": "niri-session-manager",
-        "rev": "097e847e4b7708b326dc8b6bd1a903ad719f1b9b",
+        "rev": "716d039b6c8af4afdc46cd7c560bdd889e4200ae",
         "type": "github"
       },
       "original": {
