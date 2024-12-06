@@ -84,7 +84,7 @@ in
               on_reboot = "restart";
               on_crash = "destroy";
               devices = {
-                emulator = "${pkgs.qemu}/bin/qemu-system-ppc";
+                emulator = "${pkgs.nur.repos.Rhys-T.qemu-screamer}/bin/qemu-system-ppc"; # screamer build with audio support
                 controller = [
                   {
                     type = "usb";
@@ -156,7 +156,7 @@ in
                   { value = "-g"; }
                   { value = "1024x768x32"; }
                   { value = "-boot"; }
-                  { value = "d"; } # set to d when booting from iso
+                  { value = "c"; } # set to d when booting from iso
                 ];
               };
             };
