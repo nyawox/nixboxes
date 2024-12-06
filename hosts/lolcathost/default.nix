@@ -103,6 +103,7 @@
           amd.gpuid = "pci_0000_0d_00_0";
         };
       };
+      mac922.enable = true;
     };
   };
 
